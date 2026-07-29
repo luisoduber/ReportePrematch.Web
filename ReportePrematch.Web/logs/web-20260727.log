@@ -1,0 +1,172 @@
+2026-07-27 15:06:16.178 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-07-27 15:06:22.141 -04:00 [INF] HTTP GET / responded 200 in 737.1026 ms
+2026-07-27 15:06:22.978 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 7.2185 ms
+2026-07-27 15:08:08.838 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-07-27 15:08:11.792 -04:00 [INF] HTTP GET / responded 200 in 607.2621 ms
+2026-07-27 15:08:14.021 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 6.6608 ms
+2026-07-27 15:08:20.586 -04:00 [INF] HTTP POST / responded 200 in 100.0892 ms
+2026-07-27 15:08:29.678 -04:00 [INF] HTTP POST / responded 200 in 23.6958 ms
+2026-07-27 21:17:25.526 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-07-27 21:17:29.032 -04:00 [ERR] HTTP GET / responded 500 in 513.1722 ms
+System.InvalidOperationException: A circular layout reference was detected when rendering '/Views/Shared/_LoginLayout.cshtml'. The layout page '/Views/Shared/_LoginLayout.cshtml' has already been rendered.
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderLayoutAsync(ViewContext context, ViewBufferTextWriter bodyWriter)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-07-27 21:17:29.073 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: A circular layout reference was detected when rendering '/Views/Shared/_LoginLayout.cshtml'. The layout page '/Views/Shared/_LoginLayout.cshtml' has already been rendered.
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderLayoutAsync(ViewContext context, ViewBufferTextWriter bodyWriter)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-07-27 21:17:29.841 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 3.4915 ms
+2026-07-27 21:19:30.344 -04:00 [ERR] HTTP GET / responded 500 in 6026.6348 ms
+System.InvalidOperationException: RenderBody has not been called for the page at '/Views/Shared/_LoginLayout.cshtml'. To ignore call IgnoreBody().
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPage.EnsureRenderedBodyOrSections()
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderLayoutAsync(ViewContext context, ViewBufferTextWriter bodyWriter)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-07-27 21:19:30.356 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: RenderBody has not been called for the page at '/Views/Shared/_LoginLayout.cshtml'. To ignore call IgnoreBody().
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPage.EnsureRenderedBodyOrSections()
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderLayoutAsync(ViewContext context, ViewBufferTextWriter bodyWriter)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-07-27 21:22:19.992 -04:00 [INF] HTTP GET / responded 200 in 1303.7028 ms
+2026-07-27 21:23:21.506 -04:00 [INF] HTTP POST / responded 200 in 116.5438 ms
+2026-07-27 21:23:39.992 -04:00 [INF] HTTP POST / responded 200 in 9.5895 ms
+2026-07-27 21:23:45.166 -04:00 [INF] HTTP POST / responded 200 in 2.8704 ms
+2026-07-27 21:23:52.725 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 3.2443 ms
+2026-07-27 21:23:59.881 -04:00 [INF] HTTP POST / responded 200 in 5.2990 ms
+2026-07-27 21:24:00.119 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.1580 ms
+2026-07-27 21:24:13.160 -04:00 [INF] HTTP POST / responded 200 in 3.3074 ms
+2026-07-27 21:24:13.424 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.1914 ms
+2026-07-27 21:34:18.790 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-07-27 21:34:21.718 -04:00 [INF] HTTP GET / responded 200 in 589.7975 ms
+2026-07-27 21:34:23.045 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 12.0868 ms
+2026-07-27 21:34:30.489 -04:00 [WRN] AuthService.ValidateUserAsync: stub - integrar SOAP ADWS
+2026-07-27 21:34:30.493 -04:00 [WRN] Login fallido para usuario will
+2026-07-27 21:34:30.510 -04:00 [INF] HTTP POST / responded 200 in 451.9466 ms
+2026-07-27 21:34:37.148 -04:00 [WRN] AuthService.ValidateUserAsync: stub - integrar SOAP ADWS
+2026-07-27 21:34:37.149 -04:00 [WRN] Login fallido para usuario will
+2026-07-27 21:34:37.156 -04:00 [INF] HTTP POST / responded 200 in 65.3249 ms
+2026-07-27 21:34:51.091 -04:00 [WRN] AuthService.ValidateUserAsync: stub - integrar SOAP ADWS
+2026-07-27 21:34:51.092 -04:00 [WRN] Login fallido para usuario will
+2026-07-27 21:34:51.095 -04:00 [INF] HTTP POST / responded 200 in 55.2017 ms
+2026-07-27 21:34:55.445 -04:00 [WRN] AuthService.ValidateUserAsync: stub - integrar SOAP ADWS
+2026-07-27 21:34:55.446 -04:00 [WRN] Login fallido para usuario will
+2026-07-27 21:34:55.449 -04:00 [INF] HTTP POST / responded 200 in 55.4711 ms
+2026-07-27 21:35:00.092 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 2.9062 ms
+2026-07-27 21:35:06.724 -04:00 [WRN] AuthService.ValidateUserAsync: stub - integrar SOAP ADWS
+2026-07-27 21:35:06.741 -04:00 [WRN] Login fallido para usuario will
+2026-07-27 21:35:06.751 -04:00 [INF] HTTP POST / responded 200 in 92.0313 ms
+2026-07-27 21:35:07.008 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.2095 ms
+2026-07-27 22:11:11.997 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-07-27 22:11:19.849 -04:00 [INF] HTTP GET / responded 200 in 1576.0349 ms
+2026-07-27 22:11:26.205 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 44.3522 ms
+2026-07-27 22:11:32.703 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-3) para will
+2026-07-27 22:11:32.716 -04:00 [WRN] Login fallido para usuario will
+2026-07-27 22:11:32.738 -04:00 [INF] HTTP POST / responded 200 in 1425.9830 ms
+2026-07-27 22:11:39.205 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-3) para will
+2026-07-27 22:11:39.206 -04:00 [WRN] Login fallido para usuario will
+2026-07-27 22:11:39.212 -04:00 [INF] HTTP POST / responded 200 in 172.1514 ms
+2026-07-27 22:11:46.267 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 2.9764 ms
+2026-07-27 22:11:51.400 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-3) para will
+2026-07-27 22:11:51.404 -04:00 [WRN] Login fallido para usuario will
+2026-07-27 22:11:51.406 -04:00 [INF] HTTP POST / responded 200 in 243.9546 ms
+2026-07-27 22:11:51.622 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.2340 ms
+2026-07-27 22:19:32.818 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-07-27 22:19:36.833 -04:00 [INF] HTTP GET / responded 200 in 767.5715 ms
+2026-07-27 22:19:39.134 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 6.7719 ms
+2026-07-27 22:20:56.218 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-3) para will
+2026-07-27 22:20:56.223 -04:00 [WRN] Login fallido para usuario will
+2026-07-27 22:20:56.249 -04:00 [INF] HTTP POST / responded 200 in 1052.7548 ms
+2026-07-27 22:28:06.503 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-3) para will
+2026-07-27 22:28:06.506 -04:00 [WRN] Login fallido para usuario will
+2026-07-27 22:28:06.518 -04:00 [INF] HTTP POST / responded 200 in 647.2659 ms
+2026-07-27 23:05:10.610 -04:00 [INF] HTTP POST / responded 200 in 85.9070 ms
+2026-07-27 23:05:16.470 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-3) para will
+2026-07-27 23:05:16.475 -04:00 [WRN] Login fallido para usuario will
+2026-07-27 23:05:16.484 -04:00 [INF] HTTP POST / responded 200 in 668.2189 ms

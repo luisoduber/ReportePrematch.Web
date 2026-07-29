@@ -1,0 +1,66 @@
+{
+  "version": 2,
+  "dgSpecHash": "vF6s4oCQbKw=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\ReportePrematch.Web.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\programacion\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\6.0.0\\microsoft.aspnetcore.mvc.razor.extensions.6.0.0.nupkg.sha512",
+    "C:\\Users\\programacion\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\10.0.0-preview.1.25120.3\\microsoft.aspnetcore.mvc.razor.runtimecompilation.10.0.0-preview.1.25120.3.nupkg.sha512",
+    "C:\\Users\\programacion\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.0\\microsoft.aspnetcore.razor.language.6.0.0.nupkg.sha512",
+    "C:\\Users\\programacion\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.2\\microsoft.codeanalysis.analyzers.3.3.2.nupkg.sha512",
+    "C:\\Users\\programacion\\.nuget\\packages\\microsoft.codeanalysis.common\\4.0.0\\microsoft.codeanalysis.common.4.0.0.nupkg.sha512",
+    "C:\\Users\\programacion\\.nuget\\packages\\microsoft.codeanalysis.csharp\\4.0.0\\microsoft.codeanalysis.csharp.4.0.0.nupkg.sha512",
+    "C:\\Users\\programacion\\.nuget\\packages\\microsoft.codeanalysis.razor\\6.0.0\\microsoft.codeanalysis.razor.6.0.0.nupkg.sha512",
+    "C:\\Users\\programacion\\.nuget\\packages\\microsoft.extensions.dependencymodel\\10.0.0-preview.1.25080.5\\microsoft.extensions.dependencymodel.10.0.0-preview.1.25080.5.nupkg.sha512",
+    "C:\\Users\\programacion\\.nuget\\packages\\microsoft.extensions.http\\10.0.0-preview.2.25163.2\\microsoft.extensions.http.10.0.0-preview.2.25163.2.nupkg.sha512",
+    "C:\\Users\\programacion\\.nuget\\packages\\serilog\\4.0.0\\serilog.4.0.0.nupkg.sha512",
+    "C:\\Users\\programacion\\.nuget\\packages\\serilog.aspnetcore\\8.0.3\\serilog.aspnetcore.8.0.3.nupkg.sha512",
+    "C:\\Users\\programacion\\.nuget\\packages\\serilog.extensions.hosting\\8.0.0\\serilog.extensions.hosting.8.0.0.nupkg.sha512",
+    "C:\\Users\\programacion\\.nuget\\packages\\serilog.extensions.logging\\8.0.0\\serilog.extensions.logging.8.0.0.nupkg.sha512",
+    "C:\\Users\\programacion\\.nuget\\packages\\serilog.formatting.compact\\2.0.0\\serilog.formatting.compact.2.0.0.nupkg.sha512",
+    "C:\\Users\\programacion\\.nuget\\packages\\serilog.settings.configuration\\8.0.4\\serilog.settings.configuration.8.0.4.nupkg.sha512",
+    "C:\\Users\\programacion\\.nuget\\packages\\serilog.sinks.console\\6.0.0\\serilog.sinks.console.6.0.0.nupkg.sha512",
+    "C:\\Users\\programacion\\.nuget\\packages\\serilog.sinks.debug\\2.0.0\\serilog.sinks.debug.2.0.0.nupkg.sha512",
+    "C:\\Users\\programacion\\.nuget\\packages\\serilog.sinks.file\\6.0.0\\serilog.sinks.file.6.0.0.nupkg.sha512",
+    "C:\\Users\\programacion\\.nuget\\packages\\system.servicemodel.http\\8.1.0\\system.servicemodel.http.8.1.0.nupkg.sha512",
+    "C:\\Users\\programacion\\.nuget\\packages\\system.servicemodel.primitives\\8.1.0\\system.servicemodel.primitives.8.1.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1510",
+      "level": "Warning",
+      "message": "PackageReference Microsoft.Extensions.Http no se eliminará. Este paquete está disponible automáticamente y no es necesario hacer referencia a él explícitamente. Quite el elemento PackageReference.",
+      "projectPath": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\ReportePrematch.Web.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\ReportePrematch.Web.csproj",
+      "libraryId": "Microsoft.Extensions.Http",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "message": "ReportePrematch.Web depende de Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation (>= 10.0.0-preview.1.25116.1), pero no se encontró Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation 10.0.0-preview.1.25116.1. Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation 10.0.0-preview.1.25120.3 se resolvió en su lugar.",
+      "projectPath": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\ReportePrematch.Web.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\ReportePrematch.Web.csproj",
+      "libraryId": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "message": "ReportePrematch.Web depende de Microsoft.Extensions.Http (>= 10.0.0-preview.1.25116.1), pero no se encontró Microsoft.Extensions.Http 10.0.0-preview.1.25116.1. Microsoft.Extensions.Http 10.0.0-preview.2.25163.2 se resolvió en su lugar.",
+      "projectPath": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\ReportePrematch.Web.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\ReportePrematch.Web.csproj",
+      "libraryId": "Microsoft.Extensions.Http",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
+}

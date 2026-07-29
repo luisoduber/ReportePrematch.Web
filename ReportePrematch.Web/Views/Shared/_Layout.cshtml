@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@(ViewBag.NombrePagina ?? "ReportePrematch") — GCIT</title>
+
+    <!-- Tailwind CSS CDN (producción: usar build local) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sa: {
+                            1: '#001833', 2: '#002E5C', 3: '#003D6B',
+                            4: '#005B8E', 5: '#0077B6', 6: '#00A8CC', 7: '#48CAE4'
+                        },
+                        av: {
+                            1: '#0D3B1E', 2: '#1A5C30', 3: '#2D9B45',
+                            4: '#52B26B', 5: '#7FCA8A'
+                        }
+                    },
+                    backdropBlur: {
+                        sm: '8px', md: '16px', lg: '24px'
+                    },
+                    borderRadius: {
+                        pill: '100px'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Bootstrap 5.3 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <!-- Tabler Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css" />
+    <!-- DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.min.css" />
+    <!-- Tom Select -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.bootstrap5.min.css" />
+
+    <!-- Liquid Glass custom CSS -->
+    <link rel="stylesheet" href="~/css/liquid-glass.css" asp-append-version="true" />
+</head>
+<body class="min-h-screen" style="background: linear-gradient(135deg, var(--sa-1) 0%, var(--sa-2) 40%, var(--sa-3) 100%); background-attachment: fixed;">
+
+    <!-- NAVBAR PRINCIPAL -->
+    <nav class="glass-navbar main-nav-bar">
+        <div class="d-flex align-items-center gap-2 px-3">
+            <!-- Logo -->
+            <span class="gcit-logo-title fw-bold" style="color: var(--sa-7); letter-spacing: 2px;">GCIT</span>
+            <span style="color: var(--an-5); font-size: 0.7rem;">· ReportePrematch</span>
+        </div>
+
+        <div class="d-flex align-items-center gap-1 flex-grow-1 px-2">
+
+            <!-- Menú Apuestas -->
+            <div class="nav-dropdown">
+                <button class="nav-module @(IsActive("VentasPorAgente", "TicketsDetallados", "VentasPorPais", "VentasPorAgenteNikols", "VentasPorAgenteGameID", "TicketsEnJuego", "VentasDetalladasLive"))">
+                    <i class="ti ti-chart-bar"></i><span>Apuestas</span>
+                </button>
+                <div class="nav-dropdown-menu">
+                    <div class="nav-dropdown-section">Taquilla</div>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VentasPorAgenteTaq"><i class="ti ti-building-store"></i> Ventas por Agente</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VentasPorAgenteNikolsTaq"><i class="ti ti-user-check"></i> Ventas Nikols</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="TicketsDetalladosTaq"><i class="ti ti-ticket"></i> Tickets Detallados</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="TicketsEnJuegoTaq"><i class="ti ti-clock-play"></i> Tickets en Juego</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="EstadisticasTaq"><i class="ti ti-chart-pie"></i> Estadísticas</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="BusquedaTicketsTaq"><i class="ti ti-search"></i> Búsqueda Tickets</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VerCierreTaquilla"><i class="ti ti-lock"></i> Cierre Taquilla</a>
+                    <div class="nav-dropdown-section">Web</div>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VentasPorAgenteWeb"><i class="ti ti-world"></i> Ventas por Agente</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VentasPorAgenteNikolsWeb"><i class="ti ti-user-check"></i> Ventas Nikols</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="TicketsDetalladosWeb"><i class="ti ti-ticket"></i> Tickets Detallados</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="TicketsEnJuegoWeb"><i class="ti ti-clock-play"></i> Tickets en Juego</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="EstadisticasWeb"><i class="ti ti-chart-pie"></i> Estadísticas</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="BusquedaTicketsWeb"><i class="ti ti-search"></i> Búsqueda Tickets</a>
+                    <div class="nav-dropdown-section">General</div>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="DeportesMasVendidos"><i class="ti ti-trophy"></i> Deportes más Vendidos</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VentasPorAgenteGameID"><i class="ti ti-hash"></i> Ticket por GameID</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VentasPorPaisWeb"><i class="ti ti-globe"></i> Ventas por País Web</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VentasPorPaisTaq"><i class="ti ti-globe"></i> Ventas por País Taq</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VentasDetalladasLive"><i class="ti ti-live-photo"></i> Live Detalladas</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="Props"><i class="ti ti-cards"></i> Props</a>
+                </div>
+            </div>
+
+            <!-- Menú Casino -->
+            <div class="nav-dropdown">
+                <button class="nav-module @(IsActive("Casino", "IconBet", "IconSlot", "Poker", "Pragmatic", "Virtuales", "Aviatrix"))">
+                    <i class="ti ti-poker-chip"></i><span>Casino</span>
+                </button>
+                <div class="nav-dropdown-menu">
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="CasinoMaquinitas"><i class="ti ti-device-gamepad-2"></i> Maquinitas</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="CasinoSlotGrecia"><i class="ti ti-dice-5"></i> Slot Grecia</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="CasinoSlotRusia"><i class="ti ti-dice-6"></i> Slot Rusia</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="IconBet"><i class="ti ti-crown"></i> IconBet</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="IconSlot"><i class="ti ti-device-desktop"></i> IconBet Slots</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="Poker"><i class="ti ti-cards"></i> Poker</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="Pragmatic"><i class="ti ti-sparkles"></i> Pragmatic Play</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VirtualesBR"><i class="ti ti-device-tv"></i> Virtuales BR</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VirtualesCaribe"><i class="ti ti-device-tv"></i> Virtuales Caribe</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="Aviatrix"><i class="ti ti-plane"></i> Aviatrix</a>
+                </div>
+            </div>
+
+            <!-- Menú Otros -->
+            <div class="nav-dropdown">
+                <button class="nav-module @(IsActive("Hipismo", "Loteria", "FantasyBsb"))">
+                    <i class="ti ti-horse"></i><span>Otros</span>
+                </button>
+                <div class="nav-dropdown-menu">
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="Hipismo"><i class="ti ti-horse"></i> Hipismo</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="Loteria"><i class="ti ti-numbers"></i> Lotería</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="LoteriaTriple"><i class="ti ti-numbers"></i> Lotería Triple</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="FantasyBsb"><i class="ti ti-ball-baseball"></i> Fantasy Baseball</a>
+                </div>
+            </div>
+
+            <!-- Menú Finanzas -->
+            <div class="nav-dropdown">
+                <button class="nav-module @(IsActive("Retiros", "Saldos", "Transaccion", "Promo", "Cliente"))">
+                    <i class="ti ti-wallet"></i><span>Finanzas</span>
+                </button>
+                <div class="nav-dropdown-menu">
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="RetirosRecargas"><i class="ti ti-arrows-exchange"></i> Retiros y Recargas</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="SaldosDisponibles"><i class="ti ti-coin"></i> Saldos Disponibles</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="RepTransaccion"><i class="ti ti-file-text"></i> Rep. Transacción</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="ReporteTransaccion"><i class="ti ti-file-analytics"></i> Reporte Transacción</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="PromoTicket"><i class="ti ti-gift"></i> PromoTicket</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="ClienteReg"><i class="ti ti-users"></i> Clientes Registrados</a>
+                </div>
+            </div>
+
+            <!-- Dashboard -->
+            <a class="nav-module @(IsActive("Dashboard", "DashbrdExtendido"))" asp-controller="Home" asp-action="Dashboard">
+                <i class="ti ti-layout-dashboard"></i><span>Dashboard</span>
+            </a>
+        </div>
+
+        <!-- Info usuario + salir -->
+        <div class="d-flex align-items-center gap-2 px-3">
+            <div class="text-end" style="line-height:1.1;">
+                <div style="color:var(--an-3);font-size:.8rem;font-weight:600;">@ViewBag.Usuario</div>
+                <div style="color:var(--sa-7);font-size:.65rem;">@ViewBag.TipoUsuario</div>
+            </div>
+            <a class="nav-module nav-salir" asp-controller="Home" asp-action="Logout" title="Cerrar sesión">
+                <i class="ti ti-logout"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- OVERLAY DE CARGA -->
+    <div id="busy-overlay">
+        <div class="busy-spinner"></div>
+        <div class="busy-text">Cargando...</div>
+    </div>
+
+    <!-- BARRA DE PROGRESO -->
+    <div id="progress-bar"></div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="px-3 px-md-4 py-4" style="padding-top: 80px !important;">
+        @RenderBody()
+    </main>
+
+    <!-- Scripts base -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/busy.js" asp-append-version="true"></script>
+    <!-- Tom Select -->
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+<script>
+// ── Dropdown nav: teleport al <body> para escapar el backdrop-filter del navbar ──
+// backdrop-filter crea un containing block → position:fixed hijos no pueden salir.
+// Solución: mover los menús al <body> y gestionar show/hide con delay para evitar
+// que el menú se cierre al cruzar el pequeño gap entre el botón y el panel.
+(function () {
+    document.addEventListener('DOMContentLoaded', function () {
+        // Un solo timer compartido: solo un menú puede estar abierto a la vez
+        var activeMenu = null;
+        var hideTimer  = null;
+
+        function cancelHide() {
+            if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+        }
+
+        function hideActive() {
+            cancelHide();
+            if (activeMenu) { activeMenu.style.display = 'none'; activeMenu = null; }
+        }
+
+        function scheduleHide() {
+            cancelHide();
+            hideTimer = setTimeout(hideActive, 180); // 180ms de gracia
+        }
+
+        document.querySelectorAll('.nav-dropdown').forEach(function (trigger) {
+            var menu = trigger.querySelector('.nav-dropdown-menu');
+            if (!menu) return;
+
+            // Teleportar al <body>
+            document.body.appendChild(menu);
+            menu.style.position = 'fixed';
+            menu.style.top      = '56px';
+            menu.style.display  = 'none';
+            menu.style.zIndex   = '3000';
+
+            function show() {
+                cancelHide();
+                // Cerrar cualquier otro menú abierto inmediatamente
+                if (activeMenu && activeMenu !== menu) {
+                    activeMenu.style.display = 'none';
+                }
+                var rect  = trigger.getBoundingClientRect();
+                var menuW = 228;
+                var left  = rect.left;
+                if (left + menuW > window.innerWidth - 8) left = window.innerWidth - menuW - 8;
+                menu.style.left    = Math.max(4, left) + 'px';
+                menu.style.display = 'block';
+                activeMenu = menu;
+            }
+
+            trigger.addEventListener('mouseenter', show);
+            trigger.addEventListener('mouseleave', scheduleHide);
+
+            menu.addEventListener('mouseenter', cancelHide);
+            menu.addEventListener('mouseleave', scheduleHide);
+
+            // Cerrar al hacer click en un enlace del menú
+            menu.addEventListener('click', function (e) {
+                if (e.target.closest('a')) hideActive();
+            });
+        });
+
+        // Cerrar si se hace click fuera de cualquier menú
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest('.nav-dropdown') && !e.target.closest('.nav-dropdown-menu')) {
+                hideActive();
+            }
+        });
+    });
+})();
+</script>
+</body>
+</html>
+
+@functions {
+    bool IsActive(params string[] actions)
+    {
+        var current = ViewContext.RouteData.Values["action"]?.ToString() ?? "";
+        return actions.Any(a => current.Contains(a, StringComparison.OrdinalIgnoreCase));
+    }
+}

@@ -1,0 +1,325 @@
+@model ReportePrematch.Web.Models.ViewModels.LoginViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar Sesión — GCIT</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css" />
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <style>
+            *, *::before, *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                background: radial-gradient(ellipse at 60% 30%, #1e5799 0%, #1a3f7a 30%, #0d2246 65%, #071630 100%);
+            }
+
+            /* ── Card ── */
+            .login-card {
+                width: 100%;
+                max-width: 440px;
+                padding: 2.5rem 2.25rem 2rem;
+                background: rgba(8, 20, 50, 0.82);
+                border: 1px solid rgba(100, 160, 255, 0.18);
+                border-radius: 18px;
+                box-shadow: 0 8px 48px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.06);
+                backdrop-filter: blur(20px);
+            }
+
+            /* ── Logo ── */
+            .gcit-brand {
+                margin-bottom: 1.4rem;
+            }
+
+            .logo-text {
+                font-size: 2rem;
+                font-weight: 800;
+                letter-spacing: -1px;
+                line-height: 1;
+            }
+
+                .logo-text .gc {
+                    color: #ffffff;
+                }
+
+                .logo-text .it {
+                    color: #f5a623;
+                }
+
+            .logo-sub {
+                font-size: .72rem;
+                color: rgba(180,200,255,.55);
+                letter-spacing: .04em;
+                margin-top: 2px;
+            }
+
+            /* ── Títulos ── */
+            .login-heading {
+                font-size: 1.35rem;
+                font-weight: 700;
+                color: #ffffff;
+                margin-bottom: .3rem;
+            }
+
+            .login-sub {
+                font-size: .82rem;
+                color: rgba(180,210,255,.6);
+                margin-bottom: 1.8rem;
+            }
+
+            /* ── Campos ── */
+            .field-label {
+                display: block;
+                font-size: .68rem;
+                font-weight: 600;
+                letter-spacing: .1em;
+                color: rgba(180,210,255,.7);
+                margin-bottom: .45rem;
+            }
+
+            .input-wrap {
+                position: relative;
+                display: flex;
+                align-items: center;
+                background: rgba(255,255,255,.05);
+                border: 1px solid rgba(100,160,255,.22);
+                border-radius: 10px;
+                transition: border-color .2s;
+            }
+
+                .input-wrap:focus-within {
+                    border-color: rgba(100,200,255,.5);
+                    box-shadow: 0 0 0 3px rgba(100,180,255,.1);
+                }
+
+            .icon-left {
+                padding: 0 .75rem;
+                color: rgba(140,180,255,.55);
+                font-size: 1rem;
+                flex-shrink: 0;
+            }
+
+            .input-wrap input {
+                flex: 1;
+                background: transparent;
+                border: none;
+                outline: none;
+                color: #e8f0ff;
+                font-size: .9rem;
+                padding: .72rem .5rem .72rem 0;
+            }
+
+                .input-wrap input::placeholder {
+                    color: rgba(150,180,255,.35);
+                }
+
+            .icon-right {
+                padding: 0 .75rem;
+                color: rgba(140,180,255,.45);
+                cursor: pointer;
+                font-size: 1rem;
+                flex-shrink: 0;
+                background: none;
+                border: none;
+                outline: none;
+                transition: color .2s;
+            }
+
+                .icon-right:hover {
+                    color: rgba(180,220,255,.8);
+                }
+
+            .field-error {
+                display: block;
+                font-size: .72rem;
+                color: #f87171;
+                margin-top: .3rem;
+            }
+
+            .mb-field {
+                margin-bottom: 1rem;
+            }
+
+            /* ── Alerta ── */
+            .alert-login {
+                display: flex;
+                align-items: center;
+                gap: .5rem;
+                background: rgba(239,68,68,.12);
+                border: 1px solid rgba(239,68,68,.3);
+                border-radius: 8px;
+                padding: .65rem .9rem;
+                color: #fca5a5;
+                font-size: .82rem;
+                margin-bottom: 1.2rem;
+            }
+
+            /* ── Turnstile ── */
+            .turnstile-wrap {
+                display: flex;
+                justify-content: center;
+                margin: 1rem 0;
+            }
+
+            /* ── Botón ── */
+            .btn-ingresar {
+                width: 100%;
+                padding: .78rem 1rem;
+                background: linear-gradient(135deg, #0db8a9 0%, #0a9a8c 100%);
+                border: none;
+                border-radius: 10px;
+                color: #ffffff;
+                font-size: .9rem;
+                font-weight: 600;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: .5rem;
+                letter-spacing: .02em;
+                transition: opacity .2s, transform .1s;
+                margin-top: .5rem;
+            }
+
+                .btn-ingresar:hover {
+                    opacity: .9;
+                }
+
+                .btn-ingresar:active {
+                    transform: scale(.98);
+                }
+
+            /* ── Footer ── */
+            .login-footer {
+                margin-top: 1.6rem;
+                text-align: center;
+            }
+
+            .footer-line1 {
+                font-size: .7rem;
+                color: rgba(150,190,255,.45);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: .35rem;
+                margin-bottom: .25rem;
+            }
+
+            .footer-line2 {
+                font-size: .65rem;
+                color: rgba(120,160,255,.35);
+            }
+
+            .divider {
+                border: none;
+                border-top: 1px solid rgba(100,150,255,.12);
+                margin: 1.5rem 0 1.2rem;
+            }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+
+        <!-- Logo -->
+        <div class="gcit-brand">
+            <div class="logo-text"><span class="gc">GC</span><span class="it">IT</span></div>
+            <div class="logo-sub">Desarrollo de Software</div>
+        </div>
+
+        <div class="login-heading">Reporte Prematch</div>
+        <div class="login-sub">Ingresa tus credenciales de operador</div>
+
+        <!-- Alerta de error -->
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert-login">
+                <i class="ti ti-alert-circle"></i>
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <span>@error.ErrorMessage</span>
+                }
+            </div>
+        }
+
+        <!-- Formulario -->
+        <form asp-controller="Home" asp-action="Login" method="post">
+            @Html.AntiForgeryToken()
+
+            <div class="mb-field">
+                <label class="field-label">USUARIO</label>
+                <div class="input-wrap">
+                    <span class="icon-left"><i class="ti ti-user"></i></span>
+                    <input asp-for="Usuario" placeholder="nombre.operador" autocomplete="username" />
+                </div>
+                <span asp-validation-for="Usuario" class="field-error"></span>
+            </div>
+
+            <div class="mb-field">
+                <label class="field-label">CLAVE</label>
+                <div class="input-wrap">
+                    <span class="icon-left"><i class="ti ti-lock"></i></span>
+                    <input asp-for="Password" id="passwordInput" type="password"
+                           placeholder="••••••••" autocomplete="current-password" />
+                    <button type="button" class="icon-right" onclick="togglePassword()">
+                        <i class="ti ti-eye" id="eyeIcon"></i>
+                    </button>
+                </div>
+                <span asp-validation-for="Password" class="field-error"></span>
+            </div>
+
+            <div class="turnstile-wrap">
+                <div class="cf-turnstile"
+                     data-sitekey="@ViewBag.TurnstileSiteKey"
+                     data-callback="onTurnstileSuccess"
+                     data-theme="dark"></div>
+            </div>
+            <input type="hidden" asp-for="CfTurnstileResponse" id="cf-response" />
+            <span asp-validation-for="CfTurnstileResponse" class="field-error" style="display:block;text-align:center;margin-bottom:.5rem;"></span>
+
+            <button type="submit" class="btn-ingresar">
+                <i class="ti ti-login"></i>
+                Ingresar al sistema
+            </button>
+        </form>
+
+        <hr class="divider" />
+
+        <div class="login-footer">
+            <div class="footer-line1">
+                <i class="ti ti-shield-check" style="font-size:.8rem;"></i>
+                Conexión cifrada · Solo personal autorizado
+            </div>
+            <div class="footer-line2">GCIT, C.A. · Sistema R&D v2.0 · © @DateTime.Now.Year</div>
+        </div>
+    </div>
+
+    <script>
+            function onTurnstileSuccess(token) {
+                document.getElementById('cf-response').value = token;
+            }
+            function togglePassword() {
+                var input = document.getElementById('passwordInput');
+                var icon = document.getElementById('eyeIcon');
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.classList.replace('ti-eye', 'ti-eye-off');
+                } else {
+                    input.type = 'password';
+                    icon.classList.replace('ti-eye-off', 'ti-eye');
+                }
+            }
+    </script>
+</body>
+</html>

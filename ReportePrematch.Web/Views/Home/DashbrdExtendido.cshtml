@@ -1,0 +1,117 @@
+@{
+    Layout = "_Layout";
+}
+
+<section class="glass-card">
+    <div class="welcome-bar">
+        <div>
+            <div class="welcome-title">Dashboard Extendido</div>
+            <div class="welcome-sub">Análisis detallado · Todos los canales</div>
+        </div>
+        <button class="btn-glass btn-primary" onclick="cargarTodo()">
+            <i class="ti ti-refresh"></i> Actualizar todo
+        </button>
+    </div>
+
+    <!-- Filtros -->
+    <div class="glass-panel mt-3 p-3">
+        <div class="row g-2 align-items-end">
+            <div class="col-md-3">
+                <label class="field-label">Fecha Desde</label>
+                <input type="date" id="fechaD" class="glass-input" value="@DateTime.Today.AddDays(-7).ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-3">
+                <label class="field-label">Fecha Hasta</label>
+                <input type="date" id="fechaH" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-3">
+                <label class="field-label">Agente</label>
+                <input type="text" id="agente" class="glass-input"
+                       value="@ViewBag.Agente"
+                       @(ViewBag.TipoUsuario == "Usuario Regular" ? "readonly" : "") />
+            </div>
+            <div class="col-md-3">
+                <button class="btn-glass btn-primary w-100" onclick="cargarTodo()">
+                    <i class="ti ti-search"></i> Consultar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- KPIs principales -->
+    <div class="section-label mt-4">Resumen General</div>
+    <div class="quick-metrics-bar mt-2" id="kpiBar">
+        <div class="metric-card"><div class="metric-label">Venta Total Web</div><div class="metric-value metric-blue" id="kW">—</div></div>
+        <div class="metric-card"><div class="metric-label">Venta Total Taquilla</div><div class="metric-value metric-blue" id="kT">—</div></div>
+        <div class="metric-card"><div class="metric-label">Premios Web</div><div class="metric-value metric-red" id="kPW">—</div></div>
+        <div class="metric-card"><div class="metric-label">Premios Taquilla</div><div class="metric-value metric-red" id="kPT">—</div></div>
+        <div class="metric-card"><div class="metric-label">Balance Apuestas</div><div class="metric-value metric-green" id="kBal">—</div></div>
+    </div>
+
+    <!-- Sección Web -->
+    <div class="section-label mt-4">Canal Web — Top Agentes</div>
+    <div class="table-responsive mt-2">
+        <table id="tblWeb" class="glass-table w-100">
+            <thead><tr><th>Agente</th><th>Venta Par</th><th>Venta Dir</th><th>Premios Par</th><th>Premios Dir</th><th>Balance</th></tr></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <!-- Sección Taquilla -->
+    <div class="section-label mt-4">Canal Taquilla — Top Agentes</div>
+    <div class="table-responsive mt-2">
+        <table id="tblTaq" class="glass-table w-100">
+            <thead><tr><th>Agente</th><th>Venta Par</th><th>Venta Dir</th><th>Premios Par</th><th>Premios Dir</th><th>Balance</th></tr></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</section>
+
+@section Scripts {
+<script>
+let dtW, dtT;
+function fmt(v){ return parseFloat(v||0).toLocaleString('es-VE',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+
+const colsVentas = [
+    {data:'NombreAgente'},
+    {data:'VentaPar', render:d=>`<span class="col-monto-pos">${fmt(d)}</span>`},
+    {data:'VentaDir', render:d=>`<span class="col-monto-pos">${fmt(d)}</span>`},
+    {data:'PremiosPar', render:d=>`<span class="col-monto-neg">${fmt(d)}</span>`},
+    {data:'PremiosDir', render:d=>`<span class="col-monto-neg">${fmt(d)}</span>`},
+    {data:null,render:r=>{const b=(r.VentaPar+r.VentaDir)-(r.PremiosPar+r.PremiosDir);return `<span class="${b>=0?'col-monto-pos':'col-monto-neg'}">${fmt(b)}</span>`;}}
+];
+
+function dtOpts(data){ return { data, columns:colsVentas, language:{url:'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json'}, pageLength:10, order:[[1,'desc']], dom:'frtip' }; }
+
+function cargarTodo(){
+    const fechaD=document.getElementById('fechaD').value;
+    const fechaH=document.getElementById('fechaH').value;
+    const agente=document.getElementById('agente').value;
+    if(!fechaD||!fechaH) return;
+    showBusy('Cargando dashboard extendido...');
+
+    const p1=$.post('@Url.Action("GetVentasPorAgenteWeb","Reportes")',{fechaD,fechaH,agente});
+    const p2=$.post('@Url.Action("GetVentasPorAgenteTaq","Reportes")',{fechaD,fechaH,agente});
+
+    $.when(p1,p2).done(function(r1,r2){
+        const web=r1[0]||[], taq=r2[0]||[];
+
+        let vW=0,pW=0,vT=0,pT=0;
+        web.forEach(r=>{ vW+=(r.VentaPar||0)+(r.VentaDir||0); pW+=(r.PremiosPar||0)+(r.PremiosDir||0); });
+        taq.forEach(r=>{ vT+=(r.VentaPar||0)+(r.VentaDir||0); pT+=(r.PremiosPar||0)+(r.PremiosDir||0); });
+
+        document.getElementById('kW').textContent=fmt(vW);
+        document.getElementById('kT').textContent=fmt(vT);
+        document.getElementById('kPW').textContent=fmt(pW);
+        document.getElementById('kPT').textContent=fmt(pT);
+        document.getElementById('kBal').textContent=fmt((vW+vT)-(pW+pT));
+
+        if(dtW)dtW.destroy(); dtW=$('#tblWeb').DataTable(dtOpts(web));
+        if(dtT)dtT.destroy(); dtT=$('#tblTaq').DataTable(dtOpts(taq));
+        hideBusy();
+    }).fail(()=>hideBusy());
+}
+
+$(document).ready(()=>cargarTodo());
+</script>
+}

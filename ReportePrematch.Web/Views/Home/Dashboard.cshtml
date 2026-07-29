@@ -1,0 +1,182 @@
+@{
+    Layout = "_Layout";
+}
+
+<section class="glass-card">
+    <!-- Cabecera -->
+    <div class="welcome-bar">
+        <div>
+            <div class="welcome-title">Dashboard Operativo</div>
+            <div class="welcome-sub">Resumen general · Usuario: <strong>@ViewBag.Usuario</strong></div>
+        </div>
+        <button class="btn-glass btn-primary" onclick="cargarDashboard()">
+            <i class="ti ti-refresh"></i> Actualizar
+        </button>
+    </div>
+
+    <!-- Filtro de fecha -->
+    <div class="glass-panel mt-3 p-3">
+        <div class="row g-2 align-items-end">
+            <div class="col-md-3">
+                <label class="field-label">Fecha Desde</label>
+                <input type="date" id="fechaD" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-3">
+                <label class="field-label">Fecha Hasta</label>
+                <input type="date" id="fechaH" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-3">
+                <button class="btn-glass btn-primary w-100" onclick="cargarDashboard()">
+                    <i class="ti ti-search"></i> Consultar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- KPI Cards -->
+    <div class="quick-metrics-bar mt-3" id="kpiBar" style="display:none;">
+        <div class="metric-card">
+            <div class="metric-label">Venta Web</div>
+            <div class="metric-value metric-blue" id="kpiVentaWeb">—</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Venta Taquilla</div>
+            <div class="metric-value metric-blue" id="kpiVentaTaq">—</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Premios Web</div>
+            <div class="metric-value metric-red" id="kpiPremiosWeb">—</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Premios Taquilla</div>
+            <div class="metric-value metric-red" id="kpiPremiosTaq">—</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Balance Total</div>
+            <div class="metric-value metric-green" id="kpiBalance">—</div>
+        </div>
+    </div>
+
+    <!-- Accesos rápidos por módulo -->
+    <div class="mt-4">
+        <div class="section-label">Módulos de Reporte</div>
+        <div class="module-grid mt-3">
+            <!-- Apuestas Taquilla -->
+            <a class="module-card" asp-controller="Reportes" asp-action="VentasPorAgenteTaq">
+                <div class="module-card-icon mc-icon-blue"><i class="ti ti-building-store"></i></div>
+                <div class="module-card-name">Ventas Taquilla</div>
+                <div class="module-card-desc">Por agente, parlay y directo</div>
+            </a>
+            <a class="module-card" asp-controller="Reportes" asp-action="VentasPorAgenteWeb">
+                <div class="module-card-icon mc-icon-teal"><i class="ti ti-world"></i></div>
+                <div class="module-card-name">Ventas Web</div>
+                <div class="module-card-desc">Canal online por agente</div>
+            </a>
+            <a class="module-card" asp-controller="Reportes" asp-action="TicketsDetalladosTaq">
+                <div class="module-card-icon mc-icon-blue"><i class="ti ti-ticket"></i></div>
+                <div class="module-card-name">Tickets Taquilla</div>
+                <div class="module-card-desc">Detalle de tickets por período</div>
+            </a>
+            <a class="module-card" asp-controller="Reportes" asp-action="TicketsDetalladosWeb">
+                <div class="module-card-icon mc-icon-teal"><i class="ti ti-ticket"></i></div>
+                <div class="module-card-name">Tickets Web</div>
+                <div class="module-card-desc">Detalle online de tickets</div>
+            </a>
+            <a class="module-card" asp-controller="Reportes" asp-action="EstadisticasTaq">
+                <div class="module-card-icon mc-icon-indigo"><i class="ti ti-chart-pie"></i></div>
+                <div class="module-card-name">Estadísticas</div>
+                <div class="module-card-desc">Resumen estadístico de operaciones</div>
+            </a>
+            <a class="module-card" asp-controller="Reportes" asp-action="DeportesMasVendidos">
+                <div class="module-card-icon mc-icon-amber"><i class="ti ti-trophy"></i></div>
+                <div class="module-card-name">Deportes Vendidos</div>
+                <div class="module-card-desc">Ranking de deportes más activos</div>
+            </a>
+            <!-- Casino -->
+            <a class="module-card" asp-controller="Reportes" asp-action="CasinoMaquinitas">
+                <div class="module-card-icon mc-icon-orange"><i class="ti ti-device-gamepad-2"></i></div>
+                <div class="module-card-name">Maquinitas</div>
+                <div class="module-card-desc">Casino electrónico</div>
+            </a>
+            <a class="module-card" asp-controller="Reportes" asp-action="IconBet">
+                <div class="module-card-icon mc-icon-amber"><i class="ti ti-crown"></i></div>
+                <div class="module-card-name">IconBet</div>
+                <div class="module-card-desc">Movimientos de plataforma</div>
+            </a>
+            <a class="module-card" asp-controller="Reportes" asp-action="Pragmatic">
+                <div class="module-card-icon mc-icon-indigo"><i class="ti ti-sparkles"></i></div>
+                <div class="module-card-name">Pragmatic</div>
+                <div class="module-card-desc">Juegos Pragmatic Play</div>
+            </a>
+            <a class="module-card" asp-controller="Reportes" asp-action="Aviatrix">
+                <div class="module-card-icon mc-icon-blue"><i class="ti ti-plane"></i></div>
+                <div class="module-card-name">Aviatrix</div>
+                <div class="module-card-desc">Juego de aviación</div>
+            </a>
+            <!-- Otros -->
+            <a class="module-card" asp-controller="Reportes" asp-action="Hipismo">
+                <div class="module-card-icon mc-icon-green"><i class="ti ti-horse"></i></div>
+                <div class="module-card-name">Hipismo</div>
+                <div class="module-card-desc">Carreras y apostadores</div>
+            </a>
+            <a class="module-card" asp-controller="Reportes" asp-action="Loteria">
+                <div class="module-card-icon mc-icon-green"><i class="ti ti-numbers"></i></div>
+                <div class="module-card-name">Lotería</div>
+                <div class="module-card-desc">Resultados y ventas de lotería</div>
+            </a>
+            <!-- Finanzas -->
+            <a class="module-card" asp-controller="Reportes" asp-action="RetirosRecargas">
+                <div class="module-card-icon mc-icon-orange"><i class="ti ti-arrows-exchange"></i></div>
+                <div class="module-card-name">Retiros y Recargas</div>
+                <div class="module-card-desc">Movimientos financieros</div>
+            </a>
+            <a class="module-card" asp-controller="Reportes" asp-action="SaldosDisponibles">
+                <div class="module-card-icon mc-icon-green"><i class="ti ti-coin"></i></div>
+                <div class="module-card-name">Saldos Disponibles</div>
+                <div class="module-card-desc">Saldo en cuentas de agentes</div>
+            </a>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+<script>
+function fmt(val) {
+    return parseFloat(val || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function cargarDashboard() {
+    const fechaD = document.getElementById('fechaD').value;
+    const fechaH = document.getElementById('fechaH').value;
+    if (!fechaD || !fechaH) return;
+    showBusy('Cargando dashboard...');
+
+    // Cargar KPIs de ambos canales en paralelo
+    const p1 = $.post('@Url.Action("GetVentasPorAgenteTaq", "Reportes")', { fechaD, fechaH, agente: '@ViewBag.Agente' });
+    const p2 = $.post('@Url.Action("GetVentasPorAgenteWeb", "Reportes")', { fechaD, fechaH, agente: '@ViewBag.Agente' });
+
+    $.when(p1, p2).done(function(r1, r2) {
+        const taq = r1[0] || [];
+        const web = r2[0] || [];
+
+        let vTaq = 0, pTaq = 0, vWeb = 0, pWeb = 0;
+
+        taq.forEach(r => { vTaq += (r.VentaPar||0) + (r.VentaDir||0); pTaq += (r.PremiosPar||0) + (r.PremiosDir||0); });
+        web.forEach(r => { vWeb += (r.VentaPar||0) + (r.VentaDir||0); pWeb += (r.PremiosPar||0) + (r.PremiosDir||0); });
+
+        document.getElementById('kpiVentaWeb').textContent  = fmt(vWeb);
+        document.getElementById('kpiVentaTaq').textContent  = fmt(vTaq);
+        document.getElementById('kpiPremiosWeb').textContent = fmt(pWeb);
+        document.getElementById('kpiPremiosTaq').textContent = fmt(pTaq);
+        const bal = (vWeb + vTaq) - (pWeb + pTaq);
+        document.getElementById('kpiBalance').textContent = fmt(bal);
+        document.getElementById('kpiBar').style.display = 'flex';
+        hideBusy();
+    }).fail(function() {
+        hideBusy();
+    });
+}
+
+$(document).ready(() => cargarDashboard());
+</script>
+}

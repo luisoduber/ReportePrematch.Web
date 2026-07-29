@@ -1,0 +1,142 @@
+@{
+    Layout = "_Layout";
+}
+
+<section class="glass-card">
+    <div class="welcome-bar">
+        <div>
+            <div class="welcome-title">@ViewBag.NombrePagina</div>
+            <div class="welcome-sub">Canal Taquilla · Búsqueda de tickets</div>
+        </div>
+    </div>
+
+    <div class="glass-panel mt-3 p-3">
+        <div class="row g-2 align-items-end">
+            <div class="col-md-2">
+                <label class="field-label">Fecha Desde</label>
+                <input type="date" id="fechaD" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-2">
+                <label class="field-label">Fecha Hasta</label>
+                <input type="date" id="fechaH" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-2">
+                <label class="field-label">Agente</label>
+                @if (ViewBag.TipoUsuario == "Usuario Regular")
+                {
+                    <input type="text" id="agente" class="glass-input" value="@ViewBag.Agente" readonly />
+                }
+                else
+                {
+                    <select id="agente" class="glass-input" style="color:#fff;">
+                        <option value="" style="background:#002E5C;color:#fff;">TODOS</option>
+                    </select>
+                }
+            </div>
+            <div class="col-md-2">
+                <label class="field-label">Operación</label>
+                <select id="operacion" class="glass-select">
+                    <option value="">Todas</option>
+                    <option value="PAR">Parlay</option>
+                    <option value="DIR">Directo</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label class="field-label">Nro. Ticket</label>
+                <input type="text" id="ticket" class="glass-input" placeholder="Opcional" />
+            </div>
+            <div class="col-md-2">
+                <button class="btn-glass btn-primary w-100" onclick="cargarReporte()">
+                    <i class="ti ti-search"></i> Buscar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive mt-3">
+        <table id="@ViewBag.TableId" class="glass-table w-100">
+            <thead>
+                <tr>
+                    <th>Ticket</th><th>Agente</th><th>Fecha</th>
+                    <th>Operación</th><th>Monto</th><th>Premio</th><th>Estado</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</section>
+
+@section Scripts {
+<script>
+const esAdmin       = '@ViewBag.TipoUsuario' !== 'Usuario Regular';
+const agenteSession = '@ViewBag.Agente';
+
+function cargarAgentes() {
+    if (!esAdmin) return;
+    $.post('@Url.Action("GetListAgencias","Reportes")', { agente: agenteSession })
+        .done(function(lista) {
+            const sel = document.getElementById('agente');
+            if (!sel) return;
+            // Destruir instancia Tom Select previa si existe
+            if (sel.tomselect) sel.tomselect.destroy();
+            sel.innerHTML = '';
+            const optTodos = document.createElement('option');
+            optTodos.value = ''; optTodos.textContent = 'TODOS';
+            sel.appendChild(optTodos);
+            (lista || []).forEach(function(a) {
+                const opt = document.createElement('option');
+                opt.value = a; opt.textContent = a;
+                sel.appendChild(opt);
+            });
+            // Inicializar Tom Select con búsqueda
+            new TomSelect(sel, {
+                maxOptions: 2000,
+                create: false,
+                allowEmptyOption: true,
+                placeholder: 'Buscar agente...',
+                searchField: ['text']
+            });
+            if (agenteSession) sel.tomselect.setValue(agenteSession, true);
+            console.log('[Agentes] ' + (lista ? lista.length : 0) + ' agentes cargados.');
+        })
+        .fail(function(xhr) {
+            console.error('[Agentes] Error HTTP ' + xhr.status + ' al cargar agentes:', xhr.responseText);
+            Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar la lista de agentes (HTTP ' + xhr.status + ').', background: '#002E5C', color: '#fff' });
+        });
+}
+
+let dt;
+function fmt(v){ return parseFloat(v||0).toLocaleString('es-VE',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+
+function cargarReporte(){
+    const fechaD=document.getElementById('fechaD').value;
+    const fechaH=document.getElementById('fechaH').value;
+    const agente=document.getElementById('agente').value;
+    const operacion=document.getElementById('operacion').value;
+    const ticket=document.getElementById('ticket').value;
+    if(!fechaD||!fechaH){Swal.fire({icon:'warning',title:'Fechas requeridas',background:'#002E5C',color:'#fff'});return;}
+    showBusy('Buscando tickets...');
+
+    $.post('@Url.Action("GetBusquedaTicketsTaq","Reportes")',{fechaD,fechaH,agente,operacion,ticket})
+        .done(function(data){
+            if(!data||!data.length){Swal.fire({icon:'info',title:'Sin resultados',background:'#002E5C',color:'#fff'});hideBusy();return;}
+            if(dt)dt.destroy();
+            dt=$('#@ViewBag.TableId').DataTable({
+                data,columns:[
+                    {data:'Ticket',render:d=>`<span class="col-ticket">${d}</span>`},
+                    {data:'NombreAgente',defaultContent:'—'},
+                    {data:'Fecha',defaultContent:'—'},
+                    {data:'TipoApuesta',defaultContent:'—'},
+                    {data:'Monto',render:d=>`<span class="col-monto-pos">${fmt(d)}</span>`},
+                    {data:'Premio',render:d=>`<span class="${parseFloat(d)>0?'col-monto-neg':'col-monto-pos'}">${fmt(d)}</span>`},
+                    {data:'Estado',defaultContent:'—'}
+                ],
+                language:{url:'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json'},
+                pageLength:50,order:[[2,'desc']],dom:'Bfrtip',
+                buttons:[{extend:'excelHtml5',text:'<i class="ti ti-file-spreadsheet"></i> Excel',className:'btn-glass btn-primary btn-sm'}]
+            });
+            hideBusy();
+        }).fail(function(){Swal.fire({icon:'error',title:'Error',background:'#002E5C',color:'#fff'});hideBusy();});
+}
+</script>
+}

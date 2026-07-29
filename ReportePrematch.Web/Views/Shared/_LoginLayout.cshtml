@@ -1,0 +1,109 @@
+@model ReportePrematch.Web.Models.ViewModels.LoginViewModel
+@{
+    Layout = null;
+}
+
+<div class="login-card">
+
+    <!-- Logo GCIT -->
+    <div class="gcit-brand">
+        <div class="logo-text">
+            <span class="gc">GC</span><span class="it">IT</span>
+        </div>
+        <div class="logo-sub">Desarrollo de Software</div>
+    </div>
+
+    <!-- Título -->
+    <div class="login-heading">Reporte Prematch</div>
+    <div class="login-sub">Ingresa tus credenciales de operador</div>
+
+    <!-- Alerta de error -->
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert-login">
+            <i class="ti ti-alert-circle"></i>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <span>@error.ErrorMessage</span>
+            }
+        </div>
+    }
+
+    <!-- Formulario -->
+    <form asp-controller="Home" asp-action="Login" method="post">
+        @Html.AntiForgeryToken()
+
+        <!-- Usuario -->
+        <div class="mb-field">
+            <label class="field-label">USUARIO</label>
+            <div class="input-wrap">
+                <span class="icon-left"><i class="ti ti-user"></i></span>
+                <input asp-for="Usuario"
+                       placeholder="nombre.operador"
+                       autocomplete="username" />
+            </div>
+            <span asp-validation-for="Usuario" class="field-error"></span>
+        </div>
+
+        <!-- Clave -->
+        <div class="mb-field">
+            <label class="field-label">CLAVE</label>
+            <div class="input-wrap">
+                <span class="icon-left"><i class="ti ti-lock"></i></span>
+                <input asp-for="Password"
+                       id="passwordInput"
+                       type="password"
+                       placeholder="••••••••"
+                       autocomplete="current-password" />
+                <button type="button" class="icon-right" onclick="togglePassword()" id="eyeBtn">
+                    <i class="ti ti-eye" id="eyeIcon"></i>
+                </button>
+            </div>
+            <span asp-validation-for="Password" class="field-error"></span>
+        </div>
+
+        <!-- Cloudflare Turnstile -->
+        <div class="turnstile-wrap">
+            <div class="cf-turnstile"
+                 data-sitekey="@ViewBag.TurnstileSiteKey"
+                 data-callback="onTurnstileSuccess"
+                 data-theme="dark">
+            </div>
+        </div>
+        <input type="hidden" asp-for="CfTurnstileResponse" id="cf-response" />
+        <span asp-validation-for="CfTurnstileResponse" class="field-error d-block text-center mb-2"></span>
+
+        <button type="submit" class="btn-ingresar">
+            <i class="ti ti-login"></i>
+            Ingresar al sistema
+        </button>
+    </form>
+
+    <hr class="divider" />
+
+    <!-- Footer -->
+    <div class="login-footer">
+        <div class="footer-line1">
+            <i class="ti ti-shield-check" style="font-size:.8rem;"></i>
+            Conexión cifrada · Solo personal autorizado
+        </div>
+        <div class="footer-line2">GCIT, C.A. · Sistema R&D v2.0 · © @DateTime.Now.Year</div>
+    </div>
+</div>
+
+<script>
+    function onTurnstileSuccess(token) {
+        document.getElementById('cf-response').value = token;
+    }
+    function togglePassword() {
+        var input = document.getElementById('passwordInput');
+        var icon = document.getElementById('eyeIcon');
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.classList.replace('ti-eye', 'ti-eye-off');
+        } else {
+            input.type = 'password';
+            icon.classList.replace('ti-eye-off', 'ti-eye');
+        }
+    }
+</script>

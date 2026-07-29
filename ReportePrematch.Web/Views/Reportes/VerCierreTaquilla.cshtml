@@ -1,0 +1,152 @@
+@{
+    Layout = "_Layout";
+}
+
+<section class="glass-card">
+    <div class="welcome-bar">
+        <div>
+            <div class="welcome-title">@ViewBag.NombrePagina</div>
+            <div class="welcome-sub">Cierre de Taquilla · Control de licencias</div>
+        </div>
+    </div>
+
+    <div class="glass-panel mt-3 p-3">
+        <div class="row g-2 align-items-end">
+            <div class="col-md-2">
+                <label class="field-label">Fecha</label>
+                <input type="date" id="fecha" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-3">
+                <label class="field-label">Agente</label>
+                @if (ViewBag.TipoUsuario == "Usuario Regular")
+                {
+                    <input type="text" id="agente" class="glass-input" value="@ViewBag.Agente" readonly />
+                }
+                else
+                {
+                    <select id="agente" class="glass-input" style="color:#fff;">
+                        <option value="" style="background:#002E5C;color:#fff;">TODOS</option>
+                    </select>
+                }
+            </div>
+            <div class="col-md-3">
+                <label class="field-label">Agencia</label>
+                <select id="agencia" class="glass-select">
+                    <option value="">Todas</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label class="field-label">Usuario</label>
+                <input type="text" id="usuario" class="glass-input" value="@ViewBag.Usuario" />
+            </div>
+            <div class="col-md-2">
+                <button class="btn-glass btn-primary w-100" onclick="cargarReporte()">
+                    <i class="ti ti-search"></i> Consultar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive mt-3">
+        <table id="@ViewBag.TableId" class="glass-table w-100">
+            <thead>
+                <tr>
+                    <th>Agencia</th><th>Usuario</th><th>Fecha Cierre</th>
+                    <th>Venta</th><th>Premios</th><th>Balance</th><th>Estado</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</section>
+
+@section Scripts {
+<script>
+const esAdmin       = '@ViewBag.TipoUsuario' !== 'Usuario Regular';
+const agenteSession = '@ViewBag.Agente';
+
+function cargarAgentes() {
+    if (!esAdmin) return;
+    $.post('@Url.Action("GetListAgencias","Reportes")', { agente: agenteSession })
+        .done(function(lista) {
+            const sel = document.getElementById('agente');
+            if (!sel) return;
+            // Destruir instancia Tom Select previa si existe
+            if (sel.tomselect) sel.tomselect.destroy();
+            sel.innerHTML = '';
+            const optTodos = document.createElement('option');
+            optTodos.value = ''; optTodos.textContent = 'TODOS';
+            sel.appendChild(optTodos);
+            (lista || []).forEach(function(a) {
+                const opt = document.createElement('option');
+                opt.value = a; opt.textContent = a;
+                sel.appendChild(opt);
+            });
+            // Inicializar Tom Select con búsqueda
+            new TomSelect(sel, {
+                maxOptions: 2000,
+                create: false,
+                allowEmptyOption: true,
+                placeholder: 'Buscar agente...',
+                searchField: ['text']
+            });
+            if (agenteSession) sel.tomselect.setValue(agenteSession, true);
+            console.log('[Agentes] ' + (lista ? lista.length : 0) + ' agentes cargados.');
+        })
+        .fail(function(xhr) {
+            console.error('[Agentes] Error HTTP ' + xhr.status + ' al cargar agentes:', xhr.responseText);
+            Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar la lista de agentes (HTTP ' + xhr.status + ').', background: '#002E5C', color: '#fff' });
+        });
+}
+
+let dt;
+function fmt(v){ return parseFloat(v||0).toLocaleString('es-VE',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+
+// Cargar lista de agencias
+function cargarAgencias(){
+    const agente=document.getElementById('agente').value;
+    $.post('@Url.Action("GetListAgencias","Reportes")',{agente})
+        .done(function(agencias){
+            const sel=document.getElementById('agencia');
+            sel.innerHTML='<option value="">Todas</option>';
+            (agencias||[]).forEach(a=>{ const o=document.createElement('option'); o.value=a; o.textContent=a; sel.appendChild(o); });
+        });
+}
+
+function cargarReporte(){
+    const fecha=document.getElementById('fecha').value;
+    const agente=document.getElementById('agente').value;
+    const agencia=document.getElementById('agencia').value;
+    const usuario=document.getElementById('usuario').value;
+    if(!fecha){Swal.fire({icon:'warning',title:'Fecha requerida',background:'#002E5C',color:'#fff'});return;}
+    showBusy('Consultando cierre...');
+
+    $.post('@Url.Action("GetCierreTaquilla","Reportes")',{agente,agencia,usuario,fecha})
+        .done(function(data){
+            if(!data||!data.length){Swal.fire({icon:'info',title:'Sin resultados',background:'#002E5C',color:'#fff'});hideBusy();return;}
+            if(dt)dt.destroy();
+            dt=$('#@ViewBag.TableId').DataTable({
+                data,columns:[
+                    {data:'Agencia',defaultContent:'—'},
+                    {data:'Usuario',defaultContent:'—'},
+                    {data:'FechaCierre',defaultContent:'—'},
+                    {data:'Venta',render:d=>`<span class="col-monto-pos">${fmt(d)}</span>`},
+                    {data:'Premios',render:d=>`<span class="col-monto-neg">${fmt(d)}</span>`},
+                    {data:null,render:r=>{const b=(r.Venta||0)-(r.Premios||0);return `<span class="${b>=0?'col-monto-pos':'col-monto-neg'}">${fmt(b)}</span>`;}},
+                    {data:'Estado',defaultContent:'—'}
+                ],
+                language:{url:'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json'},
+                pageLength:25,dom:'Bfrtip',
+                buttons:[{extend:'excelHtml5',text:'<i class="ti ti-file-spreadsheet"></i> Excel',className:'btn-glass btn-primary btn-sm'}]
+            });
+            hideBusy();
+        }).fail(function(){Swal.fire({icon:'error',title:'Error',background:'#002E5C',color:'#fff'});hideBusy();});
+}
+
+$(document).ready(function(){
+    cargarAgencias();
+    // Recargar agencias si cambia el agente
+    document.getElementById('agente').addEventListener('change', cargarAgencias);
+});
+</script>
+}

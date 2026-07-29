@@ -1,0 +1,518 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\services\\clients\\reportesserviceold.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\services\\clients\\reportesserviceold.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\views\\reportes\\aviatrix.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\views\\reportes\\aviatrix.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\services\\clients\\reportesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\services\\clients\\reportesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\models\\apireportes\\casinodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\models\\apireportes\\casinodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\models\\apireportes\\propsapidto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\models\\apireportes\\propsapidto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\models\\apireportes\\nikolstaqdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\models\\apireportes\\nikolstaqdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\models\\apireportes\\loteriasdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\models\\apireportes\\loteriasdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\models\\apireportes\\fantasybsbdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\models\\apireportes\\fantasybsbdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\models\\apireportes\\avilacashdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\models\\apireportes\\avilacashdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\models\\apireportes\\ventasporagentetaqdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\models\\apireportes\\ventasporagentetaqdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\services\\clients\\apiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\services\\clients\\apiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\controllers\\reportescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\controllers\\reportescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\services\\interfaces\\ireportesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\services\\interfaces\\ireportesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\wwwroot\\js\\busy.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\wwwroot\\js\\busy.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\views\\home\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\views\\home\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\models\\viewmodels\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\models\\viewmodels\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\models\\apireportes\\aviatrixdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\models\\apireportes\\aviatrixdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\models\\apireportes\\detalleshipismodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\models\\apireportes\\detalleshipismodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\models\\apireportes\\ventasporagentewebdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\models\\apireportes\\ventasporagentewebdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\models\\sessiondata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\models\\sessiondata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\services\\interfaces\\iapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\services\\interfaces\\iapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\services\\interfaces\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\services\\interfaces\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\services\\clients\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\services\\clients\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\views\\shared\\_loginlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\views\\shared\\_loginlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|c:\\users\\programacion\\desktop\\reporteprematch.web\\reporteprematch.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "ReportePrematch.Web\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAOkAAAAAAAAAAAAuwAUBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-29T05:23:07.237Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\appsettings.Development.json",
+              "RelativeToolTip": "ReportePrematch.Web\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-07-28T01:33:43.416Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "busy.js",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\wwwroot\\js\\busy.js",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\wwwroot\\js\\busy.js",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\wwwroot\\js\\busy.js",
+              "RelativeToolTip": "ReportePrematch.Web\\wwwroot\\js\\busy.js",
+              "ViewState": "AgIAAHAAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-07-29T03:55:56.823Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ApiClient.cs",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Services\\Clients\\ApiClient.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Services\\Clients\\ApiClient.cs",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Services\\Clients\\ApiClient.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Services\\Clients\\ApiClient.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAcwC0AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-28T18:14:13.525Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Ventasporagentetaqdto.cs",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\Ventasporagentetaqdto.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ApiReportes\\Ventasporagentetaqdto.cs",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\Ventasporagentetaqdto.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Models\\ApiReportes\\Ventasporagentetaqdto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-29T00:42:49.194Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Avilacashdto.cs",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\Avilacashdto.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ApiReportes\\Avilacashdto.cs",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\Avilacashdto.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Models\\ApiReportes\\Avilacashdto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-29T00:46:55.923Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Fantasybsbdto.cs",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\Fantasybsbdto.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ApiReportes\\Fantasybsbdto.cs",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\Fantasybsbdto.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Models\\ApiReportes\\Fantasybsbdto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-29T00:51:30.392Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ReportesServiceOld.cs",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Services\\Clients\\ReportesServiceOld.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Services\\Clients\\ReportesServiceOld.cs",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Services\\Clients\\ReportesServiceOld.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Services\\Clients\\ReportesServiceOld.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAcwGIAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-28T16:24:03.679Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Aviatrix.cshtml",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Views\\Reportes\\Aviatrix.cshtml",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Views\\Reportes\\Aviatrix.cshtml",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Views\\Reportes\\Aviatrix.cshtml",
+              "RelativeToolTip": "ReportePrematch.Web\\Views\\Reportes\\Aviatrix.cshtml",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAswIsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-29T06:09:18.24Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ReportesService.cs",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Services\\Clients\\ReportesService.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Services\\Clients\\ReportesService.cs",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Services\\Clients\\ReportesService.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Services\\Clients\\ReportesService.cs",
+              "ViewState": "AgIAAIwDAAAAAAAAAAAswMkDAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-29T06:04:33.099Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CasinoDto.cs",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\CasinoDto.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ApiReportes\\CasinoDto.cs",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\CasinoDto.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Models\\ApiReportes\\CasinoDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-29T06:04:48.872Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "NikolsTaqDto.cs",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\NikolsTaqDto.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ApiReportes\\NikolsTaqDto.cs",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\NikolsTaqDto.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Models\\ApiReportes\\NikolsTaqDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-29T06:05:19.243Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PropsApiDto.cs",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\PropsApiDto.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ApiReportes\\PropsApiDto.cs",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\PropsApiDto.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Models\\ApiReportes\\PropsApiDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-29T06:05:24.605Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Loteriasdto.cs",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\Loteriasdto.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ApiReportes\\Loteriasdto.cs",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\Loteriasdto.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Models\\ApiReportes\\Loteriasdto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-29T00:48:19.832Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "LoginViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ViewModels\\LoginViewModel.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ViewModels\\LoginViewModel.cs",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ViewModels\\LoginViewModel.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Models\\ViewModels\\LoginViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-29T00:11:05.035Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ReportesController.cs",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Controllers\\ReportesController.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Controllers\\ReportesController.cs",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Controllers\\ReportesController.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Controllers\\ReportesController.cs",
+              "ViewState": "AgIAAAYCAAAAAAAAAAAAwCICAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-28T19:15:37.738Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IReportesService.cs",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Services\\Interfaces\\IReportesService.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Services\\Interfaces\\IReportesService.cs",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Services\\Interfaces\\IReportesService.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Services\\Interfaces\\IReportesService.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAiwDYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-28T19:14:44.781Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "SessionData.cs",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\SessionData.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\SessionData.cs",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\SessionData.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Models\\SessionData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-29T00:12:03.1Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\appsettings.json",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\appsettings.json",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\appsettings.json",
+              "RelativeToolTip": "ReportePrematch.Web\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-07-28T01:31:06.374Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Views\\Home\\Login.cshtml",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Views\\Home\\Login.cshtml",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Views\\Home\\Login.cshtml",
+              "RelativeToolTip": "ReportePrematch.Web\\Views\\Home\\Login.cshtml",
+              "ViewState": "AgIAAOUAAAAAAAAAAAAiwPAAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-28T01:13:59.991Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Ventasporagentewebdto.cs",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\Ventasporagentewebdto.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ApiReportes\\Ventasporagentewebdto.cs",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\Ventasporagentewebdto.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Models\\ApiReportes\\Ventasporagentewebdto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-29T00:39:55.243Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Detalleshipismodto.cs",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\Detalleshipismodto.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ApiReportes\\Detalleshipismodto.cs",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\Detalleshipismodto.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Models\\ApiReportes\\Detalleshipismodto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-29T00:47:38.573Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Aviatrixdto.cs",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\Aviatrixdto.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ApiReportes\\Aviatrixdto.cs",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\Aviatrixdto.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Models\\ApiReportes\\Aviatrixdto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-29T00:50:58.884Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "IApiClient.cs",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Services\\Interfaces\\IApiClient.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Services\\Interfaces\\IApiClient.cs",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Services\\Interfaces\\IApiClient.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Services\\Interfaces\\IApiClient.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-28T18:49:13.671Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "IAuthService.cs",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Services\\Interfaces\\IAuthService.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Services\\Interfaces\\IAuthService.cs",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Services\\Interfaces\\IAuthService.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Services\\Interfaces\\IAuthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-28T02:12:10.925Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Services\\Clients\\AuthService.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Services\\Clients\\AuthService.cs",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Services\\Clients\\AuthService.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Services\\Clients\\AuthService.cs",
+              "ViewState": "AgIAAJAAAAAAAAAAAAAmwM0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-28T02:09:55.873Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Properties\\launchSettings.json",
+              "RelativeToolTip": "ReportePrematch.Web\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAcAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-07-28T01:31:00.093Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "_LoginLayout.cshtml",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Views\\Shared\\_LoginLayout.cshtml",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Views\\Shared\\_LoginLayout.cshtml",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Views\\Shared\\_LoginLayout.cshtml",
+              "RelativeToolTip": "ReportePrematch.Web\\Views\\Shared\\_LoginLayout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-28T01:16:13.021Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAADwvzEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-27T19:03:30.974Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Program.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Program.cs",
+              "ToolTip": "C:\\Users\\programacion\\Desktop\\ReportePrematch.Web\\ReportePrematch.Web\\Program.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-27T19:03:09.635Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
