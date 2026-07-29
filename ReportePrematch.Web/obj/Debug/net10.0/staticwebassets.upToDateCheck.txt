@@ -1,4 +1,4 @@
 wwwroot\css\liquid-glass.css
 wwwroot\js\busy.js
-C:\Users\programacion\Desktop\ReportePrematch.Web\ReportePrematch.Web\wwwroot\js\busy.js
-C:\Users\programacion\Desktop\ReportePrematch.Web\ReportePrematch.Web\wwwroot\css\liquid-glass.css
+D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\wwwroot\css\liquid-glass.css
+D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\wwwroot\js\busy.js

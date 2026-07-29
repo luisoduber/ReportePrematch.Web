@@ -113,7 +113,7 @@
                 .done(function(d at a){
                     if(!data||!data.length){Swal.fire({icon:'info',title:'Sin resultados',background:'#002E5C',color:'#fff'});hideBusy();return;}
                     if(dt)dt.destroy();
-                    dt=$('#@ViewBa g .TableId'). DataT able({
+                    dt=$('#@ViewBag.TableId').DataTable({
                         data,
                           columns: [
                             {data:'agente'},
