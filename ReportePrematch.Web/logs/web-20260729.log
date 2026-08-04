@@ -565,3 +565,669 @@ System.Net.Http.HttpRequestException: No se puede establecer una conexión ya qu
    at ReportePrematch.Web.Services.Clients.ApiClient.GetAsync[T](String endpoint, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 23
    at ReportePrematch.Web.Services.Clients.ReportesServiceOld.GetListAgenciasAsync(String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesServiceOld.cs:line 192
 2026-07-29 14:04:44.782 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 4830.1145 ms
+2026-07-29 15:10:27.446 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-07-29 15:10:31.138 -04:00 [INF] HTTP GET / responded 200 in 1019.7486 ms
+2026-07-29 15:10:46.093 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-07-29 15:10:46.107 -04:00 [INF] HTTP POST / responded 302 in 872.4000 ms
+2026-07-29 15:10:46.351 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 228.9094 ms
+2026-07-29 15:10:52.134 -04:00 [ERR] Error GET api/Reportes/ListaAgentes
+System.Net.Http.HttpRequestException: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión. (localhost:44322)
+ ---> System.Net.Sockets.SocketException (10061): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.SocketsHttpHandler.<SendAsync>g__CreateHandlerAndSendAsync|115_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetAsync[T](String endpoint, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 23
+2026-07-29 15:10:53.431 -04:00 [ERR] Error GetListAgencias via API
+System.Net.Http.HttpRequestException: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión. (localhost:44322)
+ ---> System.Net.Sockets.SocketException (10061): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.SocketsHttpHandler.<SendAsync>g__CreateHandlerAndSendAsync|115_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetAsync[T](String endpoint, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 23
+   at ReportePrematch.Web.Services.Clients.ReportesServiceOld.GetListAgenciasAsync(String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesServiceOld.cs:line 192
+2026-07-29 15:10:53.499 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 6509.0363 ms
+2026-07-29 15:14:52.563 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 205.1133 ms
+2026-07-29 15:15:00.203 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 7174.4947 ms
+2026-07-29 15:15:22.623 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsTaq responded 200 in 110.5254 ms
+2026-07-29 15:15:23.744 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 832.4988 ms
+2026-07-29 15:15:33.494 -04:00 [INF] HTTP GET /Reportes/TicketsDetalladosTaq responded 200 in 50.4491 ms
+2026-07-29 15:15:34.401 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 610.4416 ms
+2026-07-29 15:15:48.945 -04:00 [INF] HTTP GET /Reportes/TicketsEnJuegoTaq responded 200 in 39.2065 ms
+2026-07-29 15:15:49.872 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 537.7868 ms
+2026-07-29 15:16:05.731 -04:00 [INF] HTTP GET /Reportes/EstadisticasTaq responded 200 in 48.8472 ms
+2026-07-29 15:16:06.581 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 587.2365 ms
+2026-07-29 15:16:17.950 -04:00 [INF] HTTP GET /Reportes/BusquedaTicketsTaq responded 200 in 78.3692 ms
+2026-07-29 15:19:17.577 -04:00 [INF] HTTP GET /Reportes/Aviatrix responded 200 in 44.1532 ms
+2026-07-29 15:19:53.361 -04:00 [INF] HTTP GET /Reportes/Aviatrix responded 200 in 5556.4000 ms
+2026-07-29 15:19:54.458 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 792.1624 ms
+2026-07-29 15:20:14.603 -04:00 [INF] HTTP POST /Reportes/GetAviatrix responded 200 in 1075.6428 ms
+2026-07-29 15:22:30.246 -04:00 [ERR] Error GET+QS api/Reportes/Aviatrix
+System.Threading.Tasks.TaskCanceledException: The request was canceled due to the configured HttpClient.Timeout of 120 seconds elapsing.
+ ---> System.TimeoutException: The operation was canceled.
+ ---> System.Threading.Tasks.TaskCanceledException: The operation was canceled.
+ ---> System.IO.IOException: Unable to read data from the transport connection: La operación de E/S se anuló por una salida de subproceso o por una solicitud de aplicación..
+ ---> System.Net.Sockets.SocketException (995): La operación de E/S se anuló por una salida de subproceso o por una solicitud de aplicación.
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](CancellationToken cancellationToken, Int32 estimatedSize)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.ReadAsyncInternal[TIOAdapter](Memory`1 buffer, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Http.HttpConnection.<CheckUsabilityOnScavenge>g__ReadAheadWithZeroByteReadAsync|39_0()
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   --- End of inner exception stack trace ---
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpClient.HandleFailure(Exception e, Boolean telemetryStarted, HttpResponseMessage response, CancellationTokenSource cts, CancellationToken cancellationToken, CancellationTokenSource pendingRequestsCts)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct)
+2026-07-29 15:29:13.723 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-07-29 15:29:17.866 -04:00 [INF] HTTP GET / responded 200 in 1245.1153 ms
+2026-07-29 15:29:45.586 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-07-29 15:29:45.596 -04:00 [INF] HTTP POST / responded 302 in 797.9008 ms
+2026-07-29 15:29:45.806 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 196.5864 ms
+2026-07-29 15:30:28.747 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 2.0767 ms
+2026-07-29 15:30:35.982 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 17.8045 ms
+2026-07-29 15:30:36.300 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.2153 ms
+2026-07-29 15:30:48.238 -04:00 [ERR] Error GET api/Reportes/ListaAgentes
+System.Net.Http.HttpRequestException: An error occurred while sending the request.
+ ---> System.IO.IOException: Unable to read data from the transport connection: Se ha forzado la interrupción de una conexión existente por el host remoto..
+ ---> System.Net.Sockets.SocketException (10054): Se ha forzado la interrupción de una conexión existente por el host remoto.
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](CancellationToken cancellationToken, Int32 estimatedSize)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.ReadAsyncInternal[TIOAdapter](Memory`1 buffer, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Http.HttpConnection.InitialFillAsync(Boolean async)
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetAsync[T](String endpoint, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 23
+2026-07-29 15:30:48.238 -04:00 [ERR] Error GET api/Reportes/ListaAgentes
+System.Net.Http.HttpRequestException: An error occurred while sending the request.
+ ---> System.IO.IOException: Unable to read data from the transport connection: Se ha forzado la interrupción de una conexión existente por el host remoto..
+ ---> System.Net.Sockets.SocketException (10054): Se ha forzado la interrupción de una conexión existente por el host remoto.
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](CancellationToken cancellationToken, Int32 estimatedSize)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.ReadAsyncInternal[TIOAdapter](Memory`1 buffer, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Http.HttpConnection.InitialFillAsync(Boolean async)
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.SocketsHttpHandler.<SendAsync>g__CreateHandlerAndSendAsync|115_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetAsync[T](String endpoint, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 23
+2026-07-29 15:30:48.388 -04:00 [ERR] Error GetListAgencias via API
+System.Net.Http.HttpRequestException: An error occurred while sending the request.
+ ---> System.IO.IOException: Unable to read data from the transport connection: Se ha forzado la interrupción de una conexión existente por el host remoto..
+ ---> System.Net.Sockets.SocketException (10054): Se ha forzado la interrupción de una conexión existente por el host remoto.
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](CancellationToken cancellationToken, Int32 estimatedSize)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.ReadAsyncInternal[TIOAdapter](Memory`1 buffer, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Http.HttpConnection.InitialFillAsync(Boolean async)
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetAsync[T](String endpoint, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 23
+   at ReportePrematch.Web.Services.Clients.ReportesServiceOld.GetListAgenciasAsync(String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesServiceOld.cs:line 192
+2026-07-29 15:30:48.478 -04:00 [ERR] Error GetListAgencias via API
+System.Net.Http.HttpRequestException: An error occurred while sending the request.
+ ---> System.IO.IOException: Unable to read data from the transport connection: Se ha forzado la interrupción de una conexión existente por el host remoto..
+ ---> System.Net.Sockets.SocketException (10054): Se ha forzado la interrupción de una conexión existente por el host remoto.
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](CancellationToken cancellationToken, Int32 estimatedSize)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.ReadAsyncInternal[TIOAdapter](Memory`1 buffer, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Http.HttpConnection.InitialFillAsync(Boolean async)
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.SocketsHttpHandler.<SendAsync>g__CreateHandlerAndSendAsync|115_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetAsync[T](String endpoint, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 23
+   at ReportePrematch.Web.Services.Clients.ReportesServiceOld.GetListAgenciasAsync(String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesServiceOld.cs:line 192
+2026-07-29 15:30:48.526 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 11556.2185 ms
+2026-07-29 15:30:48.567 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 62083.8915 ms
+2026-07-29 15:31:19.160 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 3.6567 ms
+2026-07-29 15:31:19.359 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.1687 ms
+2026-07-29 15:31:25.047 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 4962.9264 ms
+2026-07-29 15:31:32.068 -04:00 [INF] HTTP GET /Reportes/Aviatrix responded 200 in 54.2160 ms
+2026-07-29 15:31:32.348 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.1790 ms
+2026-07-29 15:31:34.424 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1676.3772 ms
+2026-07-29 15:37:02.913 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-07-29 15:37:05.518 -04:00 [INF] HTTP GET / responded 200 in 541.7297 ms
+2026-07-29 15:37:15.810 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-07-29 15:37:15.822 -04:00 [INF] HTTP POST / responded 302 in 802.7992 ms
+2026-07-29 15:37:16.041 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 209.1684 ms
+2026-07-29 15:37:42.138 -04:00 [ERR] Error GET api/Reportes/ListaAgentes
+System.Net.Http.HttpRequestException: An error occurred while sending the request.
+ ---> System.IO.IOException: Unable to read data from the transport connection: Se ha forzado la interrupción de una conexión existente por el host remoto..
+ ---> System.Net.Sockets.SocketException (10054): Se ha forzado la interrupción de una conexión existente por el host remoto.
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](CancellationToken cancellationToken, Int32 estimatedSize)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.ReadAsyncInternal[TIOAdapter](Memory`1 buffer, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Http.HttpConnection.InitialFillAsync(Boolean async)
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.SocketsHttpHandler.<SendAsync>g__CreateHandlerAndSendAsync|115_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetAsync[T](String endpoint, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 23
+2026-07-29 15:37:42.314 -04:00 [ERR] Error GetListAgencias via API
+System.Net.Http.HttpRequestException: An error occurred while sending the request.
+ ---> System.IO.IOException: Unable to read data from the transport connection: Se ha forzado la interrupción de una conexión existente por el host remoto..
+ ---> System.Net.Sockets.SocketException (10054): Se ha forzado la interrupción de una conexión existente por el host remoto.
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](CancellationToken cancellationToken, Int32 estimatedSize)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.ReadAsyncInternal[TIOAdapter](Memory`1 buffer, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Http.HttpConnection.InitialFillAsync(Boolean async)
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.SocketsHttpHandler.<SendAsync>g__CreateHandlerAndSendAsync|115_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetAsync[T](String endpoint, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 23
+   at ReportePrematch.Web.Services.Clients.ReportesServiceOld.GetListAgenciasAsync(String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesServiceOld.cs:line 192
+2026-07-29 15:37:42.340 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 25789.5717 ms
+2026-07-29 15:37:57.858 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 18.4756 ms
+2026-07-29 15:38:00.997 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 2872.2407 ms
+2026-07-29 15:38:13.556 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 1284.8404 ms
+2026-07-29 15:38:18.888 -04:00 [INF] HTTP GET /Reportes/Aviatrix responded 200 in 46.5596 ms
+2026-07-29 15:38:20.012 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 784.5404 ms
+2026-07-29 15:38:33.066 -04:00 [INF] HTTP POST /Reportes/GetAviatrix responded 200 in 1026.3383 ms
+2026-07-29 15:38:44.227 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 3.5754 ms
+2026-07-29 15:38:45.073 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 546.5101 ms
+2026-07-29 15:38:54.958 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 1695.6711 ms
+2026-07-29 15:41:11.333 -04:00 [ERR] Error GET+QS api/Reportes/VentasPorAgenteTaq
+System.Threading.Tasks.TaskCanceledException: The request was canceled due to the configured HttpClient.Timeout of 120 seconds elapsing.
+ ---> System.TimeoutException: The operation was canceled.
+ ---> System.Threading.Tasks.TaskCanceledException: The operation was canceled.
+ ---> System.IO.IOException: Unable to read data from the transport connection: La operación de E/S se anuló por una salida de subproceso o por una solicitud de aplicación..
+ ---> System.Net.Sockets.SocketException (995): La operación de E/S se anuló por una salida de subproceso o por una solicitud de aplicación.
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](CancellationToken cancellationToken, Int32 estimatedSize)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.ReadAsyncInternal[TIOAdapter](Memory`1 buffer, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Http.HttpConnection.<CheckUsabilityOnScavenge>g__ReadAheadWithZeroByteReadAsync|39_0()
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   --- End of inner exception stack trace ---
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpClient.HandleFailure(Exception e, Boolean telemetryStarted, HttpResponseMessage response, CancellationTokenSource cts, CancellationToken cancellationToken, CancellationTokenSource pendingRequestsCts)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 46
+2026-07-29 15:46:24.928 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-07-29 15:46:28.145 -04:00 [INF] HTTP GET / responded 200 in 929.5924 ms
+2026-07-29 15:46:47.377 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-07-29 15:46:47.399 -04:00 [INF] HTTP POST / responded 302 in 895.2075 ms
+2026-07-29 15:46:47.684 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 265.8299 ms
+2026-07-29 15:46:49.050 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 819.6465 ms
+2026-07-29 15:46:52.772 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsTaq responded 200 in 54.9423 ms
+2026-07-29 15:46:53.654 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 560.0825 ms
+2026-07-29 15:47:08.261 -04:00 [INF] SOAP ejecutarQuerys db=2 sql[658]=SELECT UPPER(LTRIM(RTRIM(a.nombreagente))) AS nombreagente,
+       UPPER(LTRIM(RTRIM(a.usuario))) AS usuario,
+       a…
+2026-07-29 15:47:09.158 -04:00 [ERR] Error SOAP ejecutarQuerys db=2
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesServiceOld.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesServiceOld.cs:line 99
+2026-07-29 15:47:38.247 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-07-29 15:47:40.513 -04:00 [INF] HTTP GET / responded 200 in 491.5205 ms
+2026-07-29 15:48:18.499 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-07-29 15:48:18.511 -04:00 [INF] HTTP POST / responded 302 in 707.7154 ms
+2026-07-29 15:48:18.733 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 205.8573 ms
+2026-07-29 15:48:20.480 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1206.5789 ms
+2026-07-29 15:48:23.069 -04:00 [INF] HTTP GET /Reportes/TicketsDetalladosTaq responded 200 in 38.7381 ms
+2026-07-29 15:48:23.974 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 587.5743 ms
+2026-07-29 15:48:33.111 -04:00 [INF] SOAP ejecutarQuerys db=2 sql[262]=SELECT nombreagente, usuario, agencia, ticket, tipoAp, tiposaldo,
+       montoTotal, arriesgando, ganando, operacion, f…
+2026-07-29 15:48:33.378 -04:00 [ERR] Error SOAP ejecutarQuerys db=2
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesServiceOld.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesServiceOld.cs:line 99
+2026-07-29 15:48:44.183 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-07-29 15:48:46.873 -04:00 [INF] HTTP GET / responded 200 in 615.2498 ms
+2026-07-29 15:48:57.891 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-07-29 15:48:57.904 -04:00 [INF] HTTP POST / responded 302 in 720.3069 ms
+2026-07-29 15:48:58.157 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 243.2734 ms
+2026-07-29 15:48:59.622 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 937.5092 ms
+2026-07-29 15:49:03.656 -04:00 [INF] HTTP GET /Reportes/TicketsEnJuegoTaq responded 200 in 47.3542 ms
+2026-07-29 15:49:04.557 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 552.0192 ms
+2026-07-29 15:49:11.838 -04:00 [INF] SOAP ejecutarQuerys db=2 sql[283]=SELECT nombreagente, usuario, tipoap,
+       ganando, montoTotal, (ganando + montoTotal) AS posible_premio
+FROM apuest…
+2026-07-29 15:49:12.098 -04:00 [ERR] Error SOAP ejecutarQuerys db=2
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesServiceOld.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesServiceOld.cs:line 99
+2026-07-29 15:49:41.950 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-07-29 15:49:44.488 -04:00 [INF] HTTP GET / responded 200 in 692.0896 ms
+2026-07-29 15:49:54.003 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-07-29 15:49:54.018 -04:00 [INF] HTTP POST / responded 302 in 827.6997 ms
+2026-07-29 15:49:54.304 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 273.1626 ms
+2026-07-29 15:49:55.889 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 961.1362 ms
+2026-07-29 15:50:02.296 -04:00 [INF] HTTP GET /Reportes/EstadisticasTaq responded 200 in 41.9312 ms
+2026-07-29 15:50:03.273 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 640.0056 ms
+2026-07-29 15:50:12.490 -04:00 [INF] SOAP ejecutarQuerys db=2 sql[1067]=SELECT DISTINCT UPPER(LTRIM(RTRIM(a.nombreagente))) AS nombreagente,
+       UPPER(LTRIM(RTRIM(c.deporte))) AS Deporte,…
+2026-07-29 15:50:12.797 -04:00 [ERR] Error SOAP ejecutarQuerys db=2
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesServiceOld.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesServiceOld.cs:line 99
+2026-07-29 15:50:21.533 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-07-29 15:50:24.160 -04:00 [INF] HTTP GET / responded 200 in 597.6606 ms
+2026-07-29 15:50:34.763 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-07-29 15:50:34.775 -04:00 [INF] HTTP POST / responded 302 in 742.9232 ms
+2026-07-29 15:50:35.040 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 250.6598 ms
+2026-07-29 15:50:36.754 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1130.6651 ms
+2026-07-29 15:51:15.664 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-07-29 15:51:18.793 -04:00 [INF] HTTP GET / responded 200 in 776.1326 ms
+2026-07-29 15:51:32.518 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-07-29 15:51:32.531 -04:00 [INF] HTTP POST / responded 302 in 953.6848 ms
+2026-07-29 15:51:32.795 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 254.3613 ms
+2026-07-29 15:51:34.092 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 775.1635 ms
+2026-07-29 15:51:48.162 -04:00 [INF] HTTP GET /Reportes/BusquedaTicketsTaq responded 200 in 78.8732 ms
+2026-07-29 15:56:49.656 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-07-29 15:56:52.778 -04:00 [INF] HTTP GET / responded 200 in 749.7122 ms
+2026-07-29 15:57:03.961 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-07-29 15:57:03.971 -04:00 [INF] HTTP POST / responded 302 in 819.6012 ms
+2026-07-29 15:57:04.227 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 243.0716 ms
+2026-07-29 15:57:06.007 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1280.4435 ms
+2026-07-29 15:57:13.247 -04:00 [INF] HTTP GET /Reportes/BusquedaTicketsTaq responded 200 in 62.5537 ms
+2026-07-29 15:57:14.131 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 571.4208 ms
+2026-07-29 15:57:33.073 -04:00 [INF] SOAP ejecutarQuerys db=2 sql[461]=SELECT a.nombreagente, a.Ticket, a.usuario, a.Fecha,
+       b.tipoAp, a.operacion, b.gano, a.montoTotal, a.ganando,
+  …
+2026-07-29 15:57:33.321 -04:00 [ERR] Error SOAP ejecutarQuerys db=2
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesServiceOld.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesServiceOld.cs:line 99
+2026-07-29 15:59:26.368 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-07-29 15:59:29.356 -04:00 [INF] HTTP GET / responded 200 in 635.1035 ms
+2026-07-29 15:59:44.219 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-07-29 15:59:44.230 -04:00 [INF] HTTP POST / responded 302 in 817.7122 ms
+2026-07-29 15:59:44.500 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 259.3454 ms
+2026-07-29 15:59:45.781 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 766.1710 ms
+2026-07-29 16:00:01.864 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 7.4975 ms
+2026-07-29 16:00:02.828 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 667.9855 ms
+2026-07-29 16:00:13.508 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsTaq responded 200 in 68.7928 ms
+2026-07-29 16:00:14.377 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 599.9318 ms
+2026-07-29 16:00:24.635 -04:00 [INF] HTTP GET /Reportes/TicketsDetalladosTaq responded 200 in 46.2527 ms
+2026-07-29 16:00:25.618 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 698.6877 ms
+2026-07-29 16:00:41.599 -04:00 [INF] HTTP GET /Reportes/TicketsEnJuegoTaq responded 200 in 58.8859 ms
+2026-07-29 16:00:42.627 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 641.5897 ms
+2026-07-29 16:00:50.724 -04:00 [INF] HTTP GET /Reportes/EstadisticasTaq responded 200 in 30.0477 ms
+2026-07-29 16:00:51.764 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 773.9949 ms
+2026-07-29 16:01:00.543 -04:00 [INF] HTTP GET /Reportes/BusquedaTicketsTaq responded 200 in 71.0625 ms
+2026-07-29 16:01:01.450 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 617.3110 ms
+2026-07-29 16:01:11.795 -04:00 [INF] HTTP GET /Reportes/VerCierreTaquilla responded 200 in 47.3624 ms
+2026-07-29 16:01:12.814 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 681.9479 ms
+2026-07-29 16:10:55.878 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-07-29 16:10:59.407 -04:00 [INF] HTTP GET / responded 200 in 863.6814 ms
+2026-07-29 16:11:10.759 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-07-29 16:11:10.775 -04:00 [INF] HTTP POST / responded 302 in 751.9372 ms
+2026-07-29 16:11:11.016 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 230.4981 ms
+2026-07-29 16:11:12.962 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1360.5705 ms
+2026-07-29 16:11:20.088 -04:00 [INF] HTTP GET /Reportes/EstadisticasTaq responded 200 in 63.7707 ms
+2026-07-29 16:11:20.908 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 520.2655 ms
+2026-07-29 16:11:29.860 -04:00 [INF] HTTP GET /Reportes/BusquedaTicketsTaq responded 200 in 47.8449 ms
+2026-07-29 16:11:30.826 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 676.6325 ms
+2026-07-29 16:11:40.257 -04:00 [INF] HTTP GET /Reportes/VerCierreTaquilla responded 200 in 36.7042 ms
+2026-07-29 16:11:41.176 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 650.9230 ms
+2026-07-29 16:11:41.802 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1275.3038 ms
+2026-07-29 16:11:47.797 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 521.6428 ms
+2026-07-29 16:12:02.053 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteWeb responded 200 in 55.7495 ms
+2026-07-29 16:12:02.918 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 574.4802 ms
+2026-07-29 16:12:10.962 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsWeb responded 200 in 36.4670 ms
+2026-07-29 16:12:11.741 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 517.2893 ms
+2026-07-29 16:12:20.237 -04:00 [INF] HTTP GET /Reportes/TicketsDetalladosWeb responded 200 in 31.3700 ms
+2026-07-29 16:12:21.215 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 529.0017 ms
+2026-07-29 16:12:27.213 -04:00 [INF] SOAP ejecutarQuerys db=2 sql[345]=SELECT a.nombreagente, c.id, c.usuario, a.agencia, a.ticket, a.tipoAp,
+       a.tiposaldo, a.montoTotal, a.arriesgando,…
+2026-07-29 16:12:27.447 -04:00 [ERR] Error SOAP ejecutarQuerys db=2
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesServiceOld.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesServiceOld.cs:line 99
+2026-07-29 16:13:47.250 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-07-29 16:13:49.829 -04:00 [INF] HTTP GET / responded 200 in 613.6276 ms
+2026-07-29 16:14:02.135 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-07-29 16:14:02.148 -04:00 [INF] HTTP POST / responded 302 in 694.3571 ms
+2026-07-29 16:14:02.481 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 319.5775 ms
+2026-07-29 16:14:04.097 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1036.8063 ms
+2026-07-29 16:14:09.876 -04:00 [INF] HTTP GET /Reportes/TicketsDetalladosWeb responded 200 in 65.7196 ms
+2026-07-29 16:14:10.906 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 627.3239 ms
+2026-07-29 16:14:17.297 -04:00 [INF] HTTP GET /Reportes/TicketsEnJuegoWeb responded 200 in 50.3861 ms
+2026-07-29 16:14:18.250 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 578.0334 ms
+2026-07-29 16:14:26.793 -04:00 [INF] HTTP GET /Reportes/EstadisticasWeb responded 200 in 63.7103 ms
+2026-07-29 16:14:27.676 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 583.3703 ms
+2026-07-29 16:14:36.567 -04:00 [INF] HTTP GET /Reportes/BusquedaTicketsWeb responded 200 in 50.7412 ms
+2026-07-29 16:26:14.708 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-07-29 16:26:19.738 -04:00 [INF] HTTP GET / responded 200 in 1942.1652 ms
+2026-07-29 16:28:47.489 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-1) para vlapenta
+2026-07-29 16:28:47.494 -04:00 [WRN] Login fallido para usuario vlapenta
+2026-07-29 16:28:47.509 -04:00 [INF] HTTP POST / responded 200 in 815.7513 ms
+2026-07-29 16:28:53.948 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-07-29 16:28:53.961 -04:00 [INF] HTTP POST / responded 302 in 178.5325 ms
+2026-07-29 16:28:54.192 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 213.5966 ms
+2026-07-29 16:28:56.339 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1614.1361 ms
+2026-07-29 16:29:00.732 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsWeb responded 200 in 45.7925 ms
+2026-07-29 16:29:01.652 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 585.8357 ms
+2026-07-29 16:29:09.080 -04:00 [INF] HTTP GET /Reportes/TicketsDetalladosWeb responded 200 in 36.8429 ms
+2026-07-29 16:29:09.947 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 541.4554 ms
+2026-07-29 16:29:18.857 -04:00 [INF] HTTP GET /Reportes/TicketsEnJuegoWeb responded 200 in 37.7774 ms
+2026-07-29 16:29:19.681 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 540.5313 ms
+2026-07-29 16:29:27.561 -04:00 [INF] HTTP GET /Reportes/EstadisticasWeb responded 200 in 37.0372 ms
+2026-07-29 16:29:28.404 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 517.4823 ms
+2026-07-29 16:29:35.849 -04:00 [INF] HTTP GET /Reportes/BusquedaTicketsWeb responded 200 in 55.2793 ms
+2026-07-29 16:29:36.714 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 538.7111 ms
+2026-07-29 16:29:49.267 -04:00 [INF] HTTP GET /Reportes/BusquedaTicketsWeb responded 200 in 2.8359 ms
+2026-07-29 16:29:50.127 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 526.9317 ms
+2026-07-29 16:30:01.045 -04:00 [INF] HTTP GET /Reportes/DeportesMasVendidos responded 200 in 70.4713 ms
+2026-07-29 16:30:01.949 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 534.5037 ms
+2026-07-29 16:30:11.284 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteGameID responded 200 in 46.8807 ms
+2026-07-29 16:30:12.168 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 559.8194 ms
+2026-07-29 16:30:24.569 -04:00 [INF] HTTP GET /Reportes/VentasPorPaisWeb responded 200 in 51.5425 ms
+2026-07-29 16:30:25.473 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 535.7058 ms
+2026-07-29 16:30:35.577 -04:00 [INF] HTTP GET /Reportes/VentasPorPaisTaq responded 200 in 32.3880 ms
+2026-07-29 16:30:36.769 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 537.0140 ms
+2026-07-29 16:30:45.557 -04:00 [INF] HTTP GET /Reportes/VentasDetalladasLive responded 200 in 35.7753 ms
+2026-07-29 16:30:46.603 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 645.9693 ms
+2026-07-29 16:30:55.919 -04:00 [INF] HTTP GET /Reportes/Props responded 200 in 72.2376 ms
+2026-07-29 16:30:56.850 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 632.1480 ms
+2026-07-29 17:28:02.936 -04:00 [INF] HTTP GET /Reportes/CasinoMaquinitas responded 200 in 139.0888 ms
+2026-07-29 17:28:05.084 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1557.7251 ms
+2026-07-29 17:28:12.823 -04:00 [INF] HTTP GET /Reportes/CasinoSlotGrecia responded 200 in 34.8225 ms
+2026-07-29 17:28:13.727 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 538.5423 ms
+2026-07-29 17:28:20.976 -04:00 [INF] HTTP GET /Reportes/CasinoSlotRusia responded 200 in 32.8601 ms
+2026-07-29 17:28:21.889 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 562.3714 ms
+2026-07-29 17:36:32.218 -04:00 [INF] HTTP GET /Reportes/IconBet responded 200 in 63.7458 ms
+2026-07-29 17:36:33.715 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1064.9012 ms
+2026-07-29 17:36:40.644 -04:00 [INF] HTTP GET /Reportes/IconSlot responded 200 in 57.8303 ms
+2026-07-29 17:36:41.583 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 516.9822 ms
+2026-07-29 17:36:48.439 -04:00 [INF] HTTP GET /Reportes/Poker responded 200 in 48.5950 ms
+2026-07-29 17:36:49.318 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 508.1019 ms
+2026-07-29 17:36:57.817 -04:00 [INF] HTTP GET /Reportes/Pragmatic responded 200 in 43.3268 ms
+2026-07-29 17:36:58.815 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 610.2264 ms
+2026-07-29 17:37:05.445 -04:00 [INF] HTTP GET /Reportes/Pragmatic responded 200 in 2.8068 ms
+2026-07-29 17:37:06.207 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 500.8138 ms
+2026-07-29 17:37:12.612 -04:00 [INF] HTTP GET /Reportes/VirtualesBR responded 200 in 50.8912 ms
+2026-07-29 17:37:13.456 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 514.4054 ms
+2026-07-29 17:37:18.725 -04:00 [INF] HTTP GET /Reportes/VirtualesCaribe responded 200 in 73.0803 ms
+2026-07-29 17:37:19.598 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 546.3054 ms
+2026-07-29 17:37:26.437 -04:00 [INF] HTTP GET /Reportes/Aviatrix responded 200 in 57.9619 ms
+2026-07-29 17:37:27.362 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 617.9704 ms
+2026-07-29 17:37:33.735 -04:00 [INF] HTTP GET /Reportes/Hipismo responded 200 in 54.8832 ms
+2026-07-29 17:37:34.572 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 488.5294 ms
+2026-07-29 17:37:41.607 -04:00 [INF] HTTP GET /Reportes/Loteria responded 200 in 67.2185 ms
+2026-07-29 17:37:42.458 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 500.9052 ms
+2026-07-29 17:37:48.318 -04:00 [INF] HTTP GET /Reportes/LoteriaTriple responded 200 in 62.0312 ms
+2026-07-29 17:37:49.223 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 541.5389 ms
+2026-07-29 17:37:55.179 -04:00 [INF] HTTP GET /Reportes/FantasyBsb responded 200 in 39.3351 ms
+2026-07-29 17:37:56.074 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 514.0349 ms
+2026-07-29 17:38:02.693 -04:00 [INF] HTTP GET /Reportes/RetirosRecargas responded 200 in 33.6390 ms
+2026-07-29 17:38:03.484 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 526.7641 ms
+2026-07-29 17:38:10.071 -04:00 [INF] HTTP GET /Reportes/SaldosDisponibles responded 200 in 82.5502 ms
+2026-07-29 17:38:10.835 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 485.6000 ms
+2026-07-29 17:38:16.921 -04:00 [INF] HTTP GET /Reportes/RepTransaccion responded 200 in 31.7847 ms
+2026-07-29 17:38:17.734 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 508.8686 ms
+2026-07-29 17:38:30.580 -04:00 [INF] HTTP GET /Reportes/PromoTicket responded 200 in 27.2840 ms
+2026-07-29 17:38:31.438 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 478.8314 ms
+2026-07-29 17:38:37.561 -04:00 [INF] HTTP GET /Reportes/ClienteReg responded 200 in 29.7900 ms
+2026-07-29 17:38:38.521 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 585.3094 ms
+2026-07-29 17:38:49.984 -04:00 [INF] HTTP GET /Home/Dashboard responded 200 in 52.0610 ms
+2026-07-29 17:40:50.838 -04:00 [ERR] Error GET+QS api/Reportes/VentasPorAgenteWeb
+System.Threading.Tasks.TaskCanceledException: The request was canceled due to the configured HttpClient.Timeout of 120 seconds elapsing.
+ ---> System.TimeoutException: The operation was canceled.
+ ---> System.Threading.Tasks.TaskCanceledException: The operation was canceled.
+ ---> System.IO.IOException: Unable to read data from the transport connection: La operación de E/S se anuló por una salida de subproceso o por una solicitud de aplicación..
+ ---> System.Net.Sockets.SocketException (995): La operación de E/S se anuló por una salida de subproceso o por una solicitud de aplicación.
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](CancellationToken cancellationToken, Int32 estimatedSize)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.ReadAsyncInternal[TIOAdapter](Memory`1 buffer, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   --- End of inner exception stack trace ---
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpClient.HandleFailure(Exception e, Boolean telemetryStarted, HttpResponseMessage response, CancellationTokenSource cts, CancellationToken cancellationToken, CancellationTokenSource pendingRequestsCts)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 46
+2026-07-29 17:41:43.317 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-07-29 17:41:46.934 -04:00 [INF] HTTP GET / responded 200 in 892.0527 ms
+2026-07-29 17:42:08.078 -04:00 [INF] HTTP POST / responded 200 in 73.2052 ms
+2026-07-29 17:42:13.671 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-07-29 17:42:13.681 -04:00 [INF] HTTP POST / responded 302 in 753.0360 ms
+2026-07-29 17:42:13.915 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 223.6834 ms
+2026-07-29 17:42:33.254 -04:00 [ERR] Error GET api/Reportes/ListaAgentes
+System.Net.Http.HttpRequestException: An error occurred while sending the request.
+ ---> System.IO.IOException: Unable to read data from the transport connection: Se ha forzado la interrupción de una conexión existente por el host remoto..
+ ---> System.Net.Sockets.SocketException (10054): Se ha forzado la interrupción de una conexión existente por el host remoto.
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](CancellationToken cancellationToken, Int32 estimatedSize)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.ReadAsyncInternal[TIOAdapter](Memory`1 buffer, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Http.HttpConnection.InitialFillAsync(Boolean async)
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.SocketsHttpHandler.<SendAsync>g__CreateHandlerAndSendAsync|115_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetAsync[T](String endpoint, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 23
+2026-07-29 17:42:33.393 -04:00 [ERR] Error GetListAgencias via API
+System.Net.Http.HttpRequestException: An error occurred while sending the request.
+ ---> System.IO.IOException: Unable to read data from the transport connection: Se ha forzado la interrupción de una conexión existente por el host remoto..
+ ---> System.Net.Sockets.SocketException (10054): Se ha forzado la interrupción de una conexión existente por el host remoto.
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](CancellationToken cancellationToken, Int32 estimatedSize)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.ReadAsyncInternal[TIOAdapter](Memory`1 buffer, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Http.HttpConnection.InitialFillAsync(Boolean async)
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.SocketsHttpHandler.<SendAsync>g__CreateHandlerAndSendAsync|115_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetAsync[T](String endpoint, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 23
+   at ReportePrematch.Web.Services.Clients.ReportesServiceOld.GetListAgenciasAsync(String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesServiceOld.cs:line 192
+2026-07-29 17:42:33.420 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 18962.5100 ms
+2026-07-29 17:42:49.796 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 15.4993 ms
+2026-07-29 17:42:52.908 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 2810.5957 ms
+2026-07-29 17:42:57.950 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsTaq responded 200 in 71.6328 ms
+2026-07-29 17:42:58.980 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 741.5095 ms
+2026-07-29 17:43:03.991 -04:00 [INF] SOAP ejecutarQuerys db=2 sql[658]=SELECT UPPER(LTRIM(RTRIM(a.nombreagente))) AS nombreagente,
+       UPPER(LTRIM(RTRIM(a.usuario))) AS usuario,
+       a…
+2026-07-29 17:43:04.223 -04:00 [ERR] Error SOAP ejecutarQuerys db=2
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesServiceOld.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesServiceOld.cs:line 99
+2026-07-29 17:44:58.544 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-07-29 17:45:02.151 -04:00 [INF] HTTP GET / responded 200 in 1117.4585 ms
+2026-07-29 17:45:16.603 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-1) para vlapenta
+2026-07-29 17:45:16.609 -04:00 [WRN] Login fallido para usuario vlapenta
+2026-07-29 17:45:16.625 -04:00 [INF] HTTP POST / responded 200 in 739.1171 ms
+2026-07-29 17:45:22.037 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-07-29 17:45:22.042 -04:00 [INF] HTTP POST / responded 302 in 172.5015 ms
+2026-07-29 17:45:22.247 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 194.4867 ms
+2026-07-29 17:45:23.556 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 753.5876 ms
+2026-07-29 17:45:45.758 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 671.1424 ms
+2026-07-29 17:45:51.998 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsTaq responded 200 in 64.6713 ms
+2026-07-29 17:45:52.862 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 515.0052 ms
+2026-07-29 17:46:17.009 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsTaq responded 200 in 17335.1636 ms
+2026-07-29 17:48:19.532 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsTaq responded 200 in 6545.9487 ms
+2026-07-29 18:04:33.500 -04:00 [INF] HTTP GET /Reportes/TicketsDetalladosTaq responded 200 in 50.1309 ms
+2026-07-29 18:04:35.376 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1218.8904 ms
+2026-07-29 18:04:43.625 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 259.3561 ms
+2026-07-29 18:04:53.028 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 111.7212 ms
+2026-07-29 18:05:05.420 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 2878.3992 ms
+2026-07-29 18:05:45.325 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 159.9938 ms
+2026-07-29 18:06:44.362 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsTaq responded 200 in 10.3302 ms
+2026-07-29 18:06:45.251 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 548.4258 ms
+2026-07-29 18:06:54.563 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 4.2451 ms
+2026-07-29 18:06:55.341 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 507.1213 ms
+2026-07-29 18:07:20.544 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 202.0018 ms
+2026-07-29 18:07:46.435 -04:00 [INF] HTTP GET /Reportes/TicketsEnJuegoTaq responded 200 in 55.0198 ms
+2026-07-29 18:07:47.370 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 549.9680 ms
+2026-07-29 18:08:04.363 -04:00 [INF] SOAP ejecutarQuerys db=2 sql[288]=SELECT nombreagente, usuario, tipoap,
+       ganando, montoTotal, (ganando + montoTotal) AS posible_premio
+FROM apuest…
+2026-07-29 18:08:04.670 -04:00 [ERR] Error SOAP ejecutarQuerys db=2
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 98
+2026-07-29 19:01:09.078 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-07-29 19:01:13.760 -04:00 [INF] HTTP GET / responded 200 in 1066.2949 ms
+2026-07-29 19:54:44.006 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-07-29 19:54:44.036 -04:00 [INF] HTTP POST / responded 302 in 1085.8701 ms
+2026-07-29 19:54:44.476 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 395.1487 ms
+2026-07-29 19:54:47.534 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 2362.7940 ms
+2026-07-29 19:55:10.477 -04:00 [INF] HTTP GET /Reportes/EstadisticasTaq responded 200 in 62.6209 ms
+2026-07-29 19:55:11.468 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 653.6564 ms
+2026-07-29 19:55:26.387 -04:00 [INF] SOAP ejecutarQuerys db=2 sql[1067]=SELECT DISTINCT UPPER(LTRIM(RTRIM(a.nombreagente))) AS nombreagente,
+       UPPER(LTRIM(RTRIM(c.deporte))) AS Deporte,…
+2026-07-29 19:55:26.898 -04:00 [ERR] Error SOAP ejecutarQuerys db=2
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 98
+2026-07-29 19:55:58.041 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-07-29 19:56:02.708 -04:00 [INF] HTTP GET / responded 200 in 1268.3815 ms
+2026-07-29 22:31:38.400 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-07-29 22:31:38.435 -04:00 [INF] HTTP POST / responded 302 in 1229.5900 ms
+2026-07-29 22:31:38.729 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 278.4301 ms
+2026-07-29 22:31:41.034 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1592.7445 ms
+2026-07-29 22:31:50.715 -04:00 [INF] HTTP GET /Reportes/VirtualesBR responded 200 in 56.3590 ms
+2026-07-29 22:31:51.601 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 523.2852 ms
+2026-07-29 22:32:04.980 -04:00 [ERR] Error GET+QS api/Reportes/VirtualesBR
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.PropsApiDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.ContinueDeserialize[TReadBufferState,TStream](TReadBufferState& bufferState, JsonReaderState& jsonReaderState, ReadStack& readStack, T& value)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.DeserializeAsync[TReadBufferState,TStream](TStream utf8Json, TReadBufferState bufferState, CancellationToken cancellationToken)
+   at System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsyncCore[T](HttpContent content, JsonSerializerOptions options, CancellationToken cancellationToken)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 48

@@ -105,7 +105,7 @@ function fmt(v){ return parseFloat(v||0).toLocaleString('es-VE',{minimumFraction
 function cargarReporte(){
     const fechaD=document.getElementById('fechaD').value;
     const fechaH=document.getElementById('fechaH').value;
-    const agente=document.getElementById('agente').value;
+    const agente=document.getElementById('agente').value||'TODOS';
     if(!fechaD||!fechaH){Swal.fire({icon:'warning',title:'Fechas requeridas',background:'#002E5C',color:'#fff'});return;}
     showBusy('Consultando...');
 
@@ -115,7 +115,7 @@ function cargarReporte(){
             if(dt)dt.destroy();
             dt=$('#@ViewBag.TableId').DataTable({
                 data,
-                columns: [{data:"Fecha",defaultContent:"—"},{data:"NombreAgente",defaultContent:"—"},{data:"Tipo",defaultContent:"—"},{data:"Referencia",render:d=>`<span class="col-ticket">${d||"—"}</span>`},{data:"Monto",render:d=>`<span class="col-monto-pos">${fmt(d)}</span>`}],
+                columns: [{data:"Fecha",defaultContent:"—"},{data:"NombreAgente",defaultContent:"—"},{data:"Tipo",defaultContent:"—"},{data:"Referencia",createdCell:function(td,d){$(td).text(d||'—').addClass('col-ticket');}},{data:"Monto",createdCell:function(td,d){$(td).text(fmt(d)).addClass('col-monto-pos');}}],
                 language:{url:'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json'},
                 pageLength:25,order:[[0,'asc']],dom:'Bfrtip',
                 buttons:[{extend:'excelHtml5',text:'<i class="ti ti-file-spreadsheet"></i> Excel',className:'btn-glass btn-primary btn-sm'}]

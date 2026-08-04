@@ -1,6 +1,4 @@
-namespace ReportePrematch.Web.Models;
-
-/// <summary>Fila de respuesta para RetirosRecargas / SaldosDisponibles de GCITReportes API</summary>
+namespace ReportePrematch.Web.Models.ApiReportes;
 public sealed class RetirosRecargasApiDto
 {
     public string Agente  { get; init; } = string.Empty;

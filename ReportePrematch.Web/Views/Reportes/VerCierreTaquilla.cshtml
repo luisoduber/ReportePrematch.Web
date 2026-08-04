@@ -104,7 +104,7 @@ function fmt(v){ return parseFloat(v||0).toLocaleString('es-VE',{minimumFraction
 
 // Cargar lista de agencias
 function cargarAgencias(){
-    const agente=document.getElementById('agente').value;
+    const agente=document.getElementById('agente').value||'TODOS';
     $.post('@Url.Action("GetListAgencias","Reportes")',{agente})
         .done(function(agencias){
             const sel=document.getElementById('agencia');
@@ -115,7 +115,7 @@ function cargarAgencias(){
 
 function cargarReporte(){
     const fecha=document.getElementById('fecha').value;
-    const agente=document.getElementById('agente').value;
+    const agente=document.getElementById('agente').value||'TODOS';
     const agencia=document.getElementById('agencia').value;
     const usuario=document.getElementById('usuario').value;
     if(!fecha){Swal.fire({icon:'warning',title:'Fecha requerida',background:'#002E5C',color:'#fff'});return;}
@@ -130,9 +130,9 @@ function cargarReporte(){
                     {data:'Agencia',defaultContent:'—'},
                     {data:'Usuario',defaultContent:'—'},
                     {data:'FechaCierre',defaultContent:'—'},
-                    {data:'Venta',render:d=>`<span class="col-monto-pos">${fmt(d)}</span>`},
-                    {data:'Premios',render:d=>`<span class="col-monto-neg">${fmt(d)}</span>`},
-                    {data:null,render:r=>{const b=(r.Venta||0)-(r.Premios||0);return `<span class="${b>=0?'col-monto-pos':'col-monto-neg'}">${fmt(b)}</span>`;}},
+                    {data:'Venta',   createdCell:function(td,d){$(td).text(fmt(d)).addClass('col-monto-pos');}},
+                    {data:'Premios', createdCell:function(td,d){$(td).text(fmt(d)).addClass('col-monto-neg');}},
+                    {data:null,      createdCell:function(td,_,r){var b=(r.Venta||0)-(r.Premios||0);$(td).text(fmt(b)).addClass(b>=0?'col-monto-pos':'col-monto-neg');}},
                     {data:'Estado',defaultContent:'—'}
                 ],
                 language:{url:'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json'},
@@ -144,6 +144,7 @@ function cargarReporte(){
 }
 
 $(document).ready(function(){
+    cargarAgentes();
     cargarAgencias();
     // Recargar agencias si cambia el agente
     document.getElementById('agente').addEventListener('change', cargarAgencias);

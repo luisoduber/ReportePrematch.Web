@@ -107,7 +107,7 @@ function fmt(v){ return parseFloat(v||0).toLocaleString('es-VE',{minimumFraction
 function cargarReporte(){
     const fechaD=document.getElementById('fechaD').value;
     const fechaH=document.getElementById('fechaH').value;
-    const agente=document.getElementById('agente').value;
+    const agente=document.getElementById('agente').value||'TODOS';
     if(!fechaD||!fechaH){Swal.fire({icon:'warning',title:'Fechas requeridas',background:'#002E5C',color:'#fff'});return;}
     showBusy('Consultando...');
 
@@ -117,7 +117,7 @@ function cargarReporte(){
             if(dt)dt.destroy();
             dt=$('#@ViewBag.TableId').DataTable({
                 data,
-                columns: [{data:"NombreAgente"},{data:"Ticket",render:d=>`<span class="col-ticket">${d}</span>`},{data:"Fecha",defaultContent:"—"},{data:"Carrera",defaultContent:"—"},{data:"Monto",render:d=>`<span class="col-monto-pos">${fmt(d)}</span>`},{data:"Premio",render:d=>`<span class="${parseFloat(d)>0?"col-monto-neg":"col-monto-pos"}">${fmt(d)}</span>`},{data:"Estado",defaultContent:"—"}],
+                columns: [{data:"NombreAgente"},{data:"Ticket",createdCell:function(td){$(td).addClass('col-ticket');}},{data:"Fecha",defaultContent:"—"},{data:"Carrera",defaultContent:"—"},{data:"Monto",createdCell:function(td,d){$(td).text(fmt(d)).addClass('col-monto-pos');}},{data:"Premio",createdCell:function(td,d){var n=parseFloat(d||0);$(td).text(fmt(d)).addClass(n>0?'col-monto-neg':'col-monto-pos');}},{data:"Estado",defaultContent:"—"}],
                 language:{url:'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json'},
                 pageLength:25,order:[[0,'asc']],dom:'Bfrtip',
                 buttons:[{extend:'excelHtml5',text:'<i class="ti ti-file-spreadsheet"></i> Excel',className:'btn-glass btn-primary btn-sm'}]

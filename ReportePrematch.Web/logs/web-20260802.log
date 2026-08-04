@@ -1,0 +1,82 @@
+2026-08-02 21:14:42.737 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-02 21:14:59.568 -04:00 [INF] HTTP GET / responded 200 in 2417.7993 ms
+2026-08-02 21:15:34.418 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 8.2656 ms
+2026-08-02 21:21:28.820 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-02 21:21:34.334 -04:00 [INF] HTTP GET / responded 200 in 1300.5854 ms
+2026-08-02 21:21:43.510 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 7.6961 ms
+2026-08-02 21:26:01.973 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-02 21:26:01.985 -04:00 [INF] HTTP POST / responded 302 in 1602.1949 ms
+2026-08-02 21:26:02.591 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 585.9491 ms
+2026-08-02 21:26:10.425 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 6746.3059 ms
+2026-08-02 21:26:38.447 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 604.0063 ms
+2026-08-02 21:26:42.094 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 621.8901 ms
+2026-08-02 21:26:53.168 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsTaq responded 200 in 125.2927 ms
+2026-08-02 21:26:54.264 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 661.9140 ms
+2026-08-02 21:27:13.209 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 163.8325 ms
+2026-08-02 21:27:22.137 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteWeb responded 200 in 116.6070 ms
+2026-08-02 21:27:23.055 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 531.8906 ms
+2026-08-02 21:27:41.177 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 260.9636 ms
+2026-08-02 21:31:20.825 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsWeb responded 200 in 214.9165 ms
+2026-08-02 21:31:21.813 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 544.3761 ms
+2026-08-02 21:31:37.824 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsWeb responded 200 in 335.7126 ms
+2026-08-02 21:31:47.841 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsWeb responded 200 in 138.8665 ms
+2026-08-02 21:31:56.106 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsWeb responded 200 in 125.0134 ms
+2026-08-02 21:32:03.301 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsWeb responded 200 in 131.8439 ms
+2026-08-02 23:08:25.268 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsWeb responded 302 in 117.2879 ms
+2026-08-02 23:08:25.427 -04:00 [INF] HTTP GET / responded 200 in 121.9047 ms
+2026-08-02 23:08:36.662 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-1) para vlapenta
+2026-08-02 23:08:36.674 -04:00 [WRN] Login fallido para usuario vlapenta
+2026-08-02 23:08:36.683 -04:00 [INF] HTTP POST / responded 200 in 911.1146 ms
+2026-08-02 23:14:16.561 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-02 23:14:16.570 -04:00 [INF] HTTP POST / responded 302 in 747.6493 ms
+2026-08-02 23:14:16.606 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 19.2827 ms
+2026-08-02 23:14:18.650 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1134.9084 ms
+2026-08-02 23:14:37.762 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsWeb responded 200 in 14801.1385 ms
+2026-08-02 23:14:38.851 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 565.7021 ms
+2026-08-02 23:14:59.995 -04:00 [ERR] Error GET+QS api/Reportes/VentasPorAgenteNikolsWeb
+System.Text.Json.JsonException: The JSON value could not be converted to System.Decimal. Path: $[0].ventas | LineNumber: 0 | BytePositionInLine: 57.
+ ---> System.InvalidOperationException: Cannot get the value of a token type 'String' as a number.
+   at System.Text.Json.ThrowHelper.ThrowInvalidOperationException_ExpectedNumber(JsonTokenType tokenType)
+   at System.Text.Json.Serialization.Converters.DecimalConverter.Read(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.ReadJsonAndSetMember(Object obj, ReadStack& state, Utf8JsonReader& reader)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ReThrowWithPath(ReadStack& state, Utf8JsonReader& reader, Exception ex)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.ContinueDeserialize[TReadBufferState,TStream](TReadBufferState& bufferState, JsonReaderState& jsonReaderState, ReadStack& readStack, T& value)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.DeserializeAsync[TReadBufferState,TStream](TStream utf8Json, TReadBufferState bufferState, CancellationToken cancellationToken)
+   at System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsyncCore[T](HttpContent content, JsonSerializerOptions options, CancellationToken cancellationToken)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 48
+2026-08-02 23:25:05.453 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-02 23:25:08.361 -04:00 [INF] HTTP GET / responded 200 in 578.3912 ms
+2026-08-02 23:25:19.603 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-02 23:25:19.616 -04:00 [INF] HTTP POST / responded 302 in 1099.1137 ms
+2026-08-02 23:25:19.867 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 241.6499 ms
+2026-08-02 23:25:21.785 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1485.1895 ms
+2026-08-02 23:25:31.169 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteWeb responded 200 in 49.6479 ms
+2026-08-02 23:25:31.976 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 508.8205 ms
+2026-08-02 23:26:09.965 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 19614.8122 ms
+2026-08-02 23:26:18.167 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsWeb responded 200 in 49.4025 ms
+2026-08-02 23:26:19.240 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 683.5936 ms
+2026-08-02 23:26:39.188 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsWeb responded 200 in 10301.5254 ms
+2026-08-02 23:29:31.578 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsWeb responded 200 in 16509.1828 ms
+2026-08-02 23:29:32.412 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 485.1526 ms
+2026-08-02 23:30:22.306 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-02 23:30:25.909 -04:00 [INF] HTTP GET / responded 200 in 1097.5364 ms
+2026-08-02 23:31:32.074 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-02 23:31:32.088 -04:00 [INF] HTTP POST / responded 302 in 1045.6161 ms
+2026-08-02 23:31:32.301 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 203.1764 ms
+2026-08-02 23:31:33.648 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 774.4470 ms
+2026-08-02 23:31:35.840 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsWeb responded 200 in 58.1588 ms
+2026-08-02 23:31:36.747 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 549.8887 ms
+2026-08-02 23:52:18.873 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsWeb responded 200 in 4826.5889 ms
+2026-08-02 23:52:20.582 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1170.1369 ms
+2026-08-02 23:52:44.261 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsWeb responded 200 in 9598.5921 ms
+2026-08-02 23:53:01.311 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsWeb responded 200 in 9697.8254 ms
+2026-08-02 23:55:41.504 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsWeb responded 200 in 825.8412 ms
+2026-08-02 23:55:43.104 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 551.6698 ms
+2026-08-02 23:55:44.149 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 6.2725 ms
+2026-08-02 23:56:07.570 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsWeb responded 200 in 10310.8495 ms
+2026-08-02 23:56:29.181 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsWeb responded 200 in 11628.8725 ms

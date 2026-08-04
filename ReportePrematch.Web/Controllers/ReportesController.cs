@@ -119,7 +119,7 @@ public sealed class ReportesController(
     }
     [HttpPost]
     public async Task<IActionResult> GetAviatrix(string fechaD, string fechaH, string agente)
-        => Json(await reportes.GetAviatrixAsync(fechaD, fechaH, agente, Role, Pais));
+        => Json(await reportes.GetAviatrixAsync(fechaD, fechaH, agente ?? "", Role, Pais));
 
     [HttpGet]
     public IActionResult FantasyBsb()

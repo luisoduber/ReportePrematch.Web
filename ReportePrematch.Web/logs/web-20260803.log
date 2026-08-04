@@ -1,0 +1,457 @@
+2026-08-03 00:14:16.050 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-03 00:14:19.422 -04:00 [INF] HTTP GET / responded 200 in 768.8004 ms
+2026-08-03 00:14:37.810 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-03 00:14:37.821 -04:00 [INF] HTTP POST / responded 302 in 1055.3033 ms
+2026-08-03 00:14:38.076 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 241.1903 ms
+2026-08-03 00:14:40.250 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1511.8428 ms
+2026-08-03 00:14:43.652 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsTaq responded 200 in 47.4209 ms
+2026-08-03 00:14:44.600 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 503.7569 ms
+2026-08-03 00:15:55.284 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsTaq responded 200 in 4463.2082 ms
+2026-08-03 00:16:08.708 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 4270.2601 ms
+2026-08-03 00:16:48.207 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsWeb responded 200 in 10275.2508 ms
+2026-08-03 00:20:36.047 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsTaq responded 200 in 21238.1857 ms
+2026-08-03 00:20:37.986 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 858.7930 ms
+2026-08-03 00:20:39.115 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 7.9164 ms
+2026-08-03 00:20:42.509 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsWeb responded 200 in 893.6830 ms
+2026-08-03 00:20:43.523 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 608.8858 ms
+2026-08-03 00:20:47.366 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsTaq responded 200 in 5.1330 ms
+2026-08-03 00:20:48.271 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 548.7359 ms
+2026-08-03 00:21:10.052 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsTaq responded 200 in 4603.3311 ms
+2026-08-03 00:21:44.219 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsWeb responded 200 in 9981.7617 ms
+2026-08-03 00:26:48.167 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsTaq responded 200 in 1064.3927 ms
+2026-08-03 00:26:51.079 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1414.5885 ms
+2026-08-03 00:26:51.713 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 0.7085 ms
+2026-08-03 00:27:06.799 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsTaq responded 200 in 3366.2393 ms
+2026-08-03 00:27:18.461 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 3381.4932 ms
+2026-08-03 00:27:49.578 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsTaq responded 200 in 299.2034 ms
+2026-08-03 00:28:06.557 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 153.7976 ms
+2026-08-03 00:31:30.734 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsTaq responded 200 in 496.6163 ms
+2026-08-03 00:31:32.832 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1295.6001 ms
+2026-08-03 00:31:33.844 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 0.2275 ms
+2026-08-03 00:31:51.286 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsTaq responded 200 in 223.2467 ms
+2026-08-03 00:32:01.485 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsWeb responded 200 in 267.9545 ms
+2026-08-03 00:32:10.096 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsTaq responded 200 in 212.3689 ms
+2026-08-03 00:32:17.860 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 213.2234 ms
+2026-08-03 00:34:03.211 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsTaq responded 200 in 361.6056 ms
+2026-08-03 00:34:04.620 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 763.4612 ms
+2026-08-03 00:34:06.479 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 0.1878 ms
+2026-08-03 00:34:21.273 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsTaq responded 200 in 207.8046 ms
+2026-08-03 00:34:24.341 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 180.6924 ms
+2026-08-03 00:35:44.823 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 152.3798 ms
+2026-08-03 00:40:41.300 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsTaq responded 200 in 1553.2596 ms
+2026-08-03 00:40:42.967 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 868.4761 ms
+2026-08-03 00:40:44.330 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 0.1725 ms
+2026-08-03 00:40:50.065 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsTaq responded 200 in 6.0486 ms
+2026-08-03 00:40:51.011 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 511.7405 ms
+2026-08-03 00:41:13.217 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsTaq responded 200 in 212.3669 ms
+2026-08-03 01:06:24.235 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsTaq responded 200 in 1592.0644 ms
+2026-08-03 01:06:26.955 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1490.7358 ms
+2026-08-03 01:06:27.265 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 2.3732 ms
+2026-08-03 01:06:44.890 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsTaq responded 200 in 3154.9582 ms
+2026-08-03 01:06:49.606 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 2713.3281 ms
+2026-08-03 01:13:10.899 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsTaq responded 200 in 930.0103 ms
+2026-08-03 01:13:12.444 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 570.7390 ms
+2026-08-03 01:13:13.445 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 0.2126 ms
+2026-08-03 01:13:31.076 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsTaq responded 200 in 207.5260 ms
+2026-08-03 01:13:37.115 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 136.5456 ms
+2026-08-03 01:23:54.159 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsTaq responded 200 in 1152.3115 ms
+2026-08-03 01:23:56.999 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1535.5655 ms
+2026-08-03 01:23:57.732 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 0.7704 ms
+2026-08-03 01:24:04.868 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 354.6223 ms
+2026-08-03 01:24:06.311 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1024.9780 ms
+2026-08-03 01:24:34.621 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 514.9909 ms
+2026-08-03 01:24:42.669 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 141.0719 ms
+2026-08-03 01:25:01.584 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 427.0861 ms
+2026-08-03 01:25:12.678 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 168.4465 ms
+2026-08-03 01:25:15.781 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 140.5247 ms
+2026-08-03 01:25:27.253 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsTaq responded 200 in 5.6787 ms
+2026-08-03 01:25:28.426 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 725.4204 ms
+2026-08-03 01:25:45.000 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsTaq responded 200 in 213.3908 ms
+2026-08-03 01:25:47.358 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 140.5789 ms
+2026-08-03 01:26:05.875 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsWeb responded 200 in 308.6569 ms
+2026-08-03 01:27:41.550 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikolsTaq responded 200 in 9.7295 ms
+2026-08-03 01:27:42.785 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 626.7437 ms
+2026-08-03 01:27:46.425 -04:00 [INF] HTTP GET /Reportes/TicketsDetalladosTaq responded 200 in 48.2543 ms
+2026-08-03 01:27:47.219 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 473.5757 ms
+2026-08-03 01:28:05.578 -04:00 [INF] HTTP GET /Reportes/TicketsDetalladosTaq responded 200 in 2.7209 ms
+2026-08-03 01:28:06.339 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 515.3567 ms
+2026-08-03 01:28:25.800 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 162.0112 ms
+2026-08-03 01:31:11.330 -04:00 [INF] HTTP GET /Reportes/TicketsDetalladosTaq responded 200 in 573.1190 ms
+2026-08-03 01:31:12.877 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 641.9761 ms
+2026-08-03 01:31:13.968 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 0.4715 ms
+2026-08-03 01:32:09.429 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 169.2248 ms
+2026-08-03 01:32:15.915 -04:00 [INF] HTTP GET /Reportes/TicketsDetalladosWeb responded 200 in 59.7756 ms
+2026-08-03 01:32:17.054 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 567.6916 ms
+2026-08-03 01:32:31.446 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosWeb responded 200 in 1611.4519 ms
+2026-08-03 01:33:18.709 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosWeb responded 200 in 33946.6237 ms
+2026-08-03 01:36:28.332 -04:00 [INF] HTTP GET /Reportes/TicketsDetalladosWeb responded 200 in 596.7856 ms
+2026-08-03 01:36:29.211 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 550.6036 ms
+2026-08-03 01:37:06.491 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosWeb responded 200 in 24659.8692 ms
+2026-08-03 01:43:37.429 -04:00 [INF] HTTP GET /Reportes/TicketsDetalladosWeb responded 200 in 621.2078 ms
+2026-08-03 01:43:39.607 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1197.5209 ms
+2026-08-03 01:43:40.357 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 0.1627 ms
+2026-08-03 01:43:43.950 -04:00 [INF] HTTP GET /Reportes/TicketsDetalladosTaq responded 200 in 270.2094 ms
+2026-08-03 01:43:44.821 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 471.3371 ms
+2026-08-03 01:44:05.484 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 138.6021 ms
+2026-08-03 01:44:27.321 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosWeb responded 200 in 488.8058 ms
+2026-08-03 01:44:44.863 -04:00 [INF] HTTP GET /Reportes/TicketsEnJuegoTaq responded 200 in 50.4181 ms
+2026-08-03 01:44:45.792 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 556.4383 ms
+2026-08-03 01:46:26.445 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoTaq responded 200 in 286.1046 ms
+2026-08-03 01:46:37.974 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoTaq responded 200 in 136.5053 ms
+2026-08-03 01:49:28.155 -04:00 [INF] HTTP GET /Reportes/TicketsEnJuegoTaq responded 200 in 1.9161 ms
+2026-08-03 01:49:29.224 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 629.3589 ms
+2026-08-03 01:49:42.078 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoTaq responded 200 in 118.1864 ms
+2026-08-03 01:49:51.959 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoTaq responded 200 in 120.1055 ms
+2026-08-03 01:50:01.280 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoTaq responded 200 in 118.0189 ms
+2026-08-03 01:51:34.012 -04:00 [INF] HTTP GET /Reportes/TicketsEnJuegoTaq responded 200 in 3.4700 ms
+2026-08-03 01:51:35.027 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 540.5571 ms
+2026-08-03 01:51:48.769 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoTaq responded 200 in 118.1759 ms
+2026-08-03 01:51:56.309 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoTaq responded 200 in 124.6092 ms
+2026-08-03 01:52:01.557 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoTaq responded 200 in 116.8971 ms
+2026-08-03 01:52:06.689 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoTaq responded 200 in 125.8873 ms
+2026-08-03 01:53:20.815 -04:00 [INF] HTTP GET /Reportes/TicketsEnJuegoTaq responded 200 in 3.4103 ms
+2026-08-03 01:53:21.742 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 492.2159 ms
+2026-08-03 01:53:29.834 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoTaq responded 200 in 116.5849 ms
+2026-08-03 01:56:03.892 -04:00 [INF] HTTP GET /Reportes/TicketsEnJuegoWeb responded 200 in 99.3334 ms
+2026-08-03 01:56:04.807 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 544.5698 ms
+2026-08-03 01:57:44.296 -04:00 [INF] HTTP GET /Reportes/EstadisticasTaq responded 200 in 71.3747 ms
+2026-08-03 01:57:45.181 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 524.3842 ms
+2026-08-03 01:57:51.053 -04:00 [INF] HTTP GET /Reportes/EstadisticasWeb responded 200 in 56.2720 ms
+2026-08-03 01:57:51.927 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 491.3561 ms
+2026-08-03 02:00:19.888 -04:00 [INF] SOAP ejecutarQuerys db=2 sql[1214]=SELECT DISTINCT UPPER(LTRIM(RTRIM(a.nombreagente))) AS nombreagente,
+       UPPER(LTRIM(RTRIM(c.deporte))) AS Deporte,
+ …
+2026-08-03 02:00:21.473 -04:00 [ERR] Error SOAP ejecutarQuerys db=2
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 98
+2026-08-03 02:00:22.307 -04:00 [ERR] HTTP POST /Reportes/GetEstadisticasWeb responded 500 in 2524.4742 ms
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 98
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetEstadisticasWebAsync(String fechaD, String fechaH, String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 764
+   at ReportePrematch.Web.Controllers.ReportesController.GetEstadisticasWeb(String fechaD, String fechaH, String agente) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 465
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-08-03 02:00:22.373 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 98
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetEstadisticasWebAsync(String fechaD, String fechaH, String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 764
+   at ReportePrematch.Web.Controllers.ReportesController.GetEstadisticasWeb(String fechaD, String fechaH, String agente) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 465
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-08-03 02:00:27.784 -04:00 [INF] SOAP ejecutarQuerys db=2 sql[1214]=SELECT DISTINCT UPPER(LTRIM(RTRIM(a.nombreagente))) AS nombreagente,
+       UPPER(LTRIM(RTRIM(c.deporte))) AS Deporte,
+ …
+2026-08-03 02:00:27.982 -04:00 [ERR] Error SOAP ejecutarQuerys db=2
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 98
+2026-08-03 02:00:28.147 -04:00 [ERR] HTTP POST /Reportes/GetEstadisticasWeb responded 500 in 363.1307 ms
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 98
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetEstadisticasWebAsync(String fechaD, String fechaH, String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 764
+   at ReportePrematch.Web.Controllers.ReportesController.GetEstadisticasWeb(String fechaD, String fechaH, String agente) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 465
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-08-03 02:00:28.175 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 98
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetEstadisticasWebAsync(String fechaD, String fechaH, String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 764
+   at ReportePrematch.Web.Controllers.ReportesController.GetEstadisticasWeb(String fechaD, String fechaH, String agente) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 465
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-08-03 02:00:37.886 -04:00 [INF] HTTP GET /Reportes/EstadisticasTaq responded 200 in 8.8598 ms
+2026-08-03 02:00:38.983 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 579.9890 ms
+2026-08-03 02:00:51.382 -04:00 [INF] SOAP ejecutarQuerys db=2 sql[1049]=SELECT DISTINCT UPPER(LTRIM(RTRIM(a.nombreagente))) AS nombreagente,
+       UPPER(LTRIM(RTRIM(c.deporte))) AS Deporte,
+ …
+2026-08-03 02:00:51.580 -04:00 [ERR] Error SOAP ejecutarQuerys db=2
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 98
+2026-08-03 02:00:51.747 -04:00 [ERR] HTTP POST /Reportes/GetEstadisticasTaq responded 500 in 399.7119 ms
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 98
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetEstadisticasTaqAsync(String fechaD, String fechaH, String agente, String local, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 801
+   at ReportePrematch.Web.Controllers.ReportesController.GetEstadisticasTaq(String fechaD, String fechaH, String agente) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 476
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-08-03 02:00:51.796 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 98
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetEstadisticasTaqAsync(String fechaD, String fechaH, String agente, String local, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 801
+   at ReportePrematch.Web.Controllers.ReportesController.GetEstadisticasTaq(String fechaD, String fechaH, String agente) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 476
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-08-03 02:05:35.687 -04:00 [INF] HTTP GET /Reportes/EstadisticasTaq responded 200 in 8.6733 ms
+2026-08-03 02:05:43.110 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 27.1854 ms
+2026-08-03 02:06:07.804 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 31017.6595 ms
+2026-08-03 02:06:11.630 -04:00 [INF] HTTP GET /Reportes/EstadisticasTaq responded 200 in 6.4249 ms
+2026-08-03 02:06:13.262 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 996.6404 ms
+2026-08-03 02:06:14.552 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 0.1821 ms
+2026-08-03 02:06:24.437 -04:00 [INF] SOAP ejecutarQuerys db=2 sql[1049]=SELECT DISTINCT UPPER(LTRIM(RTRIM(a.nombreagente))) AS nombreagente,
+       UPPER(LTRIM(RTRIM(c.deporte))) AS Deporte,
+ …
+2026-08-03 02:06:24.778 -04:00 [ERR] Error SOAP ejecutarQuerys db=2
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 98
+2026-08-03 02:06:25.153 -04:00 [ERR] HTTP POST /Reportes/GetEstadisticasTaq responded 500 in 723.6971 ms
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 98
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetEstadisticasTaqAsync(String fechaD, String fechaH, String agente, String local, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 801
+   at ReportePrematch.Web.Controllers.ReportesController.GetEstadisticasTaq(String fechaD, String fechaH, String agente) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 476
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-08-03 02:06:25.208 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 98
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetEstadisticasTaqAsync(String fechaD, String fechaH, String agente, String local, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 801
+   at ReportePrematch.Web.Controllers.ReportesController.GetEstadisticasTaq(String fechaD, String fechaH, String agente) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 476
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-08-03 02:06:34.052 -04:00 [INF] HTTP GET /Reportes/EstadisticasWeb responded 200 in 3.8666 ms
+2026-08-03 02:06:35.301 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 693.8259 ms
+2026-08-03 02:06:47.899 -04:00 [INF] SOAP ejecutarQuerys db=2 sql[1214]=SELECT DISTINCT UPPER(LTRIM(RTRIM(a.nombreagente))) AS nombreagente,
+       UPPER(LTRIM(RTRIM(c.deporte))) AS Deporte,
+ …
+2026-08-03 02:06:48.118 -04:00 [ERR] Error SOAP ejecutarQuerys db=2
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 98
+2026-08-03 02:06:48.271 -04:00 [ERR] HTTP POST /Reportes/GetEstadisticasWeb responded 500 in 373.2039 ms
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 98
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetEstadisticasWebAsync(String fechaD, String fechaH, String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 764
+   at ReportePrematch.Web.Controllers.ReportesController.GetEstadisticasWeb(String fechaD, String fechaH, String agente) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 465
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-08-03 02:06:48.313 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 98
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetEstadisticasWebAsync(String fechaD, String fechaH, String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 764
+   at ReportePrematch.Web.Controllers.ReportesController.GetEstadisticasWeb(String fechaD, String fechaH, String agente) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 465
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-08-03 02:08:11.019 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-03 02:08:14.733 -04:00 [INF] HTTP GET / responded 200 in 696.6006 ms
+2026-08-03 02:08:38.987 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-03 02:08:39.008 -04:00 [INF] HTTP POST / responded 302 in 994.0878 ms
+2026-08-03 02:08:39.291 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteTaq responded 200 in 266.2571 ms
+2026-08-03 02:08:41.286 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1142.6400 ms
+2026-08-03 02:08:44.721 -04:00 [INF] HTTP GET /Reportes/EstadisticasTaq responded 200 in 40.2485 ms
+2026-08-03 02:08:45.683 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 565.7186 ms
+2026-08-03 02:09:03.975 -04:00 [INF] SOAP ejecutarQuerys db=2 sql[603]=SELECT
+    UPPER(LTRIM(RTRIM(c.deporte))) AS Categoria,
+    COUNT(DISTINCT a.ticket)        AS Cantidad,
+    SUM(a.monto…
+2026-08-03 02:09:04.274 -04:00 [ERR] Error SOAP ejecutarQuerys db=2
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 98
+2026-08-03 02:09:04.809 -04:00 [ERR] HTTP POST /Reportes/GetEstadisticasTaq responded 500 in 872.3689 ms
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 98
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetEstadisticasTaqAsync(String fechaD, String fechaH, String agente, String local, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 791
+   at ReportePrematch.Web.Controllers.ReportesController.GetEstadisticasTaq(String fechaD, String fechaH, String agente) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 476
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-08-03 02:09:04.853 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.EjecutarQuerysAsync(String sql, Int32 db) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 98
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetEstadisticasTaqAsync(String fechaD, String fechaH, String agente, String local, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 791
+   at ReportePrematch.Web.Controllers.ReportesController.GetEstadisticasTaq(String fechaD, String fechaH, String agente) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 476
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)

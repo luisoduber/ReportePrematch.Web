@@ -1,6 +1,4 @@
-namespace ReportePrematch.Web.Models;
-
-/// <summary>Fila de respuesta para DeportesMasVendidos* de GCITReportes API</summary>
+namespace ReportePrematch.Web.Models.ApiReportes;
 public sealed class DeportesMasVendidosDto
 {
     public string  NombreAgente { get; init; } = string.Empty;

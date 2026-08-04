@@ -1,12 +1,24 @@
 @{
     Layout = "_Layout";
+    string modoInicial = "taq";
 }
+
+<style>
+    .nikols-toggle { display:inline-flex; border:1px solid rgba(255,255,255,0.2); border-radius:30px; overflow:hidden; }
+    .tog-btn { border:none; background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.4); padding:7px 18px; font-size:11px; font-weight:700; letter-spacing:.8px; cursor:pointer; transition:all .25s; }
+    .tog-btn.active { background:#22c55e; color:#fff; }
+    .link-usuario { cursor:pointer; color:#4ade80; display:inline-flex; align-items:center; gap:5px; }
+    .link-usuario .lnk-icon { font-size:1rem; transition:transform .2s ease; opacity:.8; }
+    tr.shown .link-usuario .lnk-icon { transform:rotate(90deg); opacity:1; }
+    tr.shown > td { background:rgba(34,197,94,0.06) !important; }
+    .child-tickets-wrap { padding:10px 16px 14px; background:rgba(0,0,0,0.28); }
+</style>
 
 <section class="glass-card">
     <div class="welcome-bar">
         <div>
             <div class="welcome-title">@ViewBag.NombrePagina</div>
-            <div class="welcome-sub">Canal Taquilla · Nikols</div>
+            <div class="welcome-sub" id="subCanal"></div>
         </div>
         <button class="btn-glass btn-primary" onclick="cargarReporte()">
             <i class="ti ti-refresh"></i> Actualizar
@@ -15,11 +27,11 @@
 
     <div class="glass-panel mt-3 p-3">
         <div class="row g-2 align-items-end">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label class="field-label">Fecha Desde</label>
                 <input type="date" id="fechaD" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label class="field-label">Fecha Hasta</label>
                 <input type="date" id="fechaH" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
             </div>
@@ -36,6 +48,13 @@
                     </select>
                 }
             </div>
+            <div class="col-md-2 d-flex flex-column align-items-center">
+                <label class="field-label text-center mb-1">Canal</label>
+                <div class="nikols-toggle">
+                    <button class="tog-btn" id="togTaq" onclick="setModo('taq')">TAQUILLA</button>
+                    <button class="tog-btn" id="togWeb" onclick="setModo('web')">WEB</button>
+                </div>
+            </div>
             <div class="col-md-3">
                 <button class="btn-glass btn-primary w-100" onclick="cargarReporte()">
                     <i class="ti ti-search"></i> Buscar
@@ -44,35 +63,101 @@
         </div>
     </div>
 
+    <!-- Métricas rápidas — solo modo WEB -->
+    <div class="quick-metrics-bar mt-3" id="metricsBar" style="display:none;">
+        <div class="metric-card"><div class="metric-label">Total Ventas</div><div class="metric-value metric-blue"  id="metVentas">—</div></div>
+        <div class="metric-card"><div class="metric-label">Total Pagos</div><div class="metric-value metric-red"   id="metPagos">—</div></div>
+        <div class="metric-card"><div class="metric-label">Balance</div><div class="metric-value metric-green" id="metBalance">—</div></div>
+    </div>
+
     <div class="table-responsive mt-3">
         <table id="@ViewBag.TableId" class="glass-table w-100">
             <thead>
                 <tr>
-                    <th>Agente</th>
-                    <th>Usuario</th>
-                    <th>Ventas</th>
-                    <th>Pagos</th>
-                    <th>Pendientes</th>
-                    <th>Balance</th>
+                    <th style="text-align:center;">Agente</th>
+                    <th style="text-align:center;">Usuario</th>
+                    <th style="text-align:center;">Ventas</th>
+                    <th style="text-align:center;">Pagos</th>
+                    <th style="text-align:center;">Pendientes</th>
+                    <th style="text-align:center;">Balance</th>
                 </tr>
             </thead>
             <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th style="text-align:center;"></th>
+                    <th style="text-align:center;">TOTAL</th>
+                    <th id="totVentas"     style="text-align:center;"></th>
+                    <th id="totPagos"      style="text-align:center;"></th>
+                    <th id="totPendientes" style="text-align:center;"></th>
+                    <th id="totBalance"    style="text-align:center;"></th>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </section>
 
 @section Scripts {
 <script>
+const tableId       = '#@ViewBag.TableId';
 const esAdmin       = '@ViewBag.TipoUsuario' !== 'Usuario Regular';
 const agenteSession = '@ViewBag.Agente';
+let modoActual      = '@modoInicial';
+let dt;
 
+/* ── helpers ─────────────────────────────────────────────────────── */
+function parseFmt(v) {
+    if (v === null || v === undefined || v === '') return 0;
+    return parseFloat(v.toString().replace(/\./g, '').replace(',', '.')) || 0;
+}
+function fmt(val) {
+    return parseFloat(val || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+function get(row, key) {
+    if (row[key] !== undefined) return row[key];
+    const lower = key.charAt(0).toLowerCase() + key.slice(1);
+    return row[lower] !== undefined ? row[lower] : '';
+}
+function fmtFecha(v) {
+    if (!v) return '—';
+    var d = new Date(v);
+    if (isNaN(d)) return v;
+    var pad = function(n){ return n < 10 ? '0' + n : n; };
+    return pad(d.getDate()) + '/' + pad(d.getMonth()+1) + '/' + d.getFullYear() +
+           ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+}
+function estadoBadge(e) {
+    const map = { 'GANADOR': 'aprobado', 'PERDEDOR': 'rechazado', 'EN JUEGO': 'pendiente' };
+    const cls = map[(e || '').toUpperCase()] || 'pendiente';
+    return '<span class="badge-status badge-' + cls + '">' + (e || '—') + '</span>';
+}
+
+/* ── toggle ──────────────────────────────────────────────────────── */
+function aplicarModo() {
+    document.getElementById('togTaq').className = 'tog-btn' + (modoActual === 'taq' ? ' active' : '');
+    document.getElementById('togWeb').className = 'tog-btn' + (modoActual === 'web' ? ' active' : '');
+    document.getElementById('subCanal').textContent = modoActual === 'taq' ? 'Canal Taquilla · Nikols' : 'Canal Web · Nikols';
+    document.getElementById('metricsBar').style.display = 'none';
+}
+
+function setModo(modo) {
+    if (modoActual === modo) return;
+    modoActual = modo;
+    aplicarModo();
+    if (dt) { dt.destroy(); dt = null; }
+    $(tableId + ' tbody').empty();
+    ['totVentas','totPagos','totPendientes','totBalance'].forEach(function(id) {
+        var el = document.getElementById(id); if (el) el.textContent = '';
+    });
+}
+
+/* ── agentes ─────────────────────────────────────────────────────── */
 function cargarAgentes() {
     if (!esAdmin) return;
     $.post('@Url.Action("GetListAgencias","Reportes")', { agente: agenteSession })
         .done(function(lista) {
             const sel = document.getElementById('agente');
             if (!sel) return;
-            // Destruir instancia Tom Select previa si existe
             if (sel.tomselect) sel.tomselect.destroy();
             sel.innerHTML = '';
             const optTodos = document.createElement('option');
@@ -83,48 +168,228 @@ function cargarAgentes() {
                 opt.value = a; opt.textContent = a;
                 sel.appendChild(opt);
             });
-            // Inicializar Tom Select con búsqueda
-            new TomSelect(sel, {
-                maxOptions: 2000,
-                create: false,
-                allowEmptyOption: true,
-                placeholder: 'Buscar agente...',
-                searchField: ['text']
-            });
+            new TomSelect(sel, { maxOptions: 2000, create: false, allowEmptyOption: true, placeholder: 'Buscar agente...', searchField: ['text'] });
             if (agenteSession) sel.tomselect.setValue(agenteSession, true);
-            console.log('[Agentes] ' + (lista ? lista.length : 0) + ' agentes cargados.');
         })
-        .fail(function(xhr) {
-            console.error('[Agentes] Error HTTP ' + xhr.status + ' al cargar agentes:', xhr.responseText);
-            Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar la lista de agentes (HTTP ' + xhr.status + ').', background: '#002E5C', color: '#fff' });
+        .fail(function() {
+            Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar la lista de agentes.', background: '#002E5C', color: '#fff' });
         });
 }
 
-let dt;
-function fmt(v){ return parseFloat(v||0).toLocaleString('es-VE',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+/* ── sub-tabla tickets (child row) ───────────────────────────────── */
+function desplegarTickets($span, row, tr) {
+    // Si ya está desplegado: colapsar
+    if (row.child.isShown()) {
+        if ($.fn.DataTable.isDataTable('#tblChild_' + row.index())) {
+            $('#tblChild_' + row.index()).DataTable().destroy();
+        }
+        row.child.hide();
+        tr.removeClass('shown');
+        return;
+    }
 
-function cargarReporte(){
-    const fechaD=document.getElementById('fechaD').value;
-    const fechaH=document.getElementById('fechaH').value;
-    const agente=document.getElementById('agente').value;
-    if(!fechaD||!fechaH){Swal.fire({icon:'warning',title:'Fechas requeridas',background:'#002E5C',color:'#fff'});return;}
+    const usuario = $span.data('usuario');
+    const agente  = $span.data('agente');
+    const fechaD  = document.getElementById('fechaD').value;
+    const fechaH  = document.getElementById('fechaH').value;
+    const childId = 'tblChild_' + row.index();
+
+    // Mostrar placeholder mientras carga
+    row.child(
+        '<div class="child-tickets-wrap" style="color:rgba(255,255,255,0.5);font-size:.85rem;">' +
+        '<i class="ti ti-loader-2"></i> Cargando tickets de <strong>' + usuario + '</strong>...</div>'
+    ).show();
+    tr.addClass('shown');
+
+    $.post('@Url.Action("GetTicketsDetalladosTaq","Reportes")', { fechaD, fechaH, agente })
+        .done(function(data) {
+            const filtrado = (data || []).filter(function(t) {
+                return (get(t, 'usuario') || '').toUpperCase() === usuario.toUpperCase();
+            });
+
+            if (!filtrado.length) {
+                row.child(
+                    '<div class="child-tickets-wrap" style="color:rgba(255,255,255,0.5);font-size:.85rem;">' +
+                    'Sin tickets para <strong>' + usuario + '</strong> en el período.</div>'
+                ).show();
+                return;
+            }
+
+            const html =
+                '<div class="child-tickets-wrap">' +
+                '<div style="color:rgba(255,255,255,0.6);font-size:.78rem;margin-bottom:6px;">Tickets · <strong style="color:#4ade80;">' + usuario + '</strong> — ' + filtrado.length + ' registro(s)</div>' +
+                '<table id="' + childId + '" class="glass-table w-100" style="font-size:.82rem;">' +
+                '<thead><tr>' +
+                '<th style="text-align:center;">Ticket</th>' +
+                '<th style="text-align:center;">Tipo Apuesta</th>' +
+                '<th style="text-align:center;">Riesgo</th>' +
+                '<th style="text-align:center;">Premio</th>' +
+                '<th style="text-align:center;">Operación</th>' +
+                '<th style="text-align:center;">Fecha Creación</th>' +
+                '</tr></thead>' +
+                '</table>' +
+                '</div>';
+
+            row.child(html).show();
+
+            $('#' + childId).DataTable({
+                data: filtrado,
+                columns: [
+                    { data: null, className: 'text-center', render: function(d,t,r){ return get(r,'ticket')||'—'; },     createdCell: function(td){$(td).addClass('col-ticket');} },
+                    { data: null, className: 'text-center', render: function(d,t,r){ return get(r,'tipoAp')||'—'; } },
+                    { data: null, className: 'text-center', render: function(d,t,r){ return get(r,'riesgo')||'0,00'; },  createdCell: function(td){$(td).addClass('col-monto-pos');} },
+                    { data: null, className: 'text-center', render: function(d,t,r){ return get(r,'ganando')||'0,00'; }, createdCell: function(td,d,r){$(td).addClass(parseFmt(get(r,'ganando'))>=0?'col-monto-pos':'col-monto-neg');} },
+                    { data: null, className: 'text-center', render: function(d,t,r){ return estadoBadge(get(r,'operacion')); } },
+                    { data: null, className: 'text-center', render: function(d,t,r){ return fmtFecha(get(r,'fecha')); } }
+                ],
+                language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
+                pageLength: 25, order: [[0,'desc']], dom: 'Bfrtip',
+                buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm' }]
+            });
+        })
+        .fail(function() {
+            row.child(
+                '<div class="child-tickets-wrap" style="color:#f87171;font-size:.85rem;">Error cargando tickets.</div>'
+            ).show();
+        });
+}
+
+/* ── agrupación por usuario (suma montos de filas con mismo usuario) */
+function agruparPorUsuario(rows) {
+    var map = {}, orden = [];
+    rows.forEach(function(r) {
+        var key = (get(r, 'Usuario') || '').toUpperCase();
+        if (!map[key]) {
+            map[key] = { Agente: get(r,'Agente'), Usuario: get(r,'Usuario'), _V:0, _P:0, _Pend:0, _B:0 };
+            orden.push(key);
+        }
+        map[key]._V    += parseFmt(get(r,'Ventas'));
+        map[key]._P    += parseFmt(get(r,'Pagos'));
+        map[key]._Pend += parseFmt(get(r,'Pendientes'));
+        map[key]._B    += parseFmt(get(r,'Balance'));
+    });
+    return orden.map(function(k) {
+        var v = map[k];
+        return { Agente: v.Agente, Usuario: v.Usuario,
+                 Ventas: fmt(v._V), Pagos: fmt(v._P), Pendientes: fmt(v._Pend), Balance: fmt(v._B) };
+    });
+}
+
+/* ── carga principal ─────────────────────────────────────────────── */
+function cargarReporte() {
+    const fechaD = document.getElementById('fechaD').value;
+    const fechaH = document.getElementById('fechaH').value;
+    const agente = document.getElementById('agente').value || 'TODOS';
+    if (!fechaD || !fechaH) {
+        Swal.fire({ icon: 'warning', title: 'Fechas requeridas', background: '#002E5C', color: '#fff' });
+        return;
+    }
     showBusy('Consultando...');
 
-    $.post('@Url.Action("GetVentasPorAgenteNikolsTaq","Reportes")',{fechaD,fechaH,agente})
-        .done(function(data){
-            if(!data||!data.length){Swal.fire({icon:'info',title:'Sin resultados',background:'#002E5C',color:'#fff'});hideBusy();return;}
-            if(dt)dt.destroy();
-            dt=$('#@ViewBag.TableId').DataTable({
-                data,
-                columns: [{data:'agente'},{data:'usuario'},{data:'ventas',render:d=>`<span class="col-monto-pos">${d}</span>`},{data:'pagos',render:d=>`<span class="col-monto-neg">${d}</span>`},{data:'pendientes',defaultContent:'0,00'},{data:'balance',render:d=>`<span class="${parseFloat((d||'0').replace(/\./g,'').replace(',','.'))<0?'col-monto-neg':'col-monto-pos'}">${d}</span>`}],
-                language:{url:'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json'},
-                pageLength:25,order:[[0,'asc']],dom:'Bfrtip',
-                buttons:[{extend:'excelHtml5',text:'<i class="ti ti-file-spreadsheet"></i> Excel',className:'btn-glass btn-primary btn-sm'}]
+    const esTaq = modoActual === 'taq';
+    const url   = esTaq
+        ? '@Url.Action("GetVentasPorAgenteNikolsTaq","Reportes")'
+        : '@Url.Action("GetVentasPorAgenteNikolsWeb","Reportes")';
+
+    $.post(url, { fechaD, fechaH, agente })
+        .done(function(rows) {
+            if (!rows || !rows.length) {
+                Swal.fire({ icon: 'info', title: 'Sin resultados', background: '#002E5C', color: '#fff' });
+                hideBusy(); return;
+            }
+
+            /* Agrupar usuarios coincidentes y sumar sus montos */
+            var agrupado = agruparPorUsuario(rows);
+
+            var totV = 0, totP = 0, totPend = 0, totB = 0;
+            agrupado.forEach(function(r) {
+                totV    += parseFmt(get(r, 'Ventas'));
+                totP    += parseFmt(get(r, 'Pagos'));
+                totPend += parseFmt(get(r, 'Pendientes'));
+                totB    += parseFmt(get(r, 'Balance'));
             });
+
+            if (!esTaq) {
+                document.getElementById('metVentas').textContent  = fmt(totV);
+                document.getElementById('metPagos').textContent   = fmt(totP);
+                document.getElementById('metBalance').textContent = fmt(totB);
+                document.getElementById('metricsBar').style.display = 'flex';
+            }
+
+            if (dt) dt.destroy();
+            dt = $(tableId).DataTable({
+                data: agrupado,
+                columns: [
+                    {
+                        data: null, className: 'text-center', defaultContent: '—',
+                        visible: false,
+                        render: function(d, t, r) { return get(r, 'Agente') || '—'; }
+                    },
+                    {
+                        data: null, className: 'text-center', defaultContent: '—',
+                        render: function(d, t, r) {
+                            const u    = get(r, 'Usuario') || '—';
+                            const agen = get(r, 'Agente')  || '';
+                            if (esTaq) {
+                                return '<span class="link-usuario" data-usuario="' + u + '" data-agente="' + agen + '"><i class="ti ti-chevron-right lnk-icon"></i>' + u + '</span>';
+                            }
+                            return u;
+                        }
+                    },
+                    {
+                        data: null, className: 'text-center',
+                        render: function(d, t, r) { return get(r, 'Ventas') || '0,00'; },
+                        createdCell: function(td) { $(td).addClass('col-monto-pos'); }
+                    },
+                    {
+                        data: null, className: 'text-center',
+                        render: function(d, t, r) { return get(r, 'Pagos') || '0,00'; },
+                        createdCell: function(td) { $(td).addClass('col-monto-neg'); }
+                    },
+                    {
+                        data: null, className: 'text-center',
+                        render: function(d, t, r) { return get(r, 'Pendientes') || '0,00'; },
+                        createdCell: function(td) { $(td).addClass('col-monto-pos'); }
+                    },
+                    {
+                        data: null, className: 'text-center',
+                        render: function(d, t, r) { return get(r, 'Balance') || '0,00'; },
+                        createdCell: function(td, d, r) {
+                            $(td).addClass(parseFmt(get(r, 'Balance')) >= 0 ? 'col-monto-pos' : 'col-monto-neg');
+                        }
+                    }
+                ],
+                footerCallback: function() {
+                    document.getElementById('totVentas').textContent     = fmt(totV);
+                    document.getElementById('totPagos').textContent      = fmt(totP);
+                    document.getElementById('totPendientes').textContent = fmt(totPend);
+                    document.getElementById('totBalance').textContent    = fmt(totB);
+                },
+                language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
+                pageLength: 25,
+                order: [[1, 'asc']],
+                dom: 'Bfrtip',
+                buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm' }]
+            });
+
+            // Click en usuario → child row con tickets (solo modo TAQ)
+            $(tableId + ' tbody').off('click', '.link-usuario').on('click', '.link-usuario', function() {
+                const $span = $(this);
+                const tr    = $span.closest('tr');
+                const row   = dt.row(tr);
+                desplegarTickets($span, row, tr);
+            });
+
             hideBusy();
-        }).fail(function(){Swal.fire({icon:'error',title:'Error',background:'#002E5C',color:'#fff'});hideBusy();});
+        })
+        .fail(function() {
+            Swal.fire({ icon: 'error', title: 'Error', background: '#002E5C', color: '#fff' });
+            hideBusy();
+        });
 }
-$(document).ready(function () {
+
+$(document).ready(function() {
+    aplicarModo();
     cargarAgentes();
     if (!esAdmin) { cargarReporte(); }
 });

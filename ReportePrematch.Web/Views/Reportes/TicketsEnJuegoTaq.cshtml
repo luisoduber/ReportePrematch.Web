@@ -44,26 +44,48 @@
         </div>
     </div>
 
+    <!-- Métricas rápidas -->
+    <div class="quick-metrics-bar mt-3" id="metricsBar" style="display:none;">
+        <div class="metric-card"><div class="metric-label">Total Monto</div><div class="metric-value metric-blue" id="metMonto">—</div></div>
+        <div class="metric-card"><div class="metric-label">Total Ganando</div><div class="metric-value metric-red" id="metGanando">—</div></div>
+        <div class="metric-card"><div class="metric-label">Posible Premio</div><div class="metric-value metric-green" id="metPremio">—</div></div>
+    </div>
+
     <div class="table-responsive mt-3">
         <table id="@ViewBag.TableId" class="glass-table w-100">
             <thead>
                 <tr>
-                    <th>Ticket</th>
-                    <th>Agente</th>
-                    <th>Fecha</th>
-                    <th>Tipo</th>
-                    <th>Monto</th>
+                    <th style="text-align:center;">Agente</th>
+                    <th style="text-align:center;">Usuario</th>
+                    <th style="text-align:center;">Tipo Apuesta</th>
+                    <th style="text-align:center;">Monto</th>
+                    <th style="text-align:center;">Ganando</th>
+                    <th style="text-align:center;">Posible Premio</th>
                 </tr>
             </thead>
             <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="3" style="text-align:center;">TOTAL</th>
+                    <th id="totMonto"   style="text-align:center;"></th>
+                    <th id="totGanando" style="text-align:center;"></th>
+                    <th id="totPremio"  style="text-align:center;"></th>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </section>
 
 @section Scripts {
 <script>
+const tableId       = '#@ViewBag.TableId';
 const esAdmin       = '@ViewBag.TipoUsuario' !== 'Usuario Regular';
 const agenteSession = '@ViewBag.Agente';
+let dt;
+
+function fmt(val) {
+    return parseFloat(val || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
 
 function cargarAgentes() {
     if (!esAdmin) return;
@@ -71,7 +93,6 @@ function cargarAgentes() {
         .done(function(lista) {
             const sel = document.getElementById('agente');
             if (!sel) return;
-            // Destruir instancia Tom Select previa si existe
             if (sel.tomselect) sel.tomselect.destroy();
             sel.innerHTML = '';
             const optTodos = document.createElement('option');
@@ -82,48 +103,80 @@ function cargarAgentes() {
                 opt.value = a; opt.textContent = a;
                 sel.appendChild(opt);
             });
-            // Inicializar Tom Select con búsqueda
             new TomSelect(sel, {
-                maxOptions: 2000,
-                create: false,
-                allowEmptyOption: true,
-                placeholder: 'Buscar agente...',
-                searchField: ['text']
+                maxOptions: 2000, create: false, allowEmptyOption: true,
+                placeholder: 'Buscar agente...', searchField: ['text']
             });
             if (agenteSession) sel.tomselect.setValue(agenteSession, true);
-            console.log('[Agentes] ' + (lista ? lista.length : 0) + ' agentes cargados.');
         })
         .fail(function(xhr) {
-            console.error('[Agentes] Error HTTP ' + xhr.status + ' al cargar agentes:', xhr.responseText);
-            Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar la lista de agentes (HTTP ' + xhr.status + ').', background: '#002E5C', color: '#fff' });
+            Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar la lista de agentes.', background: '#002E5C', color: '#fff' });
         });
 }
 
-let dt;
-function fmt(v){ return parseFloat(v||0).toLocaleString('es-VE',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function cargarReporte() {
+    const fechaD = document.getElementById('fechaD').value;
+    const fechaH = document.getElementById('fechaH').value;
+    const agente = document.getElementById('agente').value || 'TODOS';
 
-function cargarReporte(){
-    const fechaD=document.getElementById('fechaD').value;
-    const fechaH=document.getElementById('fechaH').value;
-    const agente=document.getElementById('agente').value;
-    if(!fechaD||!fechaH){Swal.fire({icon:'warning',title:'Fechas requeridas',background:'#002E5C',color:'#fff'});return;}
+    if (!fechaD || !fechaH) {
+        Swal.fire({ icon: 'warning', title: 'Fechas requeridas', background: '#002E5C', color: '#fff' });
+        return;
+    }
+
     showBusy('Consultando...');
 
-    $.post('@Url.Action("GetTicketsEnJuegoTaq","Reportes")',{fechaD,fechaH,agente})
-        .done(function(data){
-            if(!data||!data.length){Swal.fire({icon:'info',title:'Sin resultados',background:'#002E5C',color:'#fff'});hideBusy();return;}
-            if(dt)dt.destroy();
-            dt=$('#@ViewBag.TableId').DataTable({
-                data,
-                columns: [{data:"Ticket",render:d=>`<span class="col-ticket">${d}</span>`},{data:"NombreAgente",defaultContent:"—"},{data:"Fecha",defaultContent:"—"},{data:"TipoApuesta",defaultContent:"—"},{data:"Monto",render:d=>`<span class="col-monto-pos">${fmt(d)}</span>`}],
-                language:{url:'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json'},
-                pageLength:25,order:[[0,'asc']],dom:'Bfrtip',
-                buttons:[{extend:'excelHtml5',text:'<i class="ti ti-file-spreadsheet"></i> Excel',className:'btn-glass btn-primary btn-sm'}]
+    $.post('@Url.Action("GetTicketsEnJuegoTaq","Reportes")', { fechaD, fechaH, agente })
+        .done(function(rows) {
+            if (!rows || !rows.length) {
+                Swal.fire({ icon: 'info', title: 'Sin resultados', background: '#002E5C', color: '#fff' });
+                hideBusy();
+                return;
+            }
+
+            // API retorna camelCase: nombreagente, usuario, tipoAp, ganando, montoTotal, posiblePremio
+            var totM = 0, totG = 0, totP = 0;
+            rows.forEach(function(r) {
+                totM += parseFloat(r.montoTotal    || 0);
+                totG += parseFloat(r.ganando       || 0);
+                totP += parseFloat(r.posiblePremio || 0);
             });
+
+            document.getElementById('metMonto').textContent   = fmt(totM);
+            document.getElementById('metGanando').textContent = fmt(totG);
+            document.getElementById('metPremio').textContent  = fmt(totP);
+            document.getElementById('metricsBar').style.display = 'flex';
+
+            if (dt) dt.destroy();
+            dt = $(tableId).DataTable({
+                data: rows,
+                columns: [
+                    { data: 'nombreagente',  defaultContent: '—', className: 'text-center' },
+                    { data: 'usuario',       defaultContent: '—', className: 'text-center' },
+                    { data: 'tipoAp',        defaultContent: '—', className: 'text-center' },
+                    { data: 'montoTotal',    className: 'text-center', createdCell: function(td, d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } },
+                    { data: 'ganando',       className: 'text-center', createdCell: function(td, d){ $(td).text(fmt(d)).addClass('col-monto-neg'); } },
+                    { data: 'posiblePremio', className: 'text-center', createdCell: function(td, d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } }
+                ],
+                footerCallback: function() {
+                    document.getElementById('totMonto').textContent   = fmt(totM);
+                    document.getElementById('totGanando').textContent = fmt(totG);
+                    document.getElementById('totPremio').textContent  = fmt(totP);
+                },
+                language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
+                pageLength: 25, order: [[0, 'asc']], dom: 'Bfrtip',
+                buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm' }]
+            });
+
             hideBusy();
-        }).fail(function(){Swal.fire({icon:'error',title:'Error',background:'#002E5C',color:'#fff'});hideBusy();});
+        })
+        .fail(function() {
+            Swal.fire({ icon: 'error', title: 'Error', background: '#002E5C', color: '#fff' });
+            hideBusy();
+        });
 }
-$(document).ready(function () {
+
+$(document).ready(function() {
     cargarAgentes();
     if (!esAdmin) { cargarReporte(); }
 });

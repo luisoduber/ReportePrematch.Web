@@ -107,7 +107,7 @@ function fmt(v){ return parseFloat(v||0).toLocaleString('es-VE',{minimumFraction
 function cargarReporte(){
     const fechaD=document.getElementById('fechaD').value;
     const fechaH=document.getElementById('fechaH').value;
-    const agente=document.getElementById('agente').value;
+    const agente=document.getElementById('agente').value||'TODOS';
     if(!fechaD||!fechaH){Swal.fire({icon:'warning',title:'Fechas requeridas',background:'#002E5C',color:'#fff'});return;}
     showBusy('Consultando...');
 
@@ -117,7 +117,7 @@ function cargarReporte(){
             if(dt)dt.destroy();
             dt=$('#@ViewBag.TableId').DataTable({
                 data,
-                columns: [{data:'pais'},{data:'agente'},{data:'ventaPar',render:d=>`<span class="col-monto-pos">${d}</span>`},{data:'ventaDir',render:d=>`<span class="col-monto-pos">${d}</span>`},{data:'premiosPar',render:d=>`<span class="col-monto-neg">${d}</span>`},{data:'premiosDir',render:d=>`<span class="col-monto-neg">${d}</span>`},{data:'utilidad',render:d=>`<span class="${parseFloat((d||'0').replace(/\./g,'').replace(',','.'))<0?'col-monto-neg':'col-monto-pos'}">${d}</span>`}],
+                columns: [{data:'pais'},{data:'agente'},{data:'ventaPar',createdCell:function(td){$(td).addClass('col-monto-pos');}},{data:'ventaDir',createdCell:function(td){$(td).addClass('col-monto-pos');}},{data:'premiosPar',createdCell:function(td){$(td).addClass('col-monto-neg');}},{data:'premiosDir',createdCell:function(td){$(td).addClass('col-monto-neg');}},{data:'utilidad',createdCell:function(td,d){var n=parseFloat((d||'0').replace(/\./g,'').replace(',','.'));$(td).addClass(n<0?'col-monto-neg':'col-monto-pos');}}],
                 language:{url:'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json'},
                 pageLength:25,order:[[0,'asc']],dom:'Bfrtip',
                 buttons:[{extend:'excelHtml5',text:'<i class="ti ti-file-spreadsheet"></i> Excel',className:'btn-glass btn-primary btn-sm'}]

@@ -1,12 +1,19 @@
 @{
     Layout = "_Layout";
+    string modoInicial = "taq";
 }
+
+<style>
+    .tickets-toggle { display:inline-flex; border:1px solid rgba(255,255,255,0.2); border-radius:30px; overflow:hidden; }
+    .tog-btn { border:none; background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.4); padding:7px 18px; font-size:11px; font-weight:700; letter-spacing:.8px; cursor:pointer; transition:all .25s; }
+    .tog-btn.active { background:#22c55e; color:#fff; }
+</style>
 
 <section class="glass-card">
     <div class="welcome-bar">
         <div>
             <div class="welcome-title">@ViewBag.NombrePagina</div>
-            <div class="welcome-sub">Canal Taquilla · Tickets detallados</div>
+            <div class="welcome-sub" id="subCanal"></div>
         </div>
         <button class="btn-glass btn-primary" onclick="cargarReporte()">
             <i class="ti ti-refresh"></i> Actualizar
@@ -15,11 +22,11 @@
 
     <div class="glass-panel mt-3 p-3">
         <div class="row g-2 align-items-end">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label class="field-label">Fecha Desde</label>
                 <input type="date" id="fechaD" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label class="field-label">Fecha Hasta</label>
                 <input type="date" id="fechaH" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
             </div>
@@ -36,6 +43,13 @@
                     </select>
                 }
             </div>
+            <div class="col-md-2 d-flex flex-column align-items-center">
+                <label class="field-label text-center mb-1">Canal</label>
+                <div class="tickets-toggle">
+                    <button class="tog-btn" id="togTaq" onclick="setModo('taq')">TAQUILLA</button>
+                    <button class="tog-btn" id="togWeb" onclick="setModo('web')">WEB</button>
+                </div>
+            </div>
             <div class="col-md-3">
                 <button class="btn-glass btn-primary w-100" onclick="cargarReporte()">
                     <i class="ti ti-search"></i> Buscar
@@ -48,8 +62,15 @@
         <table id="@ViewBag.TableId" class="glass-table w-100">
             <thead>
                 <tr>
-                    <th>Ticket</th><th>Agente</th><th>Usuario</th><th>Fecha</th>
-                    <th>Tipo</th><th>Saldo</th><th>Riesgo</th><th>Premio</th><th>Estado</th>
+                    <th style="text-align:center;">Ticket</th>
+                    <th style="text-align:center;">Agente</th>
+                    <th style="text-align:center;">Usuario</th>
+                    <th style="text-align:center;">Fecha</th>
+                    <th style="text-align:center;">Tipo</th>
+                    <th style="text-align:center;">Saldo</th>
+                    <th style="text-align:center;">Riesgo</th>
+                    <th style="text-align:center;">Premio</th>
+                    <th style="text-align:center;">Estado</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -59,16 +80,45 @@
 
 @section Scripts {
 <script>
+const tableId       = '#@ViewBag.TableId';
 const esAdmin       = '@ViewBag.TipoUsuario' !== 'Usuario Regular';
 const agenteSession = '@ViewBag.Agente';
+let modoActual      = '@modoInicial';
+let dt;
 
+/* ── helpers ─────────────────────────────────────────────────────────── */
+function fmt(v) { return parseFloat(v||0).toLocaleString('es-VE',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function fmtFecha(v) {
+    if (!v) return '—';
+    var d = new Date(v);
+    if (isNaN(d)) return v;
+    var pad = function(n){ return n < 10 ? '0' + n : n; };
+    return pad(d.getDate()) + '/' + pad(d.getMonth()+1) + '/' + d.getFullYear() +
+           ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+}
+
+/* ── toggle ──────────────────────────────────────────────────────────── */
+function aplicarModo() {
+    document.getElementById('togTaq').className = 'tog-btn' + (modoActual === 'taq' ? ' active' : '');
+    document.getElementById('togWeb').className = 'tog-btn' + (modoActual === 'web' ? ' active' : '');
+    document.getElementById('subCanal').textContent = modoActual === 'taq' ? 'Canal Taquilla · Tickets Detallados' : 'Canal Web · Tickets Detallados';
+}
+
+function setModo(modo) {
+    if (modoActual === modo) return;
+    modoActual = modo;
+    aplicarModo();
+    if (dt) { dt.destroy(); dt = null; }
+    $(tableId + ' tbody').empty();
+}
+
+/* ── agentes ─────────────────────────────────────────────────────────── */
 function cargarAgentes() {
     if (!esAdmin) return;
     $.post('@Url.Action("GetListAgencias","Reportes")', { agente: agenteSession })
         .done(function(lista) {
             const sel = document.getElementById('agente');
             if (!sel) return;
-            // Destruir instancia Tom Select previa si existe
             if (sel.tomselect) sel.tomselect.destroy();
             sel.innerHTML = '';
             const optTodos = document.createElement('option');
@@ -79,63 +129,54 @@ function cargarAgentes() {
                 opt.value = a; opt.textContent = a;
                 sel.appendChild(opt);
             });
-            // Inicializar Tom Select con búsqueda
-            new TomSelect(sel, {
-                maxOptions: 2000,
-                create: false,
-                allowEmptyOption: true,
-                placeholder: 'Buscar agente...',
-                searchField: ['text']
-            });
+            new TomSelect(sel, { maxOptions: 2000, create: false, allowEmptyOption: true, placeholder: 'Buscar agente...', searchField: ['text'] });
             if (agenteSession) sel.tomselect.setValue(agenteSession, true);
-            console.log('[Agentes] ' + (lista ? lista.length : 0) + ' agentes cargados.');
         })
         .fail(function(xhr) {
-            console.error('[Agentes] Error HTTP ' + xhr.status + ' al cargar agentes:', xhr.responseText);
             Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar la lista de agentes (HTTP ' + xhr.status + ').', background: '#002E5C', color: '#fff' });
         });
 }
 
-let dt;
-function fmt(v){ return parseFloat(v||0).toLocaleString('es-VE',{minimumFractionDigits:2,maximumFractionDigits:2}); }
-
-function estadoBadge(e){
-    const map={'GANADOR':'aprobado','PERDEDOR':'rechazado','EN JUEGO':'pendiente'};
-    const cls=map[e?.toUpperCase()]||'pendiente';
-    return `<span class="badge-status badge-${cls}">${e||'—'}</span>`;
-}
-
-function cargarReporte(){
-    const fechaD=document.getElementById('fechaD').value;
-    const fechaH=document.getElementById('fechaH').value;
-    const agente=document.getElementById('agente').value;
-    if(!fechaD||!fechaH){Swal.fire({icon:'warning',title:'Fechas requeridas',background:'#002E5C',color:'#fff'});return;}
+/* ── carga principal ─────────────────────────────────────────────────── */
+function cargarReporte() {
+    const fechaD = document.getElementById('fechaD').value;
+    const fechaH = document.getElementById('fechaH').value;
+    const agente = document.getElementById('agente').value || 'TODOS';
+    if (!fechaD || !fechaH) { Swal.fire({ icon:'warning', title:'Fechas requeridas', background:'#002E5C', color:'#fff' }); return; }
     showBusy('Cargando tickets...');
 
-    $.post('@Url.Action("GetTicketsDetalladosTaq","Reportes")',{fechaD,fechaH,agente})
-        .done(function(data){
-            if(!data||!data.length){Swal.fire({icon:'info',title:'Sin resultados',background:'#002E5C',color:'#fff'});hideBusy();return;}
-            if(dt)dt.destroy();
-            dt=$('#@ViewBag.TableId').DataTable({
-                data,columns:[
-                    {data:'ticket',render:d=>`<span class="col-ticket">${d}</span>`},
-                    {data:'agente',defaultContent:'—'},
-                    {data:'usuario',defaultContent:'—'},
-                    {data:'fecha',defaultContent:'—'},
-                    {data:'tipoAp',defaultContent:'—'},
-                    {data:'tipoSaldo',defaultContent:'—'},
-                    {data:'riesgo',render:d=>`<span class="col-monto-pos">${d}</span>`},
-                    {data:'ganando',render:d=>`<span class="${parseFloat((d||'0').replace(/\./g,'').replace(',','.'))<0?'col-monto-neg':'col-monto-pos'}">${d}</span>`},
-                    {data:'operacion',defaultContent:'—'}
+    const url = modoActual === 'taq'
+        ? '@Url.Action("GetTicketsDetalladosTaq","Reportes")'
+        : '@Url.Action("GetTicketsDetalladosWeb","Reportes")';
+
+    $.post(url, { fechaD, fechaH, agente })
+        .done(function(data) {
+            if (!data || !data.length) { Swal.fire({ icon:'info', title:'Sin resultados', background:'#002E5C', color:'#fff' }); hideBusy(); return; }
+            if (dt) dt.destroy();
+            dt = $(tableId).DataTable({
+                data,
+                columns: [
+                    { data: 'ticket',    className: 'text-center', createdCell: function(td){ $(td).addClass('col-ticket'); } },
+                    { data: 'agente',    className: 'text-center', defaultContent: '—' },
+                    { data: 'usuario',   className: 'text-center', defaultContent: '—' },
+                    { data: null,        className: 'text-center', defaultContent: '—', render: function(d,t,r){ return fmtFecha(r.fecha); } },
+                    { data: 'tipoAp',    className: 'text-center', defaultContent: '—' },
+                    { data: 'tipoSaldo', className: 'text-center', defaultContent: '—' },
+                    { data: 'riesgo',    className: 'text-center', createdCell: function(td){ $(td).addClass('col-monto-pos'); } },
+                    { data: 'ganando',   className: 'text-center', createdCell: function(td,d){ var n=parseFloat((d||'0').replace(/\./g,'').replace(',','.'));$(td).addClass(n<0?'col-monto-neg':'col-monto-pos'); } },
+                    { data: 'operacion', className: 'text-center', defaultContent: '—' }
                 ],
-                language:{url:'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json'},
-                pageLength:50,order:[[2,'desc']],dom:'Bfrtip',
-                buttons:[{extend:'excelHtml5',text:'<i class="ti ti-file-spreadsheet"></i> Excel',className:'btn-glass btn-primary btn-sm'}]
+                language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
+                pageLength: 50, order: [[2,'asc']], dom: 'Bfrtip',
+                buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm' }]
             });
             hideBusy();
-        }).fail(function(){Swal.fire({icon:'error',title:'Error',background:'#002E5C',color:'#fff'});hideBusy();});
+        })
+        .fail(function(){ Swal.fire({ icon:'error', title:'Error', background:'#002E5C', color:'#fff' }); hideBusy(); });
 }
-$(document).ready(function () {
+
+$(document).ready(function() {
+    aplicarModo();
     cargarAgentes();
     if (!esAdmin) { cargarReporte(); }
 });

@@ -1,44 +1,59 @@
 @{
     Layout = "_Layout";
+    string modoInicial = "taq";
 }
 
+<style>
+    .ventas-toggle { display:inline-flex; border:1px solid rgba(255,255,255,0.2); border-radius:30px; overflow:hidden; }
+    .tog-btn { border:none; background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.4); padding:7px 18px; font-size:11px; font-weight:700; letter-spacing:.8px; cursor:pointer; transition:all .25s; }
+    .tog-btn.active { background:#22c55e; color:#fff; }
+    .link-usuario { cursor:pointer; color:#4ade80; display:inline-flex; align-items:center; gap:5px; }
+    .link-usuario .lnk-icon { font-size:1rem; transition:transform .2s ease; opacity:.8; }
+    tr.shown .link-usuario .lnk-icon { transform:rotate(90deg); opacity:1; }
+    tr.shown > td { background:rgba(34,197,94,0.06) !important; }
+    .child-tickets-wrap { padding:10px 16px 14px; background:rgba(0,0,0,0.28); }
+</style>
+
 <section class="glass-card">
-    <!-- Cabecera -->
     <div class="welcome-bar">
         <div>
             <div class="welcome-title">@ViewBag.NombrePagina</div>
-            <div class="welcome-sub">Canal Taquilla · Usuario: <strong>@ViewBag.Usuario</strong></div>
+            <div class="welcome-sub" id="subCanal"></div>
         </div>
-        <button id="@ViewBag.BtnId" class="btn-glass btn-primary" onclick="cargarReporte()">
+        <button class="btn-glass btn-primary" onclick="cargarReporte()">
             <i class="ti ti-refresh"></i> Actualizar
         </button>
     </div>
 
-    <!-- Filtros -->
     <div class="glass-panel mt-3 p-3">
         <div class="row g-2 align-items-end">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label class="field-label">Fecha Desde</label>
                 <input type="date" id="fechaD" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label class="field-label">Fecha Hasta</label>
                 <input type="date" id="fechaH" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
             </div>
-            <div class="col-md-3" id="agenteWrapper">
+            <div class="col-md-3">
                 <label class="field-label">Agente</label>
                 @if (ViewBag.TipoUsuario == "Usuario Regular")
                 {
-                    <!-- Usuario Regular: solo ve su propio agente -->
                     <input type="text" id="agente" class="glass-input" value="@ViewBag.Agente" readonly />
                 }
                 else
                 {
-                    <!-- suAdmin / Administrador: select con lista de agencias -->
                     <select id="agente" class="glass-input" style="color:#fff;">
                         <option value="" style="background:#002E5C;color:#fff;">TODOS</option>
                     </select>
                 }
+            </div>
+            <div class="col-md-2 d-flex flex-column align-items-center">
+                <label class="field-label text-center mb-1">Canal</label>
+                <div class="ventas-toggle">
+                    <button class="tog-btn" id="togTaq" onclick="setModo('taq')">TAQUILLA</button>
+                    <button class="tog-btn" id="togWeb" onclick="setModo('web')">WEB</button>
+                </div>
             </div>
             <div class="col-md-3">
                 <button class="btn-glass btn-primary w-100" onclick="cargarReporte()">
@@ -48,215 +63,392 @@
         </div>
     </div>
 
-    <!-- Métricas rápidas -->
-    <div class="quick-metrics-bar mt-3" id="metricsBar" style="display:none;">
-        <div class="metric-card">
-            <div class="metric-label">Ventas Parlay</div>
-            <div class="metric-value metric-blue" id="metVentaPar">—</div>
-        </div>
-        <div class="metric-card">
-            <div class="metric-label">Ventas Directo</div>
-            <div class="metric-value metric-blue" id="metVentaDir">—</div>
-        </div>
-        <div class="metric-card">
-            <div class="metric-label">Premios Parlay</div>
-            <div class="metric-value metric-red" id="metPremiosPar">—</div>
-        </div>
-        <div class="metric-card">
-            <div class="metric-label">Premios Directo</div>
-            <div class="metric-value metric-red" id="metPremiosDir">—</div>
-        </div>
-        <div class="metric-card">
-            <div class="metric-label">Balance</div>
-            <div class="metric-value metric-green" id="metBalance">—</div>
-        </div>
+    <!-- Métricas TAQ -->
+    <div class="quick-metrics-bar mt-3" id="metricsTaq" style="display:none;">
+        <div class="metric-card"><div class="metric-label">Total Ventas</div><div class="metric-value metric-blue" id="metTotalVentas">—</div></div>
+        <div class="metric-card"><div class="metric-label">Total Premios</div><div class="metric-value metric-red" id="metTotalPremios">—</div></div>
+        <div class="metric-card"><div class="metric-label">Pendientes</div><div class="metric-value metric-blue" id="metPendientes">—</div></div>
+        <div class="metric-card"><div class="metric-label">Utilidad</div><div class="metric-value metric-green" id="metUtilidad">—</div></div>
     </div>
 
-    <!-- Tabla -->
+    <!-- Métricas WEB -->
+    <div class="quick-metrics-bar mt-3" id="metricsWeb" style="display:none;">
+        <div class="metric-card"><div class="metric-label">Ventas Parlay</div><div class="metric-value metric-blue" id="metVP">—</div></div>
+        <div class="metric-card"><div class="metric-label">Ventas Directo</div><div class="metric-value metric-blue" id="metVD">—</div></div>
+        <div class="metric-card"><div class="metric-label">Premios Parlay</div><div class="metric-value metric-red" id="metPP">—</div></div>
+        <div class="metric-card"><div class="metric-label">Premios Directo</div><div class="metric-value metric-red" id="metPD">—</div></div>
+        <div class="metric-card"><div class="metric-label">Balance</div><div class="metric-value metric-green" id="metBal">—</div></div>
+    </div>
+
     <div class="table-responsive mt-3">
         <table id="@ViewBag.TableId" class="glass-table w-100">
-            <thead>
-                <tr>
-                    <th>Agente</th>
-                    <th>Usuario</th>
-                    <th>País</th>
-                    <th>Venta Par</th>
-                    <th>Venta Dir</th>
-                    <th>Premios Par</th>
-                    <th>Premios Dir</th>
-                    <th>Balance</th>
-                </tr>
-            </thead>
+            <thead></thead>
             <tbody></tbody>
-            <tfoot>
-                <tr>
-                    <th colspan="3">TOTAL</th>
-                    <th id="totVentaPar"></th>
-                    <th id="totVentaDir"></th>
-                    <th id="totPremiosPar"></th>
-                    <th id="totPremiosDir"></th>
-                    <th id="totBalance"></th>
-                </tr>
-            </tfoot>
+            <tfoot></tfoot>
         </table>
     </div>
 </section>
 
 @section Scripts {
 <script>
-const tableId  = '#@ViewBag.TableId';
-const esAdmin  = '@ViewBag.TipoUsuario' !== 'Usuario Regular';
+const tableId       = '#@ViewBag.TableId';
+const esAdmin       = '@ViewBag.TipoUsuario' !== 'Usuario Regular';
 const agenteSession = '@ViewBag.Agente';
+let modoActual      = '@modoInicial';
 let dt;
-let balance = 0;
+let ticketsCache    = {};
 
+/* ── helpers ─────────────────────────────────────────────────────────── */
 function fmt(val) {
     return parseFloat(val || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
+function fmtFecha(v) {
+    if (!v) return '—';
+    var d = new Date(v);
+    if (isNaN(d)) return v;
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    return pad(d.getDate()) + '/' + pad(d.getMonth() + 1) + '/' + d.getFullYear() +
+           ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+}
+function estadoBadge(e) {
+    const map = { 'GANADOR': 'aprobado', 'PERDEDOR': 'rechazado', 'EN JUEGO': 'pendiente' };
+    const cls = map[(e || '').toUpperCase()] || 'pendiente';
+    return '<span class="badge-status badge-' + cls + '">' + (e || '—') + '</span>';
+}
 
-// ── Cargar lista de agentes en el select ──────────────────────────────────────
+/* ── toggle ──────────────────────────────────────────────────────────── */
+function aplicarModo() {
+    document.getElementById('togTaq').className = 'tog-btn' + (modoActual === 'taq' ? ' active' : '');
+    document.getElementById('togWeb').className = 'tog-btn' + (modoActual === 'web' ? ' active' : '');
+    document.getElementById('subCanal').textContent = modoActual === 'taq' ? 'Canal Taquilla' : 'Canal Web';
+    document.getElementById('metricsTaq').style.display = 'none';
+    document.getElementById('metricsWeb').style.display = 'none';
+}
+
+function setModo(modo) {
+    if (modoActual === modo) return;
+    modoActual = modo;
+    aplicarModo();
+    ticketsCache = {};
+    if (dt) { dt.destroy(); dt = null; }
+    $(tableId + ' tbody').empty();
+    $(tableId + ' thead').empty();
+    $(tableId + ' tfoot').empty();
+}
+
+/* ── agentes ─────────────────────────────────────────────────────────── */
 function cargarAgentes() {
-    if (!esAdmin) return; // Usuario Regular no necesita el select
-
-    $.post('@Url.Action("GetListAgencias", "Reportes")', { agente: agenteSession })
-        .done(function (lista) {
+    if (!esAdmin) return;
+    $.post('@Url.Action("GetListAgencias","Reportes")', { agente: agenteSession })
+        .done(function(lista) {
             const sel = document.getElementById('agente');
             if (!sel) return;
-
-            // Destruir instancia Tom Select previa si existe
             if (sel.tomselect) sel.tomselect.destroy();
-
             sel.innerHTML = '';
             const optTodos = document.createElement('option');
-            optTodos.value = '';
-            optTodos.textContent = 'TODOS';
+            optTodos.value = ''; optTodos.textContent = 'TODOS';
             sel.appendChild(optTodos);
-
-            if (!lista || lista.length === 0) {
-                console.warn('[Agentes] Lista vacía.');
-            } else {
-                lista.forEach(function (a) {
-                    const opt = document.createElement('option');
-                    opt.value = a;
-                    opt.textContent = a;
-                    sel.appendChild(opt);
-                });
-            }
-
-            // Inicializar Tom Select con búsqueda
-            new TomSelect(sel, {
-                maxOptions: 2000,
-                create: false,
-                allowEmptyOption: true,
-                placeholder: 'Buscar agente...',
-                searchField: ['text']
+            (lista || []).forEach(function(a) {
+                const opt = document.createElement('option');
+                opt.value = a; opt.textContent = a;
+                sel.appendChild(opt);
             });
-
+            new TomSelect(sel, { maxOptions: 2000, create: false, allowEmptyOption: true, placeholder: 'Buscar agente...', searchField: ['text'] });
             if (agenteSession) sel.tomselect.setValue(agenteSession, true);
-            console.log('[Agentes] ' + (lista ? lista.length : 0) + ' agentes cargados OK.');
         })
-        .fail(function (xhr) {
-            console.error('[Agentes] Error HTTP ' + xhr.status);
-            Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar la lista de agentes (HTTP ' + xhr.status + ').', background: '#002E5C', color: '#fff' });
+        .fail(function() {
+            Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar la lista de agentes.', background: '#002E5C', color: '#fff' });
         });
 }
 
-// ── Cargar reporte ────────────────────────────────────────────────────────────
+/* ── tickets child row (solo modo TAQ) ───────────────────────────────── */
+function desplegarTickets($span, row, tr) {
+    if (row.child.isShown()) {
+        if ($.fn.DataTable.isDataTable('#tblChild_' + row.index())) {
+            $('#tblChild_' + row.index()).DataTable().destroy();
+        }
+        row.child.hide();
+        tr.removeClass('shown');
+        return;
+    }
+
+    const usuario  = $span.data('usuario');
+    const agente   = $span.data('agente');
+    const fechaD   = document.getElementById('fechaD').value;
+    const fechaH   = document.getElementById('fechaH').value;
+    const cacheKey = (agente || 'TODOS') + '|' + fechaD + '|' + fechaH;
+    const childId  = 'tblChild_' + row.index();
+
+    row.child(
+        '<div class="child-tickets-wrap" style="color:rgba(255,255,255,0.5);font-size:.85rem;">' +
+        '<i class="ti ti-loader-2"></i> Cargando tickets de <strong>' + usuario + '</strong>...</div>'
+    ).show();
+    tr.addClass('shown');
+
+    function mostrar(data) {
+        var filtrado = (data || []).filter(function(t) {
+            return (t.usuario || '').toUpperCase() === usuario.toUpperCase();
+        });
+        if (!filtrado.length) {
+            row.child(
+                '<div class="child-tickets-wrap" style="color:rgba(255,255,255,0.5);font-size:.85rem;">' +
+                'Sin tickets para <strong>' + usuario + '</strong> en el período.</div>'
+            ).show();
+            return;
+        }
+        var html =
+            '<div class="child-tickets-wrap">' +
+            '<div style="color:rgba(255,255,255,0.6);font-size:.78rem;margin-bottom:6px;">Tickets · <strong style="color:#4ade80;">' + usuario + '</strong> — ' + filtrado.length + ' registro(s)</div>' +
+            '<table id="' + childId + '" class="glass-table w-100" style="font-size:.82rem;">' +
+            '<thead><tr>' +
+            '<th style="text-align:center;">Ticket</th>' +
+            '<th style="text-align:center;">Tipo Apuesta</th>' +
+            '<th style="text-align:center;">Riesgo</th>' +
+            '<th style="text-align:center;">Premio</th>' +
+            '<th style="text-align:center;">Operación</th>' +
+            '<th style="text-align:center;">Fecha Creación</th>' +
+            '</tr></thead>' +
+            '</table>' +
+            '</div>';
+        row.child(html).show();
+
+        $('#' + childId).DataTable({
+            data: filtrado,
+            columns: [
+                { data: null, className: 'text-center', render: function(d,t,r){ return r.ticket || '—'; } },
+                { data: null, className: 'text-center', render: function(d,t,r){ return r.tipoAp || '—'; } },
+                { data: null, className: 'text-center', render: function(d,t,r){ return fmt(r.arriesgando || r.riesgo || 0); },
+                  createdCell: function(td){ $(td).addClass('col-monto-pos'); } },
+                { data: null, className: 'text-center', render: function(d,t,r){ return fmt(r.ganando || 0); },
+                  createdCell: function(td,d,r){ $(td).addClass(parseFloat(r.ganando||0) >= 0 ? 'col-monto-pos' : 'col-monto-neg'); } },
+                { data: null, className: 'text-center', render: function(d,t,r){ return estadoBadge(r.operacion); } },
+                { data: null, className: 'text-center', render: function(d,t,r){ return fmtFecha(r.fecha); } }
+            ],
+            language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
+            pageLength: 25, order: [[0,'desc']], dom: 'Bfrtip',
+            buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm' }]
+        });
+    }
+
+    if (ticketsCache[cacheKey] !== undefined) {
+        mostrar(ticketsCache[cacheKey]);
+        return;
+    }
+
+    $.post('@Url.Action("GetTicketsDetalladosTaq","Reportes")', { fechaD, fechaH, agente: agente || 'TODOS' })
+        .done(function(data) {
+            ticketsCache[cacheKey] = data || [];
+            mostrar(ticketsCache[cacheKey]);
+        })
+        .fail(function() {
+            row.child('<div class="child-tickets-wrap" style="color:#f87171;font-size:.85rem;">Error cargando tickets.</div>').show();
+        });
+}
+
+/* ── render TAQ ──────────────────────────────────────────────────────── */
+function renderTaq(data) {
+    $(tableId + ' thead').html(
+        '<tr>' +
+        '<th style="text-align:center;">Usuario</th>' +
+        '<th style="text-align:center;">Ventas Dir</th>' +
+        '<th style="text-align:center;">Ventas Par</th>' +
+        '<th style="text-align:center;">Total Ventas</th>' +
+        '<th style="text-align:center;">Premios Dir</th>' +
+        '<th style="text-align:center;">Premios Par</th>' +
+        '<th style="text-align:center;">Total Premios</th>' +
+        '<th style="text-align:center;">Pendientes</th>' +
+        '<th style="text-align:center;">Utilidad</th>' +
+        '</tr>'
+    );
+    $(tableId + ' tfoot').html(
+        '<tr>' +
+        '<th style="text-align:center;">TOTAL</th>' +
+        '<th id="totVD"   style="text-align:center;"></th>' +
+        '<th id="totVP"   style="text-align:center;"></th>' +
+        '<th id="totTV"   style="text-align:center;"></th>' +
+        '<th id="totPD"   style="text-align:center;"></th>' +
+        '<th id="totPP"   style="text-align:center;"></th>' +
+        '<th id="totTP"   style="text-align:center;"></th>' +
+        '<th id="totPen"  style="text-align:center;"></th>' +
+        '<th id="totUtil" style="text-align:center;"></th>' +
+        '</tr>'
+    );
+
+    var totVD=0, totVP=0, totTV=0, totPD=0, totPP=0, totTP=0, totPen=0, totUtil=0;
+    data.forEach(function(r) {
+        totVD   += parseFloat(r.ventaDir     || 0);
+        totVP   += parseFloat(r.ventaPar     || 0);
+        totTV   += parseFloat(r.totalVentas  || 0);
+        totPD   += parseFloat(r.premiosDir   || 0);
+        totPP   += parseFloat(r.premiosPar   || 0);
+        totTP   += parseFloat(r.totalPremios || 0);
+        totPen  += parseFloat(r.pendientes   || 0);
+        totUtil += parseFloat(r.utilidad     || 0);
+    });
+
+    document.getElementById('metTotalVentas').textContent  = fmt(totTV);
+    document.getElementById('metTotalPremios').textContent = fmt(totTP);
+    document.getElementById('metPendientes').textContent   = fmt(totPen);
+    document.getElementById('metUtilidad').textContent     = fmt(totUtil);
+    document.getElementById('metricsTaq').style.display    = 'flex';
+
+    dt = $(tableId).DataTable({
+        data: data,
+        columns: [
+            { data: null, className: 'text-center',
+              render: function(d,t,r) {
+                  var u = r.usuario || '—';
+                  var a = r.agente  || '';
+                  return '<span class="link-usuario" data-usuario="' + u + '" data-agente="' + a + '"><i class="ti ti-chevron-right lnk-icon"></i>' + u + '</span>';
+              }
+            },
+            { data: 'ventaDir',     className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } },
+            { data: 'ventaPar',     className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } },
+            { data: 'totalVentas',  className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } },
+            { data: 'premiosDir',   className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-neg'); } },
+            { data: 'premiosPar',   className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-neg'); } },
+            { data: 'totalPremios', className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-neg'); } },
+            { data: 'pendientes',   className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } },
+            { data: 'utilidad',     className: 'text-center',
+              createdCell: function(td,d){ var n=parseFloat(d||0); $(td).text(fmt(d)).addClass(n>=0?'col-monto-pos':'col-monto-neg'); } }
+        ],
+        footerCallback: function() {
+            document.getElementById('totVD').textContent   = fmt(totVD);
+            document.getElementById('totVP').textContent   = fmt(totVP);
+            document.getElementById('totTV').textContent   = fmt(totTV);
+            document.getElementById('totPD').textContent   = fmt(totPD);
+            document.getElementById('totPP').textContent   = fmt(totPP);
+            document.getElementById('totTP').textContent   = fmt(totTP);
+            document.getElementById('totPen').textContent  = fmt(totPen);
+            document.getElementById('totUtil').textContent = fmt(totUtil);
+        },
+        language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
+        pageLength: 25, order: [[0,'asc']], dom: 'Bfrtip',
+        buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm' }]
+    });
+
+    $(tableId + ' tbody').off('click', '.link-usuario').on('click', '.link-usuario', function() {
+        var $span = $(this);
+        var tr    = $span.closest('tr');
+        var row   = dt.row(tr);
+        desplegarTickets($span, row, tr);
+    });
+}
+
+/* ── render WEB ──────────────────────────────────────────────────────── */
+function renderWeb(data) {
+    $(tableId + ' thead').html(
+        '<tr>' +
+        '<th style="text-align:center;">Agente</th>' +
+        '<th style="text-align:center;">Usuario</th>' +
+        '<th style="text-align:center;">País</th>' +
+        '<th style="text-align:center;">Venta Par</th>' +
+        '<th style="text-align:center;">Venta Dir</th>' +
+        '<th style="text-align:center;">Premios Par</th>' +
+        '<th style="text-align:center;">Premios Dir</th>' +
+        '<th style="text-align:center;">Balance</th>' +
+        '</tr>'
+    );
+    $(tableId + ' tfoot').html(
+        '<tr>' +
+        '<th colspan="3" style="text-align:center;">TOTAL</th>' +
+        '<th id="tVP"  style="text-align:center;"></th>' +
+        '<th id="tVD"  style="text-align:center;"></th>' +
+        '<th id="tPP"  style="text-align:center;"></th>' +
+        '<th id="tPD"  style="text-align:center;"></th>' +
+        '<th id="tBal" style="text-align:center;"></th>' +
+        '</tr>'
+    );
+
+    var vP=0, vD=0, pP=0, pD=0;
+    data.forEach(function(r) {
+        vP += parseFloat(r.ventaPar   || 0);
+        vD += parseFloat(r.ventaDir   || 0);
+        pP += parseFloat(r.premiosPar || 0);
+        pD += parseFloat(r.premiosDir || 0);
+    });
+    var bal = (vP + vD) - (pP + pD);
+
+    document.getElementById('metVP').textContent  = fmt(vP);
+    document.getElementById('metVD').textContent  = fmt(vD);
+    document.getElementById('metPP').textContent  = fmt(pP);
+    document.getElementById('metPD').textContent  = fmt(pD);
+    document.getElementById('metBal').textContent = fmt(bal);
+    document.getElementById('metricsWeb').style.display = 'flex';
+
+    dt = $(tableId).DataTable({
+        data: data,
+        columns: [
+            { data: 'agente',    className: 'text-center', defaultContent: '—' },
+            { data: 'usuario',   className: 'text-center', defaultContent: '—' },
+            { data: 'pais',      className: 'text-center', defaultContent: '—' },
+            { data: 'ventaPar',  className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } },
+            { data: 'ventaDir',  className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } },
+            { data: 'premiosPar',className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-neg'); } },
+            { data: 'premiosDir',className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-neg'); } },
+            { data: null, className: 'text-center',
+              render: function(d,t,r) {
+                  var b = (parseFloat(r.ventaPar||0) + parseFloat(r.ventaDir||0)) - (parseFloat(r.premiosPar||0) + parseFloat(r.premiosDir||0));
+                  return fmt(b);
+              },
+              createdCell: function(td,d,r) {
+                  var b = (parseFloat(r.ventaPar||0) + parseFloat(r.ventaDir||0)) - (parseFloat(r.premiosPar||0) + parseFloat(r.premiosDir||0));
+                  $(td).addClass(b >= 0 ? 'col-monto-pos' : 'col-monto-neg');
+              }
+            }
+        ],
+        footerCallback: function() {
+            document.getElementById('tVP').textContent  = fmt(vP);
+            document.getElementById('tVD').textContent  = fmt(vD);
+            document.getElementById('tPP').textContent  = fmt(pP);
+            document.getElementById('tPD').textContent  = fmt(pD);
+            document.getElementById('tBal').textContent = fmt(bal);
+        },
+        language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
+        pageLength: 25, order: [[0,'asc']], dom: 'Bfrtip',
+        buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm' }]
+    });
+}
+
+/* ── carga principal ─────────────────────────────────────────────────── */
 function cargarReporte() {
     const fechaD = document.getElementById('fechaD').value;
     const fechaH = document.getElementById('fechaH').value;
-    const agente = document.getElementById('agente').value;
+    const agente = document.getElementById('agente').value || 'TODOS';
 
     if (!fechaD || !fechaH) {
-        Swal.fire({ icon: 'warning', title: 'Fechas requeridas', text: 'Selecciona el rango de fechas.', background: '#002E5C', color: '#fff' });
+        Swal.fire({ icon: 'warning', title: 'Fechas requeridas', background: '#002E5C', color: '#fff' });
         return;
     }
 
-    // Usuario Regular siempre debe tener agente; Admin puede buscar todos (agente vacío = TODOS)
-    if (!esAdmin && !agente) {
-        Swal.fire({ icon: 'warning', title: 'Agente requerido', text: 'Selecciona un agente de la lista.', background: '#002E5C', color: '#fff' });
-        return;
-    }
+    ticketsCache = {};
+    showBusy('Consultando...');
 
-    showBusy('Consultando ventas taquilla...');
+    const esTaq = modoActual === 'taq';
+    const url   = esTaq
+        ? '@Url.Action("GetVentasPorAgenteTaq","Reportes")'
+        : '@Url.Action("GetVentasPorAgenteWeb","Reportes")';
 
-    $.post('@Url.Action("GetVentasPorAgenteTaq", "Reportes")', { fechaD, fechaH, agente })
-        .done(function (data) {
-            if (!data || data.length === 0) {
-                Swal.fire({ icon: 'info', title: 'Sin resultados', text: 'No hay datos para el período seleccionado.', background: '#002E5C', color: '#fff' });
-                hideBusy();
-                return;
+    $.post(url, { fechaD, fechaH, agente })
+        .done(function(data) {
+            if (!data || !data.length) {
+                Swal.fire({ icon: 'info', title: 'Sin resultados', background: '#002E5C', color: '#fff' });
+                hideBusy(); return;
             }
-
-            // Totales
-            let totVP = 0, totVD = 0, totPP = 0, totPD = 0;
-            data.forEach(r => {
-                totVP += parseFloat(r.ventaPar   || 0);
-                totVD += parseFloat(r.ventaDir   || 0);
-                totPP += parseFloat(r.premiosPar || 0);
-                totPD += parseFloat(r.premiosDir || 0);
-            });
-            balance = (totVP + totVD) - (totPP + totPD);
-
-            // Métricas
-            document.getElementById('metVentaPar').textContent   = fmt(totVP);
-            document.getElementById('metVentaDir').textContent   = fmt(totVD);
-            document.getElementById('metPremiosPar').textContent = fmt(totPP);
-            document.getElementById('metPremiosDir').textContent = fmt(totPD);
-            document.getElementById('metBalance').textContent    = fmt(balance);
-            document.getElementById('metricsBar').style.display  = 'flex';
-
-            // DataTable
-            if (dt) { dt.destroy(); }
-            dt = $(tableId).DataTable({
-                data: data,
-                columns: [
-                    { data: 'agente' },
-                    { data: 'usuario' },
-                    { data: 'pais', defaultContent: '—' },
-                    { data: 'ventaPar',    render: d => `<span class="col-monto-pos">${fmt(d)}</span>` },
-                    { data: 'ventaDir',    render: d => `<span class="col-monto-pos">${fmt(d)}</span>` },
-                    { data: 'premiosPar',  render: d => `<span class="col-monto-neg">${fmt(d)}</span>` },
-                    { data: 'premiosDir',  render: d => `<span class="col-monto-neg">${fmt(d)}</span>` },
-                    {
-                        data: null,
-                        render: r => {
-                            const b = (parseFloat(r.ventaPar || 0) + parseFloat(r.ventaDir || 0))
-                                    - (parseFloat(r.premiosPar || 0) + parseFloat(r.premiosDir || 0));
-                            return `<span class="${b >= 0 ? 'col-monto-pos' : 'col-monto-neg'}">${fmt(b)}</span>`;
-                        }
-                    }
-                ],
-                footerCallback: function () {
-                    document.getElementById('totVentaPar').textContent   = fmt(totVP);
-                    document.getElementById('totVentaDir').textContent   = fmt(totVD);
-                    document.getElementById('totPremiosPar').textContent = fmt(totPP);
-                    document.getElementById('totPremiosDir').textContent = fmt(totPD);
-                    document.getElementById('totBalance').textContent    = fmt(balance);
-                },
-                language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
-                pageLength: 25,
-                order: [[0, 'asc']],
-                dom: 'Bfrtip',
-                buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm' }]
-            });
-
+            if (dt) { dt.destroy(); dt = null; }
+            if (esTaq) { renderTaq(data); } else { renderWeb(data); }
             hideBusy();
         })
-        .fail(function () {
-            Swal.fire({ icon: 'error', title: 'Error', text: 'No se pudo obtener la información.', background: '#002E5C', color: '#fff' });
+        .fail(function() {
+            Swal.fire({ icon: 'error', title: 'Error', background: '#002E5C', color: '#fff' });
             hideBusy();
         });
 }
 
-// ── Init ──────────────────────────────────────────────────────────────────────
-$(document).ready(function () {
-    cargarAgentes(); // Carga el select (solo para admin/suAdmin)
-
-    // Usuario Regular carga automático; admin/suAdmin espera que seleccione agente
-    if (!esAdmin) {
-        cargarReporte();
-    }
+$(document).ready(function() {
+    aplicarModo();
+    cargarAgentes();
+    if (!esAdmin) { cargarReporte(); }
 });
 </script>
 }

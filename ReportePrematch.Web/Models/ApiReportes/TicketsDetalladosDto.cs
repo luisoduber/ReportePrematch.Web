@@ -1,9 +1,5 @@
-namespace ReportePrematch.Web.Models;
+namespace ReportePrematch.Web.Models.ApiReportes;
 
-/// <summary>
-/// DTO para los endpoints TicketsDetalladosWeb y TicketsDetalladosTaq de GCITReportes API.
-/// Los campos monetarios vienen pre-formateados en cultura es-VE ("1.234,56").
-/// </summary>
 public sealed class TicketsDetalladosDto
 {
     public string Agente    { get; init; } = string.Empty;

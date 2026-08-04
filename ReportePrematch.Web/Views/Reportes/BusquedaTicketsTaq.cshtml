@@ -111,7 +111,7 @@ function fmt(v){ return parseFloat(v||0).toLocaleString('es-VE',{minimumFraction
 function cargarReporte(){
     const fechaD=document.getElementById('fechaD').value;
     const fechaH=document.getElementById('fechaH').value;
-    const agente=document.getElementById('agente').value;
+    const agente=document.getElementById('agente').value||'TODOS';
     const operacion=document.getElementById('operacion').value;
     const ticket=document.getElementById('ticket').value;
     if(!fechaD||!fechaH){Swal.fire({icon:'warning',title:'Fechas requeridas',background:'#002E5C',color:'#fff'});return;}
@@ -123,12 +123,12 @@ function cargarReporte(){
             if(dt)dt.destroy();
             dt=$('#@ViewBag.TableId').DataTable({
                 data,columns:[
-                    {data:'Ticket',render:d=>`<span class="col-ticket">${d}</span>`},
+                    {data:'Ticket',    createdCell:function(td){$(td).addClass('col-ticket');}},
                     {data:'NombreAgente',defaultContent:'—'},
                     {data:'Fecha',defaultContent:'—'},
                     {data:'TipoApuesta',defaultContent:'—'},
-                    {data:'Monto',render:d=>`<span class="col-monto-pos">${fmt(d)}</span>`},
-                    {data:'Premio',render:d=>`<span class="${parseFloat(d)>0?'col-monto-neg':'col-monto-pos'}">${fmt(d)}</span>`},
+                    {data:'Monto',     createdCell:function(td){$(td).addClass('col-monto-pos');}},
+                    {data:'Premio',    createdCell:function(td,d){var n=parseFloat(d||0);$(td).addClass(n>0?'col-monto-neg':'col-monto-pos');}},
                     {data:'Estado',defaultContent:'—'}
                 ],
                 language:{url:'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json'},
@@ -138,5 +138,8 @@ function cargarReporte(){
             hideBusy();
         }).fail(function(){Swal.fire({icon:'error',title:'Error',background:'#002E5C',color:'#fff'});hideBusy();});
 }
+$(document).ready(function () {
+    cargarAgentes();
+});
 </script>
 }

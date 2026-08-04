@@ -41,7 +41,7 @@ builder.Services.AddHttpClient<IApiClient, ApiClient>(client =>
 
 // ─── Servicios de la aplicación ─────────────────────────────────────────────
 builder.Services.AddScoped<IAuthService,     AuthService>();
-builder.Services.AddScoped<IReportesService, ReportesServiceOld>();
+builder.Services.AddScoped<IReportesService, ReportesService>();
 
 // ─── Antiforgery ────────────────────────────────────────────────────────────
 builder.Services.AddAntiforgery(options =>

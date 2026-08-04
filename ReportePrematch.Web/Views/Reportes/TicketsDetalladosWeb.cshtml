@@ -48,15 +48,15 @@
         <table id="@ViewBag.TableId" class="glass-table w-100">
             <thead>
                 <tr>
-                    <th>Ticket</th>
-                    <th>Agente</th>
-                    <th>Usuario</th>
-                    <th>Fecha</th>
-                    <th>Tipo</th>
-                    <th>Saldo</th>
-                    <th>Riesgo</th>
-                    <th>Premio</th>
-                    <th>Estado</th>
+                    <th style="text-align:center;">Ticket</th>
+                    <th style="text-align:center;">Agente</th>
+                    <th style="text-align:center;">Usuario</th>
+                    <th style="text-align:center;">Fecha</th>
+                    <th style="text-align:center;">Tipo</th>
+                    <th style="text-align:center;">Saldo</th>
+                    <th style="text-align:center;">Riesgo</th>
+                    <th style="text-align:center;">Premio</th>
+                    <th style="text-align:center;">Estado</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -105,11 +105,19 @@ function cargarAgentes() {
 
 let dt;
 function fmt(v){ return parseFloat(v||0).toLocaleString('es-VE',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function fmtFecha(v) {
+    if (!v) return '—';
+    var d = new Date(v);
+    if (isNaN(d)) return v;
+    var pad = function(n){ return n < 10 ? '0' + n : n; };
+    return pad(d.getDate()) + '/' + pad(d.getMonth()+1) + '/' + d.getFullYear() +
+           ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+}
 
 function cargarReporte(){
     const fechaD=document.getElementById('fechaD').value;
     const fechaH=document.getElementById('fechaH').value;
-    const agente=document.getElementById('agente').value;
+    const agente=document.getElementById('agente').value||'TODOS';
     if(!fechaD||!fechaH){Swal.fire({icon:'warning',title:'Fechas requeridas',background:'#002E5C',color:'#fff'});return;}
     showBusy('Consultando...');
 
@@ -119,7 +127,17 @@ function cargarReporte(){
             if(dt)dt.destroy();
             dt=$('#@ViewBag.TableId').DataTable({
                 data,
-                columns: [{data:'ticket',render:d=>`<span class="col-ticket">${d}</span>`},{data:'agente',defaultContent:'—'},{data:'usuario',defaultContent:'—'},{data:'fecha',defaultContent:'—'},{data:'tipoAp',defaultContent:'—'},{data:'tipoSaldo',defaultContent:'—'},{data:'riesgo',render:d=>`<span class="col-monto-pos">${d}</span>`},{data:'ganando',render:d=>`<span class="${parseFloat((d||'0').replace(/\./g,'').replace(',','.'))<0?'col-monto-neg':'col-monto-pos'}">${d}</span>`},{data:'operacion',defaultContent:'—'}],
+                columns: [
+                    {data:'ticket',  className:'text-center', createdCell:function(td){$(td).addClass('col-ticket');}},
+                    {data:'agente',  className:'text-center', defaultContent:'—'},
+                    {data:'usuario', className:'text-center', defaultContent:'—'},
+                    {data:null,      className:'text-center', defaultContent:'—', render:function(d,t,r){return fmtFecha(r.fecha);}},
+                    {data:'tipoAp',  className:'text-center', defaultContent:'—'},
+                    {data:'tipoSaldo',className:'text-center',defaultContent:'—'},
+                    {data:'riesgo',  className:'text-center', createdCell:function(td){$(td).addClass('col-monto-pos');}},
+                    {data:'ganando', className:'text-center', createdCell:function(td,d){var n=parseFloat((d||'0').replace(/\./g,'').replace(',','.'));$(td).addClass(n<0?'col-monto-neg':'col-monto-pos');}},
+                    {data:'operacion',className:'text-center',defaultContent:'—'}
+                ],
                 language:{url:'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json'},
                 pageLength:25,order:[[0,'asc']],dom:'Bfrtip',
                 buttons:[{extend:'excelHtml5',text:'<i class="ti ti-file-spreadsheet"></i> Excel',className:'btn-glass btn-primary btn-sm'}]

@@ -1,6 +1,4 @@
-namespace ReportePrematch.Web.Models;
-
-/// <summary>Fila de respuesta para VentasPorPaisWeb / VentasPorPaisTaq de GCITReportes API (valores pre-formateados)</summary>
+namespace ReportePrematch.Web.Models.ApiReportes;
 public sealed class VentasPorPaisDto
 {
     public string Pais             { get; init; } = string.Empty;

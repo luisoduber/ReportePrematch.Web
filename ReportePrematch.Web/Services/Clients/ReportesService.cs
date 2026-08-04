@@ -1,4 +1,3 @@
-using ReportePrematch.Web.Models;
 using ReportePrematch.Web.Models.ApiReportes;
 using ReportePrematch.Web.Services.Interfaces;
 using System.Xml;
@@ -652,111 +651,63 @@ ORDER BY 1,2,3 ASC";
     }
 
     /* ══════════════════════════════════════════════════════════
-       VENTAS DETALLADAS LIVE
+       VENTAS DETALLADAS LIVE  →  REST API
     ══════════════════════════════════════════════════════════ */
 
     public async Task<object> GetVentasDetalladasLiveAsync(
         string fechaD, string fechaH, string agente, string pais, string role)
     {
-        var desde = $"{fechaD} 00:00:00";
-        var hasta = $"{fechaH} 23:59:59";
-        var esAdmin = role.ToUpper() == "USUARIO SUADMIN";
-
-        var filtro = esAdmin
-            ? ""
-            : !string.IsNullOrEmpty(agente)
-                ? $"AND li.agenteid = '{S(agente)}' "
-                : $"AND li.agenteid IN ({SubqAgentes(agente, pais, role)}) ";
-
-        var sql = $@"SELECT UPPER(LTRIM(RTRIM(li.agenteid))) AS nombreagente,
-       UPPER(LTRIM(RTRIM(li.Usuario))) AS Usuario,
-       SUM(li.monto) AS riesgo,
-       IIF(li.cerrado = 1, SUM(li.montoaganar), 0) AS ganando,
-       li.cerrado
-FROM Tickets li
-WHERE li.fecha BETWEEN '{desde}' AND '{hasta}'
-{filtro}
-GROUP BY li.agenteid, li.Usuario, li.cerrado
-ORDER BY 1,2";
-
-        return await EjecutarQuerysAsync(sql, 2);
+        var query = new Dictionary<string, string>
+        {
+            ["fechaD"] = fechaD, ["fechaH"] = fechaH,
+            ["agente"] = agente, ["pais"] = pais, ["role"] = role
+        };
+        var result = await _api.GetQueryAsync<List<VentasDetalladasLiveDto>>(
+            "api/Reportes/VentasDetalladasLive", query);
+        return result ?? new List<VentasDetalladasLiveDto>();
     }
 
     /* ══════════════════════════════════════════════════════════
-       TICKETS EN JUEGO
+       TICKETS EN JUEGO  →  REST API
     ══════════════════════════════════════════════════════════ */
 
     public async Task<object> GetTicketsEnJuegoWebAsync(string fechaD, string fechaH, string agente)
     {
-        var desde = $"{fechaD} 00:00:00";
-        var hasta = $"{fechaH} 23:59:59";
-        var filtro = string.IsNullOrEmpty(agente) ? "" : $"AND a.NombreAgente = '{S(agente)}'";
-
-        var sql = $@"SELECT a.nombreagente, b.usuario, a.tipoap,
-       a.ganando, a.montoTotal, (a.ganando + a.montoTotal) AS posible_premio
-FROM apuestas a, clientes b
-WHERE a.idCliente = b.id
-  AND a.tipoSaldo = 0
-  AND a.operacion = 10
-  AND a.fecha BETWEEN '{desde}' AND '{hasta}'
-  {filtro}
-ORDER BY 1,2";
-
-        return await EjecutarQuerysAsync(sql, 2);
+        var query = new Dictionary<string, string>
+        {
+            ["fechaD"] = fechaD, ["fechaH"] = fechaH, ["agente"] = agente
+        };
+        var result = await _api.GetQueryAsync<List<TicketsEnJuegoDto>>(
+            "api/Reportes/TicketsEnJuegoWeb", query);
+        return result ?? new List<TicketsEnJuegoDto>();
     }
 
     public async Task<object> GetTicketsEnJuegoTaqAsync(string fechaD, string fechaH, string agente)
     {
-        var desde = $"{fechaD} 00:00:00";
-        var hasta = $"{fechaH} 23:59:59";
-        var filtro = string.IsNullOrEmpty(agente) ? "" : $"AND NombreAgente = '{S(agente)}'";
-
-        var sql = $@"SELECT nombreagente, usuario, tipoap,
-       ganando, montoTotal, (ganando + montoTotal) AS posible_premio
-FROM apuestas
-WHERE operacion = 10
-  AND usuario != '0'
-  AND fecha BETWEEN '{desde}' AND '{hasta}'
-  {filtro}
-ORDER BY 1,2";
-
-        return await EjecutarQuerysAsync(sql, 2);
+        var query = new Dictionary<string, string>
+        {
+            ["fechaD"] = fechaD, ["fechaH"] = fechaH, ["agente"] = agente
+        };
+        var result = await _api.GetQueryAsync<List<TicketsEnJuegoDto>>(
+            "api/Reportes/TicketsEnJuegoTaq", query);
+        return result ?? new List<TicketsEnJuegoDto>();
     }
 
     /* ══════════════════════════════════════════════════════════
-       VENTAS POR AGENTE NIKOLS
+       VENTAS POR AGENTE NIKOLS WEB  →  REST API
     ══════════════════════════════════════════════════════════ */
 
     public async Task<object> GetVentasPorAgenteNikolsWebAsync(
         string fechaD, string fechaH, string agente, string pais, string role)
     {
-        var desde = $"{fechaD} 00:00:00";
-        var hasta = $"{fechaH} 23:59:59";
-        var esAdmin = role.ToUpper() == "USUARIO SUADMIN";
-
-        var filtro = esAdmin
-            ? ""
-            : !string.IsNullOrEmpty(agente)
-                ? $"AND a.nombreagente = '{S(agente)}' "
-                : $"AND a.nombreagente IN ({SubqAgentes(agente, pais, role)}) ";
-
-        var sql = $@"SELECT UPPER(LTRIM(RTRIM(a.nombreagente))) AS nombreagente,
-       UPPER(LTRIM(RTRIM(b.usuario))) AS usuario,
-       a.Agencia, a.montoTotal, a.ganando, a.tipoAp, a.tipoSaldo,
-       a.operacion, a.fecha, a.fechapagado, a.fechacierre, a.ticket,
-       IIF(a.operacion=3 AND a.tipoap=1 AND a.tipoSaldo=0,
-           (SELECT SUM(x.arriesgando+x.monto) FROM apuestaEquipo x WHERE a.ticket=x.ticket AND gano=1), 0) AS preDir,
-       IIF(a.operacion=3 AND a.tipoap=1 AND a.tipoSaldo=1,
-           (SELECT SUM(x.monto) FROM apuestaEquipo x WHERE a.ticket=x.ticket AND gano=1), 0) AS preDirBono
-FROM Apuestas a, Clientes b
-WHERE a.idCliente = b.id
-  AND (a.fecha BETWEEN '{desde}' AND '{hasta}'
-       OR a.fechacierre BETWEEN '{desde}' AND '{hasta}'
-       OR a.fechapagado BETWEEN '{desde}' AND '{hasta}')
-  {filtro}
-ORDER BY 1,2";
-
-        return await EjecutarQuerysAsync(sql, 2);
+        var query = new Dictionary<string, string>
+        {
+            ["fechaD"] = fechaD, ["fechaH"] = fechaH,
+            ["agente"] = agente, ["pais"] = pais, ["role"] = role
+        };
+        var result = await _api.GetQueryAsync<List<VentasPorAgenteNikolsWebDto>>(
+            "api/Reportes/VentasPorAgenteNikolsWeb", query);
+        return result ?? new List<VentasPorAgenteNikolsWebDto>();
     }
 
     public async Task<object> GetVentasPorAgenteNikolsTaqAsync(
@@ -789,26 +740,22 @@ ORDER BY 1,2";
                 ? $"AND a.nombreagente = '{S(agente)}' "
                 : $"AND a.nombreagente IN ({SubqAgentes(agente, pais, role)}) ";
 
-        var sql = $@"SELECT DISTINCT UPPER(LTRIM(RTRIM(a.nombreagente))) AS nombreagente,
-       UPPER(LTRIM(RTRIM(c.deporte))) AS Deporte,
-       COUNT(a.ticket) AS cnt,
-       (SELECT COUNT(x.ticket) FROM ApuestaEquipo x WHERE x.ticket = a.ticket) AS sec_cnt,
-       a.ticket, a.Agencia, a.montoTotal, a.ganando, a.tipoAp, a.tipoSaldo,
-       a.operacion, a.fecha, a.fechapagado, a.fechacierre,
-       IIF(a.operacion=3 AND a.tipoap=1 AND a.tipoSaldo=0,
-           (SELECT SUM(x.arriesgando+x.monto) FROM apuestaEquipo x WHERE a.ticket=x.ticket AND gano=1), 0) AS preDir,
-       IIF(a.operacion=3 AND a.tipoap=1 AND a.tipoSaldo=1,
-           (SELECT SUM(x.monto) FROM apuestaEquipo x WHERE a.ticket=x.ticket AND gano=1), 0) AS preDirBono
-FROM Apuestas a, ApuestaEquipo c
-WHERE a.ticket = c.ticket
-  AND a.Agencia = 'web'
+        var sql = $@"SELECT
+    UPPER(LTRIM(RTRIM(c.deporte)))                            AS Categoria,
+    COUNT(DISTINCT a.ticket)                                   AS Cantidad,
+    ISNULL(SUM(a.montoTotal), 0)                              AS MontoTotal,
+    ISNULL(SUM(CASE WHEN a.operacion = 3
+                    THEN ISNULL(a.ganando, 0)
+                    ELSE 0 END), 0)                            AS PremioTotal
+FROM Apuestas a
+INNER JOIN ApuestaEquipo c ON CONVERT(varchar, a.ticket) = c.ticket
+WHERE a.Agencia = 'web'
   AND (a.fecha BETWEEN '{desde}' AND '{hasta}'
        OR a.fechacierre BETWEEN '{desde}' AND '{hasta}'
        OR a.fechapagado BETWEEN '{desde}' AND '{hasta}')
   {filtro}
-GROUP BY a.NombreAgente, c.deporte, a.ticket, a.Agencia, a.montoTotal, a.ganando,
-         a.tipoAp, a.tipoSaldo, a.operacion, a.fecha, a.fechapagado, a.fechacierre
-ORDER BY 1,2";
+GROUP BY UPPER(LTRIM(RTRIM(c.deporte)))
+ORDER BY 1";
 
         return await EjecutarQuerysAsync(sql, 2);
     }
@@ -827,25 +774,23 @@ ORDER BY 1,2";
                 ? $"AND a.nombreagente = '{S(agente)}' "
                 : $"AND a.nombreagente IN ({SubqAgentes(agente, pais, role)}) ";
 
-        var sql = $@"SELECT DISTINCT UPPER(LTRIM(RTRIM(a.nombreagente))) AS nombreagente,
-       UPPER(LTRIM(RTRIM(c.deporte))) AS Deporte,
-       COUNT(a.ticket) AS cnt,
-       (SELECT COUNT(x.ticket) FROM ApuestaEquipo x WHERE x.ticket = a.ticket) AS sec_cnt,
-       a.ticket, a.Agencia, a.montoTotal, a.ganando, a.tipoAp, a.tipoSaldo,
-       a.operacion, a.fecha, a.fechapagado, a.fechacierre,
-       IIF(a.operacion=3 AND a.tipoap=1 AND a.tipoSaldo=0,
-           (SELECT SUM(x.arriesgando+x.monto) FROM apuestaEquipo x WHERE a.ticket=x.ticket AND gano=1), 0) AS preDir
-FROM Apuestas a, ApuestaEquipo c
-WHERE a.ticket = c.ticket
-  AND a.usuario != '0'
+        var sql = $@"SELECT
+    UPPER(LTRIM(RTRIM(c.deporte)))                            AS Categoria,
+    COUNT(DISTINCT a.ticket)                                   AS Cantidad,
+    ISNULL(SUM(a.montoTotal), 0)                              AS MontoTotal,
+    ISNULL(SUM(CASE WHEN a.operacion = 3
+                    THEN ISNULL(a.ganando, 0)
+                    ELSE 0 END), 0)                            AS PremioTotal
+FROM Apuestas a
+INNER JOIN ApuestaEquipo c ON CONVERT(varchar, a.ticket) = c.ticket
+WHERE a.usuario != '0'
   {filtroLocal}
   AND (a.fecha BETWEEN '{desde}' AND '{hasta}'
        OR a.fechacierre BETWEEN '{desde}' AND '{hasta}'
        OR a.fechapagado BETWEEN '{desde}' AND '{hasta}')
   {filtro}
-GROUP BY a.NombreAgente, c.deporte, a.ticket, a.Agencia, a.montoTotal, a.ganando,
-         a.tipoAp, a.tipoSaldo, a.operacion, a.fecha, a.fechapagado, a.fechacierre
-ORDER BY 1,2";
+GROUP BY UPPER(LTRIM(RTRIM(c.deporte)))
+ORDER BY 1";
 
         return await EjecutarQuerysAsync(sql, 2);
     }
@@ -1056,7 +1001,7 @@ ORDER BY h.Agente, c.Usuario";
     {
         var query = new Dictionary<string, string>
         {
-            ["fechaD"] = fechaD, ["fechaH"] = fechaH, ["agente"] = agente
+            ["fechaD"] = fechaD, ["fechaH"] = fechaH, ["agente"] = agente ?? ""
         };
         if (!string.IsNullOrEmpty(pais)) query["pais"] = pais;
         if (!string.IsNullOrEmpty(role)) query["role"] = role;
