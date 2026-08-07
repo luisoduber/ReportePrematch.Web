@@ -30,10 +30,14 @@ public interface IReportesService
     Task<object> GetClientesRegAsync(string fechaD, string fechaH, string agente, string role, string pais);
     Task<object> GetBusquedaTicketsWebAsync(string fechaD, string fechaH, string agente, string operacion, string ticket, string pais, string role);
     Task<object> GetBusquedaTicketsTaqAsync(string fechaD, string fechaH, string agente, string operacion, string ticket, string pais, string role);
+    Task<object> GetBusquedaTicketsTaqApiAsync(string fecha, string agente, long ticket, string operacion);
+    Task<object> GetBusquedaTicketsWebApiAsync(string fecha, string agente, long ticket, string operacion);
     Task<object> GetCierreTaquillaAsync(string agente, string agencia, string usuario, string fecha);
     Task<object> GetVentasDetalladasLiveAsync(string fechaD, string fechaH, string agente, string pais, string role);
-    Task<object> GetTicketsEnJuegoWebAsync(string fechaD, string fechaH, string agente);
-    Task<object> GetTicketsEnJuegoTaqAsync(string fechaD, string fechaH, string agente);
+    Task<object> GetTicketsEnJuegoPorPagarTaqAsync(string fechaD, string fechaH, string agente);
+    Task<object> GetTicketsEnJuegoPorCobrarTaqAsync(string fechaD, string fechaH, string agente);
+    Task<object> GetTicketsEnJuegoPorPagarWebAsync(string fechaD, string fechaH, string agente);
+    Task<object> GetTicketsEnJuegoPorCobrarWebAsync(string fechaD, string fechaH, string agente);
     Task<object> GetVentasPorAgenteNikolsWebAsync(string fechaD, string fechaH, string agente, string pais, string role);
     Task<object> GetVentasPorAgenteNikolsTaqAsync(string fechaD, string fechaH, string agente, string local, string pais, string role);
     Task<object> GetEstadisticasWebAsync(string fechaD, string fechaH, string agente, string pais, string role);

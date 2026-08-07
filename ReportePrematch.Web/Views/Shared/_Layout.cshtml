@@ -63,22 +63,17 @@
                 </button>
                 <div class="nav-dropdown-menu">
                     <div class="nav-dropdown-section">Taquilla</div>
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="TicketsEnJuegoTaq"><i class="ti ti-clock-play"></i> Tickets en Juego</a>
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="EstadisticasTaq"><i class="ti ti-chart-pie"></i> Estadísticas</a>
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="BusquedaTicketsTaq"><i class="ti ti-search"></i> Búsqueda Tickets</a>
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VerCierreTaquilla"><i class="ti ti-lock"></i> Cierre Taquilla</a>
-                    <div class="nav-dropdown-section">Web</div>
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="TicketsEnJuegoWeb"><i class="ti ti-clock-play"></i> Tickets en Juego</a>
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="EstadisticasWeb"><i class="ti ti-chart-pie"></i> Estadísticas</a>
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="BusquedaTicketsWeb"><i class="ti ti-search"></i> Búsqueda Tickets</a>
                     <div class="nav-dropdown-section">General</div>
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="TicketsDetalladosTaq"><i class="ti ti-ticket"></i> Tickets Detallados</a>
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VentasPorAgenteTaq"><i class="ti ti-building-store"></i> Ventas por Agente</a>
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VentasPorAgenteNikolsTaq"><i class="ti ti-user-check"></i> Ventas Nikols</a>
+                    <a class="nav-dropdown-item" href="/Reportes/TicketsEnJuego"><i class="ti ti-clock-play"></i> Tickets en Juego</a>
+                    <a class="nav-dropdown-item" href="/Reportes/BusquedaTickets"><i class="ti ti-search"></i> Búsqueda Tickets</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VentasPorAgente"><i class="ti ti-building-store"></i> Ventas por Agente</a>
+                    <a class="nav-dropdown-item" href="/Reportes/VentasPorAgenteNikols"><i class="ti ti-user-check"></i> Ventas Nikols</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="TicketsDetallados"><i class="ti ti-ticket"></i> Tickets Detallados</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="Estadisticas"><i class="ti ti-chart-pie"></i> Estadísticas</a>
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="DeportesMasVendidos"><i class="ti ti-trophy"></i> Deportes más Vendidos</a>
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VentasPorAgenteGameID"><i class="ti ti-hash"></i> Ticket por GameID</a>
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VentasPorPaisWeb"><i class="ti ti-globe"></i> Ventas por País Web</a>
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VentasPorPaisTaq"><i class="ti ti-globe"></i> Ventas por País Taq</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VentasPorPais"><i class="ti ti-globe"></i> Ventas por País</a>
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VentasDetalladasLive"><i class="ti ti-live-photo"></i> Live Detalladas</a>
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="Props"><i class="ti ti-cards"></i> Props</a>
                 </div>
@@ -90,15 +85,15 @@
                     <i class="ti ti-poker-chip"></i><span>Casino</span>
                 </button>
                 <div class="nav-dropdown-menu">
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="CasinoMaquinitas"><i class="ti ti-device-gamepad-2"></i> Maquinitas</a>
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="CasinoSlotGrecia"><i class="ti ti-dice-5"></i> Slot Grecia</a>
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="CasinoSlotRusia"><i class="ti ti-dice-6"></i> Slot Rusia</a>
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="IconBet"><i class="ti ti-crown"></i> IconBet</a>
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="IconSlot"><i class="ti ti-device-desktop"></i> IconBet Slots</a>
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="Poker"><i class="ti ti-cards"></i> Poker</a>
+                    @*<a class="nav-dropdown-item" asp-controller="Reportes" asp-action="CasinoMaquinitas"><i class="ti ti-device-gamepad-2"></i> Maquinitas</a>*@
+                    @*<a class="nav-dropdown-item" asp-controller="Reportes" asp-action="CasinoSlotGrecia"><i class="ti ti-dice-5"></i> Slot Grecia</a>*@
+                    @*<a class="nav-dropdown-item" asp-controller="Reportes" asp-action="CasinoSlotRusia"><i class="ti ti-dice-6"></i> Slot Rusia</a>*@
+                    @*<a class="nav-dropdown-item" asp-controller="Reportes" asp-action="IconBet"><i class="ti ti-crown"></i> IconBet</a>*@
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="IconSlot"><i class="ti ti-device-desktop"></i> Icon Slots</a>
+                    @*<a class="nav-dropdown-item" asp-controller="Reportes" asp-action="Poker"><i class="ti ti-cards"></i> Poker</a>*@
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="Pragmatic"><i class="ti ti-sparkles"></i> Pragmatic Play</a>
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VirtualesBR"><i class="ti ti-device-tv"></i> Virtuales BR</a>
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VirtualesCaribe"><i class="ti ti-device-tv"></i> Virtuales Caribe</a>
+                    @*<a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VirtualesCaribe"><i class="ti ti-device-tv"></i> Virtuales Caribe</a>*@
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="Aviatrix"><i class="ti ti-plane"></i> Aviatrix</a>
                 </div>
             </div>
@@ -177,12 +172,8 @@
 
 <script>
 // ── Dropdown nav: teleport al <body> para escapar el backdrop-filter del navbar ──
-// backdrop-filter crea un containing block → position:fixed hijos no pueden salir.
-// Solución: mover los menús al <body> y gestionar show/hide con delay para evitar
-// que el menú se cierre al cruzar el pequeño gap entre el botón y el panel.
 (function () {
     document.addEventListener('DOMContentLoaded', function () {
-        // Un solo timer compartido: solo un menú puede estar abierto a la vez
         var activeMenu = null;
         var hideTimer  = null;
 
@@ -197,14 +188,13 @@
 
         function scheduleHide() {
             cancelHide();
-            hideTimer = setTimeout(hideActive, 180); // 180ms de gracia
+            hideTimer = setTimeout(hideActive, 180);
         }
 
         document.querySelectorAll('.nav-dropdown').forEach(function (trigger) {
             var menu = trigger.querySelector('.nav-dropdown-menu');
             if (!menu) return;
 
-            // Teleportar al <body>
             document.body.appendChild(menu);
             menu.style.position = 'fixed';
             menu.style.top      = '56px';
@@ -213,7 +203,6 @@
 
             function show() {
                 cancelHide();
-                // Cerrar cualquier otro menú abierto inmediatamente
                 if (activeMenu && activeMenu !== menu) {
                     activeMenu.style.display = 'none';
                 }
@@ -232,13 +221,11 @@
             menu.addEventListener('mouseenter', cancelHide);
             menu.addEventListener('mouseleave', scheduleHide);
 
-            // Cerrar al hacer click en un enlace del menú
             menu.addEventListener('click', function (e) {
                 if (e.target.closest('a')) hideActive();
             });
         });
 
-        // Cerrar si se hace click fuera de cualquier menú
         document.addEventListener('click', function (e) {
             if (!e.target.closest('.nav-dropdown') && !e.target.closest('.nav-dropdown-menu')) {
                 hideActive();

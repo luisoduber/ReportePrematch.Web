@@ -278,7 +278,7 @@ public class ReportesService : IReportesService
         var query = new Dictionary<string, string>
         {
             ["fechaD"] = fechaD, ["fechaH"] = fechaH,
-            ["agente"] = string.Empty, ["pais"] = pais, ["role"] = string.Empty
+            ["agente"] = "TODOS", ["pais"] = pais, ["role"] = string.Empty
         };
         var result = await _api.GetQueryAsync<List<VentasPorPaisDto>>(
             "api/Reportes/VentasPorPaisWeb", query);
@@ -290,7 +290,7 @@ public class ReportesService : IReportesService
         var query = new Dictionary<string, string>
         {
             ["fechaD"] = fechaD, ["fechaH"] = fechaH,
-            ["agente"] = string.Empty, ["pais"] = pais, ["role"] = string.Empty
+            ["agente"] = "TODOS", ["pais"] = pais, ["role"] = string.Empty
         };
         var result = await _api.GetQueryAsync<List<VentasPorPaisDto>>(
             "api/Reportes/VentasPorPaisTaq", query);
@@ -651,6 +651,38 @@ ORDER BY 1,2,3 ASC";
     }
 
     /* ══════════════════════════════════════════════════════════
+       BÚSQUEDA TICKETS  →  REST API (GCITReportes)
+    ══════════════════════════════════════════════════════════ */
+
+    public async Task<object> GetBusquedaTicketsTaqApiAsync(string fecha, string agente, long ticket, string operacion)
+    {
+        var query = new Dictionary<string, string>
+        {
+            ["fecha"]     = fecha ?? string.Empty,
+            ["agente"]    = agente ?? string.Empty,
+            ["ticket"]    = ticket.ToString(),
+            ["operacion"] = operacion ?? string.Empty
+        };
+        var result = await _api.GetQueryAsync<List<BusquedaTicketsDto>>(
+            "api/Reportes/BusquedaTicketTaq", query);
+        return result ?? new List<BusquedaTicketsDto>();
+    }
+
+    public async Task<object> GetBusquedaTicketsWebApiAsync(string fecha, string agente, long ticket, string operacion)
+    {
+        var query = new Dictionary<string, string>
+        {
+            ["fecha"]     = fecha ?? string.Empty,
+            ["agente"]    = agente ?? string.Empty,
+            ["ticket"]    = ticket.ToString(),
+            ["operacion"] = operacion ?? string.Empty
+        };
+        var result = await _api.GetQueryAsync<List<BusquedaTicketsDto>>(
+            "api/Reportes/BusquedaTicketWeb", query);
+        return result ?? new List<BusquedaTicketsDto>();
+    }
+
+    /* ══════════════════════════════════════════════════════════
        VENTAS DETALLADAS LIVE  →  REST API
     ══════════════════════════════════════════════════════════ */
 
@@ -671,25 +703,47 @@ ORDER BY 1,2,3 ASC";
        TICKETS EN JUEGO  →  REST API
     ══════════════════════════════════════════════════════════ */
 
-    public async Task<object> GetTicketsEnJuegoWebAsync(string fechaD, string fechaH, string agente)
+    public async Task<object> GetTicketsEnJuegoPorPagarTaqAsync(string fechaD, string fechaH, string agente)
     {
         var query = new Dictionary<string, string>
         {
             ["fechaD"] = fechaD, ["fechaH"] = fechaH, ["agente"] = agente
         };
         var result = await _api.GetQueryAsync<List<TicketsEnJuegoDto>>(
-            "api/Reportes/TicketsEnJuegoWeb", query);
+            "api/Reportes/TicketsEnJuegoPorPagarTaq", query);
         return result ?? new List<TicketsEnJuegoDto>();
     }
 
-    public async Task<object> GetTicketsEnJuegoTaqAsync(string fechaD, string fechaH, string agente)
+    public async Task<object> GetTicketsEnJuegoPorCobrarTaqAsync(string fechaD, string fechaH, string agente)
     {
         var query = new Dictionary<string, string>
         {
             ["fechaD"] = fechaD, ["fechaH"] = fechaH, ["agente"] = agente
         };
         var result = await _api.GetQueryAsync<List<TicketsEnJuegoDto>>(
-            "api/Reportes/TicketsEnJuegoTaq", query);
+            "api/Reportes/TicketsEnJuegoPorCobrarTaq", query);
+        return result ?? new List<TicketsEnJuegoDto>();
+    }
+
+    public async Task<object> GetTicketsEnJuegoPorPagarWebAsync(string fechaD, string fechaH, string agente)
+    {
+        var query = new Dictionary<string, string>
+        {
+            ["fechaD"] = fechaD, ["fechaH"] = fechaH, ["agente"] = agente
+        };
+        var result = await _api.GetQueryAsync<List<TicketsEnJuegoDto>>(
+            "api/Reportes/TicketsEnJuegoPorPagarWeb", query);
+        return result ?? new List<TicketsEnJuegoDto>();
+    }
+
+    public async Task<object> GetTicketsEnJuegoPorCobrarWebAsync(string fechaD, string fechaH, string agente)
+    {
+        var query = new Dictionary<string, string>
+        {
+            ["fechaD"] = fechaD, ["fechaH"] = fechaH, ["agente"] = agente
+        };
+        var result = await _api.GetQueryAsync<List<TicketsEnJuegoDto>>(
+            "api/Reportes/TicketsEnJuegoPorCobrarWeb", query);
         return result ?? new List<TicketsEnJuegoDto>();
     }
 
@@ -730,69 +784,27 @@ ORDER BY 1,2,3 ASC";
     public async Task<object> GetEstadisticasWebAsync(
         string fechaD, string fechaH, string agente, string pais, string role)
     {
-        var desde = $"{fechaD} 00:00:00";
-        var hasta = $"{fechaH} 23:59:59";
-        var esAdmin = role.ToUpper() == "USUARIO SUADMIN";
-
-        var filtro = esAdmin
-            ? ""
-            : !string.IsNullOrEmpty(agente)
-                ? $"AND a.nombreagente = '{S(agente)}' "
-                : $"AND a.nombreagente IN ({SubqAgentes(agente, pais, role)}) ";
-
-        var sql = $@"SELECT
-    UPPER(LTRIM(RTRIM(c.deporte)))                            AS Categoria,
-    COUNT(DISTINCT a.ticket)                                   AS Cantidad,
-    ISNULL(SUM(a.montoTotal), 0)                              AS MontoTotal,
-    ISNULL(SUM(CASE WHEN a.operacion = 3
-                    THEN ISNULL(a.ganando, 0)
-                    ELSE 0 END), 0)                            AS PremioTotal
-FROM Apuestas a
-INNER JOIN ApuestaEquipo c ON CONVERT(varchar, a.ticket) = c.ticket
-WHERE a.Agencia = 'web'
-  AND (a.fecha BETWEEN '{desde}' AND '{hasta}'
-       OR a.fechacierre BETWEEN '{desde}' AND '{hasta}'
-       OR a.fechapagado BETWEEN '{desde}' AND '{hasta}')
-  {filtro}
-GROUP BY UPPER(LTRIM(RTRIM(c.deporte)))
-ORDER BY 1";
-
-        return await EjecutarQuerysAsync(sql, 2);
+        var query = new Dictionary<string, string>
+        {
+            ["fechaD"] = fechaD, ["fechaH"] = fechaH,
+            ["agente"] = agente, ["pais"] = pais, ["role"] = role
+        };
+        var result = await _api.GetQueryAsync<List<EstadisticasTaqDto>>(
+            "api/Reportes/EstadisticasWeb", query);
+        return result ?? new List<EstadisticasTaqDto>();
     }
 
     public async Task<object> GetEstadisticasTaqAsync(
         string fechaD, string fechaH, string agente, string local, string pais, string role)
     {
-        var desde = $"{fechaD} 00:00:00";
-        var hasta = $"{fechaH} 23:59:59";
-        var esAdmin = role.ToUpper() == "USUARIO SUADMIN";
-        var filtroLocal = (!string.IsNullOrEmpty(local) && local != "0") ? $"AND a.agencia = '{S(local)}' " : "";
-
-        var filtro = esAdmin
-            ? ""
-            : !string.IsNullOrEmpty(agente)
-                ? $"AND a.nombreagente = '{S(agente)}' "
-                : $"AND a.nombreagente IN ({SubqAgentes(agente, pais, role)}) ";
-
-        var sql = $@"SELECT
-    UPPER(LTRIM(RTRIM(c.deporte)))                            AS Categoria,
-    COUNT(DISTINCT a.ticket)                                   AS Cantidad,
-    ISNULL(SUM(a.montoTotal), 0)                              AS MontoTotal,
-    ISNULL(SUM(CASE WHEN a.operacion = 3
-                    THEN ISNULL(a.ganando, 0)
-                    ELSE 0 END), 0)                            AS PremioTotal
-FROM Apuestas a
-INNER JOIN ApuestaEquipo c ON CONVERT(varchar, a.ticket) = c.ticket
-WHERE a.usuario != '0'
-  {filtroLocal}
-  AND (a.fecha BETWEEN '{desde}' AND '{hasta}'
-       OR a.fechacierre BETWEEN '{desde}' AND '{hasta}'
-       OR a.fechapagado BETWEEN '{desde}' AND '{hasta}')
-  {filtro}
-GROUP BY UPPER(LTRIM(RTRIM(c.deporte)))
-ORDER BY 1";
-
-        return await EjecutarQuerysAsync(sql, 2);
+        var query = new Dictionary<string, string>
+        {
+            ["fechaD"] = fechaD, ["fechaH"] = fechaH,
+            ["agente"] = agente, ["local"] = local, ["pais"] = pais, ["role"] = role
+        };
+        var result = await _api.GetQueryAsync<List<EstadisticasTaqDto>>(
+            "api/Reportes/EstadisticasTaq", query);
+        return result ?? new List<EstadisticasTaqDto>();
     }
 
     /* ══════════════════════════════════════════════════════════
@@ -802,32 +814,14 @@ ORDER BY 1";
     public async Task<object> GetHipismoAsync(
         string fechaD, string fechaH, string agente, string pais, string role)
     {
-        var desde = $"{fechaD} 00:00:00";
-        var hasta = $"{fechaH} 23:59:59";
-        var esAdmin = role.ToUpper() == "USUARIO SUADMIN";
-
-        var filtro = esAdmin
-            ? ""
-            : !string.IsNullOrEmpty(agente)
-                ? $"AND h.Agente = '{S(agente)}' "
-                : $"AND h.Agente IN ({SubqAgentes(agente, pais, role)}) ";
-
-        var sql = $@"SELECT h.Agente, c.Usuario,
-  (SELECT SUM(th.Monto) FROM TransaccionHipismo AS th
-   WHERE th.idCliente=h.idCliente AND th.operacion=2
-     AND th.Fecha BETWEEN '{desde}' AND '{hasta}') AS Ventas,
-  (SELECT SUM(th.Monto) FROM TransaccionHipismo AS th
-   WHERE th.idCliente=h.idCliente AND th.operacion=1
-     AND th.Fecha BETWEEN '{desde}' AND '{hasta}') AS Premios
-FROM TransaccionHipismo AS h
-INNER JOIN Clientes AS c ON h.idCliente = c.id
-INNER JOIN ClientesID AS ci ON ci.idCliente = c.id
-WHERE h.Fecha BETWEEN '{desde}' AND '{hasta}'
-{filtro}
-GROUP BY h.Agente, h.idCliente, c.Usuario
-ORDER BY h.Agente, c.Usuario";
-
-        return await EjecutarQuerysAsync(sql, 2);
+        var query = new Dictionary<string, string>
+        {
+            ["fechaD"] = fechaD, ["fechaH"] = fechaH, ["agente"] = agente,
+            ["pais"]   = pais,   ["role"]   = role
+        };
+        var result = await _api.GetQueryAsync<List<CasinoDto>>(
+            "api/Hipismo/ReporteCaballo", query);
+        return result ?? new List<CasinoDto>();
     }
 
     /* ══════════════════════════════════════════════════════════

@@ -1,0 +1,184 @@
+@{
+    Layout = "_Layout";
+}
+
+<section class="glass-card">
+    <div class="welcome-bar">
+        <div>
+            <div class="welcome-title">@ViewBag.NombrePagina</div>
+            <div class="welcome-sub" id="subtitulo">Canal Taquilla · Por País</div>
+        </div>
+        <button class="btn-glass btn-primary" onclick="cargarReporte()">
+            <i class="ti ti-refresh"></i> Actualizar
+        </button>
+    </div>
+
+    <div class="glass-panel mt-3 p-3">
+        <div class="row g-2 align-items-end">
+            <div class="col-md-2">
+                <label class="field-label">Fecha Desde</label>
+                <input type="date" id="fechaD" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-2">
+                <label class="field-label">Fecha Hasta</label>
+                <input type="date" id="fechaH" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-3">
+                <label class="field-label">País</label>
+                <select id="agente" class="glass-input" style="color:#fff;">
+                    <option value="" disabled selected style="background:#002E5C;color:rgba(255,255,255,0.5);">Seleccione un país</option>
+                    <option value="VENEZUELA" style="background:#002E5C;color:#fff;">VENEZUELA</option>
+                </select>
+            </div>
+            <!-- Toggle Canal -->
+            <div class="col-md-auto">
+                <label class="field-label">Canal</label>
+                <div class="canal-toggle" id="toggleCanal">
+                    <button class="toggle-btn active" data-val="taq" onclick="setCanal('taq',this)">
+                        <i class="ti ti-building-store"></i> Taquilla
+                    </button>
+                    <button class="toggle-btn" data-val="web" onclick="setCanal('web',this)">
+                        <i class="ti ti-world"></i> Web
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-auto">
+                <button class="btn-glass btn-primary w-100" onclick="cargarReporte()">
+                    <i class="ti ti-search"></i> Buscar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive mt-3">
+        <table id="tblVentasPorPais" class="glass-table w-100">
+            <thead>
+                <tr>
+                    <th style="text-align:center;">País</th>
+                    <th style="text-align:center;">Agente</th>
+                    <th style="text-align:center;">Venta Par</th>
+                    <th style="text-align:center;">Venta Dir</th>
+                    <th style="text-align:center;">Premios Par</th>
+                    <th style="text-align:center;">Premios Dir</th>
+                    <th style="text-align:center;">Balance</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</section>
+
+<style>
+.canal-toggle {
+    display: flex;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.15);
+}
+.canal-toggle .toggle-btn {
+    flex: 1;
+    padding: 6px 14px;
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.6);
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+}
+.canal-toggle .toggle-btn:first-child { border-right: 1px solid rgba(255,255,255,0.1); }
+.canal-toggle .toggle-btn.active {
+    background: var(--sa-5, #0077B6);
+    color: #fff;
+    font-weight: 600;
+}
+.canal-toggle .toggle-btn:hover:not(.active) {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+}
+</style>
+
+@section Scripts {
+<script>
+let dt;
+let canal = 'taq';
+
+const urlMap = {
+    'taq': '@Url.Action("GetVentasPorPaisTaq","Reportes")',
+    'web': '@Url.Action("GetVentasPorPaisWeb","Reportes")'
+};
+
+const subtituloMap = {
+    'taq': 'Canal Taquilla · Por País',
+    'web': 'Canal Web · Por País'
+};
+
+function setCanal(val, btn) {
+    canal = val;
+    document.querySelectorAll('#toggleCanal .toggle-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('subtitulo').textContent = subtituloMap[val];
+}
+
+function fmt(v) {
+    return parseFloat(v || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function cargarReporte() {
+    const fechaD = document.getElementById('fechaD').value;
+    const fechaH = document.getElementById('fechaH').value;
+    const pais = document.getElementById('agente').value;
+
+    if (!fechaD || !fechaH) {
+        Swal.fire({ icon: 'warning', title: 'Fechas requeridas', background: '#002E5C', color: '#fff' });
+        return;
+    }
+    if (!pais) {
+        Swal.fire({ icon: 'warning', title: 'Seleccione un país', background: '#002E5C', color: '#fff' });
+        return;
+    }
+
+    const url = urlMap[canal];
+    showBusy('Consultando...');
+
+    $.post(url, { fechaD, fechaH, pais })
+        .done(function(data) {
+            if (!data || !data.length) {
+                Swal.fire({ icon: 'info', title: 'Sin resultados', background: '#002E5C', color: '#fff' });
+                hideBusy();
+                return;
+            }
+            if (dt) { dt.destroy(); dt = null; }
+            dt = $('#tblVentasPorPais').DataTable({
+                data,
+                columns: [
+                    { data: 'pais',      className: 'text-center', defaultContent: '—' },
+                    { data: 'agente',    className: 'text-center', defaultContent: '—' },
+                    { data: 'ventaPar',  className: 'text-center', defaultContent: '—', createdCell: function(td) { $(td).addClass('col-monto-pos'); } },
+                    { data: 'ventaDir',  className: 'text-center', defaultContent: '—', createdCell: function(td) { $(td).addClass('col-monto-pos'); } },
+                    { data: 'premiosPar',className: 'text-center', defaultContent: '—', createdCell: function(td) { $(td).addClass('col-monto-neg'); } },
+                    { data: 'premiosDir',className: 'text-center', defaultContent: '—', createdCell: function(td) { $(td).addClass('col-monto-neg'); } },
+                    { data: 'utilidad',  className: 'text-center', defaultContent: '—',
+                      createdCell: function(td, d) {
+                          var n = parseFloat((d || '0').replace(/\./g, '').replace(',', '.'));
+                          $(td).addClass(n < 0 ? 'col-monto-neg' : 'col-monto-pos');
+                      }
+                    }
+                ],
+                language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
+                pageLength: 25, order: [[0, 'asc']], dom: 'Bfrtip',
+                buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm' }]
+            });
+            hideBusy();
+        })
+        .fail(function() {
+            Swal.fire({ icon: 'error', title: 'Error de conexión', background: '#002E5C', color: '#fff' });
+            hideBusy();
+        });
+}
+
+$(document).ready(function() {
+    // No carga automáticamente — el usuario debe seleccionar un país y presionar Buscar
+});
+</script>
+}

@@ -16,7 +16,7 @@ public sealed class HomeController(
     public IActionResult Login()
     {
         if (HttpContext.Session.GetString("IDUusuario") != null)
-            return RedirectToAction("VentasPorAgenteTaq", "Reportes");
+            return RedirectToAction("VentasPorAgente", "Reportes");
 
         ViewBag.TurnstileSiteKey = config["Cloudflare:TurnstileSiteKey"];
         return View();
@@ -58,7 +58,7 @@ public sealed class HomeController(
         logger.LogInformation("Login exitoso: {Usuario} [{TipoUsuario}]",
             sessionData.Usuario, sessionData.TipoUsuario);
 
-        return RedirectToAction("VentasPorAgenteTaq", "Reportes");
+        return RedirectToAction("VentasPorAgente", "Reportes");
     }
 
     // ─── Logout ──────────────────────────────────────────────────────────────

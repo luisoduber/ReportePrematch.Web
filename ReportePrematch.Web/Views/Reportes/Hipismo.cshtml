@@ -44,23 +44,49 @@
         </div>
     </div>
 
-    <div class="table-responsive mt-3">
+    <div id="tituloAgente" class="mt-3 ms-1" style="font-size:1rem;font-weight:700;color:#7EC8E3;display:none;"></div>
+
+    <div class="table-responsive mt-2">
         <table id="@ViewBag.TableId" class="glass-table w-100">
             <thead>
                 <tr>
-                    <th>Agente</th>
-                    <th>Ticket</th>
-                    <th>Fecha</th>
-                    <th>Carrera</th>
-                    <th>Monto</th>
-                    <th>Premio</th>
-                    <th>Estado</th>
+                    <th class="text-center" style="width:40px;">Detalles</th>
+                    <th class="text-center">Usuario</th>
+                    <th class="text-center">Ventas</th>
+                    <th class="text-center">Premios</th>
+                    <th class="text-center">Utilidad</th>
                 </tr>
             </thead>
             <tbody></tbody>
         </table>
     </div>
 </section>
+
+<style>
+.btn-detalle {
+    background: none;
+    border: 2px solid #7EC8E3;
+    border-radius: 50%;
+    color: #7EC8E3;
+    width: 26px; height: 26px;
+    font-size: 1rem; font-weight: 700;
+    line-height: 1; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: background 0.2s, color 0.2s;
+}
+.btn-detalle:hover { background: #7EC8E3; color: #002E5C; }
+.btn-detalle.abierto { background: #7EC8E3; color: #002E5C; }
+.child-table-wrap { padding: 10px 20px 14px 40px; }
+.child-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 0.82rem; color: #cde;
+}
+.child-table thead tr { background: #1a3a5c; }
+.child-table th { padding: 6px 10px; text-align: center; font-weight: 600; letter-spacing:.04em; }
+.child-table td { padding: 5px 10px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.child-table tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+.child-footer { padding: 4px 10px 0; font-size:0.8rem; color: rgba(255,255,255,0.5); font-style: italic; }
+</style>
 
 @section Scripts {
 <script>
@@ -73,7 +99,6 @@ function cargarAgentes() {
         .done(function(lista) {
             const sel = document.getElementById('agente');
             if (!sel) return;
-            // Destruir instancia Tom Select previa si existe
             if (sel.tomselect) sel.tomselect.destroy();
             sel.innerHTML = '';
             const optTodos = document.createElement('option');
@@ -84,48 +109,132 @@ function cargarAgentes() {
                 opt.value = a; opt.textContent = a;
                 sel.appendChild(opt);
             });
-            // Inicializar Tom Select con búsqueda
             new TomSelect(sel, {
-                maxOptions: 2000,
-                create: false,
-                allowEmptyOption: true,
-                placeholder: 'Buscar agente...',
-                searchField: ['text']
+                maxOptions: 2000, create: false, allowEmptyOption: true,
+                placeholder: 'Buscar agente...', searchField: ['text']
             });
             if (agenteSession) sel.tomselect.setValue(agenteSession, true);
-            console.log('[Agentes] ' + (lista ? lista.length : 0) + ' agentes cargados.');
         })
         .fail(function(xhr) {
-            console.error('[Agentes] Error HTTP ' + xhr.status + ' al cargar agentes:', xhr.responseText);
-            Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar la lista de agentes (HTTP ' + xhr.status + ').', background: '#002E5C', color: '#fff' });
+            Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar agentes (HTTP ' + xhr.status + ').', background: '#002E5C', color: '#fff' });
         });
 }
 
 let dt;
-function fmt(v){ return parseFloat(v||0).toLocaleString('es-VE',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+let _fechaD, _fechaH;
+function fmt(v) { return parseFloat(v || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
 
-function cargarReporte(){
-    const fechaD=document.getElementById('fechaD').value;
-    const fechaH=document.getElementById('fechaH').value;
-    const agente=document.getElementById('agente').value||'TODOS';
-    if(!fechaD||!fechaH){Swal.fire({icon:'warning',title:'Fechas requeridas',background:'#002E5C',color:'#fff'});return;}
+function buildChildTable(detalles, usuario) {
+    if (!detalles || !detalles.length) {
+        return '<div class="child-table-wrap"><em style="color:rgba(255,255,255,0.4)">Sin transacciones.</em></div>';
+    }
+    var rows = detalles.map(function(d) {
+        return '<tr>' +
+            '<td>' + (d.idTransaccion || d.IdTransaccion || '—') + '</td>' +
+            '<td>' + (d.reference    || d.Reference    || '—') + '</td>' +
+            '<td>' + fmt(d.monto     || d.Monto)              + '</td>' +
+            '<td>' + (d.action       || d.Action       || '—') + '</td>' +
+            '<td>' + (d.jugadas || d.Jugadas || '—') + '</td>' +
+        '</tr>';
+    }).join('');
+    return '<div class="child-table-wrap">' +
+        '<table class="child-table">' +
+            '<thead><tr>' +
+                '<th style="text-align:center;">Transaction</th><th style="text-align:center;">Reference</th><th style="text-align:center;">Amount</th><th style="text-align:center;">Action</th><th style="text-align:center;">Plays</th>' +
+            '</tr></thead>' +
+            '<tbody>' + rows + '</tbody>' +
+        '</table>' +
+        '<div class="child-footer">Transacciones de: ' + usuario + '</div>' +
+    '</div>';
+}
+
+function toggleDetalle(btn, rowData) {
+    var tr   = $(btn).closest('tr');
+    var row  = dt.row(tr);
+    var user = rowData.usuario || rowData.Usuario || '';
+
+    if (row.child.isShown()) {
+        row.child.hide();
+        $(btn).text('+').removeClass('abierto');
+        return;
+    }
+
+    $(btn).text('…').prop('disabled', true);
+    $.post('@Url.Action("GetDetallesHipismo","Reportes")', { fechaD: _fechaD, fechaH: _fechaH, usuario: user })
+        .done(function(detalles) {
+            row.child(buildChildTable(detalles, user)).show();
+            $(btn).text('−').addClass('abierto').prop('disabled', false);
+        })
+        .fail(function() {
+            row.child('<div class="child-table-wrap" style="color:#f88;">Error al cargar detalles.</div>').show();
+            $(btn).text('+').prop('disabled', false);
+        });
+}
+
+function cargarReporte() {
+    const fechaD = document.getElementById('fechaD').value;
+    const fechaH = document.getElementById('fechaH').value;
+    const agente = document.getElementById('agente').value || 'TODOS';
+    if (!fechaD || !fechaH) { Swal.fire({ icon: 'warning', title: 'Fechas requeridas', background: '#002E5C', color: '#fff' }); return; }
+
+    _fechaD = fechaD; _fechaH = fechaH;
+
+    const tituloEl = document.getElementById('tituloAgente');
+    tituloEl.textContent = agente !== 'TODOS' ? agente.toUpperCase() : '';
+    tituloEl.style.display = agente !== 'TODOS' ? '' : 'none';
+
     showBusy('Consultando...');
 
-    $.post('@Url.Action("GetHipismo","Reportes")',{fechaD,fechaH,agente})
-        .done(function(data){
-            if(!data||!data.length){Swal.fire({icon:'info',title:'Sin resultados',background:'#002E5C',color:'#fff'});hideBusy();return;}
-            if(dt)dt.destroy();
-            dt=$('#@ViewBag.TableId').DataTable({
-                data,
-                columns: [{data:"NombreAgente"},{data:"Ticket",createdCell:function(td){$(td).addClass('col-ticket');}},{data:"Fecha",defaultContent:"—"},{data:"Carrera",defaultContent:"—"},{data:"Monto",createdCell:function(td,d){$(td).text(fmt(d)).addClass('col-monto-pos');}},{data:"Premio",createdCell:function(td,d){var n=parseFloat(d||0);$(td).text(fmt(d)).addClass(n>0?'col-monto-neg':'col-monto-pos');}},{data:"Estado",defaultContent:"—"}],
-                language:{url:'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json'},
-                pageLength:25,order:[[0,'asc']],dom:'Bfrtip',
-                buttons:[{extend:'excelHtml5',text:'<i class="ti ti-file-spreadsheet"></i> Excel',className:'btn-glass btn-primary btn-sm'}]
+    $.post('@Url.Action("GetHipismo","Reportes")', { fechaD, fechaH, agente })
+        .done(function(data) {
+            if (!data || !data.length) {
+                Swal.fire({ icon: 'info', title: 'Sin resultados', background: '#002E5C', color: '#fff' });
+                hideBusy(); return;
+            }
+            if (dt) { dt.destroy(); dt = null; }
+            dt = $('#@ViewBag.TableId').DataTable({
+                data: data,
+                columns: [
+                    {
+                        data: null,
+                        className: 'text-center',
+                        orderable: false,
+                        render: function() {
+                            return '<button class="btn-detalle" title="Ver detalles">+</button>';
+                        }
+                    },
+                    { data: null, className: 'text-center', render: function(d) { return d.usuario || d.Usuario || '—'; } },
+                    { data: null, className: 'text-center col-monto-pos', render: function(d) { return fmt(d.ventas || d.Ventas); } },
+                    { data: null, className: 'text-center col-monto-neg', render: function(d) { return fmt(d.premios || d.Premios); } },
+                    { data: null, className: 'text-center',
+                      createdCell: function(td, d) {
+                          var n = parseFloat((d.utilidad || d.Utilidad || '0').toString().replace(/\./g,'').replace(',','.'));
+                          $(td).addClass(n < 0 ? 'col-monto-neg' : 'col-monto-pos');
+                      },
+                      render: function(d) { return fmt(d.utilidad || d.Utilidad); }
+                    }
+                ],
+                language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
+                pageLength: 50, order: [[1, 'asc']], dom: 'Bfrtip',
+                buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm' }]
             });
+
+            // Delegación de evento para el botón +
+            $('#@ViewBag.TableId tbody').off('click', '.btn-detalle').on('click', '.btn-detalle', function() {
+                var tr      = $(this).closest('tr');
+                var rowData = dt.row(tr).data();
+                toggleDetalle(this, rowData);
+            });
+
             hideBusy();
-        }).fail(function(){Swal.fire({icon:'error',title:'Error',background:'#002E5C',color:'#fff'});hideBusy();});
+        })
+        .fail(function() {
+            Swal.fire({ icon: 'error', title: 'Error de conexión', background: '#002E5C', color: '#fff' });
+            hideBusy();
+        });
 }
-$(document).ready(function () {
+
+$(document).ready(function() {
     cargarAgentes();
     if (!esAdmin) { cargarReporte(); }
 });

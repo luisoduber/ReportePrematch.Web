@@ -1,0 +1,269 @@
+@{
+    Layout = "_Layout";
+}
+
+<section class="glass-card">
+    <div class="welcome-bar">
+        <div>
+            <div class="welcome-title">@ViewBag.NombrePagina</div>
+            <div class="welcome-sub" id="subtitulo">Canal Taquilla · Por Cobrar</div>
+        </div>
+        <button class="btn-glass btn-primary" onclick="cargarReporte()">
+            <i class="ti ti-refresh"></i> Actualizar
+        </button>
+    </div>
+
+    <div class="glass-panel mt-3 p-3">
+        <div class="row g-2 align-items-end">
+            <div class="col-md-2">
+                <label class="field-label">Fecha Desde</label>
+                <input type="date" id="fechaD" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-2">
+                <label class="field-label">Fecha Hasta</label>
+                <input type="date" id="fechaH" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-3">
+                <label class="field-label">Agente</label>
+                @if (ViewBag.TipoUsuario == "Usuario Regular")
+                {
+                    <input type="text" id="agente" class="glass-input" value="@ViewBag.Agente" readonly />
+                }
+                else
+                {
+                    <select id="agente" class="glass-input" style="color:#fff;">
+                        <option value="" style="background:#002E5C;color:#fff;">TODOS</option>
+                    </select>
+                }
+            </div>
+            <!-- Toggle Canal -->
+            <div class="col-md-auto">
+                <label class="field-label">Canal</label>
+                <div class="canal-toggle" id="toggleCanal">
+                    <button class="toggle-btn active" data-val="taq" onclick="setCanal('taq',this)">
+                        <i class="ti ti-building-store"></i> Taquilla
+                    </button>
+                    <button class="toggle-btn" data-val="web" onclick="setCanal('web',this)">
+                        <i class="ti ti-world"></i> Web
+                    </button>
+                </div>
+            </div>
+            <!-- Toggle Estado -->
+            <div class="col-md-auto">
+                <label class="field-label">Estado</label>
+                <div class="canal-toggle" id="toggleEstado">
+                    <button class="toggle-btn active" data-val="cobrar" onclick="setEstado('cobrar',this)">
+                        <i class="ti ti-arrow-bar-down"></i> Por Cobrar
+                    </button>
+                    <button class="toggle-btn" data-val="pagar" onclick="setEstado('pagar',this)">
+                        <i class="ti ti-arrow-bar-up"></i> Por Pagar
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-auto">
+                <button class="btn-glass btn-primary w-100" onclick="cargarReporte()">
+                    <i class="ti ti-search"></i> Buscar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Métricas rápidas -->
+    <div class="quick-metrics-bar mt-3" id="metricsBar" style="display:none;">
+        <div class="metric-card"><div class="metric-label">Total Directas</div><div class="metric-value metric-blue"  id="metDirectas">—</div></div>
+        <div class="metric-card"><div class="metric-label">Total Parlay</div>  <div class="metric-value metric-red"   id="metParlay">—</div></div>
+        <div class="metric-card"><div class="metric-label">Posible Premio</div><div class="metric-value metric-green" id="metPremio">—</div></div>
+    </div>
+
+    <div class="table-responsive mt-3">
+        <table id="tblTicketsEnJuego" class="glass-table w-100">
+            <thead>
+                <tr>
+                    <th style="text-align:center;">Agente</th>
+                    <th style="text-align:center;">Usuario</th>
+                    <th style="text-align:center;">Directas</th>
+                    <th style="text-align:center;">Parlay</th>
+                    <th style="text-align:center;">Posible Premio</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="2" style="text-align:center;">TOTAL</th>
+                    <th id="totDirectas" style="text-align:center;"></th>
+                    <th id="totParlay"   style="text-align:center;"></th>
+                    <th id="totPremio"   style="text-align:center;"></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</section>
+
+<style>
+.canal-toggle {
+    display: flex;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.15);
+}
+.canal-toggle .toggle-btn {
+    flex: 1;
+    padding: 6px 14px;
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.6);
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+}
+.canal-toggle .toggle-btn:first-child { border-right: 1px solid rgba(255,255,255,0.1); }
+.canal-toggle .toggle-btn.active {
+    background: var(--sa-5, #0077B6);
+    color: #fff;
+    font-weight: 600;
+}
+.canal-toggle .toggle-btn:hover:not(.active) {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+}
+</style>
+
+@section Scripts {
+<script>
+const esAdmin       = '@ViewBag.TipoUsuario' !== 'Usuario Regular';
+const agenteSession = '@ViewBag.Agente';
+let dt;
+let canal  = 'taq';   // 'taq' | 'web'
+let estado = 'cobrar'; // 'cobrar' | 'pagar'
+
+const urlMap = {
+    'taq-cobrar': '@Url.Action("GetTicketsEnJuegoPorCobrarTaq","Reportes")',
+    'taq-pagar':  '@Url.Action("GetTicketsEnJuegoPorPagarTaq","Reportes")',
+    'web-cobrar': '@Url.Action("GetTicketsEnJuegoPorCobrarWeb","Reportes")',
+    'web-pagar':  '@Url.Action("GetTicketsEnJuegoPorPagarWeb","Reportes")'
+};
+
+const subtituloMap = {
+    'taq-cobrar': 'Canal Taquilla · Por Cobrar',
+    'taq-pagar':  'Canal Taquilla · Por Pagar',
+    'web-cobrar': 'Canal Web · Por Cobrar',
+    'web-pagar':  'Canal Web · Por Pagar'
+};
+
+function setCanal(val, btn) {
+    canal = val;
+    document.querySelectorAll('#toggleCanal .toggle-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    actualizarSubtitulo();
+}
+
+function setEstado(val, btn) {
+    estado = val;
+    document.querySelectorAll('#toggleEstado .toggle-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    actualizarSubtitulo();
+}
+
+function actualizarSubtitulo() {
+    document.getElementById('subtitulo').textContent = subtituloMap[canal + '-' + estado] || '';
+}
+
+function fmt(val) {
+    return parseFloat(val || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function cargarAgentes() {
+    if (!esAdmin) return;
+    $.post('@Url.Action("GetListAgencias","Reportes")', { agente: agenteSession })
+        .done(function(lista) {
+            const sel = document.getElementById('agente');
+            if (!sel) return;
+            if (sel.tomselect) sel.tomselect.destroy();
+            sel.innerHTML = '';
+            const optTodos = document.createElement('option');
+            optTodos.value = ''; optTodos.textContent = 'TODOS';
+            sel.appendChild(optTodos);
+            (lista || []).forEach(function(a) {
+                const opt = document.createElement('option');
+                opt.value = a; opt.textContent = a;
+                sel.appendChild(opt);
+            });
+            new TomSelect(sel, {
+                maxOptions: 2000, create: false, allowEmptyOption: true,
+                placeholder: 'Buscar agente...', searchField: ['text']
+            });
+            if (agenteSession) sel.tomselect.setValue(agenteSession, true);
+        })
+        .fail(function() {
+            Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar la lista de agentes.', background: '#002E5C', color: '#fff' });
+        });
+}
+
+function cargarReporte() {
+    const fechaD = document.getElementById('fechaD').value;
+    const fechaH = document.getElementById('fechaH').value;
+    const agente = document.getElementById('agente').value || 'TODOS';
+
+    if (!fechaD || !fechaH) {
+        Swal.fire({ icon: 'warning', title: 'Fechas requeridas', background: '#002E5C', color: '#fff' });
+        return;
+    }
+
+    const url = urlMap[canal + '-' + estado];
+    showBusy('Consultando...');
+
+    $.post(url, { fechaD, fechaH, agente })
+        .done(function(rows) {
+            if (!rows || !rows.length) {
+                Swal.fire({ icon: 'info', title: 'Sin resultados', background: '#002E5C', color: '#fff' });
+                hideBusy();
+                return;
+            }
+
+            var totD = 0, totP = 0, totPr = 0;
+            rows.forEach(function(r) {
+                totD  += parseFloat(r.directas     || 0);
+                totP  += parseFloat(r.parlay        || 0);
+                totPr += parseFloat(r.posiblePremio || 0);
+            });
+
+            document.getElementById('metDirectas').textContent = fmt(totD);
+            document.getElementById('metParlay').textContent   = fmt(totP);
+            document.getElementById('metPremio').textContent   = fmt(totPr);
+            document.getElementById('metricsBar').style.display = 'flex';
+
+            if (dt) { dt.destroy(); dt = null; }
+            dt = $('#tblTicketsEnJuego').DataTable({
+                data: rows,
+                columns: [
+                    { data: 'agente',       defaultContent: '—', className: 'text-center' },
+                    { data: 'usuario',      defaultContent: '—', className: 'text-center' },
+                    { data: 'directas',     className: 'text-center', createdCell: function(td, d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } },
+                    { data: 'parlay',       className: 'text-center', createdCell: function(td, d){ $(td).text(fmt(d)).addClass('col-monto-neg'); } },
+                    { data: 'posiblePremio',className: 'text-center', createdCell: function(td, d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } }
+                ],
+                footerCallback: function() {
+                    document.getElementById('totDirectas').textContent = fmt(totD);
+                    document.getElementById('totParlay').textContent   = fmt(totP);
+                    document.getElementById('totPremio').textContent   = fmt(totPr);
+                },
+                language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
+                pageLength: 25, order: [[0, 'asc']], dom: 'Bfrtip',
+                buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm' }]
+            });
+
+            hideBusy();
+        })
+        .fail(function() {
+            Swal.fire({ icon: 'error', title: 'Error de conexión', background: '#002E5C', color: '#fff' });
+            hideBusy();
+        });
+}
+
+$(document).ready(function() {
+    cargarAgentes();
+    if (!esAdmin) { cargarReporte(); }
+});
+</script>
+}

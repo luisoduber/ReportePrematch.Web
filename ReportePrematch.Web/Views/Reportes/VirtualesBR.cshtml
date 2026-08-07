@@ -48,12 +48,12 @@
         <table id="@ViewBag.TableId" class="glass-table w-100">
             <thead>
                 <tr>
-                    <th>Agente</th>
-                    <th>Usuario</th>
-                    <th>Ventas</th>
-                    <th>Premios</th>
-                    <th>Retorno</th>
-                    <th>Balance</th>
+                    <th class="text-center">Agente</th>
+                    <th class="text-center">Usuario</th>
+                    <th class="text-center">Ventas</th>
+                    <th class="text-center">Premios</th>
+                    <th class="text-center">Retorno</th>
+                    <th class="text-center">Balance</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -116,7 +116,14 @@ function cargarReporte(){
             if(dt)dt.destroy();
             dt=$('#@ViewBag.TableId').DataTable({
                 data,
-                columns: [{data:'agente'},{data:'usuario'},{data:'ventas',createdCell:function(td){$(td).addClass('col-monto-pos');}},{data:'premios',createdCell:function(td){$(td).addClass('col-monto-neg');}},{data:'retorno',createdCell:function(td){$(td).addClass('col-monto-neg');}},{data:'utilidad',createdCell:function(td,d){var n=parseFloat((d||'0').replace(/\./g,'').replace(',','.'));$(td).addClass(n<0?'col-monto-neg':'col-monto-pos');}}],
+                columns: [
+                    {data:'agente',    className:'text-center'},
+                    {data:'usuario',   className:'text-center'},
+                    {data:'ventas',    className:'text-center col-monto-pos'},
+                    {data:'premios',   className:'text-center col-monto-neg'},
+                    {data:'retorno',   className:'text-center col-monto-neg'},
+                    {data:'utilidad',  className:'text-center', createdCell:function(td,d){var n=parseFloat((d||'0').replace(/\./g,'').replace(',','.'));$(td).addClass(n<0?'col-monto-neg':'col-monto-pos');}}
+                ],
                 language:{url:'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json'},
                 pageLength:25,order:[[0,'asc']],dom:'Bfrtip',
                 buttons:[{extend:'excelHtml5',text:'<i class="ti ti-file-spreadsheet"></i> Excel',className:'btn-glass btn-primary btn-sm'}]

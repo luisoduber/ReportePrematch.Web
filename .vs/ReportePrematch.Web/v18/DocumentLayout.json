@@ -7,16 +7,44 @@
       "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\services\\clients\\apiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\services\\clients\\reportesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\services\\clients\\reportesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\models\\apireportes\\ventasporagentenikolswebdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\models\\apireportes\\ventasporagentenikolswebdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\views\\reportes\\ventasporagentenikolsweb.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\views\\reportes\\ventasporagentenikolsweb.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\views\\reportes\\ventasporagentenikolstaq.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\views\\reportes\\ventasporagentenikolstaq.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\views\\reportes\\ventasporagentenikols.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\views\\reportes\\ventasporagentenikols.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\services\\interfaces\\ireportesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\services\\interfaces\\ireportesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\models\\apireportes\\nikolstaqdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\models\\apireportes\\nikolstaqdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\controllers\\reportescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\controllers\\reportescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\models\\apireportes\\propsapidto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\models\\apireportes\\propsapidto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\models\\apireportes\\ventasdetalladaslivedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\models\\apireportes\\ventasdetalladaslivedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\services\\clients\\reportesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\services\\clients\\reportesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\models\\apireportes\\deportesmasvendidosdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -35,16 +63,8 @@
       "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\controllers\\reportescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\controllers\\reportescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\models\\apireportes\\casinodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\models\\apireportes\\casinodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\models\\apireportes\\nikolstaqdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\models\\apireportes\\nikolstaqdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\models\\apireportes\\loteriasdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -53,14 +73,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\models\\apireportes\\ventasporagentetaqdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\models\\apireportes\\ventasporagentetaqdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\services\\interfaces\\ireportesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\services\\interfaces\\ireportesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\wwwroot\\js\\busy.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -126,23 +138,60 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "VentasDetalladasLiveDto.cs",
-              "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\VentasDetalladasLiveDto.cs",
-              "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ApiReportes\\VentasDetalladasLiveDto.cs",
-              "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\VentasDetalladasLiveDto.cs",
-              "RelativeToolTip": "ReportePrematch.Web\\Models\\ApiReportes\\VentasDetalladasLiveDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "VentasPorAgenteNikolsWebDto.cs",
+              "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\VentasPorAgenteNikolsWebDto.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ApiReportes\\VentasPorAgenteNikolsWebDto.cs",
+              "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\VentasPorAgenteNikolsWebDto.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Models\\ApiReportes\\VentasPorAgenteNikolsWebDto.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAUAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-31T18:05:31.199Z"
+              "WhenOpened": "2026-08-05T20:42:01.049Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "VentasPorAgenteNikolsTaq.cshtml",
+              "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Views\\Reportes\\VentasPorAgenteNikolsTaq.cshtml",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Views\\Reportes\\VentasPorAgenteNikolsTaq.cshtml",
+              "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Views\\Reportes\\VentasPorAgenteNikolsTaq.cshtml",
+              "RelativeToolTip": "ReportePrematch.Web\\Views\\Reportes\\VentasPorAgenteNikolsTaq.cshtml",
+              "ViewState": "AgIAABIBAAAAAAAAAAAjwCMBAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-05T20:41:56.209Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "VentasPorAgenteNikols.cshtml",
+              "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Views\\Reportes\\VentasPorAgenteNikols.cshtml",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Views\\Reportes\\VentasPorAgenteNikols.cshtml",
+              "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Views\\Reportes\\VentasPorAgenteNikols.cshtml",
+              "RelativeToolTip": "ReportePrematch.Web\\Views\\Reportes\\VentasPorAgenteNikols.cshtml",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAAAGsAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-05T20:41:47.616Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ReportesService.cs",
+              "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Services\\Clients\\ReportesService.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Services\\Clients\\ReportesService.cs",
+              "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Services\\Clients\\ReportesService.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Services\\Clients\\ReportesService.cs",
+              "ViewState": "AgIAABQBAAAAAAAAAAAQwBkBAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-29T06:04:33.099Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "DeportesMasVendidosDto.cs",
               "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\DeportesMasVendidosDto.cs",
               "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ApiReportes\\DeportesMasVendidosDto.cs",
@@ -151,6 +200,18 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-31T18:04:38.143Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PropsApiDto.cs",
+              "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\PropsApiDto.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ApiReportes\\PropsApiDto.cs",
+              "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\PropsApiDto.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Models\\ApiReportes\\PropsApiDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-29T06:05:24.605Z"
             },
             {
               "$type": "Document",
@@ -167,43 +228,67 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Program.cs",
-              "RelativeDocumentMoniker": "ReportePrematch.Web\\Program.cs",
-              "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Program.cs",
-              "RelativeToolTip": "ReportePrematch.Web\\Program.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAADwvysAAAA8AAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "VentasPorAgenteNikolsWeb.cshtml",
+              "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Views\\Reportes\\VentasPorAgenteNikolsWeb.cshtml",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Views\\Reportes\\VentasPorAgenteNikolsWeb.cshtml",
+              "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Views\\Reportes\\VentasPorAgenteNikolsWeb.cshtml",
+              "RelativeToolTip": "ReportePrematch.Web\\Views\\Reportes\\VentasPorAgenteNikolsWeb.cshtml",
+              "ViewState": "AgIAAPMAAAAAAAAAAAAjwAQBAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-05T20:41:59.051Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "VentasDetalladasLiveDto.cs",
+              "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\VentasDetalladasLiveDto.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ApiReportes\\VentasDetalladasLiveDto.cs",
+              "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\VentasDetalladasLiveDto.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Models\\ApiReportes\\VentasDetalladasLiveDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-27T19:03:09.635Z"
+              "WhenOpened": "2026-07-31T18:05:31.199Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ReportesController.cs",
+              "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Controllers\\ReportesController.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Controllers\\ReportesController.cs",
+              "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Controllers\\ReportesController.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Controllers\\ReportesController.cs",
+              "ViewState": "AgIAAPUBAAAAAAAAAAAtwAQCAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-28T19:15:37.738Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\appsettings.json",
-              "RelativeDocumentMoniker": "ReportePrematch.Web\\appsettings.json",
-              "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\appsettings.json",
-              "RelativeToolTip": "ReportePrematch.Web\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-07-28T01:31:06.374Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ReportesService.cs",
-              "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Services\\Clients\\ReportesService.cs",
-              "RelativeDocumentMoniker": "ReportePrematch.Web\\Services\\Clients\\ReportesService.cs",
-              "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Services\\Clients\\ReportesService.cs",
-              "RelativeToolTip": "ReportePrematch.Web\\Services\\Clients\\ReportesService.cs",
-              "ViewState": "AgIAAGQCAAAAAAAAAAAkwJgCAAAzAAAAAAAAAA==",
+              "Title": "NikolsTaqDto.cs",
+              "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\NikolsTaqDto.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ApiReportes\\NikolsTaqDto.cs",
+              "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\NikolsTaqDto.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Models\\ApiReportes\\NikolsTaqDto.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAAAAIAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-29T06:04:33.099Z"
+              "WhenOpened": "2026-07-29T06:05:19.243Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 6,
+              "Title": "IReportesService.cs",
+              "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Services\\Interfaces\\IReportesService.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Services\\Interfaces\\IReportesService.cs",
+              "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Services\\Interfaces\\IReportesService.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Services\\Interfaces\\IReportesService.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAqwCkAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-28T19:14:44.781Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
               "Title": "Ventasporagentetaqdto.cs",
               "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\Ventasporagentetaqdto.cs",
               "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ApiReportes\\Ventasporagentetaqdto.cs",
@@ -215,19 +300,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PropsApiDto.cs",
-              "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\PropsApiDto.cs",
-              "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ApiReportes\\PropsApiDto.cs",
-              "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\PropsApiDto.cs",
-              "RelativeToolTip": "ReportePrematch.Web\\Models\\ApiReportes\\PropsApiDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-29T06:05:24.605Z"
+              "DocumentIndex": 14,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\appsettings.json",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\appsettings.json",
+              "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\appsettings.json",
+              "RelativeToolTip": "ReportePrematch.Web\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-07-28T01:31:06.374Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 13,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Program.cs",
+              "RelativeDocumentMoniker": "ReportePrematch.Web\\Program.cs",
+              "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Program.cs",
+              "RelativeToolTip": "ReportePrematch.Web\\Program.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAADwvysAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-27T19:03:09.635Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "VentasPorAgenteTaq.cshtml",
               "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Views\\Reportes\\VentasPorAgenteTaq.cshtml",
               "RelativeDocumentMoniker": "ReportePrematch.Web\\Views\\Reportes\\VentasPorAgenteTaq.cshtml",
@@ -239,19 +336,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ReportesController.cs",
-              "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Controllers\\ReportesController.cs",
-              "RelativeDocumentMoniker": "ReportePrematch.Web\\Controllers\\ReportesController.cs",
-              "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Controllers\\ReportesController.cs",
-              "RelativeToolTip": "ReportePrematch.Web\\Controllers\\ReportesController.cs",
-              "ViewState": "AgIAAAYCAAAAAAAAAAAAwCkCAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-28T19:15:37.738Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "busy.js",
               "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\wwwroot\\js\\busy.js",
               "RelativeDocumentMoniker": "ReportePrematch.Web\\wwwroot\\js\\busy.js",
@@ -263,7 +348,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 20,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\appsettings.Development.json",
               "RelativeDocumentMoniker": "ReportePrematch.Web\\appsettings.Development.json",
@@ -275,19 +360,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "ReportePrematch.Web\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "ReportePrematch.Web\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAOkAAAAAAAAAAAAuwAUBAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-07-29T05:23:07.237Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 15,
               "Title": "CasinoDto.cs",
               "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\CasinoDto.cs",
               "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ApiReportes\\CasinoDto.cs",
@@ -299,19 +372,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "NikolsTaqDto.cs",
-              "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\NikolsTaqDto.cs",
-              "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ApiReportes\\NikolsTaqDto.cs",
-              "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\NikolsTaqDto.cs",
-              "RelativeToolTip": "ReportePrematch.Web\\Models\\ApiReportes\\NikolsTaqDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-29T06:05:19.243Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 16,
               "Title": "Loteriasdto.cs",
               "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\Loteriasdto.cs",
               "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ApiReportes\\Loteriasdto.cs",
@@ -323,7 +384,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 21,
               "Title": "LoginViewModel.cs",
               "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ViewModels\\LoginViewModel.cs",
               "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ViewModels\\LoginViewModel.cs",
@@ -335,19 +396,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "IReportesService.cs",
-              "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Services\\Interfaces\\IReportesService.cs",
-              "RelativeDocumentMoniker": "ReportePrematch.Web\\Services\\Interfaces\\IReportesService.cs",
-              "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Services\\Interfaces\\IReportesService.cs",
-              "RelativeToolTip": "ReportePrematch.Web\\Services\\Interfaces\\IReportesService.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAiwDYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-28T19:14:44.781Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 25,
               "Title": "SessionData.cs",
               "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\SessionData.cs",
               "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\SessionData.cs",
@@ -359,7 +408,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 19,
               "Title": "Login.cshtml",
               "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Views\\Home\\Login.cshtml",
               "RelativeDocumentMoniker": "ReportePrematch.Web\\Views\\Home\\Login.cshtml",
@@ -371,7 +420,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 24,
               "Title": "Ventasporagentewebdto.cs",
               "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\Ventasporagentewebdto.cs",
               "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ApiReportes\\Ventasporagentewebdto.cs",
@@ -383,7 +432,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 23,
               "Title": "Detalleshipismodto.cs",
               "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\Detalleshipismodto.cs",
               "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ApiReportes\\Detalleshipismodto.cs",
@@ -395,7 +444,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 22,
               "Title": "Aviatrixdto.cs",
               "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Models\\ApiReportes\\Aviatrixdto.cs",
               "RelativeDocumentMoniker": "ReportePrematch.Web\\Models\\ApiReportes\\Aviatrixdto.cs",
@@ -407,7 +456,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 26,
               "Title": "IApiClient.cs",
               "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Services\\Interfaces\\IApiClient.cs",
               "RelativeDocumentMoniker": "ReportePrematch.Web\\Services\\Interfaces\\IApiClient.cs",
@@ -419,7 +468,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 28,
               "Title": "IAuthService.cs",
               "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Services\\Interfaces\\IAuthService.cs",
               "RelativeDocumentMoniker": "ReportePrematch.Web\\Services\\Interfaces\\IAuthService.cs",
@@ -431,7 +480,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 29,
               "Title": "AuthService.cs",
               "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Services\\Clients\\AuthService.cs",
               "RelativeDocumentMoniker": "ReportePrematch.Web\\Services\\Clients\\AuthService.cs",
@@ -443,7 +492,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 30,
               "Title": "launchSettings.json",
               "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "ReportePrematch.Web\\Properties\\launchSettings.json",
@@ -455,7 +504,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 31,
               "Title": "_LoginLayout.cshtml",
               "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Views\\Shared\\_LoginLayout.cshtml",
               "RelativeDocumentMoniker": "ReportePrematch.Web\\Views\\Shared\\_LoginLayout.cshtml",
@@ -467,7 +516,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 27,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "ReportePrematch.Web\\Controllers\\HomeController.cs",

@@ -1,0 +1,440 @@
+@{
+    Layout = "_Layout";
+}
+
+<style>
+    .canal-toggle { display:inline-flex; border:1px solid rgba(255,255,255,0.25); border-radius:30px; overflow:hidden; }
+    .tog-btn { border:none; background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.35); padding:8px 20px; font-size:11px; font-weight:700; letter-spacing:.8px; cursor:pointer; transition:all .25s; white-space:nowrap; }
+    .tog-btn.active { background:var(--sa-5,#0077B6); color:#fff; }
+    .quick-metrics-bar { display:flex; gap:.5rem; flex-wrap:wrap; }
+    .metric-card { flex:1; min-width:120px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:.5rem .75rem; text-align:center; }
+    .metric-label { font-size:.65rem; color:rgba(255,255,255,0.5); letter-spacing:.5px; text-transform:uppercase; margin-bottom:.25rem; }
+    .metric-value { font-size:1.05rem; font-weight:700; }
+    .metric-blue  { color:#48CAE4; }
+    .metric-red   { color:#f87171; }
+    .metric-green { color:#4ade80; }
+</style>
+
+<section class="glass-card">
+    <div class="welcome-bar">
+        <div>
+            <div class="welcome-title">@ViewBag.NombrePagina</div>
+            <div class="welcome-sub" id="canalSub">Canal Taquilla · Nikols</div>
+        </div>
+        <button class="btn-glass btn-primary" onclick="cargarReporte()">
+            <i class="ti ti-refresh"></i> Actualizar
+        </button>
+    </div>
+
+    <div class="glass-panel mt-3 p-3">
+        <div class="row g-2 align-items-end">
+            <div class="col-md-2">
+                <label class="field-label">Fecha Desde</label>
+                <input type="date" id="fechaD" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-2">
+                <label class="field-label">Fecha Hasta</label>
+                <input type="date" id="fechaH" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-3">
+                <label class="field-label">Agente</label>
+                @if (ViewBag.TipoUsuario == "Usuario Regular")
+                {
+                    <input type="text" id="agente" class="glass-input" value="@ViewBag.Agente" readonly />
+                }
+                else
+                {
+                    <select id="agente" class="glass-input" style="color:#fff;">
+                        <option value="" style="background:#002E5C;color:#fff;">TODOS</option>
+                    </select>
+                }
+            </div>
+            <div class="col-md-3 d-flex flex-column align-items-center justify-content-end pb-1">
+                <label class="field-label mb-1">Canal</label>
+                <div class="canal-toggle">
+                    <button class="tog-btn active" id="btnCanalTaq" onclick="setCanal('taq')">TAQUILLA</button>
+                    <button class="tog-btn"        id="btnCanalWeb" onclick="setCanal('web')">WEB</button>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button class="btn-glass btn-primary w-100" onclick="cargarReporte()">
+                    <i class="ti ti-search"></i> Buscar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Métricas -->
+    <div id="metricsBar" class="quick-metrics-bar mt-3" style="display:none;">
+        <div class="metric-card"><div class="metric-label">Total Ventas</div><div class="metric-value metric-blue"  id="metVentas">—</div></div>
+        <div class="metric-card"><div class="metric-label">Total Pagos</div><div class="metric-value metric-red"   id="metPagos">—</div></div>
+        <div class="metric-card"><div class="metric-label">Pendientes</div><div class="metric-value metric-blue"  id="metPendientes">—</div></div>
+        <div class="metric-card"><div class="metric-label">Balance</div><div class="metric-value metric-green" id="metBalance">—</div></div>
+    </div>
+
+    <div class="table-responsive mt-3">
+        <table id="@ViewBag.TableId" class="glass-table w-100">
+            <thead>
+                <tr id="theadRow">
+                    <th style="text-align:center;"></th>
+                    <th style="text-align:center; display:none;">Agente</th>
+                    <th style="text-align:center;">Usuario</th>
+                    <th style="text-align:center;">Ventas</th>
+                    <th style="text-align:center;">Pagos</th>
+                    <th style="text-align:center;">Pendientes</th>
+                    <th style="text-align:center;">Balance</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr id="tfootRow">
+                    <th colspan="2" style="text-align:center;">TOTAL</th>
+                    <th id="totVentas"     style="text-align:center;"></th>
+                    <th id="totPagos"      style="text-align:center;"></th>
+                    <th id="totPendientes" style="text-align:center;"></th>
+                    <th id="totBalance"    style="text-align:center;"></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</section>
+
+@section Scripts {
+<script>
+const tableId       = '#@ViewBag.TableId';
+const esAdmin       = '@ViewBag.TipoUsuario' !== 'Usuario Regular';
+const agenteSession = '@ViewBag.Agente';
+const urlTaq        = '@Url.Action("GetVentasPorAgenteNikolsTaq","Reportes")';
+const urlWeb        = '@Url.Action("GetVentasPorAgenteNikolsWeb","Reportes")';
+let canal = 'taq';
+let dt;
+let ticketsCache = {};
+
+/* ── helpers ─────────────────────────────────────────────────────────── */
+function fmt(v) {
+    if (v === null || v === undefined || v === '') return '0,00';
+    if (typeof v === 'string' && v.includes(',')) return v;
+    return parseFloat(v || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+function parseFmt(v) {
+    if (v === null || v === undefined || v === '') return 0;
+    return parseFloat(v.toString().replace(/\./g, '').replace(',', '.')) || 0;
+}
+function get(row, key) {
+    if (row[key] !== undefined) return row[key];
+    var lower = key.charAt(0).toLowerCase() + key.slice(1);
+    if (row[lower] !== undefined) return row[lower];
+    var upper = key.charAt(0).toUpperCase() + key.slice(1);
+    return row[upper] !== undefined ? row[upper] : '';
+}
+function fmtFecha(val) {
+    if (!val) return '—';
+    var s = val.toString().trim();
+    var partes = s.split(/[T ]/);
+    var fechaParte = partes[0] || s;
+    var hora = partes[1] ? partes[1].substring(0, 5) : '';
+    if (/^\d{4}-\d{2}-\d{2}$/.test(fechaParte)) {
+        var fp = fechaParte.split('-');
+        fechaParte = fp[2] + '/' + fp[1] + '/' + fp[0];
+    }
+    return hora ? fechaParte + ' ' + hora : fechaParte;
+}
+
+/* ── headers dinámicos ───────────────────────────────────────────────── */
+function setHeadersTaq() {
+    document.getElementById('theadRow').innerHTML =
+        '<th style="text-align:center;"></th>' +
+        '<th style="text-align:center; display:none;">Agente</th>' +
+        '<th style="text-align:center;">Usuario</th>' +
+        '<th style="text-align:center;">Ventas</th>' +
+        '<th style="text-align:center;">Pagos</th>' +
+        '<th style="text-align:center;">Pendientes</th>' +
+        '<th style="text-align:center;">Balance</th>';
+    document.getElementById('tfootRow').innerHTML =
+        '<th colspan="2" style="text-align:center;">TOTAL</th>' +
+        '<th id="totVentas"     style="text-align:center;"></th>' +
+        '<th id="totPagos"      style="text-align:center;"></th>' +
+        '<th id="totPendientes" style="text-align:center;"></th>' +
+        '<th id="totBalance"    style="text-align:center;"></th>';
+}
+function setHeadersWeb() {
+    document.getElementById('theadRow').innerHTML =
+        '<th style="display:none;">Agente</th>' +
+        '<th style="text-align:center;">Usuario</th>' +
+        '<th style="text-align:center;">Ventas</th>' +
+        '<th style="text-align:center;">Pagos</th>' +
+        '<th style="text-align:center;">Pendientes</th>' +
+        '<th style="text-align:center;">Balance</th>';
+    document.getElementById('tfootRow').innerHTML =
+        '<th colspan="1" style="text-align:center;">TOTAL</th>' +
+        '<th id="totVentas"     style="text-align:center;"></th>' +
+        '<th id="totPagos"      style="text-align:center;"></th>' +
+        '<th id="totPendientes" style="text-align:center;"></th>' +
+        '<th id="totBalance"    style="text-align:center;"></th>';
+}
+
+/* ── toggle ──────────────────────────────────────────────────────────── */
+function setCanal(c) {
+    if (canal === c) return;
+    canal = c;
+    document.getElementById('btnCanalTaq').classList.toggle('active', c === 'taq');
+    document.getElementById('btnCanalWeb').classList.toggle('active', c === 'web');
+    document.getElementById('canalSub').textContent = c === 'taq'
+        ? 'Canal Taquilla · Nikols'
+        : 'Canal Web · Nikols';
+    if (dt) { dt.destroy(); dt = null; }
+    $(tableId + ' tbody').empty();
+    ticketsCache = {};
+    document.getElementById('metricsBar').style.display = 'none';
+    if (c === 'taq') setHeadersTaq(); else setHeadersWeb();
+}
+
+/* ── child row tickets (Taquilla) ────────────────────────────────────── */
+function buildTicketsHTML(tickets) {
+    if (!tickets || !tickets.length)
+        return '<div class="p-2" style="color:#aac;">Sin tickets para este usuario.</div>';
+    var rows = '';
+    tickets.forEach(function(t) {
+        rows += '<tr style="text-align:center;">'
+            + '<td class="col-ticket">' + (t.ticket   || '—') + '</td>'
+            + '<td>' + (t.tipoAp    || '—') + '</td>'
+            + '<td class="col-monto-pos">' + fmt(t.riesgo    || t.arriesgando) + '</td>'
+            + '<td class="col-monto-neg">' + fmt(t.ganando)  + '</td>'
+            + '<td>' + (t.operacion || '—') + '</td>'
+            + '<td>' + fmtFecha(t.fecha)    + '</td>'
+            + '</tr>';
+    });
+    return '<div class="p-2"><table class="glass-table w-100" style="font-size:1em;text-align:center;">'
+        + '<thead><tr><th>Ticket</th><th>Tipo Apuesta</th><th>Riesgo</th><th>Premio</th><th>Operación</th><th>Fecha</th></tr></thead>'
+        + '<tbody>' + rows + '</tbody></table></div>';
+}
+
+/* compara usuario ignorando case y espacios */
+function mismoUsuario(ticketUsuario, usuario) {
+    return (ticketUsuario || '').toLowerCase().trim() === (usuario || '').toLowerCase().trim();
+}
+
+function toggleDetalle(tr, row) {
+    if (row.child.isShown()) {
+        row.child.hide();
+        tr.querySelector('.btn-expand').textContent = '+';
+        tr.classList.remove('shown');
+        return;
+    }
+    var d        = row.data();
+    var usuario  = d.usuario || '';
+    var agente   = d.agente  || '';
+    var fechaD   = document.getElementById('fechaD').value;
+    var fechaH   = document.getElementById('fechaH').value;
+
+    row.child('<div class="p-2" style="color:#aac;">Cargando...</div>').show();
+    tr.querySelector('.btn-expand').textContent = '−';
+    tr.classList.add('shown');
+
+    /* intenta primero con el agente específico, luego con TODOS si no hay resultados */
+    function buscarYMostrar(agenteParam) {
+        var cacheKey = agenteParam + '|' + fechaD + '|' + fechaH;
+        function mostrar(allTickets) {
+            var filtrados = (allTickets || []).filter(function(t){ return mismoUsuario(t.usuario, usuario); });
+            if (!filtrados.length && agenteParam !== 'TODOS') {
+                /* reintento con TODOS */
+                buscarYMostrar('TODOS');
+                return;
+            }
+            row.child(buildTicketsHTML(filtrados)).show();
+        }
+        if (ticketsCache[cacheKey] !== undefined) { mostrar(ticketsCache[cacheKey]); return; }
+        $.post('@Url.Action("GetTicketsDetalladosTaq","Reportes")', { fechaD, fechaH, agente: agenteParam })
+            .done(function(tickets) {
+                ticketsCache[cacheKey] = tickets || [];
+                mostrar(ticketsCache[cacheKey]);
+            })
+            .fail(function(xhr) {
+                row.child('<div class="p-2" style="color:#f88;">Error HTTP ' + xhr.status + ' al cargar tickets.</div>').show();
+            });
+    }
+
+    buscarYMostrar(agente || 'TODOS');
+}
+
+/* ── agentes ─────────────────────────────────────────────────────────── */
+function cargarAgentes() {
+    if (!esAdmin) return;
+    $.post('@Url.Action("GetListAgencias","Reportes")', { agente: agenteSession })
+        .done(function(lista) {
+            const sel = document.getElementById('agente');
+            if (!sel) return;
+            if (sel.tomselect) sel.tomselect.destroy();
+            sel.innerHTML = '';
+            const optTodos = document.createElement('option');
+            optTodos.value = ''; optTodos.textContent = 'TODOS';
+            sel.appendChild(optTodos);
+            (lista || []).forEach(function(a) {
+                const opt = document.createElement('option');
+                opt.value = a; opt.textContent = a;
+                sel.appendChild(opt);
+            });
+            new TomSelect(sel, { maxOptions: 2000, create: false, allowEmptyOption: true, placeholder: 'Buscar agente...', searchField: ['text'] });
+            if (agenteSession) sel.tomselect.setValue(agenteSession, true);
+        })
+        .fail(function(xhr) {
+            Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar la lista de agentes (HTTP ' + xhr.status + ').', background: '#002E5C', color: '#fff' });
+        });
+}
+
+/* ── carga principal ─────────────────────────────────────────────────── */
+function cargarReporte() {
+    const fechaD = document.getElementById('fechaD').value;
+    const fechaH = document.getElementById('fechaH').value;
+    const agente = document.getElementById('agente').value || 'TODOS';
+    if (!fechaD || !fechaH) {
+        Swal.fire({ icon: 'warning', title: 'Fechas requeridas', background: '#002E5C', color: '#fff' });
+        return;
+    }
+    ticketsCache = {};
+    showBusy(canal === 'taq' ? 'Consultando Nikols taquilla...' : 'Consultando Nikols web...');
+
+    $.post(canal === 'taq' ? urlTaq : urlWeb, { fechaD, fechaH, agente })
+        .done(function(rows) {
+            hideBusy();
+            if (!rows || !rows.length) {
+                Swal.fire({ icon: 'info', title: 'Sin resultados', text: 'No hay datos para el período seleccionado.', background: '#002E5C', color: '#fff' });
+                return;
+            }
+            if (dt) { dt.destroy(); dt = null; }
+
+            if (canal === 'taq') {
+                // ── GROUP BY usuario ──────────────────────────────────────
+                var grouped = {};
+                rows.forEach(function(r) {
+                    var usr = get(r, 'Usuario') || '(sin usuario)';
+                    var ag  = get(r, 'Agente')  || '';
+                    if (!grouped[usr]) {
+                        grouped[usr] = { usuario: usr, agente: ag, ventas: 0, pagos: 0, pendientes: 0, balance: 0 };
+                    }
+                    grouped[usr].ventas     += parseFmt(get(r, 'Ventas'));
+                    grouped[usr].pagos      += parseFmt(get(r, 'Pagos'));
+                    grouped[usr].pendientes += parseFmt(get(r, 'Pendientes'));
+                    grouped[usr].balance    += parseFmt(get(r, 'Balance'));
+                });
+                var groupedArr = Object.values(grouped);
+
+                var totV = 0, totP = 0, totPend = 0, totB = 0;
+                groupedArr.forEach(function(r) {
+                    totV    += r.ventas;
+                    totP    += r.pagos;
+                    totPend += r.pendientes;
+                    totB    += r.balance;
+                });
+
+                document.getElementById('metVentas').textContent     = fmt(totV);
+                document.getElementById('metPagos').textContent      = fmt(totP);
+                document.getElementById('metPendientes').textContent = fmt(totPend);
+                document.getElementById('metBalance').textContent    = fmt(totB);
+                document.getElementById('metricsBar').style.display  = 'flex';
+
+                dt = $(tableId).DataTable({
+                    data: groupedArr,
+                    columns: [
+                        {
+                            className: 'dt-control text-center', orderable: false, data: null, defaultContent: '',
+                            createdCell: function(td) {
+                                var btn = document.createElement('button');
+                                btn.className = 'btn-expand btn-glass btn-primary btn-sm';
+                                btn.style.cssText = 'padding:1px 7px;font-size:.9em;min-width:24px;';
+                                btn.textContent = '+';
+                                td.appendChild(btn);
+                            }
+                        },
+                        { data: 'agente',     visible: false },
+                        { data: 'usuario',    defaultContent: '—', className: 'text-center' },
+                        { data: 'ventas',     className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } },
+                        { data: 'pagos',      className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-neg'); } },
+                        { data: 'pendientes', className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)); } },
+                        {
+                            data: 'balance', className: 'text-center',
+                            createdCell: function(td,d){ $(td).text(fmt(d)).addClass(parseFloat(d||0)>=0?'col-monto-pos':'col-monto-neg'); }
+                        }
+                    ],
+                    footerCallback: function() {
+                        document.getElementById('totVentas').textContent     = fmt(totV);
+                        document.getElementById('totPagos').textContent      = fmt(totP);
+                        document.getElementById('totPendientes').textContent = fmt(totPend);
+                        var elB = document.getElementById('totBalance');
+                        if (elB) {
+                            elB.textContent      = fmt(totB);
+                            elB.style.color      = totB >= 0 ? 'var(--av-5, #7FCA8A)' : '#FC8181';
+                            elB.style.fontWeight = '600';
+                            elB.style.textAlign  = 'center';
+                        }
+                    },
+                    language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
+                    pageLength: 25, order: [[2, 'asc']], dom: 'Bfrtip',
+                    buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm', exportOptions: { columns: ':not(.dt-control)' } }]
+                });
+
+                $(tableId + ' tbody').on('click', '.btn-expand', function() {
+                    var tr = $(this).closest('tr')[0];
+                    toggleDetalle(tr, dt.row(tr));
+                });
+
+            } else {
+                // ── Web — lista plana Agente / Usuario ────────────────────
+                var totV = 0, totP = 0, totPend = 0, totB = 0;
+                rows.forEach(function(r) {
+                    totV    += parseFmt(get(r, 'Ventas'));
+                    totP    += parseFmt(get(r, 'Pagos'));
+                    totPend += parseFmt(get(r, 'Pendientes'));
+                    totB    += parseFmt(get(r, 'Balance'));
+                });
+
+                document.getElementById('metVentas').textContent     = fmt(totV);
+                document.getElementById('metPagos').textContent      = fmt(totP);
+                document.getElementById('metPendientes').textContent = fmt(totPend);
+                document.getElementById('metBalance').textContent    = fmt(totB);
+                document.getElementById('metricsBar').style.display  = 'flex';
+
+                dt = $(tableId).DataTable({
+                    data: rows,
+                    columns: [
+                        { data: null, visible: false, render: function(d,t,r){ return get(r,'Agente') || '—'; } },
+                        { data: null, className: 'text-center', render: function(d,t,r){ return get(r,'Usuario') || '—'; } },
+                        { data: null, className: 'text-center col-monto-pos', render: function(d,t,r){ return fmt(get(r,'Ventas')); } },
+                        { data: null, className: 'text-center col-monto-neg', render: function(d,t,r){ return fmt(get(r,'Pagos')); } },
+                        { data: null, className: 'text-center', render: function(d,t,r){ return fmt(get(r,'Pendientes')); } },
+                        {
+                            data: null, className: 'text-center',
+                            createdCell: function(td,_d,r){ var b=parseFmt(get(r,'Balance')); $(td).text(fmt(get(r,'Balance'))).addClass(b>=0?'col-monto-pos':'col-monto-neg'); },
+                            render: function(d,t,r){ return fmt(get(r,'Balance')); }
+                        }
+                    ],
+                    footerCallback: function() {
+                        document.getElementById('totVentas').textContent     = fmt(totV);
+                        document.getElementById('totPagos').textContent      = fmt(totP);
+                        document.getElementById('totPendientes').textContent = fmt(totPend);
+                        var elB = document.getElementById('totBalance');
+                        if (elB) {
+                            elB.textContent      = fmt(totB);
+                            elB.style.color      = totB >= 0 ? 'var(--av-5, #7FCA8A)' : '#FC8181';
+                            elB.style.fontWeight = '600';
+                            elB.style.textAlign  = 'center';
+                        }
+                    },
+                    language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
+                    pageLength: 25, order: [[0, 'asc']], dom: 'Bfrtip',
+                    buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm', exportOptions: { columns: ':visible' } }]
+                });
+            }
+        })
+        .fail(function(xhr) {
+            hideBusy();
+            Swal.fire({ icon: 'error', title: 'Error', text: 'Error HTTP ' + xhr.status + ' al consultar Nikols.', background: '#002E5C', color: '#fff' });
+        });
+}
+
+$(document).ready(function() {
+    cargarAgentes();
+    if (!esAdmin) { cargarReporte(); }
+});
+</script>
+}

@@ -44,18 +44,39 @@
         </div>
     </div>
 
-    <div class="table-responsive mt-3">
-        <table id="@ViewBag.TableId" class="glass-table w-100">
-            <thead>
-                <tr>
-                    <th>Deporte</th>
-                    <th>Tickets</th>
-                    <th>Monto Apostado</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+    <div class="mt-4">
+        <h6 class="text-white mb-2"><i class="ti ti-users"></i> Agrupados por Agente</h6>
+        <div class="table-responsive">
+            <table id="@ViewBag.TableId1" class="glass-table w-100">
+                <thead>
+                    <tr>
+                        <th class="text-center">Agente</th>
+                        <th class="text-center">Deporte</th>
+                        <th class="text-center">Cant. Tickets</th>
+                        <th class="text-center">Monto</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
+
+    <div class="mt-4">
+        <h6 class="text-white mb-2"><i class="ti ti-ball-football"></i> Agrupados por Deporte</h6>
+        <div class="table-responsive">
+            <table id="@ViewBag.TableId2" class="glass-table w-100">
+                <thead>
+                    <tr>
+                        <th class="text-center">Deporte</th>
+                        <th class="text-center">Cant. Tickets</th>
+                        <th class="text-center">Monto</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
 </section>
 
 @section Scripts {
@@ -69,7 +90,6 @@ function cargarAgentes() {
         .done(function(lista) {
             const sel = document.getElementById('agente');
             if (!sel) return;
-            // Destruir instancia Tom Select previa si existe
             if (sel.tomselect) sel.tomselect.destroy();
             sel.innerHTML = '';
             const optTodos = document.createElement('option');
@@ -80,7 +100,6 @@ function cargarAgentes() {
                 opt.value = a; opt.textContent = a;
                 sel.appendChild(opt);
             });
-            // Inicializar Tom Select con búsqueda
             new TomSelect(sel, {
                 maxOptions: 2000,
                 create: false,
@@ -89,38 +108,74 @@ function cargarAgentes() {
                 searchField: ['text']
             });
             if (agenteSession) sel.tomselect.setValue(agenteSession, true);
-            console.log('[Agentes] ' + (lista ? lista.length : 0) + ' agentes cargados.');
         })
         .fail(function(xhr) {
-            console.error('[Agentes] Error HTTP ' + xhr.status + ' al cargar agentes:', xhr.responseText);
+            console.error('[Agentes] Error HTTP ' + xhr.status, xhr.responseText);
             Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar la lista de agentes (HTTP ' + xhr.status + ').', background: '#002E5C', color: '#fff' });
         });
 }
 
-let dt;
-function fmt(v){ return parseFloat(v||0).toLocaleString('es-VE',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+let dtAgente, dtDeporte;
+function fmt(v) { return parseFloat(v || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
 
-function cargarReporte(){
-    const fechaD=document.getElementById('fechaD').value;
-    const fechaH=document.getElementById('fechaH').value;
-    const agente=document.getElementById('agente').value||'TODOS';
-    if(!fechaD||!fechaH){Swal.fire({icon:'warning',title:'Fechas requeridas',background:'#002E5C',color:'#fff'});return;}
+function cargarReporte() {
+    const fechaD = document.getElementById('fechaD').value;
+    const fechaH = document.getElementById('fechaH').value;
+    const agente = document.getElementById('agente').value || 'TODOS';
+    if (!fechaD || !fechaH) {
+        Swal.fire({ icon: 'warning', title: 'Fechas requeridas', background: '#002E5C', color: '#fff' });
+        return;
+    }
     showBusy('Consultando...');
 
-    $.post('@Url.Action("GetDeportesMasVendidosPorDeporte","Reportes")',{fechaD,fechaH,agente})
-        .done(function(data){
-            if(!data||!data.length){Swal.fire({icon:'info',title:'Sin resultados',background:'#002E5C',color:'#fff'});hideBusy();return;}
-            if(dt)dt.destroy();
-            dt=$('#@ViewBag.TableId').DataTable({
-                data,
-                columns: [{data:'deporte',defaultContent:'—'},{data:'cantTickets'},{data:'monto',createdCell:function(td,d){$(td).text(fmt(d)).addClass('col-monto-pos');}}],
-                language:{url:'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json'},
-                pageLength:25,order:[[0,'asc']],dom:'Bfrtip',
-                buttons:[{extend:'excelHtml5',text:'<i class="ti ti-file-spreadsheet"></i> Excel',className:'btn-glass btn-primary btn-sm'}]
+    const reqAgente  = $.post('@Url.Action("GetDeportesMasVendidosPorAgente","Reportes")',  { fechaD, fechaH, agente });
+    const reqDeporte = $.post('@Url.Action("GetDeportesMasVendidosPorDeporte","Reportes")', { fechaD, fechaH, agente });
+
+    $.when(reqAgente, reqDeporte)
+        .done(function(resAgente, resDeporte) {
+            const dataAgente  = resAgente[0]  || [];
+            const dataDeporte = resDeporte[0] || [];
+
+            // ── Tabla 1: por Agente ──
+            if (dtAgente) { dtAgente.destroy(); dtAgente = null; }
+            dtAgente = $('#@ViewBag.TableId1').DataTable({
+                data: dataAgente,
+                columns: [
+                    { data: null, className: 'text-center', render: function(row) { return row.agente || row.Agente || '—'; } },
+                    { data: null, className: 'text-center', render: function(row) { return row.deporte || row.Deporte || '—'; } },
+                    { data: null, className: 'text-center', render: function(row) { return row.cantTickets ?? row.CantTickets ?? 0; } },
+                    { data: null, className: 'text-center', render: function(row) { return fmt(row.monto ?? row.Monto); }, createdCell: function(td) { $(td).addClass('col-monto-pos'); } }
+                ],
+                language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
+                pageLength: 50,
+                order: [[0, 'asc'], [1, 'asc']],
+                dom: 'Bfrtip',
+                buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm' }]
             });
+
+            if (dtDeporte) { dtDeporte.destroy(); dtDeporte = null; }
+            dtDeporte = $('#@ViewBag.TableId2').DataTable({
+                data: dataDeporte,
+                columns: [
+                    { data: null, className: 'text-center', render: function(row) { return row.deporte || row.Deporte || '—'; } },
+                    { data: null, className: 'text-center', render: function(row) { return row.cantTickets ?? row.CantTickets ?? 0; } },
+                    { data: null, className: 'text-center', render: function(row) { return fmt(row.monto ?? row.Monto); }, createdCell: function(td) { $(td).addClass('col-monto-pos'); } }
+                ],
+                language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
+                pageLength: 50,
+                order: [[0, 'asc']],
+                dom: 'Bfrtip',
+                buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm' }]
+            });
+
             hideBusy();
-        }).fail(function(){Swal.fire({icon:'error',title:'Error',background:'#002E5C',color:'#fff'});hideBusy();});
+        })
+        .fail(function() {
+            Swal.fire({ icon: 'error', title: 'Error al consultar', background: '#002E5C', color: '#fff' });
+            hideBusy();
+        });
 }
+
 $(document).ready(function () {
     cargarAgentes();
     if (!esAdmin) { cargarReporte(); }

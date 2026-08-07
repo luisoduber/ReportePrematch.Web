@@ -45,6 +45,14 @@ public sealed class ReportesController(
     // ═══════════════════════════════════════════════════════════════
 
     [HttpGet]
+    public IActionResult VentasPorAgente()
+    {
+        if (!SesionActiva()) return RedirectToLogin();
+        CargarViewBag("Ventas por Agente", "btnVentasAgente", "tblVentasAgente");
+        return View();
+    }
+
+    [HttpGet]
     public IActionResult VentasPorAgenteWeb()
     {
         if (!SesionActiva()) return RedirectToLogin();
@@ -164,6 +172,14 @@ public sealed class ReportesController(
         => Json(await reportes.GetDeportesMasVendidosPorDeporteAsync(fechaD, fechaH, agente, Pais, Role));
 
     [HttpGet]
+    public IActionResult TicketsDetallados()
+    {
+        if (!SesionActiva()) return RedirectToLogin();
+        CargarViewBag("Tickets Detallados", "btnTicketsDetallados", "tblTicketsDetallados");
+        return View();
+    }
+
+    [HttpGet]
     public IActionResult TicketsDetalladosWeb()
     {
         if (!SesionActiva()) return RedirectToLogin();
@@ -186,6 +202,14 @@ public sealed class ReportesController(
         => Json(await reportes.GetTicketsDetalladosTaqAsync(fechaD, fechaH, agente, Pais, Role));
 
     [HttpGet]
+    public IActionResult VentasPorPais()
+    {
+        if (!SesionActiva()) return RedirectToLogin();
+        CargarViewBag("Ventas por País", "btnVentasPorPais", "tblVentasPorPais");
+        return View();
+    }
+
+    [HttpGet]
     public IActionResult VentasPorPaisWeb()
     {
         if (!SesionActiva()) return RedirectToLogin();
@@ -193,8 +217,8 @@ public sealed class ReportesController(
         return View();
     }
     [HttpPost]
-    public async Task<IActionResult> GetVentasPorPaisWeb(string fechaD, string fechaH)
-        => Json(await reportes.GetVentasPorPaisWebAsync(fechaD, fechaH, Pais));
+    public async Task<IActionResult> GetVentasPorPaisWeb(string fechaD, string fechaH, string pais)
+        => Json(await reportes.GetVentasPorPaisWebAsync(fechaD, fechaH, pais));
 
     [HttpGet]
     public IActionResult VentasPorPaisTaq()
@@ -204,8 +228,8 @@ public sealed class ReportesController(
         return View();
     }
     [HttpPost]
-    public async Task<IActionResult> GetVentasPorPaisTaq(string fechaD, string fechaH)
-        => Json(await reportes.GetVentasPorPaisTaqAsync(fechaD, fechaH, Pais));
+    public async Task<IActionResult> GetVentasPorPaisTaq(string fechaD, string fechaH, string pais)
+        => Json(await reportes.GetVentasPorPaisTaqAsync(fechaD, fechaH, pais));
 
     [HttpGet]
     public IActionResult RetirosRecargas()
@@ -361,6 +385,22 @@ public sealed class ReportesController(
     public async Task<IActionResult> GetClienteReg(string fechaD, string fechaH, string agente)
         => Json(await reportes.GetClientesRegAsync(fechaD, fechaH, agente, Role, Pais));
 
+    // ── Vista unificada BusquedaTickets (consume GCITReportes REST API) ──────
+    [HttpGet]
+    public IActionResult BusquedaTickets()
+    {
+        if (!SesionActiva()) return RedirectToLogin();
+        CargarViewBag("Búsqueda de Tickets", "btnBusquedaTickets", "tblBusquedaTickets");
+        return View();
+    }
+    [HttpPost]
+    public async Task<IActionResult> GetBusquedaTicketsTaqApi(string fecha, string agente, long ticket, string operacion)
+        => Json(await reportes.GetBusquedaTicketsTaqApiAsync(fecha, agente, ticket, operacion));
+    [HttpPost]
+    public async Task<IActionResult> GetBusquedaTicketsWebApi(string fecha, string agente, long ticket, string operacion)
+        => Json(await reportes.GetBusquedaTicketsWebApiAsync(fecha, agente, ticket, operacion));
+
+    // ── Legacy SOAP (mantenidas para compatibilidad) ─────────────────────────
     [HttpGet]
     public IActionResult BusquedaTicketsWeb()
     {
@@ -406,6 +446,21 @@ public sealed class ReportesController(
         => Json(await reportes.GetVentasDetalladasLiveAsync(fechaD, fechaH, agente, Pais, Role));
 
     [HttpGet]
+    public IActionResult TicketsEnJuego()
+    {
+        if (!SesionActiva()) return RedirectToLogin();
+        CargarViewBag("Tickets en Juego", "btnTicketsEnJuego", "tblTicketsEnJuego");
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> GetTicketsEnJuegoPorPagarWeb(string fechaD, string fechaH, string agente)
+        => Json(await reportes.GetTicketsEnJuegoPorPagarWebAsync(fechaD, fechaH, agente));
+    [HttpPost]
+    public async Task<IActionResult> GetTicketsEnJuegoPorCobrarWeb(string fechaD, string fechaH, string agente)
+        => Json(await reportes.GetTicketsEnJuegoPorCobrarWebAsync(fechaD, fechaH, agente));
+
+    [HttpGet]
     public IActionResult TicketsEnJuegoWeb()
     {
         if (!SesionActiva()) return RedirectToLogin();
@@ -414,9 +469,6 @@ public sealed class ReportesController(
         ViewBag.TableId2 = "tblTicketsEnJuegoPorCobrar";
         return View();
     }
-    [HttpPost]
-    public async Task<IActionResult> GetTicketsEnJuegoWeb(string fechaD, string fechaH, string agente)
-        => Json(await reportes.GetTicketsEnJuegoWebAsync(fechaD, fechaH, agente));
 
     [HttpGet]
     public IActionResult TicketsEnJuegoTaq()
@@ -428,8 +480,19 @@ public sealed class ReportesController(
         return View();
     }
     [HttpPost]
-    public async Task<IActionResult> GetTicketsEnJuegoTaq(string fechaD, string fechaH, string agente)
-        => Json(await reportes.GetTicketsEnJuegoTaqAsync(fechaD, fechaH, agente));
+    public async Task<IActionResult> GetTicketsEnJuegoPorPagarTaq(string fechaD, string fechaH, string agente)
+        => Json(await reportes.GetTicketsEnJuegoPorPagarTaqAsync(fechaD, fechaH, agente));
+    [HttpPost]
+    public async Task<IActionResult> GetTicketsEnJuegoPorCobrarTaq(string fechaD, string fechaH, string agente)
+        => Json(await reportes.GetTicketsEnJuegoPorCobrarTaqAsync(fechaD, fechaH, agente));
+
+    [HttpGet]
+    public IActionResult VentasPorAgenteNikols()
+    {
+        if (!SesionActiva()) return RedirectToLogin();
+        CargarViewBag("Ventas por Agente Nikols", "btnVentasAgenteNikols", "tblVentasAgenteNikols");
+        return View("~/Views/Reportes/VentasPorAgenteNikols.cshtml");
+    }
 
     [HttpGet]
     public IActionResult VentasPorAgenteNikolsWeb()
@@ -452,6 +515,14 @@ public sealed class ReportesController(
     [HttpPost]
     public async Task<IActionResult> GetVentasPorAgenteNikolsTaq(string fechaD, string fechaH, string agente)
         => Json(await reportes.GetVentasPorAgenteNikolsTaqAsync(fechaD, fechaH, agente, Local, Pais, Role));
+
+    [HttpGet]
+    public IActionResult Estadisticas()
+    {
+        if (!SesionActiva()) return RedirectToLogin();
+        CargarViewBag("Estadísticas", "btnEstadisticas", "tblEstadisticas");
+        return View();
+    }
 
     [HttpGet]
     public IActionResult EstadisticasWeb()

@@ -2,11 +2,24 @@
     Layout = "_Layout";
 }
 
+<style>
+    .canal-toggle { display:inline-flex; border:1px solid rgba(255,255,255,0.25); border-radius:30px; overflow:hidden; }
+    .tog-btn { border:none; background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.35); padding:8px 20px; font-size:11px; font-weight:700; letter-spacing:.8px; cursor:pointer; transition:all .25s; white-space:nowrap; }
+    .tog-btn.active { background:var(--sa-5,#0077B6); color:#fff; }
+    .quick-metrics-bar { display:flex; gap:.5rem; flex-wrap:wrap; }
+    .metric-card { flex:1; min-width:120px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:.5rem .75rem; text-align:center; }
+    .metric-label { font-size:.65rem; color:rgba(255,255,255,0.5); letter-spacing:.5px; text-transform:uppercase; margin-bottom:.25rem; }
+    .metric-value { font-size:1.05rem; font-weight:700; }
+    .metric-blue  { color:#48CAE4; }
+    .metric-red   { color:#f87171; }
+    .metric-green { color:#4ade80; }
+</style>
+
 <section class="glass-card">
     <div class="welcome-bar">
         <div>
             <div class="welcome-title">@ViewBag.NombrePagina</div>
-            <div class="welcome-sub">Canal Taquilla · Resumen estadístico por Agente y Deporte</div>
+            <div class="welcome-sub" id="canalSub">Canal Taquilla · Resumen estadístico por Deporte</div>
         </div>
         <button class="btn-glass btn-primary" onclick="cargarReporte()">
             <i class="ti ti-refresh"></i> Actualizar
@@ -15,11 +28,11 @@
 
     <div class="glass-panel mt-3 p-3">
         <div class="row g-2 align-items-end">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label class="field-label">Fecha Desde</label>
                 <input type="date" id="fechaD" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label class="field-label">Fecha Hasta</label>
                 <input type="date" id="fechaH" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
             </div>
@@ -36,7 +49,14 @@
                     </select>
                 }
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 d-flex flex-column align-items-center justify-content-end pb-1">
+                <label class="field-label mb-1">Canal</label>
+                <div class="canal-toggle">
+                    <button class="tog-btn active" id="btnCanalTaq" onclick="setCanal('taq')">TAQUILLA</button>
+                    <button class="tog-btn"        id="btnCanalWeb" onclick="setCanal('web')">WEB</button>
+                </div>
+            </div>
+            <div class="col-md-2">
                 <button class="btn-glass btn-primary w-100" onclick="cargarReporte()">
                     <i class="ti ti-search"></i> Buscar
                 </button>
@@ -45,39 +65,17 @@
     </div>
 
     <!-- Métricas rápidas -->
-    <div id="metricsBar" class="row g-2 mt-2" style="display:none;">
-        <div class="col-6 col-md-3">
-            <div class="glass-panel p-2 text-center">
-                <div class="field-label mb-1">Total Ventas</div>
-                <div class="welcome-title" id="metVentas" style="font-size:1.1em;">0,00</div>
-            </div>
-        </div>
-        <div class="col-6 col-md-3">
-            <div class="glass-panel p-2 text-center">
-                <div class="field-label mb-1">Total Pagos</div>
-                <div class="welcome-title col-monto-neg" id="metPagos" style="font-size:1.1em;">0,00</div>
-            </div>
-        </div>
-        <div class="col-6 col-md-3">
-            <div class="glass-panel p-2 text-center">
-                <div class="field-label mb-1">Pendientes</div>
-                <div class="welcome-title" id="metPendientes" style="font-size:1.1em;">0,00</div>
-            </div>
-        </div>
-        <div class="col-6 col-md-3">
-            <div class="glass-panel p-2 text-center">
-                <div class="field-label mb-1">Utilidad</div>
-                <div class="welcome-title" id="metUtilidad" style="font-size:1.1em;">0,00</div>
-            </div>
-        </div>
+    <div id="metricsBar" class="quick-metrics-bar mt-3" style="display:none;">
+        <div class="metric-card"><div class="metric-label">Total Ventas</div><div class="metric-value metric-blue"  id="metVentas">—</div></div>
+        <div class="metric-card"><div class="metric-label">Total Pagos</div><div class="metric-value metric-red"   id="metPagos">—</div></div>
+        <div class="metric-card"><div class="metric-label">Utilidad</div><div class="metric-value metric-green" id="metUtilidad">—</div></div>
     </div>
 
     <div class="table-responsive mt-3">
         <table id="@ViewBag.TableId" class="glass-table w-100">
             <thead>
                 <tr>
-                    <th>Agente</th>
-                    <th style="text-align:center;">Deporte</th>
+                    <th>Deporte</th>
                     <th style="text-align:center;">Ventas</th>
                     <th style="text-align:center;">Pagos</th>
                     <th style="text-align:center;">Pendientes</th>
@@ -87,7 +85,6 @@
             <tbody></tbody>
             <tfoot>
                 <tr>
-                    <th></th>
                     <th style="text-align:center;">TOTAL</th>
                     <th id="totVentas"     style="text-align:center;"></th>
                     <th id="totPagos"      style="text-align:center;"></th>
@@ -104,16 +101,29 @@
 const tableId       = '#@ViewBag.TableId';
 const esAdmin       = '@ViewBag.TipoUsuario' !== 'Usuario Regular';
 const agenteSession = '@ViewBag.Agente';
+const urlTaq        = '@Url.Action("GetEstadisticasTaq","Reportes")';
+const urlWeb        = '@Url.Action("GetEstadisticasWeb","Reportes")';
+let canal = 'taq';
 let dt;
 
 function fmt(v) {
     return parseFloat(v || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
-function g(row, campo) {
-    if (row[campo] !== undefined) return row[campo];
-    var p = campo.charAt(0).toUpperCase() + campo.slice(1);
-    return row[p] !== undefined ? row[p] : 0;
+function n(v) { return parseFloat(v || 0); }
+
+function setCanal(c) {
+    if (canal === c) return;
+    canal = c;
+    document.getElementById('btnCanalTaq').classList.toggle('active', c === 'taq');
+    document.getElementById('btnCanalWeb').classList.toggle('active', c === 'web');
+    document.getElementById('canalSub').textContent = c === 'taq'
+        ? 'Canal Taquilla · Resumen estadístico por Deporte'
+        : 'Canal Web · Resumen estadístico por Deporte';
+    if (dt) { dt.destroy(); dt = null; }
+    $(tableId + ' tbody').empty();
+    $(tableId + ' tfoot th[id]').text('');
+    document.getElementById('metricsBar').style.display = 'none';
 }
 
 function cargarAgentes() {
@@ -153,9 +163,9 @@ function cargarReporte() {
         return;
     }
 
-    showBusy('Consultando estadísticas taquilla...');
+    showBusy(canal === 'taq' ? 'Consultando estadísticas taquilla...' : 'Consultando estadísticas web...');
 
-    $.post('@Url.Action("GetEstadisticasTaq","Reportes")', { fechaD, fechaH, agente })
+    $.post(canal === 'taq' ? urlTaq : urlWeb, { fechaD, fechaH, agente })
         .done(function (data) {
             hideBusy();
             if (!data || data.length === 0) {
@@ -163,19 +173,20 @@ function cargarReporte() {
                 return;
             }
 
-            let totV = 0, totP = 0, totPen = 0, totU = 0;
+            var totV = 0, totP = 0, totPend = 0, totU = 0;
             data.forEach(function (r) {
-                totV   += parseFloat(g(r, 'ventas')     || 0);
-                totP   += parseFloat(g(r, 'pagos')      || 0);
-                totPen += parseFloat(g(r, 'pendientes') || 0);
-                totU   += parseFloat(g(r, 'utilidad')   || 0);
+                totV    += n(r.Ventas     ?? r.ventas     ?? 0);
+                totP    += n(r.Pagos      ?? r.pagos      ?? 0);
+                totPend += n(r.Pendientes ?? r.pendientes ?? 0);
+                totU    += n(r.Utilidad   ?? r.utilidad   ?? 0);
             });
 
-            document.getElementById('metVentas').textContent     = fmt(totV);
-            document.getElementById('metPagos').textContent      = fmt(totP);
-            document.getElementById('metPendientes').textContent = fmt(totPen);
-            document.getElementById('metUtilidad').textContent   = fmt(totU);
-            document.getElementById('metricsBar').style.display  = 'flex';
+            document.getElementById('metVentas').textContent  = fmt(totV);
+            document.getElementById('metPagos').textContent   = fmt(totP);
+            var elBM = document.getElementById('metUtilidad');
+            elBM.textContent = fmt(totU);
+            elBM.className   = 'metric-value ' + (totU >= 0 ? 'metric-green' : 'metric-red');
+            document.getElementById('metricsBar').style.display = 'flex';
 
             if (dt) { dt.destroy(); }
             dt = $(tableId).DataTable({
@@ -183,58 +194,59 @@ function cargarReporte() {
                 columns: [
                     {
                         data: null,
-                        visible: false,
-                        render: function (d) { return g(d, 'agente') || ''; }
-                    },
-                    {
-                        data: null,
-                        className: 'text-center',
-                        render: function (d, type) {
-                            return type === 'display' ? (g(d, 'deporte') || '—') : (g(d, 'deporte') || '');
-                        }
+                        render: function (d) { return d.Deporte ?? d.deporte ?? '—'; }
                     },
                     {
                         data: null,
                         className: 'text-center col-monto-pos',
                         render: function (d, type) {
-                            return (type === 'display' || type === 'filter') ? fmt(g(d, 'ventas')) : parseFloat(g(d, 'ventas') || 0);
+                            var v = n(d.Ventas ?? d.ventas ?? 0);
+                            return (type === 'display' || type === 'filter') ? fmt(v) : v;
                         }
                     },
                     {
                         data: null,
                         className: 'text-center col-monto-neg',
                         render: function (d, type) {
-                            return (type === 'display' || type === 'filter') ? fmt(g(d, 'pagos')) : parseFloat(g(d, 'pagos') || 0);
+                            var v = n(d.Pagos ?? d.pagos ?? 0);
+                            return (type === 'display' || type === 'filter') ? fmt(v) : v;
                         }
                     },
                     {
                         data: null,
                         className: 'text-center',
                         render: function (d, type) {
-                            return (type === 'display' || type === 'filter') ? fmt(g(d, 'pendientes')) : parseFloat(g(d, 'pendientes') || 0);
+                            var v = n(d.Pendientes ?? d.pendientes ?? 0);
+                            return (type === 'display' || type === 'filter') ? fmt(v) : v;
                         }
                     },
                     {
                         data: null,
                         className: 'text-center',
                         createdCell: function (td, _d, row) {
-                            var u = parseFloat(g(row, 'utilidad') || 0);
-                            $(td).text(fmt(u)).addClass(u >= 0 ? 'col-monto-pos' : 'col-monto-neg');
+                            var u = n(row.Utilidad ?? row.utilidad ?? 0);
+                            $(td).text(fmt(u));
+                            td.style.color      = u >= 0 ? 'var(--av-5, #7FCA8A)' : '#FC8181';
+                            td.style.fontWeight = '600';
                         },
                         render: function (d, type) {
-                            return (type === 'display' || type === 'filter') ? fmt(g(d, 'utilidad')) : parseFloat(g(d, 'utilidad') || 0);
+                            var u = n(d.Utilidad ?? d.utilidad ?? 0);
+                            return (type === 'display' || type === 'filter') ? fmt(u) : u;
                         }
                     }
                 ],
                 footerCallback: function () {
                     document.getElementById('totVentas').textContent     = fmt(totV);
                     document.getElementById('totPagos').textContent      = fmt(totP);
-                    document.getElementById('totPendientes').textContent = fmt(totPen);
-                    document.getElementById('totUtilidad').textContent   = fmt(totU);
+                    document.getElementById('totPendientes').textContent = fmt(totPend);
+                    var elTU = document.getElementById('totUtilidad');
+                    elTU.textContent      = fmt(totU);
+                    elTU.style.color      = totU >= 0 ? 'var(--av-5, #7FCA8A)' : '#FC8181';
+                    elTU.style.fontWeight = '600';
                 },
                 language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
                 pageLength: 25,
-                order: [[1, 'asc']],
+                order: [[0, 'asc']],
                 dom: 'Bfrtip',
                 buttons: [
                     {
