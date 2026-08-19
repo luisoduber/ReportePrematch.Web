@@ -1,0 +1,55 @@
+2026-08-10 12:48:47.450 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-10 12:48:50.280 -04:00 [INF] HTTP GET / responded 200 in 273.4753 ms
+2026-08-10 12:48:51.408 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 3.7323 ms
+2026-08-10 12:51:30.606 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-10 12:51:30.612 -04:00 [INF] HTTP POST / responded 302 in 1222.7984 ms
+2026-08-10 12:51:30.800 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 179.5477 ms
+2026-08-10 12:51:32.633 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1229.0438 ms
+2026-08-10 12:51:39.217 -04:00 [INF] HTTP GET /Reportes/VerCierreTaquilla responded 200 in 53.2148 ms
+2026-08-10 12:51:39.901 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 565.0058 ms
+2026-08-10 12:51:40.390 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1054.4629 ms
+2026-08-10 17:48:08.774 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-10 17:48:09.682 -04:00 [INF] HTTP GET / responded 200 in 232.1425 ms
+2026-08-10 17:48:50.930 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-10 17:48:50.936 -04:00 [INF] HTTP POST / responded 302 in 844.1032 ms
+2026-08-10 17:48:51.030 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 86.5676 ms
+2026-08-10 17:48:53.605 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 2166.8537 ms
+2026-08-10 17:48:56.749 -04:00 [INF] HTTP GET /Reportes/VerCierreTaquilla responded 200 in 22.4326 ms
+2026-08-10 17:48:57.432 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 533.4416 ms
+2026-08-10 17:48:58.056 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1162.8270 ms
+2026-08-10 17:49:33.707 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 567.4572 ms
+2026-08-10 17:58:02.186 -04:00 [INF] HTTP GET /Reportes/VerCierreTaquilla responded 200 in 8968.1379 ms
+2026-08-10 17:58:03.527 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 1.0029 ms
+2026-08-10 17:58:03.956 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 1185.9558 ms
+2026-08-10 17:58:04.538 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 550.9633 ms
+2026-08-10 17:58:13.450 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 556.9258 ms
+2026-08-10 17:58:18.189 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.2110 ms
+2026-08-10 17:58:22.596 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 554.2207 ms
+2026-08-10 17:58:44.899 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 495.0985 ms
+2026-08-10 18:05:59.065 -04:00 [INF] HTTP GET /Home/Dashboard responded 200 in 53.9475 ms
+2026-08-10 18:05:59.139 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.1783 ms
+2026-08-10 18:06:00.603 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 1148.5436 ms
+2026-08-10 18:06:01.179 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 1724.8576 ms
+2026-08-10 18:15:05.150 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 1145.2556 ms
+2026-08-10 18:15:05.686 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 1681.4094 ms
+2026-08-10 18:15:12.932 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 875.1116 ms
+2026-08-10 18:15:12.974 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 917.1472 ms
+2026-08-10 18:15:20.797 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 1093.8973 ms
+2026-08-10 18:15:21.167 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 1464.2539 ms
+2026-08-10 18:17:37.011 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 129592.8439 ms
+2026-08-10 18:19:58.914 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 271495.5671 ms
+2026-08-10 18:45:31.468 -04:00 [INF] HTTP GET /Home/Dashboard responded 200 in 456.6753 ms
+2026-08-10 18:45:31.538 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 35.0845 ms
+2026-08-10 18:45:32.829 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 0.1963 ms
+2026-08-10 18:45:33.168 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 1012.2781 ms
+2026-08-10 18:45:33.787 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 1630.5222 ms
+2026-08-10 19:14:52.914 -04:00 [INF] HTTP GET /Home/Dashboard responded 200 in 400.3008 ms
+2026-08-10 19:14:53.409 -04:00 [INF] HTTP POST /Reportes/GetDashboardClientes responded 404 in 0.0725 ms
+2026-08-10 19:14:54.150 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 0.1547 ms
+2026-08-10 19:14:54.490 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 1081.1228 ms
+2026-08-10 19:14:55.150 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 1741.7061 ms
+2026-08-10 19:15:11.722 -04:00 [INF] HTTP GET /Home/Dashboard responded 200 in 1.2445 ms
+2026-08-10 19:15:11.989 -04:00 [INF] HTTP POST /Reportes/GetDashboardClientes responded 404 in 0.0927 ms
+2026-08-10 19:15:12.616 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 0.1007 ms
+2026-08-10 19:15:12.734 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 745.7344 ms
+2026-08-10 19:15:12.788 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 801.4069 ms

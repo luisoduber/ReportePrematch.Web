@@ -60,8 +60,8 @@ public sealed class ReportesController(
         return View();
     }
     [HttpPost]
-    public async Task<IActionResult> GetVentasPorAgenteWeb(string fechaD, string fechaH, string agente)
-        => Json(await reportes.GetVentasPorAgenteWebAsync(fechaD, fechaH, agente, Pais, Role));
+    public async Task<IActionResult> GetVentasPorAgenteWeb(string fechaD, string fechaH, string agente, string pais = null)
+        => Json(await reportes.GetVentasPorAgenteWebAsync(fechaD, fechaH, agente, pais ?? Pais, Role));
 
     [HttpGet]
     public IActionResult VentasPorAgenteTaq()
@@ -71,8 +71,8 @@ public sealed class ReportesController(
         return View();
     }
     [HttpPost]
-    public async Task<IActionResult> GetVentasPorAgenteTaq(string fechaD, string fechaH, string agente)
-        => Json(await reportes.GetVentasPorAgenteTaqAsync(fechaD, fechaH, agente, Local, Pais, Role));
+    public async Task<IActionResult> GetVentasPorAgenteTaq(string fechaD, string fechaH, string agente, string pais = null)
+        => Json(await reportes.GetVentasPorAgenteTaqAsync(fechaD, fechaH, agente, Local, pais ?? Pais, Role));
 
     [HttpGet]
     public IActionResult RepTransaccion()
@@ -139,6 +139,70 @@ public sealed class ReportesController(
     [HttpPost]
     public async Task<IActionResult> GetFantasyBsb(string fechaD, string fechaH, string agente)
         => Json(await reportes.GetFantasyBsbAsync(fechaD, fechaH, agente, Role, Pais));
+
+    [HttpPost]
+    public async Task<IActionResult> GetDashboardClientes(string fechaD, string fechaH, string agente)
+        => Json(await reportes.GetDashboardClientesAsync(fechaD, fechaH, agente ?? Agente));
+
+    [HttpPost]
+    public async Task<IActionResult> GetDashboardExtendido(string fechaD, string fechaH)
+    {
+        try { return Json(await reportes.GetDashboardExtendidoAsync(fechaD, fechaH, Agente, Pais)); }
+        catch (Exception ex) { logger.LogError(ex, "GetDashboardExtendido failed"); return Json(null); }
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> GetVentasMonedaExtendido(string fechaD, string fechaH)
+    {
+        try { return Json(await reportes.GetVentasMonedaExtendidoAsync(fechaD, fechaH, Agente, Pais)); }
+        catch (Exception ex) { logger.LogError(ex, "GetVentasMonedaExtendido failed"); return Json(null); }
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> GetChartsExtendido(string fechaD, string fechaH)
+    {
+        try { return Json(await reportes.GetChartsExtendidoAsync(fechaD, fechaH, Agente, Pais)); }
+        catch (Exception ex) { logger.LogError(ex, "GetChartsExtendido failed"); return Json(null); }
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> GetTablesExtendido(string fechaD, string fechaH)
+    {
+        try { return Json(await reportes.GetTablesExtendidoAsync(fechaD, fechaH, Agente, Pais)); }
+        catch (Exception ex) { logger.LogError(ex, "GetTablesExtendido failed"); return Json(null); }
+    }
+
+    // ── Detalle de ticket vía apiTools ───────────────────────────────────────
+    [HttpPost]
+    public async Task<IActionResult> GetDetalleTicket(long idticket)
+    {
+        try
+        {
+            var baseUrl   = HttpContext.RequestServices
+                                .GetRequiredService<IConfiguration>()["ApiTools:BaseUrl"]
+                            ?? "https://allws.staging-gc.com/apiTools/";
+            var secretKey = HttpContext.RequestServices
+                                .GetRequiredService<IConfiguration>()["ApiTools:SecretKey"]
+                            ?? string.Empty;
+
+            using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };
+            client.DefaultRequestHeaders.Add("SecretKey", secretKey);
+            client.DefaultRequestHeaders.Add("accept", "*/*");
+
+            var body    = System.Text.Json.JsonSerializer.Serialize(new { idticket, condetalle = true });
+            var content = new StringContent(body, System.Text.Encoding.UTF8, "application/json");
+            var resp    = await client.PostAsync($"{baseUrl.TrimEnd('/')}/api/Producto/Ticket", content);
+            resp.EnsureSuccessStatusCode();
+
+            var json = await resp.Content.ReadAsStringAsync();
+            return Content(json, "application/json");
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "GetDetalleTicket failed for ticket {Ticket}", idticket);
+            return Json(new { estatus = false, mensaje = "Error al obtener detalle del ticket." });
+        }
+    }
 
     [HttpGet]
     public IActionResult IconBet()
@@ -250,8 +314,8 @@ public sealed class ReportesController(
         return View();
     }
     [HttpPost]
-    public async Task<IActionResult> GetSaldosDisponibles()
-        => Json(await reportes.GetSaldosDisponiblesAsync(Agente));
+    public async Task<IActionResult> GetSaldosDisponibles(string agente)
+        => Json(await reportes.GetSaldosDisponiblesAsync(agente ?? Agente));
 
     [HttpGet]
     public IActionResult VentasPorAgenteGameID()
@@ -261,8 +325,9 @@ public sealed class ReportesController(
         return View();
     }
     [HttpPost]
-    public async Task<IActionResult> GetVentasPorAgenteGameID(string gameId, string filtApuesta)
-        => Json(await reportes.GetVentasAgenteGameIDAsync(Agente, Pais, Role, gameId, filtApuesta));
+    public async Task<IActionResult> GetVentasPorAgenteGameID(string agente, string gameId, string filtApuesta)
+        => Json(await reportes.GetVentasAgenteGameIDAsync(
+            string.IsNullOrEmpty(agente) ? Agente : agente, Pais, Role, gameId, filtApuesta));
 
     [HttpGet]
     public IActionResult CasinoMaquinitas()

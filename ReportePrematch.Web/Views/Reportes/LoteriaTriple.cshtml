@@ -48,12 +48,11 @@
         <table id="@ViewBag.TableId" class="glass-table w-100">
             <thead>
                 <tr>
-                    <th>Agente</th>
-                    <th>Fecha</th>
-                    <th>Número</th>
-                    <th>Monto</th>
-                    <th>Premio</th>
-                    <th>Balance</th>
+                    <th class="text-center">Agente</th>
+                    <th class="text-center">Usuario</th>
+                    <th class="text-center">Ventas</th>
+                    <th class="text-center">Premios</th>
+                    <th class="text-center">Utilidad</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -110,13 +109,24 @@ function cargarReporte(){
     if(!fechaD||!fechaH){Swal.fire({icon:'warning',title:'Fechas requeridas',background:'#002E5C',color:'#fff'});return;}
     showBusy('Consultando...');
 
-    $.post('@Url.Action("GetLoteriasTriple","Reportes")',{fechaD,fechaH,agente})
+    $.post('@Url.Action("GetLoteriaTriple","Reportes")',{fechaD,fechaH,agente})
         .done(function(data){
             if(!data||!data.length){Swal.fire({icon:'info',title:'Sin resultados',background:'#002E5C',color:'#fff'});hideBusy();return;}
             if(dt)dt.destroy();
             dt=$('#@ViewBag.TableId').DataTable({
                 data,
-                columns: [{data:"NombreAgente"},{data:"Fecha",defaultContent:"—"},{data:"Numero",createdCell:function(td){$(td).addClass('col-ticket');}},{data:"Monto",createdCell:function(td,d){$(td).text(fmt(d)).addClass('col-monto-pos');}},{data:"Premio",createdCell:function(td,d){var n=parseFloat(d||0);$(td).text(fmt(d)).addClass(n>0?'col-monto-neg':'col-monto-pos');}},{data:null,createdCell:function(td,_,r){var b=(r.Monto||0)-(r.Premio||0);$(td).text(fmt(b)).addClass(b>=0?'col-monto-pos':'col-monto-neg');}}],
+                columns: [
+                    { data: 'agente',   className: 'text-center' },
+                    { data: 'usuario',  className: 'text-center' },
+                    { data: 'ventas',   className: 'text-center col-monto-pos' },
+                    { data: 'premios',  className: 'text-center col-monto-neg' },
+                    { data: 'utilidad', className: 'text-center',
+                      createdCell: function(td, d) {
+                          var n = parseFloat((d || '0').toString().replace(/\./g,'').replace(',','.'));
+                          $(td).addClass(n < 0 ? 'col-monto-neg' : 'col-monto-pos');
+                      }
+                    }
+                ],
                 language:{url:'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json'},
                 pageLength:25,order:[[0,'asc']],dom:'Bfrtip',
                 buttons:[{extend:'excelHtml5',text:'<i class="ti ti-file-spreadsheet"></i> Excel',className:'btn-glass btn-primary btn-sm'}]

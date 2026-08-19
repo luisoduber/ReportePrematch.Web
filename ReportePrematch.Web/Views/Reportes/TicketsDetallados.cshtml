@@ -158,7 +158,7 @@ function cargarReporte() {
             dt = $(tableId).DataTable({
                 data,
                 columns: [
-                    { data: 'ticket',    className: 'text-center', createdCell: function(td){ $(td).addClass('col-ticket'); } },
+                    { data: 'ticket',    className: 'text-center', createdCell: function(td, d){ $(td).addClass('col-ticket'); $(td).html('<span class="ticket-link" onclick="verDetalleTicket(' + d + ')" style="cursor:pointer;color:#48CAE4;text-decoration:underline;font-weight:700;">' + (d || '—') + '</span>'); } },
                     { data: 'agente',    className: 'text-center', defaultContent: '—' },
                     { data: 'usuario',   className: 'text-center', defaultContent: '—' },
                     { data: null,        className: 'text-center', defaultContent: '—', render: function(d,t,r){ return fmtFecha(r.fecha); } },
@@ -182,5 +182,93 @@ $(document).ready(function() {
     cargarAgentes();
     if (!esAdmin) { cargarReporte(); }
 });
+
+// ── Modal detalle de ticket ───────────────────────────────────────────────────
+const urlDetalleTicket = '@Url.Action("GetDetalleTicket","Reportes")';
+
+function verDetalleTicket(idticket) {
+    if (!idticket) return;
+    Swal.fire({
+        title: 'Cargando ticket #' + idticket + '...',
+        allowOutsideClick: false,
+        background: '#002E5C',
+        color: '#fff',
+        didOpen: function() { Swal.showLoading(); }
+    });
+    $.post(urlDetalleTicket, { idticket: idticket })
+        .done(function(res) {
+            if (!res || !res.estatus) {
+                Swal.fire({ icon:'error', title:'Error', text: res?.mensaje || 'No se pudo cargar el ticket.', background:'#002E5C', color:'#fff' });
+                return;
+            }
+            const d = res.data;
+            const opMap = { 1:'Pendiente', 2:'Ganador', 3:'Perdedor', 4:'Anulado', 5:'Cobrado' };
+            const estatusColor = { 'Ganador':'#4ade80','Pendiente':'#48CAE4','Perdedor':'#f87171','Anulado':'#94a3b8','Cobrado':'#a78bfa' };
+            const eColor = estatusColor[d.estatus] || '#94a3b8';
+
+            var detalleRows = '';
+            (d.detalles || []).forEach(function(det) {
+                var ganoIcon = det.gano === 1 ? '<span style="color:#4ade80;font-weight:700;">✓</span>' : '<span style="color:#f87171;font-weight:700;">✗</span>';
+                detalleRows +=
+                    '<tr style="border-bottom:1px solid rgba(255,255,255,.06);">' +
+                    '<td style="padding:7px 8px;text-align:center;color:#94a3b8;font-size:.8em;">' + (det.deporte || '—') + '</td>' +
+                    '<td style="padding:7px 8px;text-align:center;font-size:.8em;">' + (det.liga || '—') + '</td>' +
+                    '<td style="padding:7px 8px;text-align:left;font-size:.82em;font-weight:600;color:#e2e8f0;">' + (det.equipo || '—') + '</td>' +
+                    '<td style="padding:7px 8px;text-align:center;font-size:.8em;color:#fbbf24;">' + (det.logro || '—') + '</td>' +
+                    '<td style="padding:7px 8px;text-align:center;font-size:.8em;">' + (det.decimales || '—') + '</td>' +
+                    '<td style="padding:7px 8px;text-align:center;font-size:.8em;color:#94a3b8;">' + (det.marcador || '—') + '</td>' +
+                    '<td style="padding:7px 8px;text-align:center;">' + ganoIcon + '</td>' +
+                    '</tr>';
+            });
+
+            var html =
+                '<div style="text-align:left;">' +
+                '<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px;">' +
+                    infoChip('Ticket',     '#' + d.ticket,            '#48CAE4') +
+                    infoChip('Tipo',       d.tipoApuesta || '—',      '#a78bfa') +
+                    infoChip('Estatus',    d.estatus || '—',           eColor)   +
+                    infoChip('Operación',  opMap[d.operacion] || '—', '#94a3b8') +
+                '</div>' +
+                '<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;">' +
+                    infoChip('Agente',   d.nombreAgente || '—', '#64748b') +
+                    infoChip('Usuario',  d.usuario || '—',      '#64748b') +
+                    infoChip('Fecha',    fmtFecha(d.fecha),     '#64748b') +
+                '</div>' +
+                '<div style="overflow-x:auto;border-radius:8px;border:1px solid rgba(255,255,255,.1);">' +
+                '<table style="width:100%;border-collapse:collapse;">' +
+                '<thead><tr style="background:rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.12);">' +
+                    '<th style="padding:8px;text-align:center;font-size:.75em;color:#94a3b8;font-weight:600;letter-spacing:.05em;">DEPORTE</th>' +
+                    '<th style="padding:8px;text-align:center;font-size:.75em;color:#94a3b8;font-weight:600;letter-spacing:.05em;">LIGA</th>' +
+                    '<th style="padding:8px;text-align:left;font-size:.75em;color:#94a3b8;font-weight:600;letter-spacing:.05em;">EQUIPO / SELECCIÓN</th>' +
+                    '<th style="padding:8px;text-align:center;font-size:.75em;color:#94a3b8;font-weight:600;letter-spacing:.05em;">LOGRO</th>' +
+                    '<th style="padding:8px;text-align:center;font-size:.75em;color:#94a3b8;font-weight:600;letter-spacing:.05em;">CUOTA</th>' +
+                    '<th style="padding:8px;text-align:center;font-size:.75em;color:#94a3b8;font-weight:600;letter-spacing:.05em;">MARCADOR</th>' +
+                    '<th style="padding:8px;text-align:center;font-size:.75em;color:#94a3b8;font-weight:600;letter-spacing:.05em;">GANÓ</th>' +
+                '</tr></thead>' +
+                '<tbody>' + detalleRows + '</tbody>' +
+                '</table></div>' +
+                '</div>';
+
+            Swal.fire({
+                title: '<span style="color:#48CAE4;font-size:1.1em;">Detalle Ticket #' + d.ticket + '</span>',
+                html: html,
+                width: Math.min(820, window.innerWidth * 0.96) + 'px',
+                background: '#002E5C',
+                color: '#fff',
+                showCloseButton: true,
+                showConfirmButton: false
+            });
+        })
+        .fail(function() {
+            Swal.fire({ icon:'error', title:'Error de conexión', text:'No se pudo comunicar con el servidor.', background:'#002E5C', color:'#fff' });
+        });
+}
+
+function infoChip(label, value, color) {
+    return '<div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:6px 12px;min-width:110px;">' +
+        '<div style="font-size:.65em;color:#64748b;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px;">' + label + '</div>' +
+        '<div style="font-size:.92em;font-weight:700;color:' + color + ';">' + value + '</div>' +
+        '</div>';
+}
 </script>
 }

@@ -7,6 +7,7 @@
     .ventas-toggle { display:inline-flex; border:1px solid rgba(255,255,255,0.2); border-radius:30px; overflow:hidden; }
     .tog-btn { border:none; background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.4); padding:7px 18px; font-size:11px; font-weight:700; letter-spacing:.8px; cursor:pointer; transition:all .25s; }
     .tog-btn.active { background:#22c55e; color:#fff; }
+    @media (max-width:768px) { .ventas-toggle { width:100%; } .tog-btn { flex:1; text-align:center; } }
     .link-usuario { cursor:pointer; color:#4ade80; display:inline-flex; align-items:center; gap:5px; }
     .link-usuario .lnk-icon { font-size:1rem; transition:transform .2s ease; opacity:.8; }
     tr.shown .link-usuario .lnk-icon { transform:rotate(90deg); opacity:1; }

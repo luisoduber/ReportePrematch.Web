@@ -991,65 +991,218 @@ div.dataTables_wrapper .dataTables_length select {
 ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.28); }
 
 /* ──────────────────────────────────────────
-   20. RESPONSIVE (mobile-first breakpoint 768px)
+   20. NAVEGACIÓN MÓVIL (hamburguesa + drawer)
+────────────────────────────────────────── */
+
+/* Botón hamburguesa — sólo visible en móvil */
+.mob-hamburger-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: none;
+    background: var(--glass-15);
+    border-radius: var(--radius-sm);
+    color: var(--an-3);
+    cursor: pointer;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    transition: background 0.18s;
+}
+.mob-hamburger-btn:active { background: var(--glass-20); }
+
+/* Overlay oscuro detrás del drawer */
+.mob-nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 10, 30, 0.62);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    z-index: 2000;
+}
+.mob-nav-overlay.show { display: block; }
+
+/* Drawer lateral */
+.mob-nav-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    max-width: 85vw;
+    background: rgba(0, 18, 50, 0.98);
+    backdrop-filter: var(--blur-lg);
+    -webkit-backdrop-filter: var(--blur-lg);
+    border-right: var(--border-glass);
+    box-shadow: 4px 0 32px rgba(0,0,0,0.40);
+    z-index: 2100;
+    transform: translateX(-100%);
+    transition: transform 0.28s cubic-bezier(.4,0,.2,1);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: env(safe-area-inset-bottom, 16px);
+}
+.mob-nav-drawer.open { transform: translateX(0); }
+
+.mob-nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1rem 0.85rem;
+    border-bottom: var(--border-glass);
+    flex-shrink: 0;
+}
+.mob-nav-close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    background: var(--glass-10);
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--an-4);
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+.mob-nav-section-label {
+    padding: 0.85rem 1rem 0.25rem;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sa-6);
+}
+.mob-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.7rem 1rem;
+    color: var(--an-4);
+    font-size: 0.84rem;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.035);
+    transition: background 0.14s, color 0.14s;
+    min-height: 46px;
+}
+.mob-nav-item i {
+    font-size: 1rem;
+    color: var(--sa-6);
+    flex-shrink: 0;
+    width: 22px;
+    text-align: center;
+}
+.mob-nav-item:hover,
+.mob-nav-item:active { background: var(--glass-15); color: var(--an-1); }
+.mob-nav-item:hover i { color: var(--sa-7); }
+
+.mob-nav-user {
+    margin-top: auto;
+    padding: 0.85rem 1rem;
+    border-top: var(--border-glass);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+.mob-nav-username { font-size: 0.82rem; font-weight: 600; color: var(--an-3); }
+.mob-nav-usertype { font-size: 0.65rem; color: var(--sa-7); margin-top: 2px; }
+
+/* ──────────────────────────────────────────
+   21. RESPONSIVE (max-width: 768px)
 ────────────────────────────────────────── */
 @media (max-width: 768px) {
-    .login-card {
-        padding: 1.5rem 1.25rem;
-    }
+    /* Mostrar hamburguesa, ocultar nav de escritorio */
+    .mob-hamburger-btn         { display: flex; }
+    .nav-desktop-items         { display: none !important; }
 
-    .module-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    /* Navbar */
+    .main-nav-bar              { height: 52px; overflow-x: hidden; }
+    #progress-bar              { top: 52px; }
 
-    .main-nav-bar {
-        height: 50px;
-    }
+    /* Contenido principal */
+    main.main-content          { padding-top: calc(52px + 16px) !important; }
 
-    .main-nav-bar .nav-module span {
-        display: none;
-    }
+    /* Tarjetas */
+    .glass-card                { padding: 0.9rem; border-radius: var(--radius-md); }
 
-    .main-nav-bar .nav-module {
-        padding: 0.35rem 0.55rem;
-    }
+    /* Filtros: forzar columnas a ancho completo en móvil */
+    .glass-panel .row > [class*="col-"] { width: 100%; max-width: 100%; flex: 0 0 100%; }
 
-    .nav-dropdown-menu {
-        display: none !important;
-    }
+    /* Canal toggle: ancho completo */
+    .canal-toggle              { width: 100%; justify-content: stretch; }
+    .canal-toggle .tog-btn     { flex: 1; text-align: center; justify-content: center; }
 
-    .quick-metrics-bar {
-        gap: 0.5rem;
-    }
+    /* Welcome bar */
+    .welcome-title             { font-size: 0.95rem; }
+    .welcome-bar               { gap: 0.6rem; }
+    .welcome-bar .btn-glass    { padding: 0.35rem 0.75rem; font-size: 0.78rem; }
 
-    .metric-card {
-        flex: 1 1 90px;
-        min-width: 80px;
-        padding: 0.5rem 0.65rem;
-    }
+    /* Métricas rápidas */
+    .quick-metrics-bar         { gap: 0.45rem; }
+    .metric-card               { flex: 1 1 80px; min-width: 80px; padding: 0.5rem 0.6rem; }
+    .metric-value              { font-size: 0.9rem; }
+    .metric-label              { font-size: 0.6rem; }
 
-    .metric-value {
-        font-size: 0.95rem;
-    }
-
-    .glass-card {
-        padding: 1rem;
-        border-radius: var(--radius-md);
-    }
-
-    .welcome-title {
-        font-size: 0.95rem;
-    }
-
-    .glass-table {
-        font-size: 0.72rem;
-    }
-
+    /* Tablas */
+    .glass-table               { font-size: 0.72rem; }
     .glass-table thead th,
     .glass-table tbody td,
-    .glass-table tfoot th {
-        padding: 0.38rem 0.5rem;
+    .glass-table tfoot th      { padding: 0.35rem 0.4rem; white-space: nowrap; }
+
+    /* DataTables controles */
+    div.dataTables_wrapper .dt-layout-row { flex-wrap: wrap; gap: 0.25rem; }
+    div.dataTables_wrapper .dt-layout-cell { width: 100%; }
+    div.dataTables_wrapper .dataTables_filter,
+    div.dataTables_wrapper .dataTables_length { width: 100%; text-align: left; margin-top: 0.3rem; }
+    div.dataTables_wrapper .dataTables_info  { width: 100%; margin-top: 0.3rem; }
+    div.dataTables_wrapper .dataTables_paginate {
+        width: 100%; display: flex; flex-wrap: wrap;
+        gap: 0.2rem; justify-content: center; margin-top: 0.4rem;
     }
+    .dt-buttons { flex-wrap: wrap; gap: 0.35rem; }
+    .dt-button  { padding: 0.25rem 0.65rem !important; font-size: 0.72rem !important; }
+
+    /* Grilla de módulos */
+    .module-grid               { grid-template-columns: repeat(2, 1fr); }
+
+    /* Login */
+    .login-card                { padding: 1.5rem 1.25rem; }
+
+    /* iOS safe area */
+    body                       { padding-bottom: env(safe-area-inset-bottom, 0px); }
+}
+
+/* ──────────────────────────────────────────
+   22. RESPONSIVE — iPhone 15 Pro Max (≤ 430px)
+────────────────────────────────────────── */
+@media (max-width: 430px) {
+    .glass-card                { padding: 0.7rem; }
+    .metric-card               { flex: 1 1 68px; min-width: 68px; padding: 0.42rem 0.5rem; }
+    .metric-value              { font-size: 0.82rem; }
+    .metric-label              { font-size: 0.56rem; }
+    .glass-table               { font-size: 0.67rem; }
+    .glass-table thead th,
+    .glass-table tbody td,
+    .glass-table tfoot th      { padding: 0.28rem 0.32rem; }
+    .welcome-title             { font-size: 0.88rem; }
+    .btn-glass                 { font-size: 0.78rem; padding: 0.38rem 0.8rem; }
+    .field-label               { font-size: 0.63rem; }
+    .glass-input               { font-size: 0.8rem; padding: 0.42rem 0.65rem; }
+
+    /* SweetAlert en pantalla pequeña */
+    .swal2-popup               { font-size: 0.82rem !important; width: 95vw !important; }
+    .swal2-title               { font-size: 1rem !important; }
+    .swal2-html-container      { font-size: 0.8rem !important; }
+
+    /* Módulos: 2 columnas compactas */
+    .module-grid               { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
+    .module-card               { padding: 0.85rem; }
+    .module-card-name          { font-size: 0.78rem; }
 }
 
 /* ──────────────────────────────────────────

@@ -16,14 +16,6 @@
     <div class="glass-panel mt-3 p-3">
         <div class="row g-2 align-items-end">
             <div class="col-md-3">
-                <label class="field-label">Fecha Desde</label>
-                <input type="date" id="fechaD" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
-            </div>
-            <div class="col-md-3">
-                <label class="field-label">Fecha Hasta</label>
-                <input type="date" id="fechaH" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
-            </div>
-            <div class="col-md-3">
                 <label class="field-label">Agente</label>
                 @if (ViewBag.TipoUsuario == "Usuario Regular")
                 {
@@ -48,9 +40,9 @@
         <table id="@ViewBag.TableId" class="glass-table w-100">
             <thead>
                 <tr>
-                    <th>Agente</th>
-                    <th>Usuario</th>
-                    <th>Disponible</th>
+                    <th style="text-align:center;">Agente</th>
+                    <th style="text-align:center;">Usuario</th>
+                    <th style="text-align:center;">Disponible</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -101,19 +93,20 @@ let dt;
 function fmt(v){ return parseFloat(v||0).toLocaleString('es-VE',{minimumFractionDigits:2,maximumFractionDigits:2}); }
 
 function cargarReporte(){
-    const fechaD=document.getElementById('fechaD').value;
-    const fechaH=document.getElementById('fechaH').value;
     const agente=document.getElementById('agente').value||'TODOS';
-    if(!fechaD||!fechaH){Swal.fire({icon:'warning',title:'Fechas requeridas',background:'#002E5C',color:'#fff'});return;}
     showBusy('Consultando...');
 
-    $.post('@Url.Action("GetSaldosDisponibles","Reportes")',{fechaD,fechaH,agente})
+    $.post('@Url.Action("GetSaldosDisponibles","Reportes")',{agente})
         .done(function(data){
             if(!data||!data.length){Swal.fire({icon:'info',title:'Sin resultados',background:'#002E5C',color:'#fff'});hideBusy();return;}
             if(dt)dt.destroy();
             dt=$('#@ViewBag.TableId').DataTable({
                 data,
-                columns: [{data:'agente'},{data:'usuario'},{data:'monto',createdCell:function(td){$(td).addClass('col-monto-pos');}}],
+                columns: [
+                    {data:'agente',   className:'text-center'},
+                    {data:'usuario',  className:'text-center'},
+                    {data:'monto',    className:'text-center col-monto-pos'}
+                ],
                 language:{url:'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json'},
                 pageLength:25,order:[[0,'asc']],dom:'Bfrtip',
                 buttons:[{extend:'excelHtml5',text:'<i class="ti ti-file-spreadsheet"></i> Excel',className:'btn-glass btn-primary btn-sm'}]

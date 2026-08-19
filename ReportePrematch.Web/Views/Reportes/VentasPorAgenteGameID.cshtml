@@ -33,8 +33,8 @@
                 <label class="field-label">Tipo Apuesta</label>
                 <select id="filtApuesta" class="glass-select">
                     <option value="">Todos</option>
-                    <option value="PAR">Parlay</option>
-                    <option value="DIR">Directo</option>
+                    <option value="Parlay">Parlay</option>
+                    <option value="Directas">Directas</option>
                 </select>
             </div>
             <div class="col-md-3">
@@ -49,8 +49,21 @@
         <table id="@ViewBag.TableId" class="glass-table w-100">
             <thead>
                 <tr>
-                    <th>Ticket</th><th>Game ID</th><th>Agente</th>
-                    <th>Fecha</th><th>Tipo</th><th>Monto</th><th>Premio</th><th>Estado</th>
+                    <th style="text-align:center;">Agente</th>
+                    <th style="text-align:center;">Game ID</th>
+                    <th style="text-align:center;">Ticket</th>
+                    <th style="text-align:center;">Tipo Ap.</th>
+                    <th style="text-align:center;">Usuario</th>
+                    <th style="text-align:center;">Deporte</th>
+                    <th style="text-align:center;">Categoría</th>
+                    <th style="text-align:center;">Logro</th>
+                    <th style="text-align:center;">Riesgo</th>
+                    <th style="text-align:center;">Ganancia</th>
+                    <th style="text-align:center;">Equipo</th>
+                    <th style="text-align:center;">Estatus Ticket</th>
+                    <th style="text-align:center;">Estatus Logro</th>
+                    <th style="text-align:center;">Fecha Juego</th>
+                    <th style="text-align:center;">Fecha Ticket</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -109,22 +122,36 @@ function cargarReporte(){
 
     $.post('@Url.Action("GetVentasPorAgenteGameID","Reportes")',{agente,gameId,filtApuesta})
         .done(function(data){
+            console.log('[GameID] respuesta controller:', data);
             if(!data||!data.length){Swal.fire({icon:'info',title:'Sin resultados',background:'#002E5C',color:'#fff'});hideBusy();return;}
             if(dt)dt.destroy();
             dt=$('#@ViewBag.TableId').DataTable({
-                data,columns:[
-                    {data:'Ticket',createdCell:function(td){$(td).addClass('col-ticket');}},
-                    {data:'GameID',createdCell:function(td,d){$(td).text(d||'—').addClass('col-ticket');}},
-                    {data:'NombreAgente',defaultContent:'—'},
-                    {data:'Fecha',defaultContent:'—'},
-                    {data:'TipoApuesta',defaultContent:'—'},
-                    {data:'Monto',createdCell:function(td,d){$(td).text(fmt(d)).addClass('col-monto-pos');}},
-                    {data:'Premio',createdCell:function(td,d){var n=parseFloat(d||0);$(td).text(fmt(d)).addClass(n>0?'col-monto-neg':'col-monto-pos');}},
-                    {data:'Estado',defaultContent:'—'}
+                data,
+                columns:[
+                    {data:'agente',       title:'Agente',         className:'text-center', defaultContent:'—'},
+                    {data:'gameID',       title:'Game ID',        className:'text-center col-ticket'},
+                    {data:'ticket',       title:'Ticket',         className:'text-center col-ticket'},
+                    {data:'tipoAp',       title:'Tipo Ap.',       className:'text-center', defaultContent:'—'},
+                    {data:'usuario',      title:'Usuario',        className:'text-center', defaultContent:'—'},
+                    {data:'deporte',      title:'Deporte',        className:'text-center', defaultContent:'—'},
+                    {data:'categoria',    title:'Categoría',      className:'text-center', defaultContent:'—'},
+                    {data:'logro',        title:'Logro',          className:'text-center', defaultContent:'—'},
+                    {data:'riesgo',       title:'Riesgo',         className:'text-center col-monto-pos',
+                        render:function(d){return fmt(d);}},
+                    {data:'ganancia',     title:'Ganancia',       className:'text-center',
+                        createdCell:function(td,d){var n=parseFloat(d||0);$(td).text(fmt(d)).addClass(n>0?'col-monto-neg':'col-monto-pos');}},
+                    {data:'equipo',       title:'Equipo',         className:'text-center', defaultContent:'—'},
+                    {data:'estatusTicket',title:'Estatus Ticket', className:'text-center', defaultContent:'—'},
+                    {data:'estatusLogro', title:'Estatus Logro',  className:'text-center', defaultContent:'—'},
+                    {data:'fechaJuego',   title:'Fecha Juego',    className:'text-center', defaultContent:'—'},
+                    {data:'fechaTicket',  title:'Fecha Ticket',   className:'text-center', defaultContent:'—'}
                 ],
                 language:{url:'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json'},
-                pageLength:25,dom:'Bfrtip',
-                buttons:[{extend:'excelHtml5',text:'<i class="ti ti-file-spreadsheet"></i> Excel',className:'btn-glass btn-primary btn-sm'}]
+                pageLength:25,
+                dom:'Bfrtip',
+                buttons:[{extend:'excelHtml5',text:'<i class="ti ti-file-spreadsheet"></i> Excel',className:'btn-glass btn-primary btn-sm'}],
+                scrollX:true,
+                autoWidth:false
             });
             hideBusy();
         }).fail(function(){Swal.fire({icon:'error',title:'Error',background:'#002E5C',color:'#fff'});hideBusy();});

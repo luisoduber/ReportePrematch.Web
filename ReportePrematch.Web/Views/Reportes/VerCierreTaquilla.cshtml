@@ -82,15 +82,21 @@ function cargarAgentes() {
                 opt.value = a; opt.textContent = a;
                 sel.appendChild(opt);
             });
-            // Inicializar Tom Select con búsqueda
-            new TomSelect(sel, {
+            // Inicializar Tom Select con búsqueda y callback onChange
+            const ts = new TomSelect(sel, {
                 maxOptions: 2000,
                 create: false,
                 allowEmptyOption: true,
                 placeholder: 'Buscar agente...',
-                searchField: ['text']
+                searchField: ['text'],
+                onChange: function(value) {
+                    // Cada vez que cambia el agente, recargar agencias
+                    cargarAgencias(value || 'TODOS');
+                }
             });
-            if (agenteSession) sel.tomselect.setValue(agenteSession, true);
+            if (agenteSession) ts.setValue(agenteSession, true);
+            // Cargar agencias para el agente inicial
+            cargarAgencias(agenteSession || 'TODOS');
             console.log('[Agentes] ' + (lista ? lista.length : 0) + ' agentes cargados.');
         })
         .fail(function(xhr) {
@@ -102,52 +108,60 @@ function cargarAgentes() {
 let dt;
 function fmt(v){ return parseFloat(v||0).toLocaleString('es-VE',{minimumFractionDigits:2,maximumFractionDigits:2}); }
 
-// Cargar lista de agencias
-function cargarAgencias(){
-    const agente=document.getElementById('agente').value||'TODOS';
-    $.post('@Url.Action("GetListAgencias","Reportes")',{agente})
-        .done(function(agencias){
-            const sel=document.getElementById('agencia');
-            sel.innerHTML='<option value="">Todas</option>';
-            (agencias||[]).forEach(a=>{ const o=document.createElement('option'); o.value=a; o.textContent=a; sel.appendChild(o); });
+// Cargar lista de agencias según el agente recibido
+function cargarAgencias(agente) {
+    agente = agente || document.getElementById('agente').value || 'TODOS';
+    $.post('@Url.Action("GetListAgencias","Reportes")', { agente })
+        .done(function(agencias) {
+            const sel = document.getElementById('agencia');
+            sel.innerHTML = '<option value="">Todas</option>';
+            (agencias || []).forEach(function(a) {
+                const o = document.createElement('option');
+                o.value = a; o.textContent = a;
+                sel.appendChild(o);
+            });
+            console.log('[Agencias] ' + (agencias ? agencias.length : 0) + ' agencias para agente: ' + agente);
         });
 }
 
 function cargarReporte(){
-    const fecha=document.getElementById('fecha').value;
-    const agente=document.getElementById('agente').value||'TODOS';
-    const agencia=document.getElementById('agencia').value;
-    const usuario=document.getElementById('usuario').value;
-    if(!fecha){Swal.fire({icon:'warning',title:'Fecha requerida',background:'#002E5C',color:'#fff'});return;}
+    const fecha   = document.getElementById('fecha').value;
+    const agente  = document.getElementById('agente').value || 'TODOS';
+    const agencia = document.getElementById('agencia').value;
+    const usuario = document.getElementById('usuario').value;
+    if (!fecha) { Swal.fire({icon:'warning',title:'Fecha requerida',background:'#002E5C',color:'#fff'}); return; }
     showBusy('Consultando cierre...');
 
-    $.post('@Url.Action("GetCierreTaquilla","Reportes")',{agente,agencia,usuario,fecha})
-        .done(function(data){
-            if(!data||!data.length){Swal.fire({icon:'info',title:'Sin resultados',background:'#002E5C',color:'#fff'});hideBusy();return;}
-            if(dt)dt.destroy();
-            dt=$('#@ViewBag.TableId').DataTable({
-                data,columns:[
-                    {data:'Agencia',defaultContent:'—'},
-                    {data:'Usuario',defaultContent:'—'},
+    $.post('@Url.Action("GetCierreTaquilla","Reportes")', { agente, agencia, usuario, fecha })
+        .done(function(data) {
+            if (!data || !data.length) { Swal.fire({icon:'info',title:'Sin resultados',background:'#002E5C',color:'#fff'}); hideBusy(); return; }
+            if (dt) dt.destroy();
+            dt = $('#@ViewBag.TableId').DataTable({
+                data, columns: [
+                    {data:'Agencia',    defaultContent:'—'},
+                    {data:'Usuario',    defaultContent:'—'},
                     {data:'FechaCierre',defaultContent:'—'},
-                    {data:'Venta',   createdCell:function(td,d){$(td).text(fmt(d)).addClass('col-monto-pos');}},
-                    {data:'Premios', createdCell:function(td,d){$(td).text(fmt(d)).addClass('col-monto-neg');}},
-                    {data:null,      createdCell:function(td,_,r){var b=(r.Venta||0)-(r.Premios||0);$(td).text(fmt(b)).addClass(b>=0?'col-monto-pos':'col-monto-neg');}},
-                    {data:'Estado',defaultContent:'—'}
+                    {data:'Venta',    createdCell:function(td,d){$(td).text(fmt(d)).addClass('col-monto-pos');}},
+                    {data:'Premios',  createdCell:function(td,d){$(td).text(fmt(d)).addClass('col-monto-neg');}},
+                    {data:null,       createdCell:function(td,_,r){var b=(r.Venta||0)-(r.Premios||0);$(td).text(fmt(b)).addClass(b>=0?'col-monto-pos':'col-monto-neg');}},
+                    {data:'Estado',    defaultContent:'—'}
                 ],
                 language:{url:'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json'},
-                pageLength:25,dom:'Bfrtip',
+                pageLength:25, dom:'Bfrtip',
                 buttons:[{extend:'excelHtml5',text:'<i class="ti ti-file-spreadsheet"></i> Excel',className:'btn-glass btn-primary btn-sm'}]
             });
             hideBusy();
-        }).fail(function(){Swal.fire({icon:'error',title:'Error',background:'#002E5C',color:'#fff'});hideBusy();});
+        }).fail(function(){ Swal.fire({icon:'error',title:'Error',background:'#002E5C',color:'#fff'}); hideBusy(); });
 }
 
-$(document).ready(function(){
-    cargarAgentes();
-    cargarAgencias();
-    // Recargar agencias si cambia el agente
-    document.getElementById('agente').addEventListener('change', cargarAgencias);
+$(document).ready(function() {
+    if (esAdmin) {
+        // Admin: cargar agentes → al terminar wirea onChange de TomSelect y llama cargarAgencias
+        cargarAgentes();
+    } else {
+        // Usuario Regular: agente es readonly, cargar agencias del agente de sesión directamente
+        cargarAgencias(agenteSession);
+    }
 });
 </script>
 }

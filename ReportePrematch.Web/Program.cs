@@ -36,7 +36,7 @@ builder.Services.AddHttpClient<IApiClient, ApiClient>(client =>
 {
     client.BaseAddress = new Uri(apiBaseUrl);
     client.DefaultRequestHeaders.Add("X-Api-Key", apiKey);
-    client.Timeout = TimeSpan.FromSeconds(120);
+    client.Timeout = TimeSpan.FromSeconds(600);
 });
 
 // ─── Servicios de la aplicación ─────────────────────────────────────────────

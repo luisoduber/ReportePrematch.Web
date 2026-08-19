@@ -2,179 +2,740 @@
     Layout = "_Layout";
 }
 
-<section class="glass-card">
-    <!-- Cabecera -->
-    <div class="welcome-bar">
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   DASHBOARD VIEWPORT — sin scroll, todo visible en pantalla
+═══════════════════════════════════════════════════════════════ */
+.dash-viewport {
+    padding: 12px 16px !important;
+    height: calc(100dvh - 160px);
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* ── Top bar ── */
+.dash-topbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    height: 42px;
+}
+.dash-title {
+    font-size: 15px; font-weight: 800;
+    color: #f1f5f9; letter-spacing: -.01em;
+    line-height: 1; white-space: nowrap;
+}
+.dash-subtitle { font-size: 10px; color: #64748b; margin-top: 3px; white-space: nowrap; }
+.dash-topbar-sep { flex: 1; }
+.dash-filter {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 10px; padding: 5px 10px; flex-shrink: 0;
+}
+.dash-filter-label {
+    font-size: 9px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .06em;
+    color: #64748b; white-space: nowrap;
+}
+.dash-filter .glass-input { height: 28px; padding: 0 8px; font-size: 12px; border-radius: 6px; min-width: 118px; }
+.dash-filter .btn-glass   { height: 28px; padding: 0 12px; font-size: 12px; border-radius: 6px; white-space: nowrap; }
+
+/* ── KPI Strip ── */
+.kpi-strip {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 8px; height: 58px; flex-shrink: 0;
+}
+.kpi-chip {
+    position: relative;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.05);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    padding: 0 10px;
+    display: flex; align-items: center; gap: 9px;
+    overflow: hidden;
+    transition: background .2s, box-shadow .25s, transform .2s;
+    cursor: default;
+}
+.kpi-chip:hover { background: rgba(255,255,255,.09); transform: translateY(-1px); }
+.kpi-chip::before {
+    content:''; position:absolute; width:44px; height:44px; border-radius:50%;
+    top:-10px; right:-8px; filter:blur(16px); opacity:.22; pointer-events:none;
+}
+.kc-blue.kpi-chip::before   { background:#3b82f6; } .kc-teal.kpi-chip::before   { background:#10b981; }
+.kc-red.kpi-chip::before    { background:#ef4444; } .kc-amber.kpi-chip::before  { background:#f59e0b; }
+.kc-purple.kpi-chip::before { background:#8b5cf6; } .kc-green.kpi-chip::before  { background:#22c55e; }
+.kc-rose.kpi-chip::before   { background:#f43f5e; } .kc-cyan.kpi-chip::before   { background:#06b6d4; }
+.kc-blue.kpi-chip:hover   { box-shadow:0 6px 20px rgba(59,130,246,.2); }
+.kc-teal.kpi-chip:hover   { box-shadow:0 6px 20px rgba(16,185,129,.2); }
+.kc-red.kpi-chip:hover    { box-shadow:0 6px 20px rgba(239,68,68,.2); }
+.kc-amber.kpi-chip:hover  { box-shadow:0 6px 20px rgba(245,158,11,.2); }
+.kc-purple.kpi-chip:hover { box-shadow:0 6px 20px rgba(139,92,246,.2); }
+.kc-green.kpi-chip:hover  { box-shadow:0 6px 20px rgba(34,197,94,.2); }
+.kc-rose.kpi-chip:hover   { box-shadow:0 6px 20px rgba(244,63,94,.2); }
+.kc-cyan.kpi-chip:hover   { box-shadow:0 6px 20px rgba(6,182,212,.2); }
+
+.kpi-chip-icon { width:28px; height:28px; border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0; }
+.kc-blue.kpi-chip   .kpi-chip-icon { background:rgba(59,130,246,.15);  color:#60a5fa; }
+.kc-teal.kpi-chip   .kpi-chip-icon { background:rgba(16,185,129,.15);  color:#34d399; }
+.kc-red.kpi-chip    .kpi-chip-icon { background:rgba(239,68,68,.15);   color:#f87171; }
+.kc-amber.kpi-chip  .kpi-chip-icon { background:rgba(245,158,11,.15);  color:#fbbf24; }
+.kc-purple.kpi-chip .kpi-chip-icon { background:rgba(139,92,246,.15);  color:#a78bfa; }
+.kc-green.kpi-chip  .kpi-chip-icon { background:rgba(34,197,94,.15);   color:#4ade80; }
+.kc-rose.kpi-chip   .kpi-chip-icon { background:rgba(244,63,94,.15);   color:#fb7185; }
+.kc-cyan.kpi-chip   .kpi-chip-icon { background:rgba(6,182,212,.15);   color:#22d3ee; }
+
+.kpi-chip-info { display:flex; flex-direction:column; min-width:0; }
+.kpi-chip-label {
+    font-size:9px; font-weight:700; text-transform:uppercase;
+    letter-spacing:.06em; line-height:1; margin-bottom:4px;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.kc-blue.kpi-chip   .kpi-chip-label { color:#93c5fd; } .kc-teal.kpi-chip   .kpi-chip-label { color:#6ee7b7; }
+.kc-red.kpi-chip    .kpi-chip-label { color:#fca5a5; } .kc-amber.kpi-chip  .kpi-chip-label { color:#fcd34d; }
+.kc-purple.kpi-chip .kpi-chip-label { color:#c4b5fd; } .kc-green.kpi-chip  .kpi-chip-label { color:#86efac; }
+.kc-rose.kpi-chip   .kpi-chip-label { color:#fda4af; } .kc-cyan.kpi-chip   .kpi-chip-label { color:#67e8f9; }
+
+.kpi-chip-value { font-size:18px; font-weight:800; letter-spacing:-.02em; line-height:1; color:#f1f5f9; }
+.kpi-chip-value.loading {
+    background:rgba(255,255,255,.08); border-radius:5px; color:transparent;
+    animation:kpi-pulse 1.4s ease-in-out infinite; min-width:52px; display:inline-block;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ÁREA DE CARDS — grid unificado 4 cols × 2 filas
+   Charts (3) + Moneda (1) + Tables (4) = 8 items en 8 slots
+═══════════════════════════════════════════════════════════════ */
+.dash-card-area {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 1fr;
+    gap: 8px;
+}
+
+/* display:contents hace que los hijos de estos divs sean
+   items directos del grid padre (.dash-card-area)          */
+#chartsGrid,
+#monedaGrid,
+#tablesGrid { display: contents; }
+
+/* ── Chart cards ── */
+.chart-card {
+    position: relative;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 14px;
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    padding: 16px 16px 14px;
+    overflow: hidden;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: background .25s, box-shadow .3s, transform .2s;
+}
+.chart-card:hover { transform:translateY(-2px); background:rgba(255,255,255,.08); }
+.chart-card::before {
+    content:''; position:absolute; width:90px; height:90px; border-radius:50%;
+    top:-28px; right:-22px; filter:blur(36px); opacity:.15; pointer-events:none; transition:opacity .25s;
+}
+.chart-card:hover::before { opacity:.30; }
+.cc-cyan::before  { background:#06b6d4; } .cc-green::before  { background:#22c55e; } .cc-purple::before { background:#8b5cf6; }
+.chart-card::after {
+    content:''; position:absolute; top:0; left:0; right:0;
+    height:2px; border-radius:14px 14px 0 0;
+}
+.cc-cyan::after   { background:linear-gradient(90deg,#06b6d4,#22d3ee); }
+.cc-green::after  { background:linear-gradient(90deg,#22c55e,#86efac); }
+.cc-purple::after { background:linear-gradient(90deg,#8b5cf6,#c4b5fd); }
+.cc-cyan:hover   { box-shadow:0 12px 36px rgba(6,182,212,.2); }
+.cc-green:hover  { box-shadow:0 12px 36px rgba(34,197,94,.2); }
+.cc-purple:hover { box-shadow:0 12px 36px rgba(139,92,246,.2); }
+
+.chart-card-title {
+    font-size:11px; font-weight:700; letter-spacing:.07em; text-transform:uppercase;
+    margin-bottom:16px; align-self:flex-start;
+}
+.cc-cyan   .chart-card-title { color:#22d3ee; }
+.cc-green  .chart-card-title { color:#4ade80; }
+.cc-purple .chart-card-title { color:#a78bfa; }
+
+.chart-canvas-wrap { position:relative; width:120px; height:120px; margin:0 auto 16px; flex-shrink:0; }
+.chart-center-label {
+    position:absolute; inset:0; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; pointer-events:none;
+}
+.chart-center-total { font-size:20px; font-weight:800; letter-spacing:-.02em; color:#f1f5f9; line-height:1; }
+.chart-center-sub   { font-size:9px; font-weight:600; color:#64748b; letter-spacing:.04em; text-transform:uppercase; margin-top:4px; }
+
+.chart-legend { width:100%; display:flex; flex-direction:column; gap:8px; }
+.chart-legend-row { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.chart-legend-left { display:flex; align-items:center; gap:7px; }
+.chart-legend-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.chart-legend-label { font-size:11px; color:#94a3b8; font-weight:500; }
+.chart-legend-val   { font-size:12px; color:#cbd5e1; font-weight:700; font-variant-numeric:tabular-nums; }
+
+/* ── Table cards (Top 10 + Moneda comparten estos estilos) ── */
+.top-table-card {
+    position: relative;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 14px;
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: box-shadow .3s, transform .2s;
+}
+.top-table-card:hover { transform:translateY(-1px); }
+.top-table-card::after {
+    content:''; position:absolute; top:0; left:0; right:0;
+    height:2px; border-radius:14px 14px 0 0;
+}
+.top-table-card::before {
+    content:''; position:absolute; width:100px; height:100px; border-radius:50%;
+    top:-32px; right:-24px; filter:blur(40px); opacity:.10; pointer-events:none; transition:opacity .25s;
+}
+.top-table-card:hover::before { opacity:.22; }
+.ttc-amber::after,.ttc-amber::before   { background:#f59e0b; }
+.ttc-blue::after,.ttc-blue::before     { background:#3b82f6; }
+.ttc-orange::after,.ttc-orange::before { background:#f97316; }
+.ttc-cyan::after,.ttc-cyan::before     { background:#06b6d4; }
+.ttc-green::after,.ttc-green::before   { background:#22c55e; }
+.ttc-amber:hover  { box-shadow:0 10px 30px rgba(245,158,11,.15); }
+.ttc-blue:hover   { box-shadow:0 10px 30px rgba(59,130,246,.15); }
+.ttc-orange:hover { box-shadow:0 10px 30px rgba(249,115,22,.15); }
+.ttc-cyan:hover   { box-shadow:0 10px 30px rgba(6,182,212,.15);  }
+.ttc-green:hover  { box-shadow:0 10px 30px rgba(34,197,94,.15);  }
+
+.top-table-header {
+    display:flex; align-items:center; gap:8px;
+    padding:12px 14px 10px;
+    border-bottom:1px solid rgba(255,255,255,.07);
+    flex-shrink:0;
+}
+.top-table-icon { width:26px; height:26px; border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:13px; flex-shrink:0; }
+.ttc-amber  .top-table-icon { background:rgba(245,158,11,.15);  color:#fbbf24; }
+.ttc-blue   .top-table-icon { background:rgba(59,130,246,.15);  color:#60a5fa; }
+.ttc-orange .top-table-icon { background:rgba(249,115,22,.15);  color:#fb923c; }
+.ttc-cyan   .top-table-icon { background:rgba(6,182,212,.15);   color:#22d3ee; }
+.ttc-green  .top-table-icon { background:rgba(34,197,94,.15);   color:#4ade80; }
+.top-table-title { font-size:11px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; }
+.ttc-amber  .top-table-title { color:#fcd34d; }
+.ttc-blue   .top-table-title { color:#93c5fd; }
+.ttc-orange .top-table-title { color:#fdba74; }
+.ttc-cyan   .top-table-title { color:#67e8f9; }
+.ttc-green  .top-table-title { color:#86efac; }
+.top-table-count { margin-left:auto; font-size:10px; font-weight:600; padding:2px 7px; border-radius:20px; background:rgba(255,255,255,.05); color:#64748b; border:1px solid rgba(255,255,255,.07); }
+
+.table-scroll {
+    flex:1; min-height:0; overflow-y:auto;
+    scrollbar-width:thin; scrollbar-color:rgba(255,255,255,.08) transparent;
+}
+.table-scroll::-webkit-scrollbar { width:3px; }
+.table-scroll::-webkit-scrollbar-thumb { background:rgba(255,255,255,.10); border-radius:3px; }
+
+/* ── Rows tabla Top 10 ── */
+.top-table-inner { width:100%; border-collapse:collapse; }
+.top-table-inner tr { border-bottom:1px solid rgba(255,255,255,.04); transition:background .18s; }
+.top-table-inner tr:last-child { border-bottom:none; }
+.top-table-inner tr:hover { background:rgba(255,255,255,.04); }
+.top-table-inner td {
+    padding:7px 12px; font-size:12px; color:#cbd5e1;
+    vertical-align:middle; white-space:nowrap;
+    overflow:hidden; text-overflow:ellipsis; max-width:140px;
+}
+.top-table-inner td.td-rank { width:28px; text-align:center; padding-left:14px; }
+.rank-badge { display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; border-radius:50%; font-size:9px; font-weight:800; }
+.rank-1 { background:rgba(251,191,36,.18); color:#fbbf24; }
+.rank-2 { background:rgba(148,163,184,.14); color:#94a3b8; }
+.rank-3 { background:rgba(180,120,72,.14);  color:#c87941; }
+.rank-n { background:rgba(255,255,255,.05); color:#475569; }
+.top-table-inner td.td-name { font-weight:600; color:#e2e8f0; max-width:140px; }
+.top-table-inner td.td-sub  { color:#64748b; font-size:11px; max-width:100px; }
+.top-table-inner td.td-val  { text-align:right; font-weight:800; font-size:12px; padding-right:14px; font-variant-numeric:tabular-nums; color:#f1f5f9; min-width:60px; }
+.top-table-bar { display:flex; align-items:center; gap:6px; }
+.top-table-bar-track { flex:1; height:3px; background:rgba(255,255,255,.06); border-radius:99px; overflow:hidden; min-width:28px; }
+.top-table-bar-fill  { height:100%; border-radius:99px; width:0%; transition:width .8s cubic-bezier(.4,0,.2,1); }
+.ttc-amber  .top-table-bar-fill { background:linear-gradient(90deg,#f59e0b,#fcd34d); }
+.ttc-blue   .top-table-bar-fill { background:linear-gradient(90deg,#3b82f6,#93c5fd); }
+.ttc-orange .top-table-bar-fill { background:linear-gradient(90deg,#f97316,#fdba74); }
+.ttc-cyan   .top-table-bar-fill { background:linear-gradient(90deg,#06b6d4,#67e8f9); }
+
+/* ── Rows card Ventas por Moneda ── */
+.moneda-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 14px;
+    border-bottom: 1px solid rgba(255,255,255,.04);
+    transition: background .18s;
+}
+.moneda-row:last-child { border-bottom: none; }
+.moneda-row:hover { background: rgba(255,255,255,.04); }
+.moneda-row-dot {
+    width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0;
+}
+.moneda-row-info { flex: 1; min-width: 0; }
+.moneda-row-code {
+    font-size: 10px; font-weight: 800; letter-spacing: .06em;
+    text-transform: uppercase; color: #e2e8f0; line-height: 1.2;
+}
+.moneda-row-label {
+    font-size: 10px; color: #64748b; font-weight: 500;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.moneda-row-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+.moneda-row-amount {
+    font-size: 13px; font-weight: 800; color: #f1f5f9;
+    font-variant-numeric: tabular-nums; line-height: 1;
+}
+.moneda-row-bar { display: flex; align-items: center; gap: 5px; }
+.moneda-row-track {
+    width: 48px; height: 3px;
+    background: rgba(255,255,255,.07); border-radius: 99px; overflow: hidden;
+}
+.moneda-row-fill { height: 100%; border-radius: 99px; width: 0%; transition: width .8s cubic-bezier(.4,0,.2,1); }
+.moneda-row-pct { font-size: 9px; color: #64748b; font-weight: 600; min-width: 24px; text-align: right; }
+
+/* ── Skeletons ── */
+@@keyframes kpi-pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+.table-skel { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07); border-radius:14px; overflow:hidden; animation:kpi-pulse 1.4s ease-in-out infinite; }
+.table-skel-header { background:rgba(255,255,255,.04); height:48px; border-bottom:1px solid rgba(255,255,255,.05); }
+.table-skel-row { display:flex; align-items:center; gap:10px; padding:7px 14px; border-bottom:1px solid rgba(255,255,255,.03); }
+.table-skel-circle { width:20px; height:20px; border-radius:50%; background:rgba(255,255,255,.07); flex-shrink:0; }
+.table-skel-line { background:rgba(255,255,255,.07); border-radius:5px; height:10px; }
+.chart-skel { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07); border-radius:14px; padding:16px; display:flex; flex-direction:column; align-items:center; justify-content:center; animation:kpi-pulse 1.4s ease-in-out infinite; }
+.chart-skel-circle { width:110px; height:110px; border-radius:50%; background:rgba(255,255,255,.07); margin-bottom:16px; flex-shrink:0; }
+.chart-skel-line { background:rgba(255,255,255,.07); border-radius:5px; height:10px; margin-bottom:8px; width:100%; }
+
+/* ─── RESPONSIVE MÓVIL ─── */
+@media (max-width: 768px) {
+    /* El viewport deja de ser fijo y pasa a ser scrollable */
+    .dash-viewport {
+        height: auto !important;
+        overflow: visible !important;
+        padding: 10px 8px !important;
+        min-height: 0;
+    }
+    /* Top bar: titulo arriba, filtro abajo */
+    .dash-topbar {
+        flex-wrap: wrap;
+        height: auto;
+        gap: 8px;
+        align-items: flex-start;
+    }
+    .dash-topbar-sep { display: none; }
+    .dash-filter {
+        flex-wrap: wrap;
+        width: 100%;
+        gap: 6px;
+        padding: 6px 8px;
+    }
+    .dash-filter .glass-input {
+        min-width: 0;
+        flex: 1 1 120px;
+    }
+    .dash-filter .btn-glass { flex: 1 1 80px; justify-content: center; }
+    /* KPI: 4 columnas */
+    .kpi-strip {
+        grid-template-columns: repeat(4, 1fr);
+        height: auto;
+        gap: 6px;
+    }
+    .kpi-chip { padding: 6px 8px; gap: 6px; }
+    .kpi-chip-value { font-size: 14px; }
+    .kpi-chip-label { font-size: 8px; }
+    .kpi-chip-icon { width: 24px; height: 24px; font-size: 12px; }
+    /* Grid de tarjetas: 2 columnas */
+    .dash-card-area {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+        min-height: 0;
+    }
+    .chart-card, .top-table-card { min-height: 220px; }
+}
+
+@media (max-width: 430px) {
+    /* KPI: 2 columnas en iPhone Pro Max */
+    .kpi-strip { grid-template-columns: repeat(2, 1fr); gap: 5px; }
+    .kpi-chip { padding: 5px 7px; }
+    .kpi-chip-value { font-size: 13px; }
+    /* Grid de tarjetas: 1 columna */
+    .dash-card-area { grid-template-columns: 1fr; }
+    .dash-title { font-size: 13px; }
+    .dash-subtitle { font-size: 9px; }
+    .chart-card, .top-table-card { min-height: 240px; }
+}
+</style>
+
+<section class="glass-card dash-viewport">
+
+    <!-- ── Top bar ────────────────────────────────────────────── -->
+    <div class="dash-topbar">
         <div>
-            <div class="welcome-title">Dashboard Operativo</div>
-            <div class="welcome-sub">Resumen general · Usuario: <strong>@ViewBag.Usuario</strong></div>
+            <div class="dash-title"><i class="ti ti-layout-dashboard" style="font-size:14px;color:#22d3ee;margin-right:5px;"></i>Dashboard Operativo</div>
+            <div class="dash-subtitle">Usuario: <strong style="color:#94a3b8;">@ViewBag.Usuario</strong></div>
         </div>
-        <button class="btn-glass btn-primary" onclick="cargarDashboard()">
-            <i class="ti ti-refresh"></i> Actualizar
-        </button>
-    </div>
-
-    <!-- Filtro de fecha -->
-    <div class="glass-panel mt-3 p-3">
-        <div class="row g-2 align-items-end">
-            <div class="col-md-3">
-                <label class="field-label">Fecha Desde</label>
-                <input type="date" id="fechaD" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
-            </div>
-            <div class="col-md-3">
-                <label class="field-label">Fecha Hasta</label>
-                <input type="date" id="fechaH" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
-            </div>
-            <div class="col-md-3">
-                <button class="btn-glass btn-primary w-100" onclick="cargarDashboard()">
-                    <i class="ti ti-search"></i> Consultar
-                </button>
-            </div>
+        <div class="dash-topbar-sep"></div>
+        <div class="dash-filter">
+            <span class="dash-filter-label">Desde</span>
+            <input type="date" id="fechaD" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            <span class="dash-filter-label">Hasta</span>
+            <input type="date" id="fechaH" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            <button class="btn-glass btn-primary" onclick="cargarDashboard()">
+                <i class="ti ti-search"></i> Consultar
+            </button>
+            <button class="btn-glass" onclick="cargarDashboard()" title="Actualizar">
+                <i class="ti ti-refresh"></i>
+            </button>
         </div>
     </div>
 
-    <!-- KPI Cards -->
-    <div class="quick-metrics-bar mt-3" id="kpiBar" style="display:none;">
-        <div class="metric-card">
-            <div class="metric-label">Venta Web</div>
-            <div class="metric-value metric-blue" id="kpiVentaWeb">—</div>
+    <!-- ── KPI Strip ───────────────────────────────────────────── -->
+    <div class="kpi-strip">
+        <div class="kpi-chip kc-blue">
+            <div class="kpi-chip-icon"><i class="ti ti-building-store"></i></div>
+            <div class="kpi-chip-info"><span class="kpi-chip-label">T. Taquilla</span><span class="kpi-chip-value loading" id="kpiTicketsTaq">——</span></div>
         </div>
-        <div class="metric-card">
-            <div class="metric-label">Venta Taquilla</div>
-            <div class="metric-value metric-blue" id="kpiVentaTaq">—</div>
+        <div class="kpi-chip kc-teal">
+            <div class="kpi-chip-icon"><i class="ti ti-world"></i></div>
+            <div class="kpi-chip-info"><span class="kpi-chip-label">T. Web</span><span class="kpi-chip-value loading" id="kpiTicketsWeb">——</span></div>
         </div>
-        <div class="metric-card">
-            <div class="metric-label">Premios Web</div>
-            <div class="metric-value metric-red" id="kpiPremiosWeb">—</div>
+        <div class="kpi-chip kc-red">
+            <div class="kpi-chip-icon"><i class="ti ti-ban"></i></div>
+            <div class="kpi-chip-info"><span class="kpi-chip-label">Anulados</span><span class="kpi-chip-value loading" id="kpiTicketsAnulados">——</span></div>
         </div>
-        <div class="metric-card">
-            <div class="metric-label">Premios Taquilla</div>
-            <div class="metric-value metric-red" id="kpiPremiosTaq">—</div>
+        <div class="kpi-chip kc-amber">
+            <div class="kpi-chip-icon"><i class="ti ti-clock-pause"></i></div>
+            <div class="kpi-chip-info"><span class="kpi-chip-label">Sin Result.</span><span class="kpi-chip-value loading" id="kpiTicketsSinResultado">——</span></div>
         </div>
-        <div class="metric-card">
-            <div class="metric-label">Balance Total</div>
-            <div class="metric-value metric-green" id="kpiBalance">—</div>
+        <div class="kpi-chip kc-purple">
+            <div class="kpi-chip-icon"><i class="ti ti-users"></i></div>
+            <div class="kpi-chip-info"><span class="kpi-chip-label">C. Registrados</span><span class="kpi-chip-value loading" id="kpiClientesRegistrados">——</span></div>
+        </div>
+        <div class="kpi-chip kc-green">
+            <div class="kpi-chip-icon"><i class="ti ti-user-check"></i></div>
+            <div class="kpi-chip-info"><span class="kpi-chip-label">C. Jugaron</span><span class="kpi-chip-value loading" id="kpiClientesNuevosJugaron">——</span></div>
+        </div>
+        <div class="kpi-chip kc-rose">
+            <div class="kpi-chip-icon"><i class="ti ti-user-x"></i></div>
+            <div class="kpi-chip-info"><span class="kpi-chip-label">C. No Jugaron</span><span class="kpi-chip-value loading" id="kpiClientesNuevosNoJugaron">——</span></div>
+        </div>
+        <div class="kpi-chip kc-cyan">
+            <div class="kpi-chip-icon"><i class="ti ti-activity"></i></div>
+            <div class="kpi-chip-info"><span class="kpi-chip-label">Jugando Ahora</span><span class="kpi-chip-value loading" id="kpiClientesJugando">——</span></div>
         </div>
     </div>
 
-    <!-- Accesos rápidos por módulo -->
-    <div class="mt-4">
-        <div class="section-label">Módulos de Reporte</div>
-        <div class="module-grid mt-3">
-            <!-- Apuestas Taquilla -->
-            <a class="module-card" asp-controller="Reportes" asp-action="VentasPorAgenteTaq">
-                <div class="module-card-icon mc-icon-blue"><i class="ti ti-building-store"></i></div>
-                <div class="module-card-name">Ventas Taquilla</div>
-                <div class="module-card-desc">Por agente, parlay y directo</div>
-            </a>
-            <a class="module-card" asp-controller="Reportes" asp-action="VentasPorAgenteWeb">
-                <div class="module-card-icon mc-icon-teal"><i class="ti ti-world"></i></div>
-                <div class="module-card-name">Ventas Web</div>
-                <div class="module-card-desc">Canal online por agente</div>
-            </a>
-            <a class="module-card" asp-controller="Reportes" asp-action="TicketsDetalladosTaq">
-                <div class="module-card-icon mc-icon-blue"><i class="ti ti-ticket"></i></div>
-                <div class="module-card-name">Tickets Taquilla</div>
-                <div class="module-card-desc">Detalle de tickets por período</div>
-            </a>
-            <a class="module-card" asp-controller="Reportes" asp-action="TicketsDetalladosWeb">
-                <div class="module-card-icon mc-icon-teal"><i class="ti ti-ticket"></i></div>
-                <div class="module-card-name">Tickets Web</div>
-                <div class="module-card-desc">Detalle online de tickets</div>
-            </a>
-            <a class="module-card" asp-controller="Reportes" asp-action="EstadisticasTaq">
-                <div class="module-card-icon mc-icon-indigo"><i class="ti ti-chart-pie"></i></div>
-                <div class="module-card-name">Estadísticas</div>
-                <div class="module-card-desc">Resumen estadístico de operaciones</div>
-            </a>
-            <a class="module-card" asp-controller="Reportes" asp-action="DeportesMasVendidos">
-                <div class="module-card-icon mc-icon-amber"><i class="ti ti-trophy"></i></div>
-                <div class="module-card-name">Deportes Vendidos</div>
-                <div class="module-card-desc">Ranking de deportes más activos</div>
-            </a>
-            <!-- Casino -->
-            <a class="module-card" asp-controller="Reportes" asp-action="CasinoMaquinitas">
-                <div class="module-card-icon mc-icon-orange"><i class="ti ti-device-gamepad-2"></i></div>
-                <div class="module-card-name">Maquinitas</div>
-                <div class="module-card-desc">Casino electrónico</div>
-            </a>
-            <a class="module-card" asp-controller="Reportes" asp-action="IconBet">
-                <div class="module-card-icon mc-icon-amber"><i class="ti ti-crown"></i></div>
-                <div class="module-card-name">IconBet</div>
-                <div class="module-card-desc">Movimientos de plataforma</div>
-            </a>
-            <a class="module-card" asp-controller="Reportes" asp-action="Pragmatic">
-                <div class="module-card-icon mc-icon-indigo"><i class="ti ti-sparkles"></i></div>
-                <div class="module-card-name">Pragmatic</div>
-                <div class="module-card-desc">Juegos Pragmatic Play</div>
-            </a>
-            <a class="module-card" asp-controller="Reportes" asp-action="Aviatrix">
-                <div class="module-card-icon mc-icon-blue"><i class="ti ti-plane"></i></div>
-                <div class="module-card-name">Aviatrix</div>
-                <div class="module-card-desc">Juego de aviación</div>
-            </a>
-            <!-- Otros -->
-            <a class="module-card" asp-controller="Reportes" asp-action="Hipismo">
-                <div class="module-card-icon mc-icon-green"><i class="ti ti-horse"></i></div>
-                <div class="module-card-name">Hipismo</div>
-                <div class="module-card-desc">Carreras y apostadores</div>
-            </a>
-            <a class="module-card" asp-controller="Reportes" asp-action="Loteria">
-                <div class="module-card-icon mc-icon-green"><i class="ti ti-numbers"></i></div>
-                <div class="module-card-name">Lotería</div>
-                <div class="module-card-desc">Resultados y ventas de lotería</div>
-            </a>
-            <!-- Finanzas -->
-            <a class="module-card" asp-controller="Reportes" asp-action="RetirosRecargas">
-                <div class="module-card-icon mc-icon-orange"><i class="ti ti-arrows-exchange"></i></div>
-                <div class="module-card-name">Retiros y Recargas</div>
-                <div class="module-card-desc">Movimientos financieros</div>
-            </a>
-            <a class="module-card" asp-controller="Reportes" asp-action="SaldosDisponibles">
-                <div class="module-card-icon mc-icon-green"><i class="ti ti-coin"></i></div>
-                <div class="module-card-name">Saldos Disponibles</div>
-                <div class="module-card-desc">Saldo en cuentas de agentes</div>
-            </a>
+    <!-- ── Grid unificado 4×2: 3 charts + 1 moneda + 4 tables ── -->
+    <!--   display:contents en cada contenedor → todos al mismo nivel de grid  -->
+    <div class="dash-card-area">
+
+        <!-- Charts (col 0-2, fila 0) -->
+        <div id="chartsGrid">
+            <div class="chart-skel"><div class="chart-skel-circle"></div><div class="chart-skel-line" style="width:70%"></div><div class="chart-skel-line" style="width:55%"></div></div>
+            <div class="chart-skel"><div class="chart-skel-circle"></div><div class="chart-skel-line" style="width:65%"></div><div class="chart-skel-line" style="width:50%"></div></div>
+            <div class="chart-skel"><div class="chart-skel-circle"></div><div class="chart-skel-line" style="width:60%"></div><div class="chart-skel-line" style="width:45%"></div></div>
         </div>
+
+        <!-- Moneda (col 3, fila 0) -->
+        <div id="monedaGrid">
+            <div class="table-skel"><div class="table-skel-header"></div><div class="table-skel-row"><div class="table-skel-circle"></div><div class="table-skel-line" style="flex:1"></div><div class="table-skel-line" style="width:44px"></div></div><div class="table-skel-row"><div class="table-skel-circle"></div><div class="table-skel-line" style="flex:1"></div><div class="table-skel-line" style="width:44px"></div></div><div class="table-skel-row"><div class="table-skel-circle"></div><div class="table-skel-line" style="flex:1"></div><div class="table-skel-line" style="width:44px"></div></div></div>
+        </div>
+
+        <!-- Tables (col 0-3, fila 1) -->
+        <div id="tablesGrid">
+            <div class="table-skel"><div class="table-skel-header"></div><div class="table-skel-row"><div class="table-skel-circle"></div><div class="table-skel-line" style="flex:1"></div><div class="table-skel-line" style="width:40px"></div></div><div class="table-skel-row"><div class="table-skel-circle"></div><div class="table-skel-line" style="flex:1"></div><div class="table-skel-line" style="width:36px"></div></div><div class="table-skel-row"><div class="table-skel-circle"></div><div class="table-skel-line" style="flex:1"></div><div class="table-skel-line" style="width:38px"></div></div></div>
+            <div class="table-skel"><div class="table-skel-header"></div><div class="table-skel-row"><div class="table-skel-circle"></div><div class="table-skel-line" style="flex:1"></div><div class="table-skel-line" style="width:40px"></div></div><div class="table-skel-row"><div class="table-skel-circle"></div><div class="table-skel-line" style="flex:1"></div><div class="table-skel-line" style="width:36px"></div></div><div class="table-skel-row"><div class="table-skel-circle"></div><div class="table-skel-line" style="flex:1"></div><div class="table-skel-line" style="width:38px"></div></div></div>
+            <div class="table-skel"><div class="table-skel-header"></div><div class="table-skel-row"><div class="table-skel-circle"></div><div class="table-skel-line" style="flex:1"></div><div class="table-skel-line" style="width:40px"></div></div><div class="table-skel-row"><div class="table-skel-circle"></div><div class="table-skel-line" style="flex:1"></div><div class="table-skel-line" style="width:36px"></div></div><div class="table-skel-row"><div class="table-skel-circle"></div><div class="table-skel-line" style="flex:1"></div><div class="table-skel-line" style="width:38px"></div></div></div>
+            <div class="table-skel"><div class="table-skel-header"></div><div class="table-skel-row"><div class="table-skel-circle"></div><div class="table-skel-line" style="flex:1"></div><div class="table-skel-line" style="width:40px"></div></div><div class="table-skel-row"><div class="table-skel-circle"></div><div class="table-skel-line" style="flex:1"></div><div class="table-skel-line" style="width:36px"></div></div><div class="table-skel-row"><div class="table-skel-circle"></div><div class="table-skel-line" style="flex:1"></div><div class="table-skel-line" style="width:38px"></div></div></div>
+        </div>
+
     </div>
+
 </section>
 
 @section Scripts {
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>
-function fmt(val) {
-    return parseFloat(val || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const _agente = '@ViewBag.Agente' || 'TODOS';
+const _pais   = '@ViewBag.Pais'   || '';
+
+function setKpi(id, val) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.remove('loading');
+    el.textContent = parseInt(val || 0).toLocaleString('es-VE');
 }
 
+/* ── Ventas por Moneda ───────────────────────────────────── */
+const MC_PALETTE = ['#f59e0b','#22c55e','#3b82f6','#8b5cf6','#06b6d4','#f43f5e','#f97316','#10b981'];
+const MC_SYMBOLS = { 'BS':'Bs','VES':'Bs','USD':'$','COP':'$C','EUR':'€','BRL':'R$','MXN':'$M','PEN':'S/' };
+
+function renderMonedas(data) {
+    const grid = document.getElementById('monedaGrid');
+    if (!data || data.length === 0) {
+        grid.innerHTML = `
+        <div class="top-table-card ttc-green">
+            <div class="top-table-header">
+                <div class="top-table-icon"><i class="ti ti-coins"></i></div>
+                <span class="top-table-title">Ventas por Moneda</span>
+                <span class="top-table-count">0</span>
+            </div>
+            <div class="table-scroll" style="display:flex;align-items:center;justify-content:center;padding:20px;">
+                <p style="color:#64748b;font-size:12px;text-align:center;"><i class="ti ti-inbox" style="display:block;font-size:22px;margin-bottom:6px;"></i>Sin datos para el período</p>
+            </div>
+        </div>`;
+        return;
+    }
+
+    const total = data.reduce((s, m) => {
+        return s + (parseFloat((m.ventas || '0').replace(/\./g, '').replace(',', '.')) || 0);
+    }, 0);
+
+    const rowsHtml = data.map((m, i) => {
+        const color  = MC_PALETTE[i % MC_PALETTE.length];
+        const code   = (m.moneda || '').toUpperCase();
+        const symbol = MC_SYMBOLS[code] || code.substring(0, 2);
+        const label  = (m.defMoneda || m.DefMoneda || '').trim();
+        const ventas = parseFloat((m.ventas || '0').replace(/\./g, '').replace(',', '.')) || 0;
+        const pct    = total > 0 ? Math.round((ventas / total) * 100) : 0;
+        return `
+        <div class="moneda-row">
+            <span class="moneda-row-dot" style="background:${color}"></span>
+            <div class="moneda-row-info">
+                <div class="moneda-row-code">${symbol}&thinsp;·&thinsp;${code}</div>
+                <div class="moneda-row-label">${label}</div>
+            </div>
+            <div class="moneda-row-right">
+                <span class="moneda-row-amount">${m.ventas || '0,00'}</span>
+                <div class="moneda-row-bar">
+                    <div class="moneda-row-track">
+                        <div class="moneda-row-fill" data-pct="${pct}" style="width:0%;background:${color}"></div>
+                    </div>
+                    <span class="moneda-row-pct">${pct}%</span>
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+
+    grid.innerHTML = `
+    <div class="top-table-card ttc-green">
+        <div class="top-table-header">
+            <div class="top-table-icon"><i class="ti ti-coins"></i></div>
+            <span class="top-table-title">Ventas por Moneda</span>
+            <span class="top-table-count">${data.length}</span>
+        </div>
+        <div class="table-scroll">${rowsHtml}</div>
+    </div>`;
+
+    setTimeout(() => {
+        grid.querySelectorAll('.moneda-row-fill').forEach(bar => { bar.style.width = bar.dataset.pct + '%'; });
+    }, 80);
+}
+
+/* ── Top 10 Tables ───────────────────────────────────────── */
+function rankBadge(i) {
+    const cls = i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':'rank-n';
+    return `<span class="rank-badge ${cls}">${i+1}</span>`;
+}
+
+function buildTopTable(containerId, colorClass, icon, title, rows, columns) {
+    const maxVal = rows.reduce((m, r) => Math.max(m, r[columns[columns.length-1].key]||0), 1);
+    const rowsHtml = rows.map((r, i) => {
+        const valKey = columns[columns.length-1].key;
+        const val    = r[valKey] || 0;
+        const pct    = Math.round((val / maxVal) * 100);
+        const cells  = columns.map(col => {
+            if (col.type==='rank') return `<td class="td-rank">${rankBadge(i)}</td>`;
+            if (col.type==='val')  return `<td class="td-val"><div class="top-table-bar"><div class="top-table-bar-track"><div class="top-table-bar-fill" data-pct="${pct}" style="width:0%"></div></div>${val.toLocaleString('es-VE')}</div></td>`;
+            return `<td class="${col.type==='sub'?'td-sub':'td-name'}" title="${r[col.key]||''}">${r[col.key]||'—'}</td>`;
+        }).join('');
+        return `<tr>${cells}</tr>`;
+    }).join('');
+    return `
+    <div class="top-table-card ${colorClass}" id="${containerId}">
+        <div class="top-table-header">
+            <div class="top-table-icon"><i class="ti ${icon}"></i></div>
+            <span class="top-table-title">${title}</span>
+            <span class="top-table-count">${rows.length}</span>
+        </div>
+        <div class="table-scroll">
+            <table class="top-table-inner"><tbody>${rowsHtml}</tbody></table>
+        </div>
+    </div>`;
+}
+
+function renderTables(data) {
+    const grid = document.getElementById('tablesGrid');
+    if (!data) {
+        grid.innerHTML = '<p style="color:#64748b;font-size:12px;">Sin datos de ranking.</p>';
+        return;
+    }
+    const TABLES = [
+        { id:'tableAgentesTaq',  color:'ttc-amber',  icon:'ti-building-store', title:'Top · Agentes Taq.',
+          rows:data.topAgentesTaq||[], cols:[{key:'_rank',type:'rank'},{key:'nombreAgente',type:'name'},{key:'cantTicketTaq',type:'val'}] },
+        { id:'tableUsuariosTaq', color:'ttc-orange', icon:'ti-users',           title:'Top · Usuarios Taq.',
+          rows:data.topUsuariosTaq||[], cols:[{key:'_rank',type:'rank'},{key:'nombreAgente',type:'sub'},{key:'usuario',type:'name'},{key:'cantApuestas',type:'val'}] },
+        { id:'tableAgentesWeb',  color:'ttc-blue',   icon:'ti-world',           title:'Top · Agentes Web',
+          rows:data.topAgentesWeb||[], cols:[{key:'_rank',type:'rank'},{key:'nombreAgente',type:'name'},{key:'cantTicketWeb',type:'val'}] },
+        { id:'tableUsuariosWeb', color:'ttc-cyan',   icon:'ti-user-circle',     title:'Top · Usuarios Web',
+          rows:data.topUsuariosWeb||[], cols:[{key:'_rank',type:'rank'},{key:'nombreAgente',type:'sub'},{key:'usuario',type:'name'},{key:'cantApuestas',type:'val'}] }
+    ];
+    grid.innerHTML = TABLES.map(t => buildTopTable(t.id, t.color, t.icon, t.title, t.rows, t.cols)).join('');
+    setTimeout(() => {
+        grid.querySelectorAll('.top-table-bar-fill').forEach(bar => { bar.style.width = bar.dataset.pct + '%'; });
+    }, 80);
+}
+
+/* ── Gráficas Chart.js ───────────────────────────────────── */
+const _chartInstances = {};
+
+function buildDonutCard(containerId, title, colorClass, segments) {
+    const total = segments.reduce((s, sg) => s + (sg.value||0), 0);
+    const card  = document.createElement('div');
+    card.className = `chart-card ${colorClass}`;
+    card.id = containerId;
+    const legendRows = segments.map(sg => `
+        <div class="chart-legend-row">
+            <div class="chart-legend-left">
+                <span class="chart-legend-dot" style="background:${sg.color}"></span>
+                <span class="chart-legend-label">${sg.label}</span>
+            </div>
+            <span class="chart-legend-val">${(sg.value||0).toLocaleString('es-VE')}</span>
+        </div>`).join('');
+    card.innerHTML = `
+        <div class="chart-card-title">${title}</div>
+        <div class="chart-canvas-wrap">
+            <canvas id="${containerId}_canvas" width="120" height="120"></canvas>
+            <div class="chart-center-label">
+                <span class="chart-center-total">${total.toLocaleString('es-VE')}</span>
+                <span class="chart-center-sub">total</span>
+            </div>
+        </div>
+        <div class="chart-legend">${legendRows}</div>`;
+    return card;
+}
+
+function renderCharts(data) {
+    const grid = document.getElementById('chartsGrid');
+    grid.innerHTML = '';
+    Object.keys(_chartInstances).forEach(k => { _chartInstances[k].destroy(); delete _chartInstances[k]; });
+
+    const CHARTS_DEF = [
+        { id:'chartApuestas',   title:'Tipo de Apuestas', colorClass:'cc-cyan',
+          segments:[{label:'Directa',value:data.cantDirectas||0,color:'#22d3ee'},{label:'Parlay',value:data.cantParlay||0,color:'#818cf8'}] },
+        { id:'chartResultados', title:'Resultados',        colorClass:'cc-green',
+          segments:[{label:'Ganadores',value:data.cantGanador||0,color:'#4ade80'},{label:'Perdedores',value:data.cantPerdedor||0,color:'#f87171'},{label:'Ganad. Parc.',value:data.cantGanParcial||0,color:'#fbbf24'}] },
+        { id:'chartDinero',     title:'Tipo de Dinero',    colorClass:'cc-purple',
+          segments:[{label:'Saldo',value:data.cantConSaldo||0,color:'#a78bfa'},{label:'Bono',value:data.cantConBono||0,color:'#6366f1'}] }
+    ];
+
+    CHARTS_DEF.forEach(def => {
+        const card  = buildDonutCard(def.id, def.title, def.colorClass, def.segments);
+        grid.appendChild(card);
+        const total = def.segments.reduce((s, sg) => s + sg.value, 0);
+        const ctx   = document.getElementById(def.id + '_canvas').getContext('2d');
+        const chartData = total === 0
+            ? { values:[1], colors:['rgba(255,255,255,.06)'] }
+            : { values:def.segments.map(s=>s.value), colors:def.segments.map(s=>s.color) };
+        _chartInstances[def.id] = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: def.segments.map(s=>s.label),
+                datasets: [{ data:chartData.values, backgroundColor:chartData.colors, borderColor:'transparent', borderWidth:0, hoverOffset:total>0?6:0 }]
+            },
+            options: {
+                cutout: '72%', responsive: false,
+                animation: { animateRotate:true, duration:900 },
+                plugins: {
+                    legend: { display:false },
+                    tooltip: {
+                        enabled: total > 0,
+                        callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed.toLocaleString('es-VE')}` },
+                        backgroundColor:'rgba(15,23,42,.9)', titleColor:'#94a3b8', bodyColor:'#f1f5f9',
+                        borderColor:'rgba(255,255,255,.1)', borderWidth:1, padding:10, cornerRadius:8
+                    }
+                }
+            }
+        });
+    });
+}
+
+/* ── Carga principal ─────────────────────────────────────── */
 function cargarDashboard() {
     const fechaD = document.getElementById('fechaD').value;
     const fechaH = document.getElementById('fechaH').value;
     if (!fechaD || !fechaH) return;
+
+    // KPI skeletons
+    document.querySelectorAll('.kpi-chip-value').forEach(el => { el.classList.add('loading'); el.textContent = '——'; });
+
+    // Moneda skeleton (card completo)
+    const mSkel = `<div class="table-skel"><div class="table-skel-header"></div><div class="table-skel-row"><div class="table-skel-circle"></div><div class="table-skel-line" style="flex:1"></div><div class="table-skel-line" style="width:44px"></div></div><div class="table-skel-row"><div class="table-skel-circle"></div><div class="table-skel-line" style="flex:1"></div><div class="table-skel-line" style="width:44px"></div></div><div class="table-skel-row"><div class="table-skel-circle"></div><div class="table-skel-line" style="flex:1"></div><div class="table-skel-line" style="width:44px"></div></div></div>`;
+    document.getElementById('monedaGrid').innerHTML = mSkel;
+
+    // Chart skeletons
+    document.getElementById('chartsGrid').innerHTML = `
+        <div class="chart-skel"><div class="chart-skel-circle"></div><div class="chart-skel-line" style="width:70%"></div><div class="chart-skel-line" style="width:55%"></div></div>
+        <div class="chart-skel"><div class="chart-skel-circle"></div><div class="chart-skel-line" style="width:65%"></div><div class="chart-skel-line" style="width:50%"></div></div>
+        <div class="chart-skel"><div class="chart-skel-circle"></div><div class="chart-skel-line" style="width:60%"></div><div class="chart-skel-line" style="width:45%"></div></div>`;
+
+    // Table skeletons
+    const tSkel = `<div class="table-skel"><div class="table-skel-header"></div><div class="table-skel-row"><div class="table-skel-circle"></div><div class="table-skel-line" style="flex:1"></div><div class="table-skel-line" style="width:36px"></div></div><div class="table-skel-row"><div class="table-skel-circle"></div><div class="table-skel-line" style="flex:1"></div><div class="table-skel-line" style="width:32px"></div></div><div class="table-skel-row"><div class="table-skel-circle"></div><div class="table-skel-line" style="flex:1"></div><div class="table-skel-line" style="width:34px"></div></div></div>`;
+    document.getElementById('tablesGrid').innerHTML = tSkel + tSkel + tSkel + tSkel;
+
     showBusy('Cargando dashboard...');
 
-    // Cargar KPIs de ambos canales en paralelo
-    const p1 = $.post('@Url.Action("GetVentasPorAgenteTaq", "Reportes")', { fechaD, fechaH, agente: '@ViewBag.Agente' });
-    const p2 = $.post('@Url.Action("GetVentasPorAgenteWeb", "Reportes")', { fechaD, fechaH, agente: '@ViewBag.Agente' });
+    const p1 = $.post('@Url.Action("GetDashboardExtendido", "Reportes")', { fechaD, fechaH })
+        .done(function(d) {
+            d = d || {};
+            setKpi('kpiTicketsTaq',             d.taquilla);
+            setKpi('kpiTicketsWeb',              d.web);
+            setKpi('kpiTicketsAnulados',         d.anuladosDevueltos);
+            setKpi('kpiTicketsSinResultado',     d.sinResultado);
+            setKpi('kpiClientesRegistrados',     d.clientesRegistrados);
+            setKpi('kpiClientesNuevosJugaron',   d.clientesRegistradosJugaron);
+            setKpi('kpiClientesNuevosNoJugaron', d.clientesRegistradosNoJugaron);
+            setKpi('kpiClientesJugando',         d.clientesJugando);
+        })
+        .fail(function() {
+            document.querySelectorAll('.kpi-chip-value').forEach(el => { el.classList.remove('loading'); el.textContent='Err'; });
+        });
 
-    $.when(p1, p2).done(function(r1, r2) {
-        const taq = r1[0] || [];
-        const web = r2[0] || [];
+    const p2 = $.post('@Url.Action("GetVentasMonedaExtendido", "Reportes")', { fechaD, fechaH })
+        .done(function(data) { renderMonedas(data); })
+        .fail(function() {
+            document.getElementById('monedaGrid').innerHTML = `
+            <div class="top-table-card ttc-green">
+                <div class="top-table-header">
+                    <div class="top-table-icon"><i class="ti ti-coins"></i></div>
+                    <span class="top-table-title">Ventas por Moneda</span>
+                </div>
+                <div class="table-scroll" style="display:flex;align-items:center;justify-content:center;padding:20px;">
+                    <p style="color:#f87171;font-size:12px;"><i class="ti ti-alert-circle"></i> Error al cargar</p>
+                </div>
+            </div>`;
+        });
 
-        let vTaq = 0, pTaq = 0, vWeb = 0, pWeb = 0;
+    const p3 = $.post('@Url.Action("GetChartsExtendido", "Reportes")', { fechaD, fechaH })
+        .done(function(data) {
+            try { renderCharts(data || {}); }
+            catch(e) { console.error('renderCharts error:', e); document.getElementById('chartsGrid').innerHTML='<p style="color:#f87171;font-size:12px;"><i class="ti ti-alert-circle"></i> Error al renderizar gráficas.</p>'; }
+        })
+        .fail(function(xhr) { console.error('GetChartsExtendido HTTP error:', xhr.status, xhr.responseText); document.getElementById('chartsGrid').innerHTML='<p style="color:#f87171;font-size:12px;"><i class="ti ti-alert-circle"></i> Error al cargar gráficas (HTTP ' + xhr.status + ').</p>'; });
 
-        taq.forEach(r => { vTaq += (r.VentaPar||0) + (r.VentaDir||0); pTaq += (r.PremiosPar||0) + (r.PremiosDir||0); });
-        web.forEach(r => { vWeb += (r.VentaPar||0) + (r.VentaDir||0); pWeb += (r.PremiosPar||0) + (r.PremiosDir||0); });
+    const p4 = $.post('@Url.Action("GetTablesExtendido", "Reportes")', { fechaD, fechaH })
+        .done(function(data) {
+            try { renderTables(data); }
+            catch(e) { console.error('renderTables error:', e); document.getElementById('tablesGrid').innerHTML='<p style="color:#f87171;font-size:12px;"><i class="ti ti-alert-circle"></i> Error al renderizar rankings: ' + e.message + '</p>'; }
+        })
+        .fail(function(xhr) { console.error('GetTablesExtendido HTTP error:', xhr.status, xhr.responseText); document.getElementById('tablesGrid').innerHTML='<p style="color:#f87171;font-size:12px;"><i class="ti ti-alert-circle"></i> Error al cargar rankings (HTTP ' + xhr.status + ').</p>'; });
 
-        document.getElementById('kpiVentaWeb').textContent  = fmt(vWeb);
-        document.getElementById('kpiVentaTaq').textContent  = fmt(vTaq);
-        document.getElementById('kpiPremiosWeb').textContent = fmt(pWeb);
-        document.getElementById('kpiPremiosTaq').textContent = fmt(pTaq);
-        const bal = (vWeb + vTaq) - (pWeb + pTaq);
-        document.getElementById('kpiBalance').textContent = fmt(bal);
-        document.getElementById('kpiBar').style.display = 'flex';
-        hideBusy();
-    }).fail(function() {
-        hideBusy();
-    });
+    $.when(p1, p2, p3, p4).always(() => hideBusy());
 }
 
 $(document).ready(() => cargarDashboard());

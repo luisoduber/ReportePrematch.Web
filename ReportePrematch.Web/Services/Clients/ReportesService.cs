@@ -189,6 +189,7 @@ public class ReportesService : IReportesService
             {
                 // Todos los agentes
                 lista = await _api.GetAsync<List<AgenteApiDto>>("api/Reportes/ListaAgentes");
+
             }
 
             IEnumerable<string?> nombres = lista?
@@ -333,34 +334,17 @@ public class ReportesService : IReportesService
     public async Task<object> GetVentasAgenteGameIDAsync(
         string agente, string pais, string role, string gameId, string filtApuesta)
     {
-        var esAdmin = role.ToUpper() == "USUARIO SUADMIN";
-
-        var opcionApuesta = filtApuesta switch
+        var query = new Dictionary<string, string>
         {
-            "Parlay" => "AND ap.tipoAp=1 ",
-            "Directo" => "AND ap.tipoAp=4 ",
-            _ => ""
+            ["agente"]      = agente,
+            ["pais"]        = pais,
+            ["role"]        = role,
+            ["gameId"]      = gameId,
+            ["filtApuesta"] = filtApuesta
         };
-
-        var filtro = esAdmin
-            ? ""
-            : !string.IsNullOrEmpty(agente)
-                ? $"AND ap.NombreAgente = '{S(agente)}' "
-                : $"AND ap.NombreAgente IN ({SubqAgentes(agente, pais, role)}) ";
-
-        var sql = $@"SELECT TOP 10000
-    ap.ticket, ae.gameid, ae.arriesgando, ae.CategoriaAp, ap.tipoap, ae.equipo,
-    ae.FechaJuego, ap.operacion, ae.gano, ap.fecha AS fechaTicket, ap.NombreAgente,
-    (SELECT Usuario FROM Clientes WHERE id = ap.idcliente) AS Usuario,
-    ae.monto, ae.deporte, ae.logro, ap.montoTotal, ap.ganando
-FROM Apuestas AS ap
-INNER JOIN ApuestaEquipo AS ae ON CONVERT(varchar, ap.ticket) = ae.ticket
-WHERE ae.gameid = {S(gameId)}
-  AND ap.idtaquilla = 0
-  {opcionApuesta}
-  {filtro}";
-
-        return await EjecutarQuerysAsync(sql, 2);
+        var result = await _api.GetQueryAsync<List<GameIDApiDto>>(
+            "api/Reportes/VentasAgenteGameID", query);
+        return result ?? new List<GameIDApiDto>();
     }
 
     /* ══════════════════════════════════════════════════════════
@@ -1018,5 +1002,68 @@ ORDER BY 1,2,3 ASC";
         var result = await _api.GetQueryAsync<List<FantasyBsbDto>>(
             "api/Reportes/FantasyBsb", query);
         return result ?? new List<FantasyBsbDto>();
+    }
+
+    public async Task<object> GetDashboardClientesAsync(string fechaD, string fechaH, string agente)
+    {
+        var result = await _api.GetQueryAsync<object>(
+            "api/Dashboard/GetDashboardClientes",
+            new Dictionary<string, string>
+            {
+                ["fechaD"] = fechaD, ["fechaH"] = fechaH, ["agente"] = agente ?? ""
+            });
+        return result;
+    }
+
+    public async Task<object> GetDashboardExtendidoAsync(string fechaD, string fechaH, string agente, string pais)
+    {
+        var query = new Dictionary<string, string>
+        {
+            ["fechaD"] = fechaD,
+            ["fechaH"] = fechaH,
+            ["agente"] = agente ?? "",
+            ["pais"]   = pais   ?? ""
+        };
+        var result = await _api.GetQueryAsync<object>("api/Dashboard/GetDashboardExtendido", query);
+        return result;
+    }
+
+    public async Task<object> GetVentasMonedaExtendidoAsync(string fechaD, string fechaH, string agente, string pais)
+    {
+        var query = new Dictionary<string, string>
+        {
+            ["fechaD"] = fechaD,
+            ["fechaH"] = fechaH,
+            ["agente"] = agente ?? "",
+            ["pais"]   = pais   ?? ""
+        };
+        var result = await _api.GetQueryAsync<object>("api/Dashboard/GetVentasMonedaExtendido", query);
+        return result;
+    }
+
+    public async Task<object> GetChartsExtendidoAsync(string fechaD, string fechaH, string agente, string pais)
+    {
+        var query = new Dictionary<string, string>
+        {
+            ["fechaD"] = fechaD,
+            ["fechaH"] = fechaH,
+            ["agente"] = agente ?? "",
+            ["pais"]   = pais   ?? ""
+        };
+        var result = await _api.GetQueryAsync<object>("api/Dashboard/GetChartsExtendido", query);
+        return result;
+    }
+
+    public async Task<object> GetTablesExtendidoAsync(string fechaD, string fechaH, string agente, string pais)
+    {
+        var query = new Dictionary<string, string>
+        {
+            ["fechaD"] = fechaD,
+            ["fechaH"] = fechaH,
+            ["agente"] = agente ?? "",
+            ["pais"]   = pais   ?? ""
+        };
+        var result = await _api.GetQueryAsync<object>("api/Dashboard/GetTablesExtendido", query);
+        return result;
     }
 }

@@ -49,12 +49,16 @@
     <!-- NAVBAR PRINCIPAL -->
     <nav class="glass-navbar main-nav-bar">
         <div class="d-flex align-items-center gap-2 px-3">
+            <!-- Botón hamburguesa (sólo móvil) -->
+            <button class="mob-hamburger-btn" id="mobMenuBtn" aria-label="Abrir menú">
+                <i class="ti ti-menu-2"></i>
+            </button>
             <!-- Logo -->
             <span class="gcit-logo-title fw-bold" style="color: var(--sa-7); letter-spacing: 2px;">GCIT</span>
             <span style="color: var(--an-5); font-size: 0.7rem;">· ReportePrematch</span>
         </div>
 
-        <div class="d-flex align-items-center gap-1 flex-grow-1 px-2">
+        <div class="d-flex align-items-center gap-1 flex-grow-1 px-2 nav-desktop-items">
 
             <!-- Menú Apuestas -->
             <div class="nav-dropdown">
@@ -117,12 +121,12 @@
                     <i class="ti ti-wallet"></i><span>Finanzas</span>
                 </button>
                 <div class="nav-dropdown-menu">
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="RetirosRecargas"><i class="ti ti-arrows-exchange"></i> Retiros y Recargas</a>
+                    @* <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="RetirosRecargas"><i class="ti ti-arrows-exchange"></i> Retiros y Recargas</a> *@
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="SaldosDisponibles"><i class="ti ti-coin"></i> Saldos Disponibles</a>
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="RepTransaccion"><i class="ti ti-file-text"></i> Rep. Transacción</a>
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="ReporteTransaccion"><i class="ti ti-file-analytics"></i> Reporte Transacción</a>
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="PromoTicket"><i class="ti ti-gift"></i> PromoTicket</a>
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="ClienteReg"><i class="ti ti-users"></i> Clientes Registrados</a>
+                    @* <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="RepTransaccion"><i class="ti ti-file-text"></i> Rep. Transacción</a> *@
+                    @* <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="ReporteTransaccion"><i class="ti ti-file-analytics"></i> Reporte Transacción</a> *@
+                    @* <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="PromoTicket"><i class="ti ti-gift"></i> PromoTicket</a> *@
+                    @* <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="ClienteReg"><i class="ti ti-users"></i> Clientes Registrados</a> *@
                 </div>
             </div>
 
@@ -144,6 +148,64 @@
         </div>
     </nav>
 
+    <!-- OVERLAY MÓVIL -->
+    <div class="mob-nav-overlay" id="mobNavOverlay"></div>
+
+    <!-- DRAWER LATERAL MÓVIL -->
+    <nav class="mob-nav-drawer" id="mobNavDrawer" aria-label="Navegación móvil">
+        <div class="mob-nav-header">
+            <div class="d-flex align-items-center gap-2">
+                <span class="gcit-logo-title fw-bold" style="color:var(--sa-7);letter-spacing:2px;">GCIT</span>
+                <span style="color:var(--an-5);font-size:0.7rem;">· ReportePrematch</span>
+            </div>
+            <button class="mob-nav-close-btn" id="mobNavClose" aria-label="Cerrar menú">
+                <i class="ti ti-x"></i>
+            </button>
+        </div>
+
+        <div class="mob-nav-section-label">Apuestas</div>
+        <a class="mob-nav-item" asp-controller="Reportes" asp-action="VerCierreTaquilla"><i class="ti ti-lock"></i> Cierre Taquilla</a>
+        <a class="mob-nav-item" href="/Reportes/TicketsEnJuego"><i class="ti ti-clock-play"></i> Tickets en Juego</a>
+        <a class="mob-nav-item" href="/Reportes/BusquedaTickets"><i class="ti ti-search"></i> Búsqueda Tickets</a>
+        <a class="mob-nav-item" asp-controller="Reportes" asp-action="VentasPorAgente"><i class="ti ti-building-store"></i> Ventas por Agente</a>
+        <a class="mob-nav-item" href="/Reportes/VentasPorAgenteNikols"><i class="ti ti-user-check"></i> Ventas Nikols</a>
+        <a class="mob-nav-item" asp-controller="Reportes" asp-action="TicketsDetallados"><i class="ti ti-ticket"></i> Tickets Detallados</a>
+        <a class="mob-nav-item" asp-controller="Reportes" asp-action="Estadisticas"><i class="ti ti-chart-pie"></i> Estadísticas</a>
+        <a class="mob-nav-item" asp-controller="Reportes" asp-action="DeportesMasVendidos"><i class="ti ti-trophy"></i> Deportes más Vendidos</a>
+        <a class="mob-nav-item" asp-controller="Reportes" asp-action="VentasPorAgenteGameID"><i class="ti ti-hash"></i> Ticket por GameID</a>
+        <a class="mob-nav-item" asp-controller="Reportes" asp-action="VentasPorPais"><i class="ti ti-globe"></i> Ventas por País</a>
+        <a class="mob-nav-item" asp-controller="Reportes" asp-action="VentasDetalladasLive"><i class="ti ti-live-photo"></i> Live Detalladas</a>
+        <a class="mob-nav-item" asp-controller="Reportes" asp-action="Props"><i class="ti ti-cards"></i> Props</a>
+
+        <div class="mob-nav-section-label">Casino</div>
+        <a class="mob-nav-item" asp-controller="Reportes" asp-action="IconSlot"><i class="ti ti-device-desktop"></i> Icon Slots</a>
+        <a class="mob-nav-item" asp-controller="Reportes" asp-action="Pragmatic"><i class="ti ti-sparkles"></i> Pragmatic Play</a>
+        <a class="mob-nav-item" asp-controller="Reportes" asp-action="VirtualesBR"><i class="ti ti-device-tv"></i> Virtuales BR</a>
+        <a class="mob-nav-item" asp-controller="Reportes" asp-action="Aviatrix"><i class="ti ti-plane"></i> Aviatrix</a>
+
+        <div class="mob-nav-section-label">Otros</div>
+        <a class="mob-nav-item" asp-controller="Reportes" asp-action="Hipismo"><i class="ti ti-horse"></i> Hipismo</a>
+        <a class="mob-nav-item" asp-controller="Reportes" asp-action="Loteria"><i class="ti ti-numbers"></i> Lotería</a>
+        <a class="mob-nav-item" asp-controller="Reportes" asp-action="LoteriaTriple"><i class="ti ti-numbers"></i> Lotería Triple</a>
+        <a class="mob-nav-item" asp-controller="Reportes" asp-action="FantasyBsb"><i class="ti ti-ball-baseball"></i> Fantasy Baseball</a>
+
+        <div class="mob-nav-section-label">Finanzas</div>
+        <a class="mob-nav-item" asp-controller="Reportes" asp-action="SaldosDisponibles"><i class="ti ti-coin"></i> Saldos Disponibles</a>
+
+        <div class="mob-nav-section-label">General</div>
+        <a class="mob-nav-item" asp-controller="Home" asp-action="Dashboard"><i class="ti ti-layout-dashboard"></i> Dashboard</a>
+
+        <div class="mob-nav-user">
+            <div>
+                <div class="mob-nav-username">@ViewBag.Usuario</div>
+                <div class="mob-nav-usertype">@ViewBag.TipoUsuario</div>
+            </div>
+            <a class="btn-glass btn-danger btn-sm" asp-controller="Home" asp-action="Logout" title="Cerrar sesión">
+                <i class="ti ti-logout"></i>
+            </a>
+        </div>
+    </nav>
+
     <!-- OVERLAY DE CARGA -->
     <div id="busy-overlay">
         <div class="busy-spinner"></div>
@@ -154,7 +216,7 @@
     <div id="progress-bar"></div>
 
     <!-- CONTENIDO PRINCIPAL -->
-    <main class="px-3 px-md-4 py-4" style="padding-top: 80px !important;">
+    <main class="px-3 px-md-4 py-4 main-content" style="padding-top: 80px !important;">
         @RenderBody()
     </main>
 
@@ -169,6 +231,46 @@
     <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
+
+<script>
+// ── Menú hamburguesa móvil ────────────────────────────────────────────────────
+(function () {
+    document.addEventListener('DOMContentLoaded', function () {
+        var btn     = document.getElementById('mobMenuBtn');
+        var drawer  = document.getElementById('mobNavDrawer');
+        var overlay = document.getElementById('mobNavOverlay');
+        var closeBtn = document.getElementById('mobNavClose');
+        if (!btn || !drawer || !overlay) return;
+
+        function openDrawer() {
+            drawer.classList.add('open');
+            overlay.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeDrawer() {
+            drawer.classList.remove('open');
+            overlay.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        btn.addEventListener('click', openDrawer);
+        if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+        overlay.addEventListener('click', closeDrawer);
+
+        // Cerrar al navegar a otra página
+        drawer.querySelectorAll('a').forEach(function (link) {
+            link.addEventListener('click', closeDrawer);
+        });
+
+        // Swipe-left para cerrar
+        var startX = 0;
+        drawer.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+        drawer.addEventListener('touchend', function (e) {
+            if (startX - e.changedTouches[0].clientX > 60) closeDrawer();
+        }, { passive: true });
+    });
+})();
+</script>
 
 <script>
 // ── Dropdown nav: teleport al <body> para escapar el backdrop-filter del navbar ──
