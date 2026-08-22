@@ -1,0 +1,16 @@
+2026-08-22 11:05:14.787 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-22 11:05:16.181 -04:00 [INF] HTTP GET / responded 200 in 245.3304 ms
+2026-08-22 11:05:17.258 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 3.6815 ms
+2026-08-22 11:05:29.308 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-22 11:05:29.315 -04:00 [INF] HTTP POST / responded 302 in 986.6928 ms
+2026-08-22 11:05:29.434 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 113.4625 ms
+2026-08-22 11:05:33.950 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 3778.1427 ms
+2026-08-22 11:05:36.170 -04:00 [INF] HTTP GET /Home/Dashboard responded 200 in 19.0452 ms
+2026-08-22 11:05:37.384 -04:00 [INF] HTTP POST /Reportes/GetVentasMonedaExtendido responded 200 in 936.4195 ms
+2026-08-22 11:05:37.739 -04:00 [INF] HTTP POST /Reportes/GetChartsExtendido responded 200 in 1289.5381 ms
+2026-08-22 11:05:38.177 -04:00 [INF] HTTP POST /Reportes/GetTablesExtendido responded 200 in 1727.4371 ms
+2026-08-22 11:05:38.562 -04:00 [INF] HTTP POST /Reportes/GetDashboardExtendido responded 200 in 2113.9887 ms
+2026-08-22 11:05:59.593 -04:00 [INF] HTTP POST /Reportes/GetChartsExtendido responded 200 in 6087.7862 ms
+2026-08-22 11:06:00.156 -04:00 [INF] HTTP POST /Reportes/GetVentasMonedaExtendido responded 200 in 6651.1670 ms
+2026-08-22 11:06:01.798 -04:00 [INF] HTTP POST /Reportes/GetTablesExtendido responded 200 in 8292.1261 ms
+2026-08-22 11:06:01.977 -04:00 [INF] HTTP POST /Reportes/GetDashboardExtendido responded 200 in 8472.2088 ms

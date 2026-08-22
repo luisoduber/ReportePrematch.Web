@@ -402,7 +402,6 @@ D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\obj\Debug\net10.0\rjimswa.dswa
 D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
 D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
 D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\obj\Debug\net10.0\scopedcss\bundle\ReportePrematch.Web.styles.css
-D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\obj\Debug\net10.0\compressed\1nyeycn9bb-{0}-ccgskmq7h3-ccgskmq7h3.gz
 D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\obj\Debug\net10.0\compressed\jgfk2f5vc6-{0}-xp8x0as6h3-xp8x0as6h3.gz
 D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\obj\Debug\net10.0\staticwebassets.build.json
 D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\obj\Debug\net10.0\staticwebassets.build.json.cache
@@ -416,3 +415,4 @@ D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\obj\Debug\net10.0\refint\Repor
 D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\obj\Debug\net10.0\ReportePrematch.Web.pdb
 D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\obj\Debug\net10.0\ReportePrematch.Web.genruntimeconfig.cache
 D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\obj\Debug\net10.0\ref\ReportePrematch.Web.dll
+D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\obj\Debug\net10.0\compressed\1nyeycn9bb-{0}-p8f1idpce5-p8f1idpce5.gz

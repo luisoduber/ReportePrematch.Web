@@ -156,7 +156,7 @@
               "RelativeDocumentMoniker": "ReportePrematch.Web\\Views\\Home\\Dashboard.cshtml",
               "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\Views\\Home\\Dashboard.cshtml",
               "RelativeToolTip": "ReportePrematch.Web\\Views\\Home\\Dashboard.cshtml",
-              "ViewState": "AgIAACgBAAAAAAAAAAAcwDoBAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAEMCAAAAAAAAAAAAADoBAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-08-11T23:01:52.938Z",
               "EditorCaption": ""
@@ -255,8 +255,7 @@
               "RelativeToolTip": "ReportePrematch.Web\\Services\\Clients\\ReportesService.cs",
               "ViewState": "AgIAAKgAAAAAAAAAAAAQwLwAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-29T06:04:33.099Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-29T06:04:33.099Z"
             },
             {
               "$type": "Document",
