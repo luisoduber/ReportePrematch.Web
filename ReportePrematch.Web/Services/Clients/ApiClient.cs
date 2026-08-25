@@ -45,7 +45,20 @@ public sealed class ApiClient(HttpClient http, ILogger<ApiClient> logger) : IApi
 
             var response = await http.GetAsync(url, ct);
             response.EnsureSuccessStatusCode();
-            return await response.Content.ReadFromJsonAsync<T>(JsonOpts, ct);
+
+            var json = await response.Content.ReadAsStringAsync(ct);
+
+            // Si la API devolvió un objeto de error en lugar del tipo esperado, retornar default
+            try
+            {
+                return JsonSerializer.Deserialize<T>(json, JsonOpts);
+            }
+            catch (JsonException jex)
+            {
+                logger.LogWarning(jex, "Respuesta no deserializable de GET+QS {Endpoint}. JSON: {Json}",
+                    endpoint, json.Length > 300 ? json[..300] : json);
+                return default;
+            }
         }
         catch (Exception ex)
         {

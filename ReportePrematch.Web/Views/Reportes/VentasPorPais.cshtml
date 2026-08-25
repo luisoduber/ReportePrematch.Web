@@ -50,6 +50,15 @@
         </div>
     </div>
 
+    <!-- Métricas -->
+    <div id="metricsBar" class="quick-metrics-bar mt-3" style="display:none;">
+        <div class="metric-card"><div class="metric-label">Venta Par</div><div class="metric-value metric-blue"  id="metVentaPar">—</div></div>
+        <div class="metric-card"><div class="metric-label">Venta Dir</div><div class="metric-value metric-blue"  id="metVentaDir">—</div></div>
+        <div class="metric-card"><div class="metric-label">Premios Par</div><div class="metric-value metric-red" id="metPremiosPar">—</div></div>
+        <div class="metric-card"><div class="metric-label">Premios Dir</div><div class="metric-value metric-red" id="metPremiosDir">—</div></div>
+        <div class="metric-card"><div class="metric-label">Balance</div><div class="metric-value metric-green"   id="metBalance">—</div></div>
+    </div>
+
     <div class="table-responsive mt-3">
         <table id="tblVentasPorPais" class="glass-table w-100">
             <thead>
@@ -69,6 +78,15 @@
 </section>
 
 <style>
+.quick-metrics-bar { display:flex; gap:.5rem; flex-wrap:wrap; }
+.metric-card { flex:1; min-width:120px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:.5rem .75rem; text-align:center; }
+@@media (max-width:768px) { .metric-card { min-width:80px; flex:1 1 80px; padding:.45rem .55rem; } }
+@@media (max-width:430px) { .metric-card { min-width:68px; flex:1 1 68px; padding:.38rem .45rem; } .metric-value { font-size:.88rem; } }
+.metric-label { font-size:.65rem; color:rgba(255,255,255,0.5); letter-spacing:.5px; text-transform:uppercase; margin-bottom:.25rem; }
+.metric-value { font-size:1.05rem; font-weight:700; }
+.metric-blue  { color:#48CAE4; }
+.metric-red   { color:#f87171; }
+.metric-green { color:#4ade80; }
 .canal-toggle {
     display: flex;
     border-radius: 8px;
@@ -118,6 +136,13 @@ function setCanal(val, btn) {
     document.querySelectorAll('#toggleCanal .toggle-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById('subtitulo').textContent = subtituloMap[val];
+    if (dt) { dt.destroy(); dt = null; }
+    $('#tblVentasPorPais tbody').empty();
+    ['metVentaPar','metVentaDir','metPremiosPar','metPremiosDir','metBalance'].forEach(function(id) {
+        document.getElementById(id).textContent = '—';
+    });
+    document.getElementById('metBalance').className = 'metric-value metric-green';
+    document.getElementById('metricsBar').style.display = 'none';
 }
 
 function fmt(v) {
@@ -144,10 +169,31 @@ function cargarReporte() {
     $.post(url, { fechaD, fechaH, pais })
         .done(function(data) {
             if (!data || !data.length) {
+                document.getElementById('metricsBar').style.display = 'none';
                 Swal.fire({ icon: 'info', title: 'Sin resultados', background: '#002E5C', color: '#fff' });
                 hideBusy();
                 return;
             }
+
+            // Totales cards
+            function parseAmt(v) { var s = String(v || '0').replace(/\./g, '').replace(',', '.'); return parseFloat(s) || 0; }
+            var totVP = 0, totVD = 0, totPP = 0, totPD = 0, totBal = 0;
+            data.forEach(function(r) {
+                totVP  += parseAmt(r.ventaPar);
+                totVD  += parseAmt(r.ventaDir);
+                totPP  += parseAmt(r.premiosPar);
+                totPD  += parseAmt(r.premiosDir);
+                totBal += parseAmt(r.utilidad);
+            });
+            document.getElementById('metVentaPar').textContent  = fmt(totVP);
+            document.getElementById('metVentaDir').textContent  = fmt(totVD);
+            document.getElementById('metPremiosPar').textContent = fmt(totPP);
+            document.getElementById('metPremiosDir').textContent = fmt(totPD);
+            var elBal = document.getElementById('metBalance');
+            elBal.textContent = fmt(totBal);
+            elBal.className   = 'metric-value ' + (totBal >= 0 ? 'metric-green' : 'metric-red');
+            document.getElementById('metricsBar').style.display = 'flex';
+
             if (dt) { dt.destroy(); dt = null; }
             dt = $('#tblVentasPorPais').DataTable({
                 data,

@@ -130,6 +130,68 @@ public sealed class ReportesController(
         => Json(await reportes.GetAviatrixAsync(fechaD, fechaH, agente ?? "", Role, Pais));
 
     [HttpGet]
+    public IActionResult Casino7777()
+    {
+        if (!SesionActiva()) return RedirectToLogin();
+        CargarViewBag("Casino 7777", "btnCasino7777", "tblCasino7777");
+        return View();
+    }
+    [HttpPost]
+    public async Task<IActionResult> GetCasino7777(string fechaInicio, string fechaFin, string agente)
+        => Json(await reportes.GetCasino7777Async(fechaInicio, fechaFin, agente ?? ""));
+
+    [HttpPost]
+    public async Task<IActionResult> GetCasino7777ResumenGeneral(string fechaInicio, string fechaFin, string agente)
+        => Json(await reportes.GetCasino7777ResumenGeneralAsync(fechaInicio, fechaFin, agente ?? ""));
+
+    [HttpPost]
+    public async Task<IActionResult> GetCasino7777Agentes()
+        => Json(await reportes.GetCasino7777AgentesAsync());
+
+    [HttpGet]
+    public IActionResult Endorphine()
+    {
+        if (!SesionActiva()) return RedirectToLogin();
+        CargarViewBag("Endorphine", "btnEndorphine", "tblEndorphine");
+        return View();
+    }
+    [HttpPost]
+    public async Task<IActionResult> GetEndorphine(string fechaInicio, string fechaFin, string agente)
+        => Json(await reportes.GetEndorphineAsync(fechaInicio, fechaFin, agente ?? ""));
+
+    [HttpPost]
+    public async Task<IActionResult> GetEndorphineAgentes()
+        => Json(await reportes.GetEndorphineAgentesAsync());
+
+    [HttpPost]
+    public async Task<IActionResult> GetEndorphineResumenGeneral(string fechaInicio, string fechaFin, string agente)
+        => Json(await reportes.GetEndorphineResumenGeneralAsync(fechaInicio, fechaFin, agente ?? ""));
+
+    [HttpGet]
+    public IActionResult InOutGaming()
+    {
+        if (!SesionActiva()) return RedirectToLogin();
+        CargarViewBag("InOutGaming", "btnInOutGaming", "tblInOutGaming");
+        return View();
+    }
+    [HttpPost]
+    public async Task<IActionResult> GetInOutGaming(string fechaInicio, string fechaFin, string agente)
+        => Json(await reportes.GetInOutGamingAsync(fechaInicio, fechaFin, agente ?? ""));
+
+    [HttpPost]
+    public async Task<IActionResult> GetInOutGamingAgentes()
+        => Json(await reportes.GetInOutGamingAgentesAsync());
+
+    [HttpPost]
+    public async Task<IActionResult> GetInOutGamingResumenGeneral(string fechaInicio, string fechaFin, string agente)
+        => Json(await reportes.GetInOutGamingResumenGeneralAsync(fechaInicio, fechaFin, agente ?? ""));
+
+    /// <summary>Lista de agentes desde GCITReportes API — reemplaza GetListAgencias (SOAP) en todas las vistas.</summary>
+    [HttpPost]
+    public async Task<IActionResult> GetListAgenciasApi()
+        => Json(await reportes.GetEndorphineAgentesAsync());
+
+    [HttpGet]
     public IActionResult FantasyBsb()
     {
         if (!SesionActiva()) return RedirectToLogin();

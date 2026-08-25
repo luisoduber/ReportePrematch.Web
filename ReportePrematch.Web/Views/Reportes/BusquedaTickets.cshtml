@@ -79,6 +79,13 @@
         </div>
     </div>
 
+    <!-- Métricas -->
+    <div id="metricsBar" class="quick-metrics-bar mt-3" style="display:none;">
+        <div class="metric-card"><div class="metric-label">Total Riesgo</div><div class="metric-value metric-blue" id="metRiesgo">—</div></div>
+        <div class="metric-card"><div class="metric-label">Total Ganando</div><div class="metric-value metric-red" id="metGanando">—</div></div>
+        <div class="metric-card"><div class="metric-label">Utilidad</div><div class="metric-value metric-green" id="metUtilidad">—</div></div>
+    </div>
+
     <div class="table-responsive mt-3">
         <table id="tblBusquedaTickets" class="glass-table w-100">
             <thead>
@@ -101,6 +108,15 @@
 </section>
 
 <style>
+.quick-metrics-bar { display:flex; gap:.5rem; flex-wrap:wrap; }
+.metric-card { flex:1; min-width:120px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:.5rem .75rem; text-align:center; }
+@@media (max-width:768px) { .metric-card { min-width:80px; flex:1 1 80px; padding:.45rem .55rem; } }
+@@media (max-width:430px) { .metric-card { min-width:68px; flex:1 1 68px; padding:.38rem .45rem; } .metric-value { font-size:.88rem; } }
+.metric-label { font-size:.65rem; color:rgba(255,255,255,0.5); letter-spacing:.5px; text-transform:uppercase; margin-bottom:.25rem; }
+.metric-value { font-size:1.05rem; font-weight:700; }
+.metric-blue  { color:#48CAE4; }
+.metric-red   { color:#f87171; }
+.metric-green { color:#4ade80; }
 .canal-toggle {
     display: flex;
     border-radius: 8px;
@@ -164,7 +180,7 @@ function fmtFecha(v) {
 
 function cargarAgentes() {
     if (!esAdmin) return;
-    $.post('@Url.Action("GetListAgencias","Reportes")', { agente: agenteSession })
+    $.post('@Url.Action("GetListAgenciasApi","Reportes")')
         .done(function(lista) {
             const sel = document.getElementById('agente');
             if (!sel) return;
@@ -211,10 +227,25 @@ function cargarReporte() {
     $.post(url, { fecha, agente, ticket, operacion })
         .done(function(rows) {
             if (!rows || !rows.length) {
+                document.getElementById('metricsBar').style.display = 'none';
                 Swal.fire({ icon: 'info', title: 'Sin resultados', background: '#002E5C', color: '#fff' });
                 hideBusy();
                 return;
             }
+
+            // Totales para cards
+            var totR = 0, totG = 0, totU = 0;
+            rows.forEach(function(r) {
+                totR += parseFloat(r.riesgo   || 0);
+                totG += parseFloat(r.ganando  || 0);
+                totU += parseFloat(r.utilidad || 0);
+            });
+            function fmt(v) { return parseFloat(v || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+            document.getElementById('metRiesgo').textContent   = fmt(totR);
+            document.getElementById('metGanando').textContent  = fmt(totG);
+            document.getElementById('metUtilidad').textContent = fmt(totU);
+            document.getElementById('metUtilidad').style.color = totU >= 0 ? '#4ade80' : '#f87171';
+            document.getElementById('metricsBar').style.display = 'flex';
 
             if (dt) { dt.destroy(); dt = null; }
             dt = $('#tblBusquedaTickets').DataTable({

@@ -69,7 +69,11 @@
 
     <!-- Métricas Taquilla -->
     <div id="metricsBarTaq" class="quick-metrics-bar mt-3" style="display:none;">
+        <div class="metric-card"><div class="metric-label">Ventas Dir</div><div class="metric-value metric-blue" id="metVentaDir">—</div></div>
+        <div class="metric-card"><div class="metric-label">Ventas Par</div><div class="metric-value metric-blue" id="metVentaPar">—</div></div>
         <div class="metric-card"><div class="metric-label">Total Ventas</div><div class="metric-value metric-blue" id="metTotalVentas">—</div></div>
+        <div class="metric-card"><div class="metric-label">Premios Dir</div><div class="metric-value metric-red" id="metPremiosDir">—</div></div>
+        <div class="metric-card"><div class="metric-label">Premios Par</div><div class="metric-value metric-red" id="metPremiosPar">—</div></div>
         <div class="metric-card"><div class="metric-label">Total Premios</div><div class="metric-value metric-red" id="metTotalPremios">—</div></div>
         <div class="metric-card"><div class="metric-label">Pendientes</div><div class="metric-value metric-blue" id="metPendientes">—</div></div>
         <div class="metric-card"><div class="metric-label">Utilidad</div><div class="metric-value metric-green" id="metUtilidad">—</div></div>
@@ -208,7 +212,7 @@ function setCanal(c) {
 
 function cargarAgentes() {
     if (!esAdmin) return;
-    $.post('@Url.Action("GetListAgencias","Reportes")', { agente: agenteSession })
+    $.post('@Url.Action("GetListAgenciasApi","Reportes")')
         .done(function (lista) {
             const sel = document.getElementById('agente');
             if (!sel) return;
@@ -312,7 +316,11 @@ function cargarReporte() {
                     totPen  += parseFloat(r.pendientes  || 0);
                     totUtil += parseFloat(r.utilidad    || 0);
                 });
+                document.getElementById('metVentaDir').textContent    = fmt(totVD);
+                document.getElementById('metVentaPar').textContent    = fmt(totVP);
                 document.getElementById('metTotalVentas').textContent  = fmt(totTV);
+                document.getElementById('metPremiosDir').textContent  = fmt(totPD);
+                document.getElementById('metPremiosPar').textContent  = fmt(totPP);
                 document.getElementById('metTotalPremios').textContent = fmt(totTP);
                 document.getElementById('metPendientes').textContent   = fmt(totPen);
                 document.getElementById('metUtilidad').textContent     = fmt(totUtil);

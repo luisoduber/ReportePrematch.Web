@@ -69,8 +69,9 @@
     <!-- Métricas rápidas -->
     <div id="metricsBar" class="quick-metrics-bar mt-3" style="display:none;">
         <div class="metric-card"><div class="metric-label">Total Ventas</div><div class="metric-value metric-blue"  id="metVentas">—</div></div>
-        <div class="metric-card"><div class="metric-label">Total Pagos</div><div class="metric-value metric-red"   id="metPagos">—</div></div>
-        <div class="metric-card"><div class="metric-label">Utilidad</div><div class="metric-value metric-green" id="metUtilidad">—</div></div>
+        <div class="metric-card"><div class="metric-label">Total Pagos</div><div class="metric-value metric-red"    id="metPagos">—</div></div>
+        <div class="metric-card"><div class="metric-label">Pendientes</div><div class="metric-value metric-blue"   id="metPendientes">—</div></div>
+        <div class="metric-card"><div class="metric-label">Utilidad</div><div class="metric-value metric-green"  id="metUtilidad">—</div></div>
     </div>
 
     <div class="table-responsive mt-3">
@@ -130,7 +131,7 @@ function setCanal(c) {
 
 function cargarAgentes() {
     if (!esAdmin) return;
-    $.post('@Url.Action("GetListAgencias","Reportes")', { agente: agenteSession })
+    $.post('@Url.Action("GetListAgenciasApi","Reportes")')
         .done(function (lista) {
             const sel = document.getElementById('agente');
             if (!sel) return;
@@ -183,8 +184,9 @@ function cargarReporte() {
                 totU    += n(r.Utilidad   ?? r.utilidad   ?? 0);
             });
 
-            document.getElementById('metVentas').textContent  = fmt(totV);
-            document.getElementById('metPagos').textContent   = fmt(totP);
+            document.getElementById('metVentas').textContent     = fmt(totV);
+            document.getElementById('metPagos').textContent      = fmt(totP);
+            document.getElementById('metPendientes').textContent = fmt(totPend);
             var elBM = document.getElementById('metUtilidad');
             elBM.textContent = fmt(totU);
             elBM.className   = 'metric-value ' + (totU >= 0 ? 'metric-green' : 'metric-red');

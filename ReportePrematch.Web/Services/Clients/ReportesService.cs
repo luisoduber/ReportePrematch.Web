@@ -45,6 +45,9 @@ public class ReportesService : IReportesService
             ?? throw new InvalidOperationException("SoapServices:ClavePropia no configurado.");
     }
 
+    /// <summary>Wrapper genérico que devuelven los endpoints de ReportePrematch.Api.</summary>
+    private sealed record ApiWrapper<T>(bool Success, T? Data, string? Error);
+
     /* ══════════════════════════════════════════════════════════
        HELPERS SOAP — ejecutarQuerys
     ══════════════════════════════════════════════════════════ */
@@ -984,9 +987,9 @@ ORDER BY 1,2,3 ASC";
         if (!string.IsNullOrEmpty(pais)) query["pais"] = pais;
         if (!string.IsNullOrEmpty(role)) query["role"] = role;
 
-        var result = await _api.GetQueryAsync<List<AviatrixDto>>(
+        var wrapper = await _api.GetQueryAsync<ApiWrapper<List<AviatrixDto>>>(
             "api/Reportes/Aviatrix", query);
-        return result ?? new List<AviatrixDto>();
+        return wrapper?.Data ?? new List<AviatrixDto>();
     }
 
     public async Task<object> GetFantasyBsbAsync(
@@ -999,9 +1002,9 @@ ORDER BY 1,2,3 ASC";
         if (!string.IsNullOrEmpty(pais)) query["pais"] = pais;
         if (!string.IsNullOrEmpty(role)) query["role"] = role;
 
-        var result = await _api.GetQueryAsync<List<FantasyBsbDto>>(
+        var wrapper = await _api.GetQueryAsync<ApiWrapper<List<FantasyBsbDto>>>(
             "api/Reportes/FantasyBsb", query);
-        return result ?? new List<FantasyBsbDto>();
+        return wrapper?.Data ?? new List<FantasyBsbDto>();
     }
 
     public async Task<object> GetDashboardClientesAsync(string fechaD, string fechaH, string agente)
@@ -1065,5 +1068,71 @@ ORDER BY 1,2,3 ASC";
         };
         var result = await _api.GetQueryAsync<object>("api/Dashboard/GetTablesExtendido", query);
         return result;
+    }
+
+    // ── Gaming / Endorphine (GCITReportes API — cliente independiente) ─────────
+    private async Task<object> CallGamingApiAsync(string endpoint, string fechaInicio, string fechaFin, string agente)
+    {
+        var baseUrl = _config["GamingApi:BaseUrl"] ?? "https://localhost:44322";
+        var qs = $"fechaInicio={Uri.EscapeDataString(fechaInicio)}" +
+                 $"&fechaFin={Uri.EscapeDataString(fechaFin)}" +
+                 $"&agente={Uri.EscapeDataString(agente ?? "")}";
+        var url = $"{baseUrl.TrimEnd('/')}/{endpoint}?{qs}";
+
+        var handler = new System.Net.Http.HttpClientHandler
+        {
+            ServerCertificateCustomValidationCallback =
+                System.Net.Http.HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+        };
+        using var http = new HttpClient(handler) { Timeout = TimeSpan.FromSeconds(120) };
+
+        var response = await http.GetAsync(url);
+        response.EnsureSuccessStatusCode();
+        return await response.Content.ReadFromJsonAsync<object>()
+               ?? new List<object>();
+    }
+
+    public Task<object> GetCasino7777Async(string fechaInicio, string fechaFin, string agente)
+        => CallGamingApiAsync("api/Casino/Gaming/Resumen", fechaInicio, fechaFin, agente);
+
+    public Task<object> GetCasino7777ResumenGeneralAsync(string fechaInicio, string fechaFin, string agente)
+        => CallGamingApiAsync("api/Casino/Gaming/ResumenGeneral", fechaInicio, fechaFin, agente);
+
+    public Task<List<string>> GetCasino7777AgentesAsync()
+        => GetEndorphineAgentesAsync(); // misma fuente: /api/Reportes/ListaAgentes
+
+    public Task<object> GetEndorphineAsync(string fechaInicio, string fechaFin, string agente)
+        => CallGamingApiAsync("api/Casino/Endorphine/Resumen", fechaInicio, fechaFin, agente);
+
+    public Task<object> GetEndorphineResumenGeneralAsync(string fechaInicio, string fechaFin, string agente)
+        => CallGamingApiAsync("api/Casino/Endorphine/ResumenGeneral", fechaInicio, fechaFin, agente);
+
+    public Task<object> GetInOutGamingAsync(string fechaInicio, string fechaFin, string agente)
+        => CallGamingApiAsync("api/Casino/InOutGaming/Resumen", fechaInicio, fechaFin, agente);
+
+    public Task<object> GetInOutGamingResumenGeneralAsync(string fechaInicio, string fechaFin, string agente)
+        => CallGamingApiAsync("api/Casino/InOutGaming/ResumenGeneral", fechaInicio, fechaFin, agente);
+
+    public Task<List<string>> GetInOutGamingAgentesAsync()
+        => GetEndorphineAgentesAsync(); // misma fuente: /api/Reportes/ListaAgentes
+
+    public async Task<List<string>> GetEndorphineAgentesAsync()
+    {
+        var baseUrl = _config["GamingApi:BaseUrl"] ?? "https://localhost:44322";
+        var url = $"{baseUrl.TrimEnd('/')}/api/Reportes/ListaAgentes";
+        var handler = new System.Net.Http.HttpClientHandler
+        {
+            ServerCertificateCustomValidationCallback =
+                System.Net.Http.HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+        };
+        using var http = new System.Net.Http.HttpClient(handler) { Timeout = TimeSpan.FromSeconds(60) };
+        var response = await http.GetAsync(url);
+        response.EnsureSuccessStatusCode();
+        var lista = await response.Content.ReadFromJsonAsync<List<System.Text.Json.JsonElement>>();
+        return (lista ?? new List<System.Text.Json.JsonElement>())
+            .Select(e => e.TryGetProperty("nombreAgente", out var p) ? p.GetString() ?? "" : "")
+            .Where(s => !string.IsNullOrEmpty(s))
+            .OrderBy(s => s)
+            .ToList();
     }
 }

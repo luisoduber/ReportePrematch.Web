@@ -122,7 +122,7 @@ function fmt(v) { return parseFloat(v||0).toLocaleString('es-VE',{minimumFractio
 
 function cargarAgentes() {
     if (!esAdmin) return;
-    $.post('@Url.Action("GetListAgencias","Reportes")', { agente: agenteSession })
+    $.post('@Url.Action("GetListAgenciasApi","Reportes")')
         .done(function(lista) {
             const sel = document.getElementById('agente');
             if (!sel) return;

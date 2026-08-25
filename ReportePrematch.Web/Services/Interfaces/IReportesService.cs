@@ -61,4 +61,15 @@ public interface IReportesService
     Task<object> GetVentasMonedaExtendidoAsync(string fechaD, string fechaH, string agente, string pais);
     Task<object> GetChartsExtendidoAsync(string fechaD, string fechaH, string agente, string pais);
     Task<object> GetTablesExtendidoAsync(string fechaD, string fechaH, string agente, string pais);
+
+    // ── Gaming / Endorphine / InOutGaming (GCITReportes API) ────────
+    Task<object> GetCasino7777Async(string fechaInicio, string fechaFin, string agente);
+    Task<object> GetCasino7777ResumenGeneralAsync(string fechaInicio, string fechaFin, string agente);
+    Task<List<string>> GetCasino7777AgentesAsync();
+    Task<object> GetEndorphineAsync(string fechaInicio, string fechaFin, string agente);
+    Task<object> GetEndorphineResumenGeneralAsync(string fechaInicio, string fechaFin, string agente);
+    Task<List<string>> GetEndorphineAgentesAsync();
+    Task<object> GetInOutGamingAsync(string fechaInicio, string fechaFin, string agente);
+    Task<object> GetInOutGamingResumenGeneralAsync(string fechaInicio, string fechaFin, string agente);
+    Task<List<string>> GetInOutGamingAgentesAsync();
 }

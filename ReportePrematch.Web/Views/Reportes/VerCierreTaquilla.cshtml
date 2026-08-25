@@ -67,7 +67,7 @@ const agenteSession = '@ViewBag.Agente';
 
 function cargarAgentes() {
     if (!esAdmin) return;
-    $.post('@Url.Action("GetListAgencias","Reportes")', { agente: agenteSession })
+    $.post('@Url.Action("GetListAgenciasApi","Reportes")')
         .done(function(lista) {
             const sel = document.getElementById('agente');
             if (!sel) return;
@@ -111,7 +111,7 @@ function fmt(v){ return parseFloat(v||0).toLocaleString('es-VE',{minimumFraction
 // Cargar lista de agencias según el agente recibido
 function cargarAgencias(agente) {
     agente = agente || document.getElementById('agente').value || 'TODOS';
-    $.post('@Url.Action("GetListAgencias","Reportes")', { agente })
+    $.post('@Url.Action("GetListAgenciasApi","Reportes")')
         .done(function(agencias) {
             const sel = document.getElementById('agencia');
             sel.innerHTML = '<option value="">Todas</option>';

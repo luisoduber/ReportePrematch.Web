@@ -1,0 +1,22 @@
+2026-08-23 19:40:45.221 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-23 19:40:47.214 -04:00 [INF] HTTP GET / responded 200 in 297.5058 ms
+2026-08-23 19:40:48.873 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 3.6791 ms
+2026-08-23 19:41:52.778 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-23 19:41:52.785 -04:00 [INF] HTTP POST / responded 302 in 1730.8665 ms
+2026-08-23 19:41:52.995 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 203.6533 ms
+2026-08-23 19:41:56.921 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 3053.2881 ms
+2026-08-23 19:41:59.476 -04:00 [INF] HTTP GET /Reportes/Casino7777 responded 200 in 55.7210 ms
+2026-08-23 19:42:00.849 -04:00 [INF] HTTP POST /Reportes/GetCasino7777Agentes responded 200 in 1216.5423 ms
+2026-08-23 19:42:15.599 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 1632.9935 ms
+2026-08-23 19:42:22.776 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 296.3543 ms
+2026-08-23 19:42:38.181 -04:00 [INF] HTTP GET /Reportes/Endorphine responded 200 in 47.3115 ms
+2026-08-23 19:42:39.271 -04:00 [INF] HTTP POST /Reportes/GetEndorphineAgentes responded 200 in 1023.4558 ms
+2026-08-23 19:42:52.081 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 1144.3844 ms
+2026-08-23 20:43:23.922 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-23 20:43:25.309 -04:00 [INF] HTTP GET / responded 200 in 260.6007 ms
+2026-08-23 20:43:35.832 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-23 20:43:35.838 -04:00 [INF] HTTP POST / responded 302 in 1699.8398 ms
+2026-08-23 20:43:36.030 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 185.9690 ms
+2026-08-23 20:43:38.158 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 1959.3185 ms
+2026-08-23 20:45:55.883 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-23 20:45:56.729 -04:00 [INF] HTTP GET / responded 200 in 204.5089 ms

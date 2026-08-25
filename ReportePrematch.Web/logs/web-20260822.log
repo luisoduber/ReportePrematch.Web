@@ -14,3 +14,284 @@
 2026-08-22 11:06:00.156 -04:00 [INF] HTTP POST /Reportes/GetVentasMonedaExtendido responded 200 in 6651.1670 ms
 2026-08-22 11:06:01.798 -04:00 [INF] HTTP POST /Reportes/GetTablesExtendido responded 200 in 8292.1261 ms
 2026-08-22 11:06:01.977 -04:00 [INF] HTTP POST /Reportes/GetDashboardExtendido responded 200 in 8472.2088 ms
+2026-08-22 20:21:05.768 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-22 20:21:07.735 -04:00 [INF] HTTP GET / responded 200 in 313.0736 ms
+2026-08-22 20:21:08.339 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 3.5819 ms
+2026-08-22 20:33:51.217 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-22 20:33:51.225 -04:00 [INF] HTTP POST / responded 302 in 1222.4834 ms
+2026-08-22 20:33:51.413 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 181.6458 ms
+2026-08-22 20:33:54.438 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 2718.6465 ms
+2026-08-22 20:47:41.353 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 5.3255 ms
+2026-08-22 20:47:42.653 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 726.4609 ms
+2026-08-22 20:47:42.716 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 0.2393 ms
+2026-08-22 20:47:54.294 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 1.5249 ms
+2026-08-22 20:47:54.839 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 214.6699 ms
+2026-08-22 20:47:55.256 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 0.2156 ms
+2026-08-22 20:50:04.133 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-22 20:50:05.329 -04:00 [INF] HTTP GET / responded 200 in 198.7054 ms
+2026-08-22 20:50:15.800 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-22 20:50:15.811 -04:00 [INF] HTTP POST / responded 302 in 765.5109 ms
+2026-08-22 20:50:15.917 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 98.6231 ms
+2026-08-22 20:50:16.748 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 650.1644 ms
+2026-08-22 20:55:24.494 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-22 20:55:25.291 -04:00 [INF] HTTP GET / responded 200 in 221.7690 ms
+2026-08-22 20:55:46.907 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-22 20:55:46.915 -04:00 [INF] HTTP POST / responded 302 in 771.6060 ms
+2026-08-22 20:55:47.034 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 112.6362 ms
+2026-08-22 20:55:47.901 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 686.3967 ms
+2026-08-22 20:55:58.345 -04:00 [INF] HTTP GET /Reportes/Casino7777 responded 200 in 24.3262 ms
+2026-08-22 20:55:58.626 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 189.4835 ms
+2026-08-22 20:56:25.202 -04:00 [ERR] Error GET+QS api/Gaming/Resumen
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 404 (Not Found).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 47
+2026-08-22 20:56:25.403 -04:00 [ERR] HTTP POST /Reportes/GetCasino7777 responded 500 in 358.6018 ms
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 404 (Not Found).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 47
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetCasino7777Async(String fechaInicio, String fechaFin, String agente) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 1079
+   at ReportePrematch.Web.Controllers.ReportesController.GetCasino7777(String fechaInicio, String fechaFin, String agente) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 141
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-08-22 20:56:25.411 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 404 (Not Found).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 47
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetCasino7777Async(String fechaInicio, String fechaFin, String agente) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 1079
+   at ReportePrematch.Web.Controllers.ReportesController.GetCasino7777(String fechaInicio, String fechaFin, String agente) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 141
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-08-22 21:03:41.265 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-22 21:03:42.342 -04:00 [INF] HTTP GET / responded 200 in 214.2165 ms
+2026-08-22 21:05:46.096 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-22 21:05:46.105 -04:00 [INF] HTTP POST / responded 302 in 878.5680 ms
+2026-08-22 21:05:46.240 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 125.9720 ms
+2026-08-22 21:05:47.044 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 664.9256 ms
+2026-08-22 21:05:49.366 -04:00 [INF] HTTP GET /Reportes/Casino7777 responded 200 in 21.5642 ms
+2026-08-22 21:05:49.838 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 382.0132 ms
+2026-08-22 21:06:02.830 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 691.8153 ms
+2026-08-22 21:06:02.839 -04:00 [INF] HTTP GET /lib/datatables/es-ES.json responded 404 in 0.6584 ms
+2026-08-22 21:07:46.147 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 223.5451 ms
+2026-08-22 21:07:46.152 -04:00 [INF] HTTP GET /lib/datatables/es-ES.json responded 404 in 0.2220 ms
+2026-08-22 21:08:16.501 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-22 21:08:17.503 -04:00 [INF] HTTP GET / responded 200 in 240.8331 ms
+2026-08-22 21:11:33.739 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-22 21:11:34.587 -04:00 [INF] HTTP GET / responded 200 in 207.6687 ms
+2026-08-22 21:11:51.165 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-22 21:11:51.173 -04:00 [INF] HTTP POST / responded 302 in 832.8830 ms
+2026-08-22 21:11:51.286 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 99.5308 ms
+2026-08-22 21:11:52.140 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 683.2047 ms
+2026-08-22 21:11:54.519 -04:00 [INF] HTTP GET /Reportes/Casino7777 responded 200 in 19.9993 ms
+2026-08-22 21:11:54.767 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 151.3247 ms
+2026-08-22 21:12:05.535 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 229.8456 ms
+2026-08-22 21:13:36.189 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-22 21:13:37.237 -04:00 [INF] HTTP GET / responded 200 in 204.5977 ms
+2026-08-22 21:13:41.353 -04:00 [INF] HTTP POST / responded 200 in 33.8930 ms
+2026-08-22 21:13:46.904 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-22 21:13:46.911 -04:00 [INF] HTTP POST / responded 302 in 790.4335 ms
+2026-08-22 21:13:47.006 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 89.0298 ms
+2026-08-22 21:13:47.644 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 472.5388 ms
+2026-08-22 21:13:58.086 -04:00 [INF] HTTP GET /Reportes/Casino7777 responded 200 in 18.8300 ms
+2026-08-22 21:13:58.323 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 148.5220 ms
+2026-08-22 21:14:08.864 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 258.4186 ms
+2026-08-22 21:14:28.529 -04:00 [INF] HTTP GET /Reportes/Aviatrix responded 200 in 15.7704 ms
+2026-08-22 21:14:28.818 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 159.4824 ms
+2026-08-22 21:14:44.923 -04:00 [ERR] Error GET+QS api/Reportes/Aviatrix
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.AviatrixDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.ContinueDeserialize[TReadBufferState,TStream](TReadBufferState& bufferState, JsonReaderState& jsonReaderState, ReadStack& readStack, T& value)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.DeserializeAsync[TReadBufferState,TStream](TStream utf8Json, TReadBufferState bufferState, CancellationToken cancellationToken)
+   at System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsyncCore[T](HttpContent content, JsonSerializerOptions options, CancellationToken cancellationToken)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 48
+2026-08-22 21:18:32.168 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-22 21:18:34.014 -04:00 [INF] HTTP GET / responded 200 in 241.0449 ms
+2026-08-22 21:18:43.608 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-22 21:18:43.616 -04:00 [INF] HTTP POST / responded 302 in 911.1333 ms
+2026-08-22 21:18:43.723 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 101.5913 ms
+2026-08-22 21:18:44.530 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 634.1949 ms
+2026-08-22 21:18:55.185 -04:00 [INF] HTTP GET /Reportes/Aviatrix responded 200 in 25.8112 ms
+2026-08-22 21:18:55.417 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 147.4184 ms
+2026-08-22 21:19:09.295 -04:00 [ERR] Error GET+QS api/alterna/aviatrix
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 404 (Not Found).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 47
+2026-08-22 21:19:09.458 -04:00 [ERR] HTTP POST /Reportes/GetAviatrix responded 500 in 318.3747 ms
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 404 (Not Found).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 47
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetAviatrixAsync(String fechaD, String fechaH, String agente, String role, String pais) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 990
+   at ReportePrematch.Web.Controllers.ReportesController.GetAviatrix(String fechaD, String fechaH, String agente) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 130
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-08-22 21:19:09.467 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 404 (Not Found).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 47
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetAviatrixAsync(String fechaD, String fechaH, String agente, String role, String pais) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 990
+   at ReportePrematch.Web.Controllers.ReportesController.GetAviatrix(String fechaD, String fechaH, String agente) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 130
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-08-22 21:22:21.635 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-22 21:22:23.297 -04:00 [INF] HTTP GET / responded 200 in 214.5164 ms
+2026-08-22 21:22:58.153 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-22 21:22:58.162 -04:00 [INF] HTTP POST / responded 302 in 692.5499 ms
+2026-08-22 21:22:58.273 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 103.3638 ms
+2026-08-22 21:22:59.055 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 610.5625 ms
+2026-08-22 21:23:02.492 -04:00 [INF] HTTP GET /Reportes/Aviatrix responded 200 in 19.0164 ms
+2026-08-22 21:23:03.009 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 424.2124 ms
+2026-08-22 21:23:18.979 -04:00 [INF] HTTP POST /Reportes/GetAviatrix responded 200 in 208.6338 ms
+2026-08-22 21:23:26.532 -04:00 [INF] HTTP POST /Reportes/GetAviatrix responded 200 in 222.5991 ms
+2026-08-22 21:27:53.306 -04:00 [INF] HTTP POST /Reportes/GetAviatrix responded 200 in 452.7103 ms
+2026-08-22 21:28:05.618 -04:00 [INF] HTTP POST /Reportes/GetAviatrix responded 200 in 96.0844 ms
+2026-08-22 21:28:55.112 -04:00 [INF] HTTP GET /Reportes/Casino7777 responded 200 in 56.2964 ms
+2026-08-22 21:28:55.554 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 332.1568 ms
+2026-08-22 21:29:11.721 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 661.6621 ms
+2026-08-22 22:07:04.778 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 1726.1804 ms
+2026-08-22 22:07:23.257 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 186.6696 ms
+2026-08-22 22:07:28.089 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 247.2447 ms
+2026-08-22 22:07:41.212 -04:00 [INF] HTTP GET /Reportes/Casino7777 responded 200 in 4.1617 ms
+2026-08-22 22:07:43.578 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 2227.3575 ms
+2026-08-22 22:07:56.298 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 218.8262 ms
+2026-08-22 22:25:18.447 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-22 22:25:20.166 -04:00 [INF] HTTP GET / responded 200 in 256.3241 ms
+2026-08-22 22:25:36.844 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-22 22:25:36.853 -04:00 [INF] HTTP POST / responded 302 in 855.6481 ms
+2026-08-22 22:25:36.964 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 105.4065 ms
+2026-08-22 22:25:37.950 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 803.5536 ms
+2026-08-22 22:25:40.584 -04:00 [INF] HTTP GET /Reportes/Casino7777 responded 200 in 21.5503 ms
+2026-08-22 22:25:40.866 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 193.6829 ms
+2026-08-22 22:25:52.999 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 678.9383 ms
+2026-08-22 22:26:01.723 -04:00 [INF] HTTP GET /Reportes/Endorphine responded 200 in 20.3942 ms
+2026-08-22 22:26:02.014 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 159.1722 ms
+2026-08-22 22:31:19.462 -04:00 [INF] HTTP GET /Reportes/Endorphine responded 200 in 1.9640 ms
+2026-08-22 22:31:20.712 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 619.9702 ms
+2026-08-22 22:31:20.814 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 1.1734 ms
+2026-08-22 22:32:57.116 -04:00 [INF] HTTP GET /Reportes/Endorphine responded 200 in 2.5001 ms
+2026-08-22 22:32:58.128 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 557.7925 ms
+2026-08-22 22:32:58.311 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 0.1487 ms
+2026-08-22 22:33:18.057 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-22 22:33:19.110 -04:00 [INF] HTTP GET / responded 200 in 220.0641 ms
+2026-08-22 22:33:29.547 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-22 22:33:29.556 -04:00 [INF] HTTP POST / responded 302 in 747.1038 ms
+2026-08-22 22:33:29.661 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 99.1980 ms
+2026-08-22 22:33:30.491 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 650.7234 ms
+2026-08-22 22:33:32.456 -04:00 [INF] HTTP GET /Reportes/Endorphine responded 200 in 21.9804 ms
+2026-08-22 22:33:32.972 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 422.4974 ms
+2026-08-22 22:48:24.300 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-22 22:48:25.943 -04:00 [INF] HTTP GET / responded 200 in 243.8731 ms
+2026-08-22 22:48:41.950 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-22 22:48:41.958 -04:00 [INF] HTTP POST / responded 302 in 821.2439 ms
+2026-08-22 22:48:42.070 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 105.3537 ms
+2026-08-22 22:48:42.919 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 674.5084 ms
+2026-08-22 22:48:45.043 -04:00 [INF] HTTP GET /Reportes/Endorphine responded 200 in 30.9290 ms
+2026-08-22 22:48:46.224 -04:00 [INF] HTTP POST /Reportes/GetEndorphineAgentes responded 200 in 1084.3353 ms
+2026-08-22 22:49:00.308 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 585.4944 ms
+2026-08-22 22:49:09.058 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 118.2366 ms
+2026-08-22 22:53:17.169 -04:00 [INF] HTTP GET /Reportes/Endorphine responded 200 in 8945.9274 ms
+2026-08-22 22:53:18.406 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 8.6454 ms
+2026-08-22 22:53:18.745 -04:00 [INF] HTTP POST /Reportes/GetEndorphineAgentes responded 200 in 1041.6972 ms
+2026-08-22 22:53:31.566 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 577.3985 ms
+2026-08-22 22:53:36.448 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 137.6783 ms
+2026-08-22 22:56:14.776 -04:00 [INF] HTTP GET /Reportes/Endorphine responded 200 in 344.2547 ms
+2026-08-22 22:56:15.675 -04:00 [INF] HTTP POST /Reportes/GetEndorphineAgentes responded 200 in 523.6521 ms
+2026-08-22 22:56:15.932 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 0.1504 ms
+2026-08-22 22:56:24.964 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 137.9654 ms
+2026-08-22 22:56:31.797 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 137.5345 ms
+2026-08-22 22:56:36.173 -04:00 [INF] HTTP GET /Reportes/Casino7777 responded 200 in 17.7756 ms
+2026-08-22 22:56:36.922 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 592.6936 ms
+2026-08-22 22:58:07.779 -04:00 [INF] HTTP GET /Reportes/Casino7777 responded 200 in 393.2308 ms
+2026-08-22 22:58:08.660 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 435.5792 ms
+2026-08-22 22:58:08.981 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 0.1878 ms
+2026-08-22 22:59:31.717 -04:00 [INF] HTTP GET /Reportes/SaldosDisponibles responded 200 in 19.9538 ms
+2026-08-22 22:59:32.442 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 548.1715 ms
+2026-08-22 22:59:39.636 -04:00 [INF] HTTP POST /Reportes/GetSaldosDisponibles responded 200 in 1309.1885 ms
+2026-08-22 22:59:46.412 -04:00 [INF] HTTP GET /Home/Dashboard responded 200 in 15.8971 ms
+2026-08-22 22:59:47.274 -04:00 [INF] HTTP POST /Reportes/GetTablesExtendido responded 200 in 736.7885 ms
+2026-08-22 22:59:47.781 -04:00 [INF] HTTP POST /Reportes/GetVentasMonedaExtendido responded 200 in 1244.2301 ms
+2026-08-22 22:59:47.844 -04:00 [INF] HTTP POST /Reportes/GetChartsExtendido responded 200 in 1307.2917 ms
+2026-08-22 22:59:48.365 -04:00 [INF] HTTP POST /Reportes/GetDashboardExtendido responded 200 in 1829.3792 ms
+2026-08-22 22:59:50.997 -04:00 [INF] HTTP GET /Reportes/Casino7777 responded 200 in 126.0592 ms
+2026-08-22 22:59:51.165 -04:00 [INF] HTTP POST /Reportes/GetCasino7777Agentes responded 404 in 0.2884 ms
+2026-08-22 23:00:09.197 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-22 23:00:10.339 -04:00 [INF] HTTP GET / responded 200 in 209.3788 ms
+2026-08-22 23:00:24.668 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-22 23:00:24.676 -04:00 [INF] HTTP POST / responded 302 in 825.0824 ms
+2026-08-22 23:00:24.778 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 96.7461 ms
+2026-08-22 23:00:25.471 -04:00 [INF] HTTP POST /Reportes/GetListAgencias responded 200 in 512.3289 ms
+2026-08-22 23:00:28.028 -04:00 [INF] HTTP GET /Reportes/Casino7777 responded 200 in 20.2917 ms
+2026-08-22 23:00:28.691 -04:00 [INF] HTTP POST /Reportes/GetCasino7777Agentes responded 200 in 568.2782 ms
+2026-08-22 23:00:49.933 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 643.5761 ms
+2026-08-22 23:00:54.725 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 142.6197 ms
+2026-08-22 23:25:44.851 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-22 23:25:45.938 -04:00 [INF] HTTP GET / responded 200 in 210.4256 ms
+2026-08-22 23:25:56.509 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-22 23:25:56.517 -04:00 [INF] HTTP POST / responded 302 in 876.0536 ms
+2026-08-22 23:25:56.621 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 98.1289 ms
+2026-08-22 23:25:57.974 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 1182.7072 ms
+2026-08-22 23:26:14.082 -04:00 [INF] HTTP GET /Reportes/IconSlot responded 200 in 19.8758 ms
+2026-08-22 23:26:14.726 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 491.6551 ms
+2026-08-22 23:26:26.317 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikols responded 200 in 17.5789 ms
+2026-08-22 23:26:26.959 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 523.1979 ms

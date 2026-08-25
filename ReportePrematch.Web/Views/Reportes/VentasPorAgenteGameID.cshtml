@@ -2,6 +2,18 @@
     Layout = "_Layout";
 }
 
+<style>
+    .quick-metrics-bar { display:flex; gap:.5rem; flex-wrap:wrap; }
+    .metric-card { flex:1; min-width:120px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:.5rem .75rem; text-align:center; }
+    @@media (max-width:768px) { .metric-card { min-width:80px; flex:1 1 80px; padding:.45rem .55rem; } }
+    @@media (max-width:430px) { .metric-card { min-width:68px; flex:1 1 68px; padding:.38rem .45rem; } .metric-value { font-size:.88rem; } }
+    .metric-label { font-size:.65rem; color:rgba(255,255,255,0.5); letter-spacing:.5px; text-transform:uppercase; margin-bottom:.25rem; }
+    .metric-value { font-size:1.05rem; font-weight:700; }
+    .metric-blue  { color:#48CAE4; }
+    .metric-red   { color:#f87171; }
+    .metric-green { color:#4ade80; }
+</style>
+
 <section class="glass-card">
     <div class="welcome-bar">
         <div>
@@ -45,6 +57,13 @@
         </div>
     </div>
 
+    <!-- Métricas -->
+    <div id="metricsBar" class="quick-metrics-bar mt-3" style="display:none;">
+        <div class="metric-card"><div class="metric-label">Cant. Tickets</div><div class="metric-value metric-blue"  id="metTickets">—</div></div>
+        <div class="metric-card"><div class="metric-label">Total Riesgo</div><div class="metric-value metric-blue"  id="metRiesgo">—</div></div>
+        <div class="metric-card"><div class="metric-label">Total Ganancia</div><div class="metric-value metric-red" id="metGanancia">—</div></div>
+    </div>
+
     <div class="table-responsive mt-3">
         <table id="@ViewBag.TableId" class="glass-table w-100">
             <thead>
@@ -78,7 +97,7 @@ const agenteSession = '@ViewBag.Agente';
 
 function cargarAgentes() {
     if (!esAdmin) return;
-    $.post('@Url.Action("GetListAgencias","Reportes")', { agente: agenteSession })
+    $.post('@Url.Action("GetListAgenciasApi","Reportes")')
         .done(function(lista) {
             const sel = document.getElementById('agente');
             if (!sel) return;
@@ -123,7 +142,19 @@ function cargarReporte(){
     $.post('@Url.Action("GetVentasPorAgenteGameID","Reportes")',{agente,gameId,filtApuesta})
         .done(function(data){
             console.log('[GameID] respuesta controller:', data);
-            if(!data||!data.length){Swal.fire({icon:'info',title:'Sin resultados',background:'#002E5C',color:'#fff'});hideBusy();return;}
+            if(!data||!data.length){
+                document.getElementById('metricsBar').style.display='none';
+                Swal.fire({icon:'info',title:'Sin resultados',background:'#002E5C',color:'#fff'});hideBusy();return;
+            }
+
+            // Totales cards
+            var totR=0, totG=0;
+            data.forEach(function(r){ totR+=parseFloat(r.riesgo||0); totG+=parseFloat(r.ganancia||0); });
+            document.getElementById('metTickets').textContent  = data.length.toLocaleString('es-VE');
+            document.getElementById('metRiesgo').textContent   = fmt(totR);
+            document.getElementById('metGanancia').textContent = fmt(totG);
+            document.getElementById('metricsBar').style.display = 'flex';
+
             if(dt)dt.destroy();
             dt=$('#@ViewBag.TableId').DataTable({
                 data,

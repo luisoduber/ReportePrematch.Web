@@ -71,7 +71,7 @@ const agenteSession = '@ViewBag.Agente';
 
 function cargarAgentes() {
     if (!esAdmin) return;
-    $.post('@Url.Action("GetListAgencias","Reportes")', { agente: agenteSession })
+    $.post('@Url.Action("GetListAgenciasApi","Reportes")')
         .done(function(lista) {
             const sel = document.getElementById('agente');
             if (!sel) return;

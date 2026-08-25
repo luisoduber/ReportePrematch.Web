@@ -1,0 +1,302 @@
+@{
+    Layout = "_Layout";
+}
+
+<style>
+    .quick-metrics-bar { display:flex; gap:.5rem; flex-wrap:wrap; }
+    .metric-card { flex:1; min-width:120px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:.5rem .75rem; text-align:center; }
+    @@media (max-width:768px) { .metric-card { min-width:80px; flex:1 1 80px; padding:.45rem .55rem; } }
+    @@media (max-width:430px) { .metric-card { min-width:68px; flex:1 1 68px; padding:.38rem .45rem; } .metric-value { font-size:.88rem; } }
+    .metric-label { font-size:.65rem; color:rgba(255,255,255,0.5); letter-spacing:.5px; text-transform:uppercase; margin-bottom:.25rem; }
+    .metric-value { font-size:1.05rem; font-weight:700; }
+    .metric-blue   { color:#48CAE4; }
+    .metric-red    { color:#f87171; }
+    .metric-green  { color:#4ade80; }
+    .metric-yellow { color:#facc15; }
+    .metric-purple { color:#c084fc; }
+    .metric-orange { color:#fb923c; }
+    #tblInOutGaming td,
+    #tblInOutGaming th { text-align: center !important; }
+</style>
+
+<section class="glass-card">
+    <div class="welcome-bar">
+        <div>
+            <div class="welcome-title">@ViewBag.NombrePagina</div>
+            <div class="welcome-sub">Usuario: <strong>@ViewBag.Usuario</strong></div>
+        </div>
+        <button class="btn-glass btn-primary" onclick="cargarReporte()">
+            <i class="ti ti-refresh"></i> Actualizar
+        </button>
+    </div>
+
+    <!-- Filtros -->
+    <div class="glass-panel mt-3 p-3">
+        <div class="row g-2 align-items-end">
+            <div class="col-md-3">
+                <label class="field-label">Fecha Desde</label>
+                <input type="date" id="fechaInicio" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-3">
+                <label class="field-label">Fecha Hasta</label>
+                <input type="date" id="fechaFin" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-3">
+                <label class="field-label">Agente</label>
+                @if (ViewBag.TipoUsuario == "Usuario Regular")
+                {
+                    <input type="text" id="agente" class="glass-input" value="@ViewBag.Agente" readonly />
+                }
+                else
+                {
+                    <select id="agente" class="glass-input" style="color:#fff;">
+                        <option value="" style="background:#002E5C;color:#fff;">TODOS</option>
+                    </select>
+                }
+            </div>
+            <div class="col-md-3">
+                <button class="btn-glass btn-primary w-100" onclick="cargarReporte()">
+                    <i class="ti ti-search"></i> Buscar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Métricas rápidas -->
+    <div id="metricsBar" class="quick-metrics-bar mt-3" style="display:none;">
+        <div class="metric-card"><div class="metric-label">Usuarios</div><div class="metric-value metric-blue" id="metUsuarios">—</div></div>
+        <div class="metric-card"><div class="metric-label">Agentes</div><div class="metric-value metric-blue" id="metAgentes">—</div></div>
+        <div class="metric-card"><div class="metric-label">Apuestas</div><div class="metric-value metric-blue" id="metApuestas">—</div></div>
+        <div class="metric-card"><div class="metric-label">Retiros</div><div class="metric-value metric-blue" id="metRetiros">—</div></div>
+        <div class="metric-card"><div class="metric-label">Rollbacks</div><div class="metric-value metric-orange" id="metRollbacks">—</div></div>
+        <div class="metric-card"><div class="metric-label">Total Riesgo</div><div class="metric-value metric-red" id="metRiesgo">—</div></div>
+        <div class="metric-card"><div class="metric-label">Total Premio</div><div class="metric-value metric-red" id="metPremio">—</div></div>
+        <div class="metric-card"><div class="metric-label">Rollback Ref</div><div class="metric-value metric-purple" id="metRollbackRef">—</div></div>
+        <div class="metric-card"><div class="metric-label">GGR</div><div class="metric-value metric-green" id="metGGR">—</div></div>
+        <div class="metric-card"><div class="metric-label">HOLD</div><div class="metric-value metric-yellow" id="metHOLD">—</div></div>
+        <div class="metric-card"><div class="metric-label">RTP</div><div class="metric-value metric-yellow" id="metRTP">—</div></div>
+    </div>
+
+    <!-- Tabla -->
+    <div class="table-responsive mt-3">
+        <table id="@ViewBag.TableId" class="glass-table w-100">
+            <thead>
+                <tr>
+                    <th style="text-align:center;">Agente</th>
+                    <th style="text-align:center;">Id Agente</th>
+                    <th style="text-align:center;">Id Usuario</th>
+                    <th style="text-align:center;">Usuario</th>
+                    <th style="text-align:center;">Apuestas</th>
+                    <th style="text-align:center;">Retiros</th>
+                    <th style="text-align:center;">Rollbacks</th>
+                    <th style="text-align:center;">Total Riesgo</th>
+                    <th style="text-align:center;">Total Premio</th>
+                    <th style="text-align:center;">Total Rollback</th>
+                    <th style="text-align:center;">GGR</th>
+                    <th style="text-align:center;">HOLD %</th>
+                    <th style="text-align:center;">RTP %</th>
+                    <th style="text-align:center;">Primera Tx</th>
+                    <th style="text-align:center;">Última Tx</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="4" style="text-align:center;">TOTAL</th>
+                    <th id="totApuestas"  style="text-align:center;"></th>
+                    <th id="totRetiros"   style="text-align:center;"></th>
+                    <th id="totRollbacks" style="text-align:center;"></th>
+                    <th id="totRiesgo"    style="text-align:center;"></th>
+                    <th id="totPremio"    style="text-align:center;"></th>
+                    <th id="totRollback"  style="text-align:center;"></th>
+                    <th id="totGGR"       style="text-align:center;"></th>
+                    <th id="totHOLD"      style="text-align:center;"></th>
+                    <th id="totRTP"       style="text-align:center;"></th>
+                    <th colspan="2"       style="text-align:center;"></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</section>
+
+@section Scripts {
+<script>
+const tableId          = '#@ViewBag.TableId';
+const esAdmin          = '@ViewBag.TipoUsuario' !== 'Usuario Regular';
+const agenteSession    = '@ViewBag.Agente';
+const urlReporte       = '@Url.Action("GetInOutGaming","Reportes")';
+const urlResumenGeneral = '@Url.Action("GetInOutGamingResumenGeneral","Reportes")';
+let dt;
+
+function fmt(v) {
+    return parseFloat(v || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function fmtFecha(val) {
+    if (!val) return '—';
+    var s = val.toString().trim();
+    var partes = s.split(/[T ]/);
+    var fechaParte = partes[0] || s;
+    var hora = partes[1] ? partes[1].substring(0, 5) : '';
+    if (/^\d{4}-\d{2}-\d{2}$/.test(fechaParte)) {
+        var fp = fechaParte.split('-');
+        fechaParte = fp[2] + '/' + fp[1] + '/' + fp[0];
+    }
+    return hora ? fechaParte + ' ' + hora : fechaParte;
+}
+
+function cargarAgentes() {
+    if (!esAdmin) return;
+    $.post('@Url.Action("GetInOutGamingAgentes","Reportes")')
+        .done(function (lista) {
+            const sel = document.getElementById('agente');
+            if (!sel) return;
+            if (sel.tomselect) sel.tomselect.destroy();
+            sel.innerHTML = '';
+            const optTodos = document.createElement('option');
+            optTodos.value = ''; optTodos.textContent = 'TODOS';
+            sel.appendChild(optTodos);
+            (lista || []).forEach(function (a) {
+                const opt = document.createElement('option');
+                opt.value = a; opt.textContent = a;
+                sel.appendChild(opt);
+            });
+            new TomSelect(sel, { maxOptions: 2000, create: false, allowEmptyOption: true, placeholder: 'Buscar agente...', searchField: ['text'] });
+            if (agenteSession) sel.tomselect.setValue(agenteSession, true);
+        })
+        .fail(function (xhr) {
+            Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar la lista de agentes (HTTP ' + xhr.status + ').', background: '#002E5C', color: '#fff' });
+        });
+}
+
+function limpiarTotales() {
+    ['totApuestas','totRetiros','totRollbacks','totRiesgo','totPremio','totRollback','totGGR','totHOLD','totRTP'].forEach(function(id) {
+        document.getElementById(id).textContent = '';
+    });
+}
+
+function limpiarResumenGeneral() {
+    ['metUsuarios','metAgentes','metApuestas','metRetiros','metRollbacks','metRiesgo','metPremio','metRollbackRef','metGGR','metHOLD','metRTP'].forEach(function(id) {
+        document.getElementById(id).textContent = '—';
+    });
+    document.getElementById('metricsBar').style.display = 'none';
+}
+
+function cargarResumenGeneral(fechaInicio, fechaFin, agente) {
+    $.post(urlResumenGeneral, { fechaInicio, fechaFin, agente })
+        .done(function (data) {
+            var r = Array.isArray(data) ? data[0] : data;
+            if (!r) { limpiarResumenGeneral(); return; }
+            document.getElementById('metUsuarios').textContent    = (r.totalUsuarios  || 0).toLocaleString('es-VE');
+            document.getElementById('metAgentes').textContent     = (r.totalAgentes   || 0).toLocaleString('es-VE');
+            document.getElementById('metApuestas').textContent    = (r.totalApuestas  || 0).toLocaleString('es-VE');
+            document.getElementById('metRetiros').textContent     = (r.totalRetiros   || 0).toLocaleString('es-VE');
+            document.getElementById('metRollbacks').textContent   = (r.totalRollbacks || 0).toLocaleString('es-VE');
+            document.getElementById('metRiesgo').textContent      = fmt(r.totalRiesgo_Bet);
+            document.getElementById('metPremio').textContent      = fmt(r.totalPremio_Withdraw);
+            document.getElementById('metRollbackRef').textContent = fmt(r.totalRollback_Referencia);
+            document.getElementById('metGGR').textContent         = fmt(r.ggR_Total       || r.gGR_Total       || r.ggr_Total       || 0);
+            document.getElementById('metHOLD').textContent        = fmt(r.holD_Porcentaje || r.hOLD_Porcentaje || r.hold_Porcentaje || 0);
+            document.getElementById('metRTP').textContent         = fmt(r.rtP_Porcentaje  || r.rTP_Porcentaje  || r.rtp_Porcentaje  || 0);
+            document.getElementById('metricsBar').style.display = 'flex';
+        });
+}
+
+function cargarReporte() {
+    const fechaInicio = document.getElementById('fechaInicio').value;
+    const fechaFin    = document.getElementById('fechaFin').value;
+    const agenteEl    = document.getElementById('agente');
+    const agente      = agenteEl ? (agenteEl.tomselect ? agenteEl.tomselect.getValue() : agenteEl.value) : agenteSession;
+
+    if (!fechaInicio || !fechaFin) {
+        Swal.fire({ icon: 'warning', title: 'Fechas requeridas', text: 'Por favor selecciona Fecha Desde y Fecha Hasta.', background: '#002E5C', color: '#fff' });
+        return;
+    }
+
+    if (dt) { dt.destroy(); dt = null; }
+    $(tableId + ' tbody').empty();
+    limpiarResumenGeneral();
+
+    cargarResumenGeneral(fechaInicio, fechaFin, agente);
+
+    $.post(urlReporte, { fechaInicio, fechaFin, agente })
+        .done(function (data) {
+            if (!data || !data.length) {
+                limpiarTotales();
+                Swal.fire({ icon: 'info', title: 'Sin datos', text: 'No se encontraron registros para los filtros seleccionados.', background: '#002E5C', color: '#fff' });
+                return;
+            }
+
+            var rows = [];
+            var totAp = 0, totRet = 0, totRoll = 0, totR = 0, totP = 0, totRb = 0, totG = 0;
+
+            data.forEach(function (r) {
+                totAp   += (r.cantidadApuestas           || 0);
+                totRet  += (r.cantidadRetiros             || 0);
+                totRoll += (r.cantidadRollbacks           || 0);
+                totR    += (r.totalRiesgo_Bet             || 0);
+                totP    += (r.totalPremio_Withdraw        || 0);
+                totRb   += (r.totalRollback_Referencia    || 0);
+                totG    += (r.gGR || r.ggr                || 0);
+
+                rows.push([
+                    r.agente                          || '—',
+                    r.idAgente                        || '—',
+                    r.idUsuario                       || '—',
+                    r.usuario                         || '—',
+                    r.cantidadApuestas                || 0,
+                    r.cantidadRetiros                 || 0,
+                    r.cantidadRollbacks               || 0,
+                    fmt(r.totalRiesgo_Bet),
+                    fmt(r.totalPremio_Withdraw),
+                    fmt(r.totalRollback_Referencia),
+                    fmt(r.gGR || r.ggr || 0),
+                    fmt(r.hOLD_Porcentaje || r.hold_Porcentaje || 0),
+                    fmt(r.rTP_Porcentaje  || r.rtp_Porcentaje  || 0),
+                    fmtFecha(r.primeraTransaccion),
+                    fmtFecha(r.ultimaTransaccion)
+                ]);
+            });
+
+            dt = $(tableId).DataTable({
+                data: rows,
+                destroy: true,
+                pageLength: 25,
+                order: [[10, 'desc']],
+                language: {
+                    decimal: ',', thousands: '.',
+                    search: 'Buscar:', lengthMenu: 'Mostrar _MENU_ registros',
+                    info: 'Mostrando _START_ a _END_ de _TOTAL_ registros',
+                    infoEmpty: 'Sin registros', infoFiltered: '(filtrado de _MAX_ total)',
+                    zeroRecords: 'No se encontraron registros',
+                    paginate: { first: '«', previous: '‹', next: '›', last: '»' }
+                },
+                columnDefs: [
+                    { targets: '_all', className: 'dt-center' }
+                ]
+            });
+
+            // Totales tfoot
+            document.getElementById('totApuestas').textContent  = totAp.toLocaleString('es-VE');
+            document.getElementById('totRetiros').textContent   = totRet.toLocaleString('es-VE');
+            document.getElementById('totRollbacks').textContent = totRoll.toLocaleString('es-VE');
+            document.getElementById('totRiesgo').textContent    = fmt(totR);
+            document.getElementById('totPremio').textContent    = fmt(totP);
+            document.getElementById('totRollback').textContent  = fmt(totRb);
+            document.getElementById('totGGR').textContent       = fmt(totG);
+            var holdTotal = totR > 0 ? (totG / totR * 100) : 0;
+            var rtpTotal  = totR > 0 ? (totP / totR * 100) : 0;
+            document.getElementById('totHOLD').textContent      = fmt(holdTotal);
+            document.getElementById('totRTP').textContent       = fmt(rtpTotal);
+
+        })
+        .fail(function (xhr) {
+            Swal.fire({ icon: 'error', title: 'Error', text: 'No se pudo cargar el reporte (HTTP ' + xhr.status + ').', background: '#002E5C', color: '#fff' });
+        });
+}
+
+$(document).ready(function () {
+    cargarAgentes();
+});
+</script>
+}
