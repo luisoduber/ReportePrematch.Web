@@ -44,12 +44,28 @@
         </div>
     </div>
 
-    <!-- Métricas rápidas -->
+    <!-- Cards de totales -->
     <div class="quick-metrics-bar mt-3" id="metricsBar" style="display:none;">
-        <div class="metric-card"><div class="metric-label">Total Riesgo</div><div class="metric-value metric-blue" id="metRiesgo">—</div></div>
-        <div class="metric-card"><div class="metric-label">Total Ganando</div><div class="metric-value metric-red" id="metGanando">—</div></div>
-        <div class="metric-card"><div class="metric-label">Abiertas</div><div class="metric-value metric-blue" id="metAbiertas">—</div></div>
-        <div class="metric-card"><div class="metric-label">Cerradas</div><div class="metric-value metric-green" id="metCerradas">—</div></div>
+        <div class="metric-card">
+            <div class="metric-label">RTP General</div>
+            <div class="metric-value metric-blue" id="metRtpGeneral">—</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Total Riesgo</div>
+            <div class="metric-value metric-blue" id="metRiesgo">—</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Total Premios</div>
+            <div class="metric-value metric-red" id="metPremios">—</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Total Reversos</div>
+            <div class="metric-value metric-blue" id="metReversos">—</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Total GGR</div>
+            <div class="metric-value metric-green" id="metGgr">—</div>
+        </div>
     </div>
 
     <div class="table-responsive mt-3">
@@ -58,17 +74,22 @@
                 <tr>
                     <th style="text-align:center;">Agente</th>
                     <th style="text-align:center;">Usuario</th>
+                    <th style="text-align:center;">RTP Agente</th>
                     <th style="text-align:center;">Riesgo</th>
-                    <th style="text-align:center;">Ganando</th>
-                    <th style="text-align:center;">Estado</th>
+                    <th style="text-align:center;">Premios</th>
+                    <th style="text-align:center;">Reversos</th>
+                    <th style="text-align:center;">GGR</th>
+                    <th style="text-align:center;">RTP Usuario</th>
                 </tr>
             </thead>
             <tbody></tbody>
             <tfoot>
                 <tr>
-                    <th colspan="2" style="text-align:center;">TOTAL</th>
-                    <th id="totRiesgo"  style="text-align:center;"></th>
-                    <th id="totGanando" style="text-align:center;"></th>
+                    <th colspan="3" style="text-align:center;">TOTAL</th>
+                    <th id="totRiesgo"   style="text-align:center;"></th>
+                    <th id="totPremios"  style="text-align:center;"></th>
+                    <th id="totReversos" style="text-align:center;"></th>
+                    <th id="totGgr"      style="text-align:center;"></th>
                     <th></th>
                 </tr>
             </tfoot>
@@ -85,6 +106,10 @@ let dt;
 
 function fmt(val) {
     return parseFloat(val || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function fmtPct(val) {
+    return parseFloat(val || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '%';
 }
 
 function cargarAgentes() {
@@ -109,7 +134,7 @@ function cargarAgentes() {
             });
             if (agenteSession) sel.tomselect.setValue(agenteSession, true);
         })
-        .fail(function(xhr) {
+        .fail(function() {
             Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar la lista de agentes.', background: '#002E5C', color: '#fff' });
         });
 }
@@ -134,40 +159,41 @@ function cargarReporte() {
                 return;
             }
 
-            // API retorna camelCase: nombreagente, usuario, riesgo, ganando, cerrado
-            var totR = 0, totG = 0, cntAbierta = 0, cntCerrada = 0;
+            var totRiesgo = 0, totPremios = 0, totReversos = 0, totGgr = 0, sumRtpGeneral = 0;
             rows.forEach(function(r) {
-                totR += parseFloat(r.riesgo  || 0);
-                totG += parseFloat(r.ganando || 0);
-                if (r.cerrado === 1 || r.cerrado === true) cntCerrada++; else cntAbierta++;
+                totRiesgo      += parseFloat(r.riesgo      || 0);
+                totPremios     += parseFloat(r.premios     || 0);
+                totReversos    += parseFloat(r.reversos    || 0);
+                totGgr         += parseFloat(r.ggr         || 0);
+                sumRtpGeneral  += parseFloat(r['rtP_General'] || 0);
             });
+            var avgRtpGeneral = rows.length > 0 ? sumRtpGeneral / rows.length : 0;
 
-            document.getElementById('metRiesgo').textContent   = fmt(totR);
-            document.getElementById('metGanando').textContent  = fmt(totG);
-            document.getElementById('metAbiertas').textContent = cntAbierta;
-            document.getElementById('metCerradas').textContent = cntCerrada;
+            document.getElementById('metRtpGeneral').textContent = fmtPct(avgRtpGeneral);
+            document.getElementById('metRiesgo').textContent     = fmt(totRiesgo);
+            document.getElementById('metPremios').textContent    = fmt(totPremios);
+            document.getElementById('metReversos').textContent   = fmt(totReversos);
+            document.getElementById('metGgr').textContent        = fmt(totGgr);
             document.getElementById('metricsBar').style.display = 'flex';
 
-            if (dt) dt.destroy();
+            if (dt) { dt.destroy(); dt = null; }
             dt = $(tableId).DataTable({
                 data: rows,
                 columns: [
-                    { data: 'nombreagente', defaultContent: '—', className: 'text-center' },
-                    { data: 'usuario',      defaultContent: '—', className: 'text-center' },
-                    { data: 'riesgo',  className: 'text-center', createdCell: function(td, d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } },
-                    { data: 'ganando', className: 'text-center', createdCell: function(td, d){ $(td).text(fmt(d)).addClass('col-monto-neg'); } },
-                    {
-                        data: 'cerrado', className: 'text-center',
-                        createdCell: function(td, d) {
-                            var cerrado = d === 1 || d === true;
-                            $(td).text(cerrado ? 'Cerrada' : 'Abierta')
-                                 .addClass(cerrado ? 'col-monto-neg' : 'col-monto-pos');
-                        }
-                    }
+                    { data: 'agente',      defaultContent: '—', className: 'text-center' },
+                    { data: 'usuario',     defaultContent: '—', className: 'text-center' },
+                    { data: 'rtP_Agente',  defaultContent: '0.00%', className: 'text-center', render: function(d){ return fmtPct(d); } },
+                    { data: 'riesgo',      defaultContent: '0.00', className: 'text-center', createdCell: function(td, d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } },
+                    { data: 'premios',     defaultContent: '0.00', className: 'text-center', createdCell: function(td, d){ $(td).text(fmt(d)).addClass('col-monto-neg'); } },
+                    { data: 'reversos',    defaultContent: '0.00', className: 'text-center', createdCell: function(td, d){ $(td).text(fmt(d)).addClass('col-monto-neg'); } },
+                    { data: 'ggr',         defaultContent: '0.00', className: 'text-center', createdCell: function(td, d){ $(td).text(fmt(d)).addClass(parseFloat(d) >= 0 ? 'col-monto-pos' : 'col-monto-neg'); } },
+                    { data: 'rtP_Usuario', defaultContent: '0.00%', className: 'text-center', render: function(d){ return fmtPct(d); } }
                 ],
                 footerCallback: function() {
-                    document.getElementById('totRiesgo').textContent  = fmt(totR);
-                    document.getElementById('totGanando').textContent = fmt(totG);
+                    document.getElementById('totRiesgo').textContent   = fmt(totRiesgo);
+                    document.getElementById('totPremios').textContent  = fmt(totPremios);
+                    document.getElementById('totReversos').textContent = fmt(totReversos);
+                    document.getElementById('totGgr').textContent      = fmt(totGgr);
                 },
                 language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
                 pageLength: 25, order: [[0, 'asc']], dom: 'Bfrtip',

@@ -1,0 +1,47 @@
+2026-08-28 16:09:13.280 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-28 16:09:19.142 -04:00 [INF] HTTP GET / responded 200 in 747.3578 ms
+2026-08-28 16:09:21.355 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 5.3492 ms
+2026-08-28 16:09:48.893 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-1) para vlapenta
+2026-08-28 16:09:48.897 -04:00 [WRN] Login fallido para usuario vlapenta
+2026-08-28 16:09:48.908 -04:00 [INF] HTTP POST / responded 200 in 958.3507 ms
+2026-08-28 16:09:54.917 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-1) para vlapenta
+2026-08-28 16:09:54.919 -04:00 [WRN] Login fallido para usuario vlapenta
+2026-08-28 16:09:54.923 -04:00 [INF] HTTP POST / responded 200 in 231.2747 ms
+2026-08-28 16:10:12.076 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-28 16:10:12.080 -04:00 [INF] HTTP POST / responded 302 in 219.4699 ms
+2026-08-28 16:10:12.295 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 208.9530 ms
+2026-08-28 16:10:16.788 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 3555.8488 ms
+2026-08-28 16:10:21.105 -04:00 [INF] HTTP GET /Reportes/VirtualesBR responded 200 in 40.5315 ms
+2026-08-28 16:10:22.020 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 628.6735 ms
+2026-08-28 16:10:31.501 -04:00 [INF] HTTP POST /Reportes/GetVirtualesBR responded 200 in 807.6369 ms
+2026-08-28 16:11:13.487 -04:00 [INF] HTTP POST /Reportes/GetVirtualesBR responded 200 in 900.1480 ms
+2026-08-28 16:11:25.212 -04:00 [INF] HTTP GET /Reportes/Aviatrix responded 200 in 49.2645 ms
+2026-08-28 16:11:25.937 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 544.3036 ms
+2026-08-28 16:12:41.000 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/Aviatrix. JSON: [{"agente":"X_DOLARES","usuario":"pelo9","ventas":"1,00","premios":"0,00","utilidad":"1,00"}]
+System.Text.Json.JsonException: The JSON value could not be converted to ReportePrematch.Web.Services.Clients.ReportesService+ApiWrapper`1[System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.AviatrixDto]]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.Converters.ObjectWithParameterizedConstructorConverter`1.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-08-28 16:12:41.033 -04:00 [INF] HTTP POST /Reportes/GetAviatrix responded 200 in 317.8308 ms
+2026-08-28 16:16:29.097 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.3953 ms
+2026-08-28 16:16:32.133 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/Aviatrix. JSON: [{"agente":"X_DOLARES","usuario":"pelo9","ventas":"1,00","premios":"0,00","utilidad":"1,00"}]
+System.Text.Json.JsonException: The JSON value could not be converted to ReportePrematch.Web.Services.Clients.ReportesService+ApiWrapper`1[System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.AviatrixDto]]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.Converters.ObjectWithParameterizedConstructorConverter`1.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-08-28 16:16:32.141 -04:00 [INF] HTTP POST /Reportes/GetAviatrix responded 200 in 214.5424 ms
+2026-08-28 16:48:05.180 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-28 16:48:08.591 -04:00 [INF] HTTP GET / responded 200 in 770.1658 ms
+2026-08-28 16:48:17.472 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 4.8839 ms

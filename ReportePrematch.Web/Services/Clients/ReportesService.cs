@@ -977,6 +977,19 @@ ORDER BY 1,2,3 ASC";
         return result ?? new List<LoteriasDto>();
     }
 
+    public async Task<object> GetOdyseusAsync(string fechaDesde, string fechaHasta, string agente)
+    {
+        var query = new Dictionary<string, string>
+        {
+            ["fechaDesde"] = fechaDesde,
+            ["fechaHasta"] = fechaHasta,
+            ["agentes"]    = agente ?? ""
+        };
+        var result = await _api.GetQueryAsync<List<OdyseusDto>>(
+            "api/Reportes/Odyseus", query);
+        return result ?? new List<OdyseusDto>();
+    }
+
     public async Task<object> GetAviatrixAsync(
         string fechaD, string fechaH, string agente, string role = "", string pais = "")
     {
@@ -987,9 +1000,9 @@ ORDER BY 1,2,3 ASC";
         if (!string.IsNullOrEmpty(pais)) query["pais"] = pais;
         if (!string.IsNullOrEmpty(role)) query["role"] = role;
 
-        var wrapper = await _api.GetQueryAsync<ApiWrapper<List<AviatrixDto>>>(
+        var result = await _api.GetQueryAsync<List<AviatrixDto>>(
             "api/Reportes/Aviatrix", query);
-        return wrapper?.Data ?? new List<AviatrixDto>();
+        return result ?? new List<AviatrixDto>();
     }
 
     public async Task<object> GetFantasyBsbAsync(
@@ -1002,9 +1015,9 @@ ORDER BY 1,2,3 ASC";
         if (!string.IsNullOrEmpty(pais)) query["pais"] = pais;
         if (!string.IsNullOrEmpty(role)) query["role"] = role;
 
-        var wrapper = await _api.GetQueryAsync<ApiWrapper<List<FantasyBsbDto>>>(
+        var result = await _api.GetQueryAsync<List<FantasyBsbDto>>(
             "api/Reportes/FantasyBsb", query);
-        return wrapper?.Data ?? new List<FantasyBsbDto>();
+        return result ?? new List<FantasyBsbDto>();
     }
 
     public async Task<object> GetDashboardClientesAsync(string fechaD, string fechaH, string agente)
@@ -1090,6 +1103,18 @@ ORDER BY 1,2,3 ASC";
         response.EnsureSuccessStatusCode();
         return await response.Content.ReadFromJsonAsync<object>()
                ?? new List<object>();
+    }
+
+    public async Task<object> GetVigResumenAsync(string fechaDesde, string fechaHasta, string agente)
+    {
+        var query = new Dictionary<string, string>
+        {
+            ["fechaDesde"] = fechaDesde,
+            ["fechaHasta"] = fechaHasta,
+            ["agente"]     = agente ?? ""
+        };
+        var result = await _api.GetQueryAsync<List<VigResumenDto>>("api/Casino/Vig/Resumen", query);
+        return result ?? new List<VigResumenDto>();
     }
 
     public Task<object> GetCasino7777Async(string fechaInicio, string fechaFin, string agente)

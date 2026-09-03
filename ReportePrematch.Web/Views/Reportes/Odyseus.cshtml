@@ -1,0 +1,237 @@
+@{
+    Layout = "_Layout";
+}
+
+<style>
+    .quick-metrics-bar { display:flex; gap:.5rem; flex-wrap:wrap; }
+    .metric-card { flex:1; min-width:120px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:.5rem .75rem; text-align:center; }
+    @@media (max-width:768px) { .metric-card { min-width:80px; flex:1 1 80px; padding:.45rem .55rem; } }
+    @@media (max-width:430px) { .metric-card { min-width:68px; flex:1 1 68px; padding:.38rem .45rem; } .metric-value { font-size:.88rem; } }
+    .metric-label { font-size:.65rem; color:rgba(255,255,255,0.5); letter-spacing:.5px; text-transform:uppercase; margin-bottom:.25rem; }
+    .metric-value { font-size:1.05rem; font-weight:700; }
+    .metric-blue  { color:#48CAE4; }
+    .metric-red   { color:#f87171; }
+    .metric-green { color:#4ade80; }
+    #tblOdyseus td,
+    #tblOdyseus th { text-align: center !important; }
+</style>
+
+<section class="glass-card">
+    <div class="welcome-bar">
+        <div>
+            <div class="welcome-title">@ViewBag.NombrePagina</div>
+            <div class="welcome-sub">IconBet · Reporte por Agente</div>
+        </div>
+        <button class="btn-glass btn-primary" onclick="cargarReporte()">
+            <i class="ti ti-refresh"></i> Actualizar
+        </button>
+    </div>
+
+    <!-- Filtros -->
+    <div class="glass-panel mt-3 p-3">
+        <div class="row g-2 align-items-end">
+            <div class="col-md-3">
+                <label class="field-label">Fecha Desde</label>
+                <input type="date" id="fechaD" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-3">
+                <label class="field-label">Fecha Hasta</label>
+                <input type="date" id="fechaH" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-3">
+                <label class="field-label">Agente</label>
+                @if (ViewBag.TipoUsuario == "Usuario Regular")
+                {
+                    <input type="text" id="agente" class="glass-input" value="@ViewBag.Agente" readonly />
+                }
+                else
+                {
+                    <select id="agente" class="glass-input" style="color:#fff;">
+                        <option value="" style="background:#002E5C;color:#fff;">TODOS</option>
+                    </select>
+                }
+            </div>
+            <div class="col-md-3">
+                <button class="btn-glass btn-primary w-100" onclick="cargarReporte()">
+                    <i class="ti ti-search"></i> Buscar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cards métricas -->
+    <div id="metricsBar" class="quick-metrics-bar mt-3" style="display:none;">
+        <div class="metric-card"><div class="metric-label">Total Riesgo</div><div class="metric-value metric-blue" id="metRiesgo">—</div></div>
+        <div class="metric-card"><div class="metric-label">Total Premios</div><div class="metric-value metric-red" id="metPremios">—</div></div>
+        <div class="metric-card"><div class="metric-label">GGR</div><div class="metric-value metric-green" id="metGGR">—</div></div>
+    </div>
+
+    <!-- Tabla -->
+    <div class="table-responsive mt-3">
+        <table id="@ViewBag.TableId" class="glass-table w-100">
+            <thead>
+                <tr>
+                    <th style="text-align:center;">Producto</th>
+                    <th style="text-align:center;">Agente</th>
+                    <th style="text-align:center;">Usuario</th>
+                    <th style="text-align:center;">Fecha</th>
+                    <th style="text-align:center;">Total Riesgo</th>
+                    <th style="text-align:center;">Total Premios</th>
+                    <th style="text-align:center;">GGR</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="4" style="text-align:center;">TOTAL</th>
+                    <th id="totRiesgo"  style="text-align:center;"></th>
+                    <th id="totPremios" style="text-align:center;"></th>
+                    <th id="totGGR"     style="text-align:center;"></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</section>
+
+@section Scripts {
+<script>
+const tableId       = '#@ViewBag.TableId';
+const esAdmin       = '@ViewBag.TipoUsuario' !== 'Usuario Regular';
+const agenteSession = '@ViewBag.Agente';
+let dt;
+
+function fmt(v) {
+    return parseFloat(v || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function fmtFecha(val) {
+    if (!val) return '—';
+    var s = val.toString().trim().split(/[T ]/)[0] || val;
+    if (/^\d{4}-\d{2}-\d{2}$/.test(s)) {
+        var p = s.split('-');
+        return p[2] + '/' + p[1] + '/' + p[0];
+    }
+    return s;
+}
+
+function cargarAgentes() {
+    if (!esAdmin) return;
+    $.post('@Url.Action("GetListAgenciasApi","Reportes")')
+        .done(function (lista) {
+            const sel = document.getElementById('agente');
+            if (!sel) return;
+            if (sel.tomselect) sel.tomselect.destroy();
+            sel.innerHTML = '';
+            const optTodos = document.createElement('option');
+            optTodos.value = ''; optTodos.textContent = 'TODOS';
+            sel.appendChild(optTodos);
+            (lista || []).forEach(function (a) {
+                const opt = document.createElement('option');
+                opt.value = a; opt.textContent = a;
+                sel.appendChild(opt);
+            });
+            new TomSelect(sel, { maxOptions: 2000, create: false, allowEmptyOption: true, placeholder: 'Buscar agente...', searchField: ['text'] });
+            if (agenteSession) sel.tomselect.setValue(agenteSession, true);
+        })
+        .fail(function (xhr) {
+            Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar la lista de agentes (HTTP ' + xhr.status + ').', background: '#002E5C', color: '#fff' });
+        });
+}
+
+function limpiarTotales() {
+    ['totRiesgo', 'totPremios', 'totGGR'].forEach(function (id) {
+        document.getElementById(id).textContent = '';
+    });
+    document.getElementById('metricsBar').style.display = 'none';
+}
+
+function cargarReporte() {
+    const fechaD  = document.getElementById('fechaD').value;
+    const fechaH  = document.getElementById('fechaH').value;
+    const agenteEl = document.getElementById('agente');
+    const agente  = agenteEl ? (agenteEl.tomselect ? agenteEl.tomselect.getValue() : agenteEl.value) : agenteSession;
+
+    if (!fechaD || !fechaH) {
+        Swal.fire({ icon: 'warning', title: 'Fechas requeridas', background: '#002E5C', color: '#fff' });
+        return;
+    }
+
+    if (dt) { dt.destroy(); dt = null; }
+    $(tableId + ' tbody').empty();
+    limpiarTotales();
+    showBusy('Consultando Odiseus...');
+
+    $.post('@Url.Action("GetOdyseus","Reportes")', { fechaD, fechaH, agente })
+        .done(function (data) {
+            hideBusy();
+            if (!data || !data.length) {
+                Swal.fire({ icon: 'info', title: 'Sin datos', text: 'No se encontraron registros.', background: '#002E5C', color: '#fff' });
+                return;
+            }
+
+            var totR = 0, totP = 0, totG = 0;
+
+            data.forEach(function (r) {
+                totR += (r.totalRiesgo  || 0);
+                totP += (r.totalPremios || 0);
+                totG += (r.gGR || r.ggr || r.GGR || 0);
+            });
+
+            // Cards
+            document.getElementById('metRiesgo').textContent  = fmt(totR);
+            document.getElementById('metPremios').textContent = fmt(totP);
+            var elGGR = document.getElementById('metGGR');
+            elGGR.textContent = fmt(totG);
+            elGGR.className   = 'metric-value ' + (totG >= 0 ? 'metric-green' : 'metric-red');
+            document.getElementById('metricsBar').style.display = 'flex';
+
+            dt = $(tableId).DataTable({
+                data: data,
+                destroy: true,
+                pageLength: 25,
+                order: [[3, 'desc']],
+                language: {
+                    decimal: ',', thousands: '.',
+                    search: 'Buscar:', lengthMenu: 'Mostrar _MENU_ registros',
+                    info: 'Mostrando _START_ a _END_ de _TOTAL_ registros',
+                    infoEmpty: 'Sin registros', infoFiltered: '(filtrado de _MAX_ total)',
+                    zeroRecords: 'No se encontraron registros',
+                    paginate: { first: '«', previous: '‹', next: '›', last: '»' }
+                },
+                columns: [
+                    { data: 'producto',     className: 'dt-center' },
+                    { data: 'agente',       className: 'dt-center' },
+                    { data: 'usuario',      className: 'dt-center' },
+                    { data: 'fecha',        className: 'dt-center', render: function(d) { return fmtFecha(d); } },
+                    { data: 'totalRiesgo',  className: 'dt-center col-monto-pos', render: function(d) { return fmt(d); } },
+                    { data: 'totalPremios', className: 'dt-center col-monto-neg', render: function(d) { return fmt(d); } },
+                    { data: null,           className: 'dt-center',
+                      render: function(d) { return fmt(d.gGR || d.ggr || d.GGR || 0); },
+                      createdCell: function(td, d) {
+                          var v = d.gGR || d.ggr || d.GGR || 0;
+                          $(td).addClass(v < 0 ? 'col-monto-neg' : 'col-monto-pos');
+                      }
+                    }
+                ],
+                columnDefs: [{ targets: '_all', className: 'dt-center' }],
+                buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm' }],
+                dom: 'Bfrtip'
+            });
+
+            // Tfoot totales
+            document.getElementById('totRiesgo').textContent  = fmt(totR);
+            document.getElementById('totPremios').textContent = fmt(totP);
+            document.getElementById('totGGR').textContent     = fmt(totG);
+        })
+        .fail(function (xhr) {
+            hideBusy();
+            Swal.fire({ icon: 'error', title: 'Error', text: 'No se pudo cargar el reporte (HTTP ' + xhr.status + ').', background: '#002E5C', color: '#fff' });
+        });
+}
+
+$(document).ready(function () {
+    cargarAgentes();
+    if (!esAdmin) { cargarReporte(); }
+});
+</script>
+}

@@ -44,18 +44,42 @@
         </div>
     </div>
 
+    <!-- Cards de totales -->
+    <div class="quick-metrics-bar mt-3" id="metricsBar" style="display:none;">
+        <div class="metric-card">
+            <div class="metric-label">Total Apostado</div>
+            <div class="metric-value metric-blue" id="metVentas">—</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Total Pagado</div>
+            <div class="metric-value metric-red" id="metPremios">—</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Balance</div>
+            <div class="metric-value metric-green" id="metUtilidad">—</div>
+        </div>
+    </div>
+
     <div class="table-responsive mt-3">
         <table id="@ViewBag.TableId" class="glass-table w-100">
             <thead>
                 <tr>
-                    <th>Agente</th>
-                    <th>Usuario</th>
-                    <th>Total Apostado</th>
-                    <th>Total Pagado</th>
-                    <th>Balance</th>
+                    <th style="text-align:center;">Agente</th>
+                    <th style="text-align:center;">Usuario</th>
+                    <th style="text-align:center;">Total Apostado</th>
+                    <th style="text-align:center;">Total Pagado</th>
+                    <th style="text-align:center;">Balance</th>
                 </tr>
             </thead>
             <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="2" style="text-align:center;">TOTAL</th>
+                    <th id="totVentas"   style="text-align:center;"></th>
+                    <th id="totPremios"  style="text-align:center;"></th>
+                    <th id="totUtilidad" style="text-align:center;"></th>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </section>
@@ -71,7 +95,6 @@ function cargarAgentes() {
         .done(function(lista) {
             const sel = document.getElementById('agente');
             if (!sel) return;
-            // Destruir instancia Tom Select previa si existe
             if (sel.tomselect) sel.tomselect.destroy();
             sel.innerHTML = '';
             const optTodos = document.createElement('option');
@@ -82,48 +105,94 @@ function cargarAgentes() {
                 opt.value = a; opt.textContent = a;
                 sel.appendChild(opt);
             });
-            // Inicializar Tom Select con búsqueda
             new TomSelect(sel, {
-                maxOptions: 2000,
-                create: false,
-                allowEmptyOption: true,
-                placeholder: 'Buscar agente...',
-                searchField: ['text']
+                maxOptions: 2000, create: false, allowEmptyOption: true,
+                placeholder: 'Buscar agente...', searchField: ['text']
             });
             if (agenteSession) sel.tomselect.setValue(agenteSession, true);
-            console.log('[Agentes] ' + (lista ? lista.length : 0) + ' agentes cargados.');
         })
         .fail(function(xhr) {
-            console.error('[Agentes] Error HTTP ' + xhr.status + ' al cargar agentes:', xhr.responseText);
-            Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar la lista de agentes (HTTP ' + xhr.status + ').', background: '#002E5C', color: '#fff' });
+            Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar la lista de agentes.', background: '#002E5C', color: '#fff' });
         });
 }
 
 let dt;
-function fmt(v){ return parseFloat(v||0).toLocaleString('es-VE',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function fmt(v) {
+    return parseFloat(v || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
 
-function cargarReporte(){
-    const fechaD=document.getElementById('fechaD').value;
-    const fechaH=document.getElementById('fechaH').value;
-    const agente=document.getElementById('agente').value||'TODOS';
-    if(!fechaD||!fechaH){Swal.fire({icon:'warning',title:'Fechas requeridas',background:'#002E5C',color:'#fff'});return;}
+function numericVal(v) {
+    if (typeof v === 'number') return v;
+    return parseFloat((v || '0').toString().replace(/\./g, '').replace(',', '.')) || 0;
+}
+
+function cargarReporte() {
+    const fechaD = document.getElementById('fechaD').value;
+    const fechaH = document.getElementById('fechaH').value;
+    const agente = document.getElementById('agente').value || 'TODOS';
+    if (!fechaD || !fechaH) {
+        Swal.fire({ icon: 'warning', title: 'Fechas requeridas', background: '#002E5C', color: '#fff' });
+        return;
+    }
     showBusy('Consultando...');
 
-    $.post('@Url.Action("GetIconSlot","Reportes")',{fechaD,fechaH,agente})
-        .done(function(data){
-            if(!data||!data.length){Swal.fire({icon:'info',title:'Sin resultados',background:'#002E5C',color:'#fff'});hideBusy();return;}
-            if(dt)dt.destroy();
-            dt=$('#@ViewBag.TableId').DataTable({
-                data,
-                columns: [{data:'agente'},{data:'usuario'},{data:'ventas',createdCell:function(td){$(td).addClass('col-monto-pos');}},{data:'premios',createdCell:function(td){$(td).addClass('col-monto-neg');}},{data:'utilidad',createdCell:function(td,d){var n=parseFloat((d||'0').replace(/\./g,'').replace(',','.'));$(td).addClass(n<0?'col-monto-neg':'col-monto-pos');}}],
-                language:{url:'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json'},
-                pageLength:25,order:[[0,'asc']],dom:'Bfrtip',
-                buttons:[{extend:'excelHtml5',text:'<i class="ti ti-file-spreadsheet"></i> Excel',className:'btn-glass btn-primary btn-sm'}]
+    $.post('@Url.Action("GetIconSlot","Reportes")', { fechaD, fechaH, agente })
+        .done(function(data) {
+            if (!data || !data.length) {
+                Swal.fire({ icon: 'info', title: 'Sin resultados', background: '#002E5C', color: '#fff' });
+                hideBusy();
+                return;
+            }
+
+            var totVentas = 0, totPremios = 0, totUtilidad = 0;
+            data.forEach(function(r) {
+                totVentas   += numericVal(r.ventas);
+                totPremios  += numericVal(r.premios);
+                totUtilidad += numericVal(r.utilidad);
             });
+
+            document.getElementById('metVentas').textContent   = fmt(totVentas);
+            document.getElementById('metPremios').textContent  = fmt(totPremios);
+            var elUtil = document.getElementById('metUtilidad');
+            elUtil.textContent = fmt(totUtilidad);
+            elUtil.className = 'metric-value ' + (totUtilidad >= 0 ? 'metric-green' : 'metric-red');
+            document.getElementById('metricsBar').style.display = 'flex';
+
+            if (dt) { dt.destroy(); dt = null; }
+            dt = $('#@ViewBag.TableId').DataTable({
+                data,
+                columns: [
+                    { data: 'agente',   defaultContent: '—', className: 'text-center' },
+                    { data: 'usuario',  defaultContent: '—', className: 'text-center' },
+                    { data: 'ventas',   defaultContent: '0.00', className: 'text-center',
+                      createdCell: function(td, d) { $(td).text(fmt(numericVal(d))).addClass('col-monto-pos'); } },
+                    { data: 'premios',  defaultContent: '0.00', className: 'text-center',
+                      createdCell: function(td, d) { $(td).text(fmt(numericVal(d))).addClass('col-monto-neg'); } },
+                    { data: 'utilidad', defaultContent: '0.00', className: 'text-center',
+                      createdCell: function(td, d) {
+                          var n = numericVal(d);
+                          $(td).text(fmt(n)).addClass(n < 0 ? 'col-monto-neg' : 'col-monto-pos');
+                      }}
+                ],
+                footerCallback: function() {
+                    document.getElementById('totVentas').textContent   = fmt(totVentas);
+                    document.getElementById('totPremios').textContent  = fmt(totPremios);
+                    document.getElementById('totUtilidad').textContent = fmt(totUtilidad);
+                },
+                language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
+                pageLength: 25, order: [[0, 'asc']], dom: 'Bfrtip',
+                buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm' }]
+            });
+
             hideBusy();
-        }).fail(function(){Swal.fire({icon:'error',title:'Error',background:'#002E5C',color:'#fff'});hideBusy();});
+        })
+        .fail(function() {
+            Swal.fire({ icon: 'error', title: 'Error', background: '#002E5C', color: '#fff' });
+            hideBusy();
+        });
 }
-$(document).ready(function () {
+
+$(document).ready(function() {
     cargarAgentes();
     if (!esAdmin) { cargarReporte(); }
 });

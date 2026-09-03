@@ -44,6 +44,46 @@
         </div>
     </div>
 
+    <!-- Cards totalizados -->
+    <div id="cards-totales" class="row g-3 mt-2" style="display:none!important;">
+        <div class="col-6 col-md-3">
+            <div class="glass-panel p-3 text-center h-100">
+                <div class="d-flex align-items-center justify-content-center gap-2 mb-1">
+                    <i class="ti ti-coin" style="font-size:1.3rem;color:#4ade80;"></i>
+                    <span class="field-label mb-0" style="font-size:.75rem;letter-spacing:.08em;">VENTAS</span>
+                </div>
+                <div id="tot-ventas" class="fw-bold" style="font-size:1.25rem;color:#4ade80;">0,00</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="glass-panel p-3 text-center h-100">
+                <div class="d-flex align-items-center justify-content-center gap-2 mb-1">
+                    <i class="ti ti-trophy" style="font-size:1.3rem;color:#f87171;"></i>
+                    <span class="field-label mb-0" style="font-size:.75rem;letter-spacing:.08em;">PREMIOS</span>
+                </div>
+                <div id="tot-premios" class="fw-bold" style="font-size:1.25rem;color:#f87171;">0,00</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="glass-panel p-3 text-center h-100">
+                <div class="d-flex align-items-center justify-content-center gap-2 mb-1">
+                    <i class="ti ti-arrow-back-up" style="font-size:1.3rem;color:#fb923c;"></i>
+                    <span class="field-label mb-0" style="font-size:.75rem;letter-spacing:.08em;">RETORNO</span>
+                </div>
+                <div id="tot-retorno" class="fw-bold" style="font-size:1.25rem;color:#fb923c;">0,00</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="glass-panel p-3 text-center h-100">
+                <div class="d-flex align-items-center justify-content-center gap-2 mb-1">
+                    <i class="ti ti-scale" style="font-size:1.3rem;" id="ico-balance"></i>
+                    <span class="field-label mb-0" style="font-size:.75rem;letter-spacing:.08em;">BALANCE</span>
+                </div>
+                <div id="tot-balance" class="fw-bold" style="font-size:1.25rem;">0,00</div>
+            </div>
+        </div>
+    </div>
+
     <div class="table-responsive mt-3">
         <table id="@ViewBag.TableId" class="glass-table w-100">
             <thead>
@@ -72,7 +112,6 @@ function cargarAgentes() {
         .done(function(lista) {
             const sel = document.getElementById('agente');
             if (!sel) return;
-            // Destruir instancia Tom Select previa si existe
             if (sel.tomselect) sel.tomselect.destroy();
             sel.innerHTML = '';
             const optTodos = document.createElement('option');
@@ -83,7 +122,6 @@ function cargarAgentes() {
                 opt.value = a; opt.textContent = a;
                 sel.appendChild(opt);
             });
-            // Inicializar Tom Select con búsqueda
             new TomSelect(sel, {
                 maxOptions: 2000,
                 create: false,
@@ -103,6 +141,38 @@ function cargarAgentes() {
 let dt;
 function fmt(v){ return parseFloat(v||0).toLocaleString('es-VE',{minimumFractionDigits:2,maximumFractionDigits:2}); }
 
+// Parsea string es-VE (ej: "1.234,56") a número
+function parseEsVE(s){ return parseFloat((s||'0').replace(/\./g,'').replace(',','.')); }
+
+function actualizarCards(data) {
+    var totVentas  = 0, totPremios = 0, totRetorno = 0, totBalance = 0;
+    data.forEach(function(r) {
+        totVentas  += parseEsVE(r.ventas);
+        totPremios += parseEsVE(r.premios);
+        totRetorno += parseEsVE(r.retorno);
+        totBalance += parseEsVE(r.utilidad);
+    });
+
+    document.getElementById('tot-ventas').textContent  = fmt(totVentas);
+    document.getElementById('tot-premios').textContent = fmt(totPremios);
+    document.getElementById('tot-retorno').textContent = fmt(totRetorno);
+
+    var elBal = document.getElementById('tot-balance');
+    var elIco = document.getElementById('ico-balance');
+    elBal.textContent = fmt(totBalance);
+    if (totBalance < 0) {
+        elBal.style.color = '#f87171';
+        elIco.style.color = '#f87171';
+    } else {
+        elBal.style.color = '#4ade80';
+        elIco.style.color = '#4ade80';
+    }
+
+    document.getElementById('cards-totales').style.removeProperty('display');
+    document.getElementById('cards-totales').style.display = 'flex';
+    document.getElementById('cards-totales').classList.add('flex-wrap');
+}
+
 function cargarReporte(){
     const fechaD=document.getElementById('fechaD').value;
     const fechaH=document.getElementById('fechaH').value;
@@ -112,7 +182,13 @@ function cargarReporte(){
 
     $.post('@Url.Action("GetProps","Reportes")',{fechaD,fechaH,agente})
         .done(function(data){
-            if(!data||!data.length){Swal.fire({icon:'info',title:'Sin resultados',background:'#002E5C',color:'#fff'});hideBusy();return;}
+            if(!data||!data.length){
+                document.getElementById('cards-totales').style.display='none';
+                Swal.fire({icon:'info',title:'Sin resultados',background:'#002E5C',color:'#fff'});
+                hideBusy();
+                return;
+            }
+            actualizarCards(data);
             if(dt)dt.destroy();
             dt=$('#@ViewBag.TableId').DataTable({
                 data,

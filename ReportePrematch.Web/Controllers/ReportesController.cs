@@ -130,6 +130,28 @@ public sealed class ReportesController(
         => Json(await reportes.GetAviatrixAsync(fechaD, fechaH, agente ?? "", Role, Pais));
 
     [HttpGet]
+    public IActionResult VIG()
+    {
+        if (!SesionActiva()) return RedirectToLogin();
+        CargarViewBag("VIG", "btnVIG", "tblVIG");
+        return View();
+    }
+    [HttpPost]
+    public async Task<IActionResult> GetVIG(string fechaD, string fechaH, string agente)
+        => Json(await reportes.GetVigResumenAsync(fechaD, fechaH, agente ?? ""));
+
+    [HttpGet]
+    public IActionResult Odyseus()
+    {
+        if (!SesionActiva()) return RedirectToLogin();
+        CargarViewBag("Odiseus", "btnOdyseus", "tblOdyseus");
+        return View();
+    }
+    [HttpPost]
+    public async Task<IActionResult> GetOdyseus(string fechaD, string fechaH, string agente)
+        => Json(await reportes.GetOdyseusAsync(fechaD, fechaH, agente ?? ""));
+
+    [HttpGet]
     public IActionResult Casino7777()
     {
         if (!SesionActiva()) return RedirectToLogin();

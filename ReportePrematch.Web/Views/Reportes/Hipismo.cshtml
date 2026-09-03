@@ -46,6 +46,13 @@
 
     <div id="tituloAgente" class="mt-3 ms-1" style="font-size:1rem;font-weight:700;color:#7EC8E3;display:none;"></div>
 
+    <!-- Métricas -->
+    <div id="metricsBar" class="quick-metrics-bar mt-3" style="display:none;">
+        <div class="metric-card"><div class="metric-label">Total Ventas</div><div class="metric-value metric-blue" id="metVentas">—</div></div>
+        <div class="metric-card"><div class="metric-label">Total Premios</div><div class="metric-value metric-red" id="metPremios">—</div></div>
+        <div class="metric-card"><div class="metric-label">Utilidad</div><div class="metric-value metric-green" id="metUtilidad">—</div></div>
+    </div>
+
     <div class="table-responsive mt-2">
         <table id="@ViewBag.TableId" class="glass-table w-100">
             <thead>
@@ -63,6 +70,16 @@
 </section>
 
 <style>
+.quick-metrics-bar { display:flex; gap:.5rem; flex-wrap:wrap; }
+.metric-card { flex:1; min-width:120px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:.5rem .75rem; text-align:center; }
+@@media (max-width:768px) { .metric-card { min-width:80px; flex:1 1 80px; padding:.45rem .55rem; } }
+@@media (max-width:430px) { .metric-card { min-width:68px; flex:1 1 68px; padding:.38rem .45rem; } .metric-value { font-size:.88rem; } }
+.metric-label { font-size:.65rem; color:rgba(255,255,255,0.5); letter-spacing:.5px; text-transform:uppercase; margin-bottom:.25rem; }
+.metric-value { font-size:1.05rem; font-weight:700; }
+.metric-blue  { color:#48CAE4; }
+.metric-red   { color:#f87171; }
+.metric-green { color:#4ade80; }
+
 .btn-detalle {
     background: none;
     border: 2px solid #7EC8E3;
@@ -127,6 +144,10 @@ function cargarAgentes() {
 let dt;
 let _fechaD, _fechaH;
 function fmt(v) { return parseFloat(v || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+function parseFmt(v) {
+    if (v === null || v === undefined || v === '') return 0;
+    return parseFloat(v.toString().replace(/\./g, '').replace(',', '.')) || 0;
+}
 
 function buildChildTable(detalles, usuario) {
     if (!detalles || !detalles.length) {
@@ -193,8 +214,24 @@ function cargarReporte() {
         .done(function(data) {
             if (!data || !data.length) {
                 Swal.fire({ icon: 'info', title: 'Sin resultados', background: '#002E5C', color: '#fff' });
+                document.getElementById('metricsBar').style.display = 'none';
                 hideBusy(); return;
             }
+
+            /* Totales */
+            var totV = 0, totP = 0, totU = 0;
+            data.forEach(function(r) {
+                totV += parseFmt(r.ventas   || r.Ventas);
+                totP += parseFmt(r.premios  || r.Premios);
+                totU += parseFmt(r.utilidad || r.Utilidad);
+            });
+            document.getElementById('metVentas').textContent  = totV.toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            document.getElementById('metPremios').textContent = totP.toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            var elU = document.getElementById('metUtilidad');
+            elU.textContent = totU.toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            elU.className   = 'metric-value ' + (totU >= 0 ? 'metric-green' : 'metric-red');
+            document.getElementById('metricsBar').style.display = 'flex';
+
             if (dt) { dt.destroy(); dt = null; }
             dt = $('#@ViewBag.TableId').DataTable({
                 data: data,

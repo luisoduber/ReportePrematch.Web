@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ReportePrematch.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c2dd9f0fb154cfad8c5c4806169044ce722fb713")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+39f1b409fb48c7baa094d6e12b9ca9e73d4f48ea")]
 [assembly: System.Reflection.AssemblyProductAttribute("ReportePrematch.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ReportePrematch.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

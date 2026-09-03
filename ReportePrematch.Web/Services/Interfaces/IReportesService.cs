@@ -55,6 +55,8 @@ public interface IReportesService
     Task<object> GetLoteriasAsync(string fechaD, string fechaH, string agente, string role = "", string pais = "");
     Task<object> GetLoteriasTripleAsync(string fechaD, string fechaH, string agente, string role);
     Task<object> GetAviatrixAsync(string fechaD, string fechaH, string agente, string role = "", string pais = "");
+    Task<object> GetOdyseusAsync(string fechaDesde, string fechaHasta, string agente);
+    Task<object> GetVigResumenAsync(string fechaDesde, string fechaHasta, string agente);
     Task<object> GetFantasyBsbAsync(string fechaD, string fechaH, string agente, string role = "", string pais = "");
     Task<object> GetDashboardClientesAsync(string fechaD, string fechaH, string agente);
     Task<object> GetDashboardExtendidoAsync(string fechaD, string fechaH, string agente, string pais);

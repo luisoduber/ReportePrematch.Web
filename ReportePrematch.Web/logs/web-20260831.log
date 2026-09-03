@@ -1,0 +1,130 @@
+2026-08-31 10:45:57.049 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-31 10:45:58.645 -04:00 [INF] HTTP GET / responded 200 in 252.6079 ms
+2026-08-31 10:45:59.591 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 4.8680 ms
+2026-08-31 10:46:37.193 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-31 10:46:37.200 -04:00 [INF] HTTP POST / responded 302 in 1195.2848 ms
+2026-08-31 10:46:37.400 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 118.1631 ms
+2026-08-31 10:46:39.970 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 2021.4749 ms
+2026-08-31 10:46:43.621 -04:00 [INF] HTTP GET /Home/Dashboard responded 200 in 22.7531 ms
+2026-08-31 10:46:49.425 -04:00 [INF] HTTP POST /Reportes/GetTablesExtendido responded 200 in 5482.1334 ms
+2026-08-31 10:46:49.486 -04:00 [INF] HTTP POST /Reportes/GetChartsExtendido responded 200 in 5543.3462 ms
+2026-08-31 10:46:49.982 -04:00 [INF] HTTP POST /Reportes/GetVentasMonedaExtendido responded 200 in 6039.7024 ms
+2026-08-31 10:46:50.216 -04:00 [INF] HTTP POST /Reportes/GetDashboardExtendido responded 200 in 6273.6244 ms
+2026-08-31 10:46:59.068 -04:00 [INF] HTTP POST /Reportes/GetChartsExtendido responded 200 in 3496.4909 ms
+2026-08-31 10:46:59.245 -04:00 [INF] HTTP POST /Reportes/GetTablesExtendido responded 200 in 3673.2445 ms
+2026-08-31 10:46:59.580 -04:00 [INF] HTTP POST /Reportes/GetDashboardExtendido responded 200 in 4008.8940 ms
+2026-08-31 10:46:59.873 -04:00 [INF] HTTP POST /Reportes/GetVentasMonedaExtendido responded 200 in 4301.9081 ms
+2026-08-31 10:47:25.916 -04:00 [INF] HTTP POST /Reportes/GetVentasMonedaExtendido responded 200 in 2632.2389 ms
+2026-08-31 10:47:27.809 -04:00 [INF] HTTP POST /Reportes/GetChartsExtendido responded 200 in 4524.6167 ms
+2026-08-31 10:47:27.832 -04:00 [INF] HTTP POST /Reportes/GetTablesExtendido responded 200 in 4547.2626 ms
+2026-08-31 10:47:28.051 -04:00 [INF] HTTP POST /Reportes/GetDashboardExtendido responded 200 in 4767.3387 ms
+2026-08-31 11:33:27.933 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-31 11:33:28.942 -04:00 [INF] HTTP GET / responded 200 in 205.6571 ms
+2026-08-31 11:33:53.415 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-31 11:33:53.423 -04:00 [INF] HTTP POST / responded 302 in 625.3908 ms
+2026-08-31 11:33:53.529 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 99.4518 ms
+2026-08-31 11:33:54.797 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 1032.0127 ms
+2026-08-31 11:34:03.249 -04:00 [INF] HTTP GET /Reportes/Casino7777 responded 200 in 33.4158 ms
+2026-08-31 11:34:03.844 -04:00 [INF] HTTP POST /Reportes/GetCasino7777Agentes responded 200 in 486.7014 ms
+2026-08-31 11:44:16.312 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-31 11:44:17.722 -04:00 [INF] HTTP GET / responded 200 in 209.2628 ms
+2026-08-31 11:44:30.273 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-31 11:44:30.281 -04:00 [INF] HTTP POST / responded 302 in 700.4928 ms
+2026-08-31 11:44:30.400 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 110.3311 ms
+2026-08-31 11:44:31.551 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 945.5815 ms
+2026-08-31 11:44:34.914 -04:00 [INF] HTTP GET /Reportes/Odyseus responded 200 in 21.3179 ms
+2026-08-31 11:44:35.584 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 499.7007 ms
+2026-08-31 11:45:05.466 -04:00 [INF] HTTP POST /Reportes/GetOdyseus responded 200 in 498.3794 ms
+2026-08-31 11:48:13.700 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-31 11:48:14.640 -04:00 [INF] HTTP GET / responded 200 in 202.4986 ms
+2026-08-31 11:48:24.039 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-31 11:48:24.049 -04:00 [INF] HTTP POST / responded 302 in 611.8544 ms
+2026-08-31 11:48:24.182 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 119.7575 ms
+2026-08-31 11:48:24.932 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 552.1558 ms
+2026-08-31 11:48:40.481 -04:00 [INF] HTTP GET /Reportes/Odyseus responded 200 in 22.4634 ms
+2026-08-31 11:48:41.117 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 516.7288 ms
+2026-08-31 13:14:59.852 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-31 13:15:00.965 -04:00 [INF] HTTP GET / responded 200 in 207.7235 ms
+2026-08-31 13:15:12.347 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-08-31 13:15:12.354 -04:00 [INF] HTTP POST / responded 302 in 656.7993 ms
+2026-08-31 13:15:12.477 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 117.0496 ms
+2026-08-31 13:15:17.059 -04:00 [ERR] HTTP POST /Reportes/GetListAgenciasApi responded 500 in 4368.9712 ms
+System.Net.Http.HttpRequestException: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión. (localhost:44322)
+ ---> System.Net.Sockets.SocketException (10061): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.SocketsHttpHandler.<SendAsync>g__CreateHandlerAndSendAsync|115_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetEndorphineAgentesAsync() in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 1154
+   at ReportePrematch.Web.Controllers.ReportesController.GetListAgenciasApi() in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 214
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-08-31 13:15:17.081 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Net.Http.HttpRequestException: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión. (localhost:44322)
+ ---> System.Net.Sockets.SocketException (10061): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.SocketsHttpHandler.<SendAsync>g__CreateHandlerAndSendAsync|115_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetEndorphineAgentesAsync() in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 1154
+   at ReportePrematch.Web.Controllers.ReportesController.GetListAgenciasApi() in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 214
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-08-31 13:22:07.689 -04:00 [INF] HTTP GET /Reportes/VIG responded 200 in 53.4043 ms
+2026-08-31 13:22:09.268 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 1358.4818 ms
+2026-08-31 13:22:25.641 -04:00 [INF] HTTP POST /Reportes/GetVIG responded 200 in 949.3431 ms
+2026-08-31 16:34:27.501 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-08-31 16:34:29.664 -04:00 [INF] HTTP GET / responded 200 in 372.3155 ms
+2026-08-31 16:34:30.669 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 5.9903 ms

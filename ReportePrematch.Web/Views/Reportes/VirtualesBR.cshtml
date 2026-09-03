@@ -2,6 +2,19 @@
     Layout = "_Layout";
 }
 
+<style>
+    .quick-metrics-bar { display:flex; gap:.5rem; flex-wrap:wrap; }
+    .metric-card { flex:1; min-width:120px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:.5rem .75rem; text-align:center; }
+    @@media (max-width:768px) { .metric-card { min-width:80px; flex:1 1 80px; padding:.45rem .55rem; } }
+    @@media (max-width:430px) { .metric-card { min-width:68px; flex:1 1 68px; padding:.38rem .45rem; } .metric-value { font-size:.88rem; } }
+    .metric-label { font-size:.65rem; color:rgba(255,255,255,0.5); letter-spacing:.5px; text-transform:uppercase; margin-bottom:.25rem; }
+    .metric-value { font-size:1.05rem; font-weight:700; }
+    .metric-blue  { color:#48CAE4; }
+    .metric-red   { color:#f87171; }
+    .metric-orange{ color:#fb923c; }
+    .metric-green { color:#4ade80; }
+</style>
+
 <section class="glass-card">
     <div class="welcome-bar">
         <div>
@@ -44,6 +57,26 @@
         </div>
     </div>
 
+    <!-- Métricas totalizadas -->
+    <div id="metricsBar" class="quick-metrics-bar mt-3" style="display:none;">
+        <div class="metric-card">
+            <div class="metric-label">Ventas</div>
+            <div class="metric-value metric-blue" id="metVentas">—</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Premios</div>
+            <div class="metric-value metric-red" id="metPremios">—</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Retorno</div>
+            <div class="metric-value metric-orange" id="metRetorno">—</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Balance</div>
+            <div class="metric-value metric-green" id="metBalance">—</div>
+        </div>
+    </div>
+
     <div class="table-responsive mt-3">
         <table id="@ViewBag.TableId" class="glass-table w-100">
             <thead>
@@ -72,7 +105,6 @@ function cargarAgentes() {
         .done(function(lista) {
             const sel = document.getElementById('agente');
             if (!sel) return;
-            // Destruir instancia Tom Select previa si existe
             if (sel.tomselect) sel.tomselect.destroy();
             sel.innerHTML = '';
             const optTodos = document.createElement('option');
@@ -83,7 +115,6 @@ function cargarAgentes() {
                 opt.value = a; opt.textContent = a;
                 sel.appendChild(opt);
             });
-            // Inicializar Tom Select con búsqueda
             new TomSelect(sel, {
                 maxOptions: 2000,
                 create: false,
@@ -102,6 +133,27 @@ function cargarAgentes() {
 
 let dt;
 function fmt(v){ return parseFloat(v||0).toLocaleString('es-VE',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function parseFmt(s){ return parseFloat((s||'0').toString().replace(/\./g,'').replace(',','.')) || 0; }
+
+function actualizarMetricas(data) {
+    var totV = 0, totP = 0, totR = 0, totB = 0;
+    data.forEach(function(r) {
+        totV += parseFmt(r.ventas);
+        totP += parseFmt(r.premios);
+        totR += parseFmt(r.retorno);
+        totB += parseFmt(r.utilidad);
+    });
+
+    document.getElementById('metVentas').textContent  = fmt(totV);
+    document.getElementById('metPremios').textContent = fmt(totP);
+    document.getElementById('metRetorno').textContent = fmt(totR);
+
+    var elB = document.getElementById('metBalance');
+    elB.textContent = fmt(totB);
+    elB.className   = 'metric-value ' + (totB >= 0 ? 'metric-green' : 'metric-red');
+
+    document.getElementById('metricsBar').style.display = 'flex';
+}
 
 function cargarReporte(){
     const fechaD=document.getElementById('fechaD').value;
@@ -112,17 +164,23 @@ function cargarReporte(){
 
     $.post('@Url.Action("GetVirtualesBR","Reportes")',{fechaD,fechaH,agente})
         .done(function(data){
-            if(!data||!data.length){Swal.fire({icon:'info',title:'Sin resultados',background:'#002E5C',color:'#fff'});hideBusy();return;}
+            if(!data||!data.length){
+                document.getElementById('metricsBar').style.display='none';
+                Swal.fire({icon:'info',title:'Sin resultados',background:'#002E5C',color:'#fff'});
+                hideBusy();
+                return;
+            }
+            actualizarMetricas(data);
             if(dt)dt.destroy();
             dt=$('#@ViewBag.TableId').DataTable({
                 data,
                 columns: [
-                    {data:'agente',    className:'text-center'},
-                    {data:'usuario',   className:'text-center'},
-                    {data:'ventas',    className:'text-center col-monto-pos'},
-                    {data:'premios',   className:'text-center col-monto-neg'},
-                    {data:'retorno',   className:'text-center col-monto-neg'},
-                    {data:'utilidad',  className:'text-center', createdCell:function(td,d){var n=parseFloat((d||'0').replace(/\./g,'').replace(',','.'));$(td).addClass(n<0?'col-monto-neg':'col-monto-pos');}}
+                    {data:'agente',   className:'text-center'},
+                    {data:'usuario',  className:'text-center'},
+                    {data:'ventas',   className:'text-center col-monto-pos'},
+                    {data:'premios',  className:'text-center col-monto-neg'},
+                    {data:'retorno',  className:'text-center col-monto-neg'},
+                    {data:'utilidad', className:'text-center', createdCell:function(td,d){var n=parseFmt(d);$(td).addClass(n<0?'col-monto-neg':'col-monto-pos');}}
                 ],
                 language:{url:'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json'},
                 pageLength:25,order:[[0,'asc']],dom:'Bfrtip',
