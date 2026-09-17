@@ -6,15 +6,28 @@
     .canal-toggle { display:inline-flex; border:1px solid rgba(255,255,255,0.25); border-radius:30px; overflow:hidden; }
     .tog-btn { border:none; background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.35); padding:8px 20px; font-size:11px; font-weight:700; letter-spacing:.8px; cursor:pointer; transition:all .25s; white-space:nowrap; }
     .tog-btn.active { background:var(--sa-5,#0077B6); color:#fff; }
+
+    .agent-block { margin-bottom:2rem; }
+    .agent-block-header {
+        display:flex; align-items:center; gap:.6rem;
+        font-size:1rem; font-weight:700; letter-spacing:.04em;
+        color:#48CAE4; margin-bottom:.6rem;
+        padding-bottom:.35rem;
+        border-bottom:1px solid rgba(72,202,228,.25);
+    }
+    .agent-block-header i { font-size:1.1rem; }
+
     .quick-metrics-bar { display:flex; gap:.5rem; flex-wrap:wrap; }
-    .metric-card { flex:1; min-width:120px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:.5rem .75rem; text-align:center; }
+    .metric-card { flex:1; min-width:110px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:.5rem .75rem; text-align:center; }
     @@media (max-width:768px) { .metric-card { min-width:80px; flex:1 1 80px; padding:.45rem .55rem; } }
     @@media (max-width:430px) { .metric-card { min-width:68px; flex:1 1 68px; padding:.38rem .45rem; } .metric-value { font-size:.88rem; } }
-    .metric-label { font-size:.65rem; color:rgba(255,255,255,0.5); letter-spacing:.5px; text-transform:uppercase; margin-bottom:.25rem; }
-    .metric-value { font-size:1.05rem; font-weight:700; }
+    .metric-label { font-size:.62rem; color:rgba(255,255,255,0.5); letter-spacing:.5px; text-transform:uppercase; margin-bottom:.25rem; }
+    .metric-value { font-size:1rem; font-weight:700; }
     .metric-blue  { color:#48CAE4; }
     .metric-red   { color:#f87171; }
     .metric-green { color:#4ade80; }
+
+    #agentBlocks .table-responsive { margin-top:.6rem; }
 </style>
 
 <section class="glass-card">
@@ -67,72 +80,31 @@
         </div>
     </div>
 
-    <!-- Métricas Taquilla -->
-    <div id="metricsBarTaq" class="quick-metrics-bar mt-3" style="display:none;">
-        <div class="metric-card"><div class="metric-label">Ventas Dir</div><div class="metric-value metric-blue" id="metVentaDir">—</div></div>
-        <div class="metric-card"><div class="metric-label">Ventas Par</div><div class="metric-value metric-blue" id="metVentaPar">—</div></div>
-        <div class="metric-card"><div class="metric-label">Total Ventas</div><div class="metric-value metric-blue" id="metTotalVentas">—</div></div>
-        <div class="metric-card"><div class="metric-label">Premios Dir</div><div class="metric-value metric-red" id="metPremiosDir">—</div></div>
-        <div class="metric-card"><div class="metric-label">Premios Par</div><div class="metric-value metric-red" id="metPremiosPar">—</div></div>
-        <div class="metric-card"><div class="metric-label">Total Premios</div><div class="metric-value metric-red" id="metTotalPremios">—</div></div>
-        <div class="metric-card"><div class="metric-label">Pendientes</div><div class="metric-value metric-blue" id="metPendientes">—</div></div>
-        <div class="metric-card"><div class="metric-label">Utilidad</div><div class="metric-value metric-green" id="metUtilidad">—</div></div>
+    <!-- Botones de exportación (visibles tras cargar datos) -->
+    <div id="exportBar" class="mt-3 d-none d-flex gap-2 flex-wrap">
+        <button class="btn-glass btn-primary" onclick="exportarExcel()">
+            <i class="ti ti-file-spreadsheet"></i> Excel completo
+        </button>
+        <button class="btn-glass" style="border-color:rgba(255,100,100,.5);color:#f87171;" onclick="exportarPDF()">
+            <i class="ti ti-file-type-pdf"></i> PDF por agente
+        </button>
     </div>
 
-    <!-- Métricas Web -->
-    <div id="metricsBarWeb" class="quick-metrics-bar mt-3" style="display:none;">
-        <div class="metric-card"><div class="metric-label">Ventas Parlay</div><div class="metric-value metric-blue" id="metVP">—</div></div>
-        <div class="metric-card"><div class="metric-label">Ventas Directo</div><div class="metric-value metric-blue" id="metVD">—</div></div>
-        <div class="metric-card"><div class="metric-label">Premios Parlay</div><div class="metric-value metric-red" id="metPP">—</div></div>
-        <div class="metric-card"><div class="metric-label">Premios Directo</div><div class="metric-value metric-red" id="metPD">—</div></div>
-        <div class="metric-card"><div class="metric-label">Balance</div><div class="metric-value metric-green" id="metBal">—</div></div>
-    </div>
-
-    <!-- Tabla -->
-    <div class="table-responsive mt-3">
-        <table id="@ViewBag.TableId" class="glass-table w-100">
-            <thead>
-                <tr id="theadRow">
-                    <th style="text-align:center;"></th>
-                    <th style="text-align:center;">Usuario</th>
-                    <th style="text-align:center;">Ventas Dir</th>
-                    <th style="text-align:center;">Ventas Par</th>
-                    <th style="text-align:center;">Total Ventas</th>
-                    <th style="text-align:center;">Premios Dir</th>
-                    <th style="text-align:center;">Premios Par</th>
-                    <th style="text-align:center;">Total Premios</th>
-                    <th style="text-align:center;">Pendientes</th>
-                    <th style="text-align:center;">Utilidad</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-            <tfoot>
-                <tr id="tfootRow">
-                    <th colspan="2" style="text-align:center;">TOTAL</th>
-                    <th id="totVentaDir"     style="text-align:center;"></th>
-                    <th id="totVentaPar"     style="text-align:center;"></th>
-                    <th id="totTotalVentas"  style="text-align:center;"></th>
-                    <th id="totPremiosDir"   style="text-align:center;"></th>
-                    <th id="totPremiosPar"   style="text-align:center;"></th>
-                    <th id="totTotalPremios" style="text-align:center;"></th>
-                    <th id="totPendientes"   style="text-align:center;"></th>
-                    <th id="totUtilidad"     style="text-align:center;"></th>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
+    <!-- Contenedor dinámico de bloques por agente -->
+    <div id="agentBlocks" class="mt-3"></div>
 </section>
 
 @section Scripts {
 <script>
-const tableId       = '#@ViewBag.TableId';
 const esAdmin       = '@ViewBag.TipoUsuario' !== 'Usuario Regular';
 const agenteSession = '@ViewBag.Agente';
 const urlTaq        = '@Url.Action("GetVentasPorAgenteTaq","Reportes")';
 const urlWeb        = '@Url.Action("GetVentasPorAgenteWeb","Reportes")';
 let canal = 'taq';
-let dt;
+let dtInstances = [];
 let ticketsCache = {};
+let ticketsCacheWeb = {};
+let lastData = [];          // datos cargados — usados por Excel y PDF
 
 function fmt(v) {
     return parseFloat(v || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -151,49 +123,6 @@ function fmtFecha(val) {
     return hora ? fechaParte + ' ' + hora : fechaParte;
 }
 
-function setHeadersTaq() {
-    document.getElementById('theadRow').innerHTML =
-        '<th style="text-align:center;"></th>' +
-        '<th style="text-align:center;">Usuario</th>' +
-        '<th style="text-align:center;">Ventas Dir</th>' +
-        '<th style="text-align:center;">Ventas Par</th>' +
-        '<th style="text-align:center;">Total Ventas</th>' +
-        '<th style="text-align:center;">Premios Dir</th>' +
-        '<th style="text-align:center;">Premios Par</th>' +
-        '<th style="text-align:center;">Total Premios</th>' +
-        '<th style="text-align:center;">Pendientes</th>' +
-        '<th style="text-align:center;">Utilidad</th>';
-    document.getElementById('tfootRow').innerHTML =
-        '<th colspan="2" style="text-align:center;">TOTAL</th>' +
-        '<th id="totVentaDir" style="text-align:center;"></th>' +
-        '<th id="totVentaPar" style="text-align:center;"></th>' +
-        '<th id="totTotalVentas" style="text-align:center;"></th>' +
-        '<th id="totPremiosDir" style="text-align:center;"></th>' +
-        '<th id="totPremiosPar" style="text-align:center;"></th>' +
-        '<th id="totTotalPremios" style="text-align:center;"></th>' +
-        '<th id="totPendientes" style="text-align:center;"></th>' +
-        '<th id="totUtilidad" style="text-align:center;"></th>';
-}
-
-function setHeadersWeb() {
-    document.getElementById('theadRow').innerHTML =
-        '<th style="text-align:center;">Agente</th>' +
-        '<th style="text-align:center;">Usuario</th>' +
-        '<th style="text-align:center;">País</th>' +
-        '<th style="text-align:center;">Venta Par</th>' +
-        '<th style="text-align:center;">Venta Dir</th>' +
-        '<th style="text-align:center;">Premios Par</th>' +
-        '<th style="text-align:center;">Premios Dir</th>' +
-        '<th style="text-align:center;">Balance</th>';
-    document.getElementById('tfootRow').innerHTML =
-        '<th colspan="3" style="text-align:center;">TOTAL</th>' +
-        '<th id="tVP" style="text-align:center;"></th>' +
-        '<th id="tVD" style="text-align:center;"></th>' +
-        '<th id="tPP" style="text-align:center;"></th>' +
-        '<th id="tPD" style="text-align:center;"></th>' +
-        '<th id="tBal" style="text-align:center;"></th>';
-}
-
 function setCanal(c) {
     if (canal === c) return;
     canal = c;
@@ -202,12 +131,15 @@ function setCanal(c) {
     document.getElementById('canalSub').innerHTML = c === 'taq'
         ? 'Canal Taquilla · Usuario: <strong>@ViewBag.Usuario</strong>'
         : 'Canal Web · Usuario: <strong>@ViewBag.Usuario</strong>';
-    if (dt) { dt.destroy(); dt = null; }
-    $(tableId + ' tbody').empty();
+    limpiarBloques();
     ticketsCache = {};
-    document.getElementById('metricsBarTaq').style.display = 'none';
-    document.getElementById('metricsBarWeb').style.display = 'none';
-    if (c === 'taq') setHeadersTaq(); else setHeadersWeb();
+}
+
+function limpiarBloques() {
+    dtInstances.forEach(function(dt) { try { dt.destroy(); } catch(e){} });
+    dtInstances = [];
+    document.getElementById('agentBlocks').innerHTML = '';
+    document.getElementById('exportBar').classList.add('d-none');
 }
 
 function cargarAgentes() {
@@ -228,27 +160,24 @@ function cargarAgentes() {
             });
             new TomSelect(sel, { maxOptions: 2000, create: false, allowEmptyOption: true, placeholder: 'Buscar agente...', searchField: ['text'] });
             if (agenteSession) sel.tomselect.setValue(agenteSession, true);
-        })
-        .fail(function (xhr) {
-            Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar la lista de agentes (HTTP ' + xhr.status + ').', background: '#002E5C', color: '#fff' });
         });
 }
 
-// ── Child row (solo Taquilla) ─────────────────────────────────────────────────
+// ── Child rows (Taquilla) ─────────────────────────────────────────────────────
 function buildDetalleHTML(tickets) {
     if (!tickets || !tickets.length) return '<div class="p-2" style="color:#aac;">Sin tickets para este usuario.</div>';
     var rows = '';
     tickets.forEach(function(t) {
         rows += '<tr>'
-            + '<td class="col-ticket" style="text-align:center;"><span class="ticket-link" onclick="verDetalleTicket(' + (t.ticket || 0) + ')" style="cursor:pointer;color:#48CAE4;text-decoration:underline;font-weight:700;">' + (t.ticket || '—') + '</span></td>'
-            + '<td style="text-align:center;">' + (t.tipoAp || '—') + '</td>'
+            + '<td style="text-align:center;"><span onclick="verDetalleTicket(' + (t.ticket||0) + ')" style="cursor:pointer;color:#48CAE4;text-decoration:underline;font-weight:700;">' + (t.ticket||'—') + '</span></td>'
+            + '<td style="text-align:center;">' + (t.tipoAp||'—') + '</td>'
             + '<td class="col-monto-pos" style="text-align:center;">' + fmt(t.arriesgando) + '</td>'
             + '<td class="col-monto-neg" style="text-align:center;">' + fmt(t.ganando) + '</td>'
-            + '<td style="text-align:center;">' + (t.operacion || '—') + '</td>'
+            + '<td style="text-align:center;">' + (t.operacion||'—') + '</td>'
             + '<td style="text-align:center;">' + fmtFecha(t.fecha) + '</td>'
             + '</tr>';
     });
-    return '<div class="p-2"><table class="glass-table w-100" style="font-size:1em;text-align:center;">'
+    return '<div class="p-2"><table class="glass-table w-100" style="font-size:.93em;text-align:center;">'
         + '<thead><tr>'
         + '<th style="text-align:center;">Ticket</th>'
         + '<th style="text-align:center;">Tipo Apuesta</th>'
@@ -256,20 +185,15 @@ function buildDetalleHTML(tickets) {
         + '<th style="text-align:center;">Premio</th>'
         + '<th style="text-align:center;">Operación</th>'
         + '<th style="text-align:center;">Fecha</th>'
-        + '</tr></thead>'
-        + '<tbody>' + rows + '</tbody></table></div>';
+        + '</tr></thead><tbody>' + rows + '</tbody></table></div>';
 }
 
-function toggleDetalle(tr, row) {
+function toggleDetalle(tr, row, agente, fechaD, fechaH) {
     if (row.child.isShown()) { row.child.hide(); tr.querySelector('.btn-expand').textContent = '+'; tr.classList.remove('shown'); return; }
-    const d = row.data();
-    const agente = d.agente || '';
-    const usuario = d.usuario || '';
-    const fechaD = document.getElementById('fechaD').value;
-    const fechaH = document.getElementById('fechaH').value;
+    const usuario = row.data().usuario || '';
     const cacheKey = agente + '|' + fechaD + '|' + fechaH;
     function mostrar(tickets) {
-        var filtrados = (tickets || []).filter(function(t){ return t.usuario === usuario; });
+        var filtrados = (tickets||[]).filter(function(t){ return t.usuario === usuario; });
         row.child(buildDetalleHTML(filtrados)).show();
         tr.querySelector('.btn-expand').textContent = '−';
         tr.classList.add('shown');
@@ -278,12 +202,282 @@ function toggleDetalle(tr, row) {
     row.child('<div class="p-2" style="color:#aac;">Cargando...</div>').show();
     tr.querySelector('.btn-expand').textContent = '−';
     tr.classList.add('shown');
-    $.post('@Url.Action("GetTicketsDetalladosTaq","Reportes")', { fechaD, fechaH, agente: agente || 'TODOS' })
-        .done(function(tickets) {
-            ticketsCache[cacheKey] = tickets || [];
-            mostrar(ticketsCache[cacheKey]);
-        })
+    $.post('@Url.Action("GetTicketsDetalladosTaq","Reportes")', { fechaD, fechaH, agente: agente||'TODOS' })
+        .done(function(tickets) { ticketsCache[cacheKey] = tickets||[]; mostrar(ticketsCache[cacheKey]); })
         .fail(function() { row.child('<div class="p-2" style="color:#f88;">Error al cargar tickets.</div>').show(); });
+}
+
+// ── Render bloque por agente (Taquilla) ───────────────────────────────────────
+function renderBloqueTaq(agente, rows, idx, fechaD, fechaH) {
+    var totVD=0, totVP=0, totTV=0, totPD=0, totPP=0, totTP=0, totPen=0, totUtil=0;
+    rows.forEach(function(r) {
+        totVD   += parseFloat(r.ventaDir    ||0);
+        totVP   += parseFloat(r.ventaPar    ||0);
+        totTV   += parseFloat(r.totalVentas ||0);
+        totPD   += parseFloat(r.premiosDir  ||0);
+        totPP   += parseFloat(r.premiosPar  ||0);
+        totTP   += parseFloat(r.totalPremios||0);
+        totPen  += parseFloat(r.pendientes  ||0);
+        totUtil += parseFloat(r.utilidad    ||0);
+    });
+
+    var tableId = 'tblAgTaq_' + idx;
+    var block = document.createElement('div');
+    block.className = 'agent-block';
+    block.innerHTML =
+        '<div class="agent-block-header"><i class="ti ti-user"></i>' + agente + '</div>' +
+        '<div class="quick-metrics-bar mb-2">' +
+            card('Ventas Dir',    fmt(totVD),   'metric-blue')  +
+            card('Ventas Par',    fmt(totVP),   'metric-blue')  +
+            card('Total Ventas',  fmt(totTV),   'metric-blue')  +
+            card('Premios Dir',   fmt(totPD),   'metric-red')   +
+            card('Premios Par',   fmt(totPP),   'metric-red')   +
+            card('Total Premios', fmt(totTP),   'metric-red')   +
+            card('Pendientes',    fmt(totPen),  'metric-blue')  +
+            card('Utilidad',      fmt(totUtil), totUtil>=0?'metric-green':'metric-red') +
+        '</div>' +
+        '<div class="table-responsive">' +
+        '<table id="' + tableId + '" class="glass-table w-100">' +
+        '<thead><tr>' +
+            '<th style="text-align:center;"></th>' +
+            '<th style="text-align:center;">Usuario</th>' +
+            '<th style="text-align:center;">Ventas Dir</th>' +
+            '<th style="text-align:center;">Ventas Par</th>' +
+            '<th style="text-align:center;">Total Ventas</th>' +
+            '<th style="text-align:center;">Premios Dir</th>' +
+            '<th style="text-align:center;">Premios Par</th>' +
+            '<th style="text-align:center;">Total Premios</th>' +
+            '<th style="text-align:center;">Pendientes</th>' +
+            '<th style="text-align:center;">Utilidad</th>' +
+        '</tr></thead><tbody></tbody>' +
+        '<tfoot><tr>' +
+            '<th colspan="2" style="text-align:center;">TOTAL</th>' +
+            '<th style="text-align:center;">' + fmt(totVD) + '</th>' +
+            '<th style="text-align:center;">' + fmt(totVP) + '</th>' +
+            '<th style="text-align:center;">' + fmt(totTV) + '</th>' +
+            '<th style="text-align:center;">' + fmt(totPD) + '</th>' +
+            '<th style="text-align:center;">' + fmt(totPP) + '</th>' +
+            '<th style="text-align:center;">' + fmt(totTP) + '</th>' +
+            '<th style="text-align:center;">' + fmt(totPen) + '</th>' +
+            '<th style="text-align:center;">' + fmt(totUtil) + '</th>' +
+        '</tr></tfoot>' +
+        '</table></div>';
+
+    document.getElementById('agentBlocks').appendChild(block);
+
+    var dt = $('#' + tableId).DataTable({
+        data: rows,
+        columns: [
+            { className: 'dt-control text-center', orderable: false, data: null, defaultContent: '',
+              createdCell: function(td) { var btn = document.createElement('button'); btn.className='btn-expand btn-glass btn-primary btn-sm'; btn.style.cssText='padding:1px 7px;font-size:.9em;min-width:24px;'; btn.textContent='+'; td.appendChild(btn); } },
+            { data: 'usuario',      className: 'text-center', render: function(d){ return d ? d.toUpperCase() : '—'; } },
+            { data: 'ventaDir',     className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } },
+            { data: 'ventaPar',     className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } },
+            { data: 'totalVentas',  className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } },
+            { data: 'premiosDir',   className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-neg'); } },
+            { data: 'premiosPar',   className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-neg'); } },
+            { data: 'totalPremios', className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-neg'); } },
+            { data: 'pendientes',   className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } },
+            { data: 'utilidad',     className: 'text-center', createdCell: function(td,d){ var n=parseFloat(d||0); $(td).text(fmt(d)).addClass(n>=0?'col-monto-pos':'col-monto-neg'); } }
+        ],
+        language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
+        pageLength: 25, order: [[1,'asc']], dom: 'Bfrtip',
+        buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm', title: agente }]
+    });
+
+    var ag = agente;
+    $('#' + tableId + ' tbody').on('click', '.btn-expand', function() {
+        var tr = $(this).closest('tr')[0];
+        toggleDetalle(tr, dt.row(tr), ag, fechaD, fechaH);
+    });
+
+    dtInstances.push(dt);
+}
+
+// ── Child rows (Web) ──────────────────────────────────────────────────────────
+function parseAmtW(v) { return parseFloat((v||'0').toString().replace(/\./g,'').replace(',','.')) || 0; }
+
+function buildDetalleHTMLWeb(tickets) {
+    if (!tickets || !tickets.length) return '<div class="p-2" style="color:#aac;">Sin tickets para este usuario.</div>';
+    var rows = '';
+    tickets.forEach(function(t) {
+        rows += '<tr>'
+            + '<td style="text-align:center;"><span onclick="verDetalleTicket(' + (t.ticket||0) + ',\'' + (t.usuario||'') + '\')" style="cursor:pointer;color:#48CAE4;text-decoration:underline;font-weight:700;">' + (t.ticket||'—') + '</span></td>'
+            + '<td style="text-align:center;">' + (t.tipoAp||'—') + '</td>'
+            + '<td style="text-align:center;">' + (t.tipoSaldo||'—') + '</td>'
+            + '<td class="col-monto-pos" style="text-align:center;">' + (t.riesgo||'—') + '</td>'
+            + '<td style="text-align:center;" class="' + (parseAmtW(t.ganando) < 0 ? 'col-monto-neg' : 'col-monto-pos') + '">' + (t.ganando||'—') + '</td>'
+            + '<td style="text-align:center;">' + (t.operacion||'—') + '</td>'
+            + '<td style="text-align:center;">' + fmtFecha(t.fecha) + '</td>'
+            + '</tr>';
+    });
+    return '<div class="p-2"><table class="glass-table w-100" style="font-size:.93em;text-align:center;">'
+        + '<thead><tr>'
+        + '<th style="text-align:center;">Ticket</th>'
+        + '<th style="text-align:center;">Tipo Apuesta</th>'
+        + '<th style="text-align:center;">Tipo Saldo</th>'
+        + '<th style="text-align:center;">Riesgo</th>'
+        + '<th style="text-align:center;">Premio</th>'
+        + '<th style="text-align:center;">Operación</th>'
+        + '<th style="text-align:center;">Fecha</th>'
+        + '</tr></thead><tbody>' + rows + '</tbody></table></div>';
+}
+
+function toggleDetalleWeb(tr, row, agente, fechaD, fechaH) {
+    if (row.child.isShown()) { row.child.hide(); tr.querySelector('.btn-expand').textContent = '+'; tr.classList.remove('shown'); return; }
+    const usuario = row.data().usuario || row.data().Usuario || '';
+    const cacheKey = agente + '|' + fechaD + '|' + fechaH;
+    function mostrar(tickets) {
+        var filtrados = (tickets||[]).filter(function(t){ return (t.usuario||'').toLowerCase() === usuario.toLowerCase(); });
+        row.child(buildDetalleHTMLWeb(filtrados)).show();
+        tr.querySelector('.btn-expand').textContent = '−';
+        tr.classList.add('shown');
+    }
+    if (ticketsCacheWeb[cacheKey] !== undefined) { mostrar(ticketsCacheWeb[cacheKey]); return; }
+    row.child('<div class="p-2" style="color:#aac;">Cargando...</div>').show();
+    tr.querySelector('.btn-expand').textContent = '−';
+    tr.classList.add('shown');
+    $.post('@Url.Action("GetTicketsDetalladosWebII","Reportes")', { fechaD, fechaH, agente: agente||'TODOS' })
+        .done(function(tickets) { ticketsCacheWeb[cacheKey] = tickets||[]; mostrar(ticketsCacheWeb[cacheKey]); })
+        .fail(function() { row.child('<div class="p-2" style="color:#f88;">Error al cargar tickets.</div>').show(); });
+}
+
+// ── helpers numéricos Web ────────────────────────────────────────────────────
+function wN(r, k) { var K=k.charAt(0).toUpperCase()+k.slice(1); return parseFloat(r[k]||r[K]||0); }
+function wI(r, k) { var K=k.charAt(0).toUpperCase()+k.slice(1); return parseInt(r[k]||r[K]||0,10); }
+
+// ── Render bloque por agente (Web) ────────────────────────────────────────────
+function renderBloqueWeb(agente, rows, idx, fechaD, fechaH) {
+    // Totales
+    var t = { tkt:0, anu:0, sinR:0, vP:0, vD:0, vPB:0, vDB:0,
+              pP:0, pD:0, pPB:0, pDB:0, tV:0, tP:0, tVB:0, tPB2:0, util:0, pen:0 };
+    rows.forEach(function(r) {
+        t.tkt  += wI(r,'cantTickets');
+        t.anu  += wI(r,'cantTicketsAnulados');
+        t.sinR += wI(r,'cantTicketsSinResultado');
+        t.vP   += wN(r,'ventaPar');       t.vD   += wN(r,'ventaDir');
+        t.vPB  += wN(r,'ventaParBono');   t.vDB  += wN(r,'ventaDirBono');
+        t.pP   += wN(r,'premiosPar');     t.pD   += wN(r,'premiosDir');
+        t.pPB  += wN(r,'premiosParBono'); t.pDB  += wN(r,'premiosDirBono');
+        t.tV   += wN(r,'totalVentas');    t.tP   += wN(r,'totalPremios');
+        t.tVB  += wN(r,'totalVentasBono');t.tPB2 += wN(r,'totalPremiosBono');
+        t.util += wN(r,'utilidad');       t.pen  += wN(r,'pendientes');
+    });
+
+    var tableId = 'tblAgWeb_' + idx;
+    var block = document.createElement('div');
+    block.className = 'agent-block';
+    block.innerHTML =
+        '<div class="agent-block-header"><i class="ti ti-user"></i>' + agente + '</div>' +
+        '<div class="quick-metrics-bar mb-2">' +
+            card('Tickets',       t.tkt,        'metric-blue')  +
+            card('Total Ventas',  fmt(t.tV),    'metric-blue')  +
+            card('Ventas Bono',   fmt(t.tVB),   'metric-blue')  +
+            card('Total Premios', fmt(t.tP),    'metric-red')   +
+            card('Premios Bono',  fmt(t.tPB2),  'metric-red')   +
+            card('Utilidad',      fmt(t.util),  t.util>=0?'metric-green':'metric-red') +
+            card('Pendientes',    fmt(t.pen),   'metric-blue')  +
+        '</div>' +
+        '<div class="table-responsive">' +
+        '<table id="' + tableId + '" class="glass-table w-100" style="font-size:.82rem;">' +
+        '<thead><tr>' +
+            '<th class="text-center"></th>'                +
+            '<th class="text-center">Usuario</th>'         +
+            '<th class="text-center">País</th>'            +
+            '<th class="text-center">Tickets</th>'         +
+            '<th class="text-center">Anulados</th>'        +
+            '<th class="text-center">Sin Result.</th>'     +
+            '<th class="text-center">V. Par</th>'          +
+            '<th class="text-center">V. Dir</th>'          +
+            '<th class="text-center">V. Par Bono</th>'     +
+            '<th class="text-center">V. Dir Bono</th>'     +
+            '<th class="text-center">P. Par</th>'          +
+            '<th class="text-center">P. Dir</th>'          +
+            '<th class="text-center">P. Par Bono</th>'     +
+            '<th class="text-center">P. Dir Bono</th>'     +
+            '<th class="text-center">Total Ventas</th>'    +
+            '<th class="text-center">Total Premios</th>'   +
+            '<th class="text-center">T. V. Bono</th>'      +
+            '<th class="text-center">T. P. Bono</th>'      +
+            '<th class="text-center">Utilidad</th>'        +
+            '<th class="text-center">Pendientes</th>'      +
+        '</tr></thead><tbody></tbody>' +
+        '<tfoot><tr>' +
+            '<th class="text-center"></th>' +
+            '<th colspan="2" class="text-center">TOTAL</th>' +
+            '<th class="text-center">' + t.tkt  + '</th>'   +
+            '<th class="text-center">' + t.anu  + '</th>'   +
+            '<th class="text-center">' + t.sinR + '</th>'   +
+            '<th class="text-center">' + fmt(t.vP)   + '</th>' +
+            '<th class="text-center">' + fmt(t.vD)   + '</th>' +
+            '<th class="text-center">' + fmt(t.vPB)  + '</th>' +
+            '<th class="text-center">' + fmt(t.vDB)  + '</th>' +
+            '<th class="text-center">' + fmt(t.pP)   + '</th>' +
+            '<th class="text-center">' + fmt(t.pD)   + '</th>' +
+            '<th class="text-center">' + fmt(t.pPB)  + '</th>' +
+            '<th class="text-center">' + fmt(t.pDB)  + '</th>' +
+            '<th class="text-center">' + fmt(t.tV)   + '</th>' +
+            '<th class="text-center">' + fmt(t.tP)   + '</th>' +
+            '<th class="text-center">' + fmt(t.tVB)  + '</th>' +
+            '<th class="text-center">' + fmt(t.tPB2) + '</th>' +
+            '<th class="text-center" style="color:' + (t.util>=0?'var(--av-5,#7FCA8A)':'#FC8181') + ';font-weight:600;">' + fmt(t.util) + '</th>' +
+            '<th class="text-center">' + fmt(t.pen)  + '</th>' +
+        '</tr></tfoot>' +
+        '</table></div>';
+
+    document.getElementById('agentBlocks').appendChild(block);
+
+    var dt = $('#' + tableId).DataTable({
+        data: rows,
+        scrollX: true,
+        columns: [
+            { className: 'dt-control text-center', orderable: false, data: null, defaultContent: '',
+              createdCell: function(td) { var btn = document.createElement('button'); btn.className='btn-expand btn-glass btn-primary btn-sm'; btn.style.cssText='padding:1px 7px;font-size:.9em;min-width:24px;'; btn.textContent='+'; td.appendChild(btn); } },
+            { data: null, className: 'text-center', render: function(r){ var u = r.usuario||r.Usuario||''; return u ? u.toUpperCase() : '—'; } },
+            { data: null, className: 'text-center', render: function(r){ return r.pais||r.Pais||'—'; } },
+            { data: null, className: 'text-center', render: function(r){ return wI(r,'cantTickets'); } },
+            { data: null, className: 'text-center', render: function(r){ return wI(r,'cantTicketsAnulados'); } },
+            { data: null, className: 'text-center', render: function(r){ return wI(r,'cantTicketsSinResultado'); } },
+            { data: null, className: 'text-center col-monto-pos', render: function(r){ return fmt(wN(r,'ventaPar')); } },
+            { data: null, className: 'text-center col-monto-pos', render: function(r){ return fmt(wN(r,'ventaDir')); } },
+            { data: null, className: 'text-center col-monto-pos', render: function(r){ return fmt(wN(r,'ventaParBono')); } },
+            { data: null, className: 'text-center col-monto-pos', render: function(r){ return fmt(wN(r,'ventaDirBono')); } },
+            { data: null, className: 'text-center col-monto-neg', render: function(r){ return fmt(wN(r,'premiosPar')); } },
+            { data: null, className: 'text-center col-monto-neg', render: function(r){ return fmt(wN(r,'premiosDir')); } },
+            { data: null, className: 'text-center col-monto-neg', render: function(r){ return fmt(wN(r,'premiosParBono')); } },
+            { data: null, className: 'text-center col-monto-neg', render: function(r){ return fmt(wN(r,'premiosDirBono')); } },
+            { data: null, className: 'text-center col-monto-pos', render: function(r){ return fmt(wN(r,'totalVentas')); } },
+            { data: null, className: 'text-center col-monto-neg', render: function(r){ return fmt(wN(r,'totalPremios')); } },
+            { data: null, className: 'text-center col-monto-pos', render: function(r){ return fmt(wN(r,'totalVentasBono')); } },
+            { data: null, className: 'text-center col-monto-neg', render: function(r){ return fmt(wN(r,'totalPremiosBono')); } },
+            { data: null, className: 'text-center',
+              render: function(r){ var u=wN(r,'utilidad'); return '<span class="'+(u>=0?'col-monto-pos':'col-monto-neg')+'">'+fmt(u)+'</span>'; } },
+            { data: null, className: 'text-center col-monto-pos', render: function(r){ return fmt(wN(r,'pendientes')); } }
+        ],
+        language: {
+            emptyTable:'Sin datos', zeroRecords:'Sin resultados',
+            info:'Mostrando _START_ a _END_ de _TOTAL_', infoEmpty:'Sin registros',
+            search:'Buscar:', paginate:{first:'«',last:'»',next:'›',previous:'‹'}
+        },
+        pageLength: 25, order: [[0,'asc']], dom: 'Bfrtip',
+        buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel',
+            className: 'btn-glass btn-primary btn-sm', title: agente }]
+    });
+
+    dtInstances.push(dt);
+
+    var ag = agente;
+    $('#' + tableId + ' tbody').on('click', '.btn-expand', function() {
+        var tr = $(this).closest('tr')[0];
+        toggleDetalleWeb(tr, dt.row(tr), ag, fechaD, fechaH);
+    });
+}
+
+function card(label, value, cls) {
+    return '<div class="metric-card">'
+        + '<div class="metric-label">' + label + '</div>'
+        + '<div class="metric-value ' + cls + '">' + value + '</div>'
+        + '</div>';
 }
 
 // ── Cargar reporte ────────────────────────────────────────────────────────────
@@ -291,115 +485,41 @@ function cargarReporte() {
     const fechaD = document.getElementById('fechaD').value;
     const fechaH = document.getElementById('fechaH').value;
     const agente = document.getElementById('agente').value || 'TODOS';
-    if (!fechaD || !fechaH) { Swal.fire({ icon: 'warning', title: 'Fechas requeridas', background: '#002E5C', color: '#fff' }); return; }
+    if (!fechaD || !fechaH) { Swal.fire({ icon:'warning', title:'Fechas requeridas', background:'#002E5C', color:'#fff' }); return; }
 
     ticketsCache = {};
+    ticketsCacheWeb = {};
+    limpiarBloques();
     showBusy(canal === 'taq' ? 'Consultando ventas taquilla...' : 'Consultando ventas web...');
 
     $.post(canal === 'taq' ? urlTaq : urlWeb, { fechaD, fechaH, agente })
         .done(function (data) {
             hideBusy();
-            if (!data || !data.length) { Swal.fire({ icon: 'info', title: 'Sin resultados', text: 'No hay datos para el período seleccionado.', background: '#002E5C', color: '#fff' }); return; }
-
-            if (dt) { dt.destroy(); }
-
-            if (canal === 'taq') {
-                // ── Taquilla ──────────────────────────────────────────────
-                let totVD=0, totVP=0, totTV=0, totPD=0, totPP=0, totTP=0, totPen=0, totUtil=0;
-                data.forEach(function(r) {
-                    totVD   += parseFloat(r.ventaDir    || 0);
-                    totVP   += parseFloat(r.ventaPar    || 0);
-                    totTV   += parseFloat(r.totalVentas || 0);
-                    totPD   += parseFloat(r.premiosDir  || 0);
-                    totPP   += parseFloat(r.premiosPar  || 0);
-                    totTP   += parseFloat(r.totalPremios|| 0);
-                    totPen  += parseFloat(r.pendientes  || 0);
-                    totUtil += parseFloat(r.utilidad    || 0);
-                });
-                document.getElementById('metVentaDir').textContent    = fmt(totVD);
-                document.getElementById('metVentaPar').textContent    = fmt(totVP);
-                document.getElementById('metTotalVentas').textContent  = fmt(totTV);
-                document.getElementById('metPremiosDir').textContent  = fmt(totPD);
-                document.getElementById('metPremiosPar').textContent  = fmt(totPP);
-                document.getElementById('metTotalPremios').textContent = fmt(totTP);
-                document.getElementById('metPendientes').textContent   = fmt(totPen);
-                document.getElementById('metUtilidad').textContent     = fmt(totUtil);
-                document.getElementById('metricsBarTaq').style.display = 'flex';
-
-                dt = $(tableId).DataTable({
-                    data,
-                    columns: [
-                        { className: 'dt-control text-center', orderable: false, data: null, defaultContent: '',
-                          createdCell: function(td) { var btn = document.createElement('button'); btn.className = 'btn-expand btn-glass btn-primary btn-sm'; btn.style.cssText = 'padding:1px 7px;font-size:.9em;min-width:24px;'; btn.textContent = '+'; td.appendChild(btn); } },
-                        { data: 'usuario',      defaultContent: '—', className: 'text-center' },
-                        { data: 'ventaDir',     className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } },
-                        { data: 'ventaPar',     className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } },
-                        { data: 'totalVentas',  className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } },
-                        { data: 'premiosDir',   className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-neg'); } },
-                        { data: 'premiosPar',   className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-neg'); } },
-                        { data: 'totalPremios', className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-neg'); } },
-                        { data: 'pendientes',   className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } },
-                        { data: 'utilidad',     className: 'text-center', createdCell: function(td,d){ var n=parseFloat(d||0); $(td).text(fmt(d)).addClass(n>=0?'col-monto-pos':'col-monto-neg'); } }
-                    ],
-                    footerCallback: function() {
-                        document.getElementById('totVentaDir').textContent    = fmt(totVD);
-                        document.getElementById('totVentaPar').textContent    = fmt(totVP);
-                        document.getElementById('totTotalVentas').textContent = fmt(totTV);
-                        document.getElementById('totPremiosDir').textContent  = fmt(totPD);
-                        document.getElementById('totPremiosPar').textContent  = fmt(totPP);
-                        document.getElementById('totTotalPremios').textContent= fmt(totTP);
-                        document.getElementById('totPendientes').textContent  = fmt(totPen);
-                        document.getElementById('totUtilidad').textContent    = fmt(totUtil);
-                    },
-                    language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
-                    pageLength: 25, order: [[1,'asc']], dom: 'Bfrtip',
-                    buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm' }]
-                });
-                $(tableId + ' tbody').on('click', '.btn-expand', function() {
-                    var tr = $(this).closest('tr')[0];
-                    toggleDetalle(tr, dt.row(tr));
-                });
-
-            } else {
-                // ── Web ───────────────────────────────────────────────────
-                let vP=0, vD=0, pP=0, pD=0;
-                data.forEach(function(r) { vP+=parseFloat(r.ventaPar||0); vD+=parseFloat(r.ventaDir||0); pP+=parseFloat(r.premiosPar||0); pD+=parseFloat(r.premiosDir||0); });
-                const bal = (vP + vD) - (pP + pD);
-                document.getElementById('metVP').textContent  = fmt(vP);
-                document.getElementById('metVD').textContent  = fmt(vD);
-                document.getElementById('metPP').textContent  = fmt(pP);
-                document.getElementById('metPD').textContent  = fmt(pD);
-                document.getElementById('metBal').textContent = fmt(bal);
-                document.getElementById('metricsBarWeb').style.display = 'flex';
-
-                dt = $(tableId).DataTable({
-                    data,
-                    columns: [
-                        { data: 'agente',     defaultContent: '—', className: 'text-center' },
-                        { data: 'usuario',    defaultContent: '—', className: 'text-center' },
-                        { data: 'pais',       defaultContent: '—', className: 'text-center' },
-                        { data: 'ventaPar',   className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } },
-                        { data: 'ventaDir',   className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } },
-                        { data: 'premiosPar', className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-neg'); } },
-                        { data: 'premiosDir', className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-neg'); } },
-                        { data: null, className: 'text-center', createdCell: function(td,_,r){ var b=(parseFloat(r.ventaPar||0)+parseFloat(r.ventaDir||0))-(parseFloat(r.premiosPar||0)+parseFloat(r.premiosDir||0)); $(td).text(fmt(b)).addClass(b>=0?'col-monto-pos':'col-monto-neg'); } }
-                    ],
-                    footerCallback: function() {
-                        document.getElementById('tVP').textContent  = fmt(vP);
-                        document.getElementById('tVD').textContent  = fmt(vD);
-                        document.getElementById('tPP').textContent  = fmt(pP);
-                        document.getElementById('tPD').textContent  = fmt(pD);
-                        document.getElementById('tBal').textContent = fmt(bal);
-                    },
-                    language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
-                    pageLength: 25, order: [[0,'asc']], dom: 'Bfrtip',
-                    buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm' }]
-                });
+            if (!data || !data.length) {
+                Swal.fire({ icon:'info', title:'Sin resultados', text:'No hay datos para el período seleccionado.', background:'#002E5C', color:'#fff' });
+                return;
             }
+
+            lastData = data;
+            document.getElementById('exportBar').classList.remove('d-none');
+
+            // Agrupar por agente
+            var grupos = {};
+            var orden = [];
+            data.forEach(function(r) {
+                var ag = r.agente || r.Agente || '(Sin Agente)';
+                if (!grupos[ag]) { grupos[ag] = []; orden.push(ag); }
+                grupos[ag].push(r);
+            });
+
+            orden.forEach(function(ag, idx) {
+                if (canal === 'taq') renderBloqueTaq(ag, grupos[ag], idx, fechaD, fechaH);
+                else                 renderBloqueWeb(ag, grupos[ag], idx, fechaD, fechaH);
+            });
         })
         .fail(function() {
             hideBusy();
-            Swal.fire({ icon: 'error', title: 'Error', text: 'No se pudo obtener la información.', background: '#002E5C', color: '#fff' });
+            Swal.fire({ icon:'error', title:'Error', text:'No se pudo obtener la información.', background:'#002E5C', color:'#fff' });
         });
 }
 
@@ -411,92 +531,411 @@ $(document).ready(function () {
 // ── Modal detalle de ticket ───────────────────────────────────────────────────
 const urlDetalleTicket = '@Url.Action("GetDetalleTicket","Reportes")';
 
-function verDetalleTicket(idticket) {
+function verDetalleTicket(idticket, usuarioFallback) {
     if (!idticket) return;
-    Swal.fire({
-        title: 'Cargando ticket #' + idticket + '...',
-        allowOutsideClick: false,
-        background: '#002E5C',
-        color: '#fff',
-        didOpen: function() { Swal.showLoading(); }
-    });
+    Swal.fire({ title:'Cargando ticket #'+idticket+'...', allowOutsideClick:false, background:'#002E5C', color:'#fff', didOpen:function(){ Swal.showLoading(); } });
     $.post(urlDetalleTicket, { idticket: idticket })
         .done(function(res) {
             if (!res || !res.estatus) {
-                Swal.fire({ icon:'error', title:'Error', text: res?.mensaje || 'No se pudo cargar el ticket.', background:'#002E5C', color:'#fff' });
+                Swal.fire({ icon:'error', title:'Error', text:res?.mensaje||'No se pudo cargar el ticket.', background:'#002E5C', color:'#fff' });
                 return;
             }
             const d = res.data;
             const opMap = { 1:'Pendiente', 2:'Ganador', 3:'Perdedor', 4:'Anulado', 5:'Cobrado' };
             const estatusColor = { 'Ganador':'#4ade80','Pendiente':'#48CAE4','Perdedor':'#f87171','Anulado':'#94a3b8','Cobrado':'#a78bfa' };
             const eColor = estatusColor[d.estatus] || '#94a3b8';
-
+            const usuarioMostrar = (d.usuario && d.usuario !== '0' ? d.usuario : null) || usuarioFallback || '—';
             var detalleRows = '';
-            (d.detalles || []).forEach(function(det) {
-                var ganoIcon = det.gano === 1 ? '<span style="color:#4ade80;font-weight:700;">✓</span>' : '<span style="color:#f87171;font-weight:700;">✗</span>';
-                detalleRows +=
-                    '<tr style="border-bottom:1px solid rgba(255,255,255,.06);">' +
-                    '<td style="padding:7px 8px;text-align:center;color:#94a3b8;font-size:.8em;">' + (det.deporte || '—') + '</td>' +
-                    '<td style="padding:7px 8px;text-align:center;font-size:.8em;">' + (det.liga || '—') + '</td>' +
-                    '<td style="padding:7px 8px;text-align:left;font-size:.82em;font-weight:600;color:#e2e8f0;">' + (det.equipo || '—') + '</td>' +
-                    '<td style="padding:7px 8px;text-align:center;font-size:.8em;color:#fbbf24;">' + (det.logro || '—') + '</td>' +
-                    '<td style="padding:7px 8px;text-align:center;font-size:.8em;">' + (det.decimales || '—') + '</td>' +
-                    '<td style="padding:7px 8px;text-align:center;font-size:.8em;color:#94a3b8;">' + (det.marcador || '—') + '</td>' +
-                    '<td style="padding:7px 8px;text-align:center;">' + ganoIcon + '</td>' +
-                    '</tr>';
+            (d.detalles||[]).forEach(function(det) {
+                var ganoIcon = det.gano===1?'<span style="color:#4ade80;font-weight:700;">✓</span>':'<span style="color:#f87171;font-weight:700;">✗</span>';
+                detalleRows += '<tr style="border-bottom:1px solid rgba(255,255,255,.06);">'
+                    +'<td style="padding:7px 8px;text-align:center;color:#94a3b8;font-size:.8em;">'+(det.deporte||'—')+'</td>'
+                    +'<td style="padding:7px 8px;text-align:center;font-size:.8em;">'+(det.liga||'—')+'</td>'
+                    +'<td style="padding:7px 8px;text-align:left;font-size:.82em;font-weight:600;color:#e2e8f0;">'+(det.equipo||'—')+'</td>'
+                    +'<td style="padding:7px 8px;text-align:center;font-size:.8em;color:#fbbf24;">'+(det.logro||'—')+'</td>'
+                    +'<td style="padding:7px 8px;text-align:center;font-size:.8em;">'+(det.decimales||'—')+'</td>'
+                    +'<td style="padding:7px 8px;text-align:center;font-size:.8em;color:#94a3b8;">'+(det.marcador||'—')+'</td>'
+                    +'<td style="padding:7px 8px;text-align:center;">'+ganoIcon+'</td>'
+                    +'</tr>';
             });
-
-            var html =
-                '<div style="text-align:left;">' +
-                // Header info
-                '<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px;">' +
-                    infoChip('Ticket',     '#' + d.ticket,            '#48CAE4') +
-                    infoChip('Tipo',       d.tipoApuesta || '—',      '#a78bfa') +
-                    infoChip('Estatus',    d.estatus || '—',           eColor)   +
-                    infoChip('Operación',  opMap[d.operacion] || '—', '#94a3b8') +
-                '</div>' +
-                '<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;">' +
-                    infoChip('Agente',   d.nombreAgente || '—', '#64748b') +
-                    infoChip('Usuario',  d.usuario || '—',      '#64748b') +
-                    infoChip('Fecha',    fmtFecha(d.fecha),     '#64748b') +
-                '</div>' +
-                // Detalle table
-                '<div style="overflow-x:auto;border-radius:8px;border:1px solid rgba(255,255,255,.1);">' +
-                '<table style="width:100%;border-collapse:collapse;">' +
-                '<thead><tr style="background:rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.12);">' +
-                    '<th style="padding:8px;text-align:center;font-size:.75em;color:#94a3b8;font-weight:600;letter-spacing:.05em;">DEPORTE</th>' +
-                    '<th style="padding:8px;text-align:center;font-size:.75em;color:#94a3b8;font-weight:600;letter-spacing:.05em;">LIGA</th>' +
-                    '<th style="padding:8px;text-align:left;font-size:.75em;color:#94a3b8;font-weight:600;letter-spacing:.05em;">EQUIPO / SELECCIÓN</th>' +
-                    '<th style="padding:8px;text-align:center;font-size:.75em;color:#94a3b8;font-weight:600;letter-spacing:.05em;">LOGRO</th>' +
-                    '<th style="padding:8px;text-align:center;font-size:.75em;color:#94a3b8;font-weight:600;letter-spacing:.05em;">CUOTA</th>' +
-                    '<th style="padding:8px;text-align:center;font-size:.75em;color:#94a3b8;font-weight:600;letter-spacing:.05em;">MARCADOR</th>' +
-                    '<th style="padding:8px;text-align:center;font-size:.75em;color:#94a3b8;font-weight:600;letter-spacing:.05em;">GANÓ</th>' +
-                '</tr></thead>' +
-                '<tbody>' + detalleRows + '</tbody>' +
-                '</table></div>' +
-                '</div>';
-
-            Swal.fire({
-                title: '<span style="color:#48CAE4;font-size:1.1em;">Detalle Ticket #' + d.ticket + '</span>',
-                html: html,
-                width: Math.min(820, window.innerWidth * 0.96) + 'px',
-                background: '#002E5C',
-                color: '#fff',
-                showCloseButton: true,
-                showConfirmButton: false,
-                customClass: { popup: 'swal-ticket-popup' }
-            });
+            var html = '<div style="text-align:left;">'
+                +'<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px;">'
+                    +infoChip('Ticket','#'+d.ticket,'#48CAE4')+infoChip('Tipo',d.tipoApuesta||'—','#a78bfa')+infoChip('Estatus',d.estatus||'—',eColor)+infoChip('Operación',opMap[d.operacion]||'—','#94a3b8')
+                +'</div>'
+                +'<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;">'
+                    +infoChip('Agente',d.nombreAgente||'—','#64748b')+infoChip('Usuario',usuarioMostrar,'#64748b')+infoChip('Fecha',fmtFecha(d.fecha),'#64748b')
+                +'</div>'
+                +'<div style="overflow-x:auto;border-radius:8px;border:1px solid rgba(255,255,255,.1);">'
+                +'<table style="width:100%;border-collapse:collapse;"><thead><tr style="background:rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.12);">'
+                +'<th style="padding:8px;text-align:center;font-size:.75em;color:#94a3b8;font-weight:600;">DEPORTE</th>'
+                +'<th style="padding:8px;text-align:center;font-size:.75em;color:#94a3b8;font-weight:600;">LIGA</th>'
+                +'<th style="padding:8px;text-align:left;font-size:.75em;color:#94a3b8;font-weight:600;">EQUIPO / SELECCIÓN</th>'
+                +'<th style="padding:8px;text-align:center;font-size:.75em;color:#94a3b8;font-weight:600;">LOGRO</th>'
+                +'<th style="padding:8px;text-align:center;font-size:.75em;color:#94a3b8;font-weight:600;">CUOTA</th>'
+                +'<th style="padding:8px;text-align:center;font-size:.75em;color:#94a3b8;font-weight:600;">MARCADOR</th>'
+                +'<th style="padding:8px;text-align:center;font-size:.75em;color:#94a3b8;font-weight:600;">GANÓ</th>'
+                +'</tr></thead><tbody>'+detalleRows+'</tbody></table></div></div>';
+            Swal.fire({ title:'<span style="color:#48CAE4;font-size:1.1em;">Detalle Ticket #'+d.ticket+'</span>', html:html, width:Math.min(820,window.innerWidth*0.96)+'px', background:'#002E5C', color:'#fff', showCloseButton:true, showConfirmButton:false });
         })
-        .fail(function() {
-            Swal.fire({ icon:'error', title:'Error de conexión', text:'No se pudo comunicar con el servidor.', background:'#002E5C', color:'#fff' });
-        });
+        .fail(function() { Swal.fire({ icon:'error', title:'Error de conexión', text:'No se pudo comunicar con el servidor.', background:'#002E5C', color:'#fff' }); });
 }
 
 function infoChip(label, value, color) {
-    return '<div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:6px 12px;min-width:110px;">' +
-        '<div style="font-size:.65em;color:#64748b;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px;">' + label + '</div>' +
-        '<div style="font-size:.92em;font-weight:700;color:' + color + ';">' + value + '</div>' +
-        '</div>';
+    return '<div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:6px 12px;min-width:110px;">'
+        +'<div style="font-size:.65em;color:#64748b;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px;">'+label+'</div>'
+        +'<div style="font-size:.92em;font-weight:700;color:'+color+';">'+value+'</div>'
+        +'</div>';
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   EXPORTAR EXCEL — lista plana, centrado, formato miles/decimales
+══════════════════════════════════════════════════════════════════ */
+function exportarExcel() {
+    if (!lastData || !lastData.length) {
+        Swal.fire({ icon:'warning', title:'Sin datos', text:'Primero ejecuta una búsqueda.', background:'#002E5C', color:'#fff' });
+        return;
+    }
+    var fechaD = document.getElementById('fechaD').value;
+    var fechaH = document.getElementById('fechaH').value;
+
+    // ── Definir cabeceras y filas según canal ─────────────────────
+    var headers, dataRows, firstMoneyCol;
+    if (canal === 'taq') {
+        headers = ['Agente','Usuario','Ventas Dir','Ventas Par','Total Ventas',
+                   'Premios Dir','Premios Par','Total Premios','Pendientes','Utilidad'];
+        firstMoneyCol = 2;
+        dataRows = lastData.map(function(r) {
+            return [
+                r.agente        || r.Agente        || '',
+                r.usuario       || r.Usuario       || '',
+                parseFloat(r.ventaDir    || r.VentaDir    || 0),
+                parseFloat(r.ventaPar    || r.VentaPar    || 0),
+                parseFloat(r.totalVentas || r.TotalVentas || 0),
+                parseFloat(r.premiosDir  || r.PremiosDir  || 0),
+                parseFloat(r.premiosPar  || r.PremiosPar  || 0),
+                parseFloat(r.totalPremios|| r.TotalPremios|| 0),
+                parseFloat(r.pendientes  || r.Pendientes  || 0),
+                parseFloat(r.utilidad    || r.Utilidad    || 0)
+            ];
+        });
+    } else {
+        headers = ['Agente','Usuario','País',
+                   'Tickets','Tic. Anulados','Sin Resultado',
+                   'V. Par','V. Dir','V. Par Bono','V. Dir Bono',
+                   'P. Par','P. Dir','P. Par Bono','P. Dir Bono',
+                   'Total Ventas','Total Premios','T. V. Bono','T. P. Bono',
+                   'Utilidad','Pendientes'];
+        firstMoneyCol = 6;   // a partir de V. Par
+        dataRows = lastData.map(function(r) {
+            return [
+                r.agente    || r.Agente    || '',
+                r.usuario   || r.Usuario   || '',
+                r.pais      || r.Pais      || '',
+                wI(r,'cantTickets'),
+                wI(r,'cantTicketsAnulados'),
+                wI(r,'cantTicketsSinResultado'),
+                wN(r,'ventaPar'),       wN(r,'ventaDir'),
+                wN(r,'ventaParBono'),   wN(r,'ventaDirBono'),
+                wN(r,'premiosPar'),     wN(r,'premiosDir'),
+                wN(r,'premiosParBono'), wN(r,'premiosDirBono'),
+                wN(r,'totalVentas'),    wN(r,'totalPremios'),
+                wN(r,'totalVentasBono'),wN(r,'totalPremiosBono'),
+                wN(r,'utilidad'),       wN(r,'pendientes')
+            ];
+        });
+    }
+
+    // ── Estilos ──────────────────────────────────────────────────
+    var sHdr = {                          // cabecera
+        font:      { bold: true, color: { rgb: 'FFFFFF' }, sz: 10 },
+        fill:      { fgColor: { rgb: '003D6B' } },
+        alignment: { horizontal: 'center', vertical: 'center', wrapText: false },
+        border: {
+            bottom: { style: 'medium', color: { rgb: '48CAE4' } }
+        }
+    };
+    var sTxt = {                          // texto centrado
+        alignment: { horizontal: 'center', vertical: 'center' }
+    };
+    var sMon = {                          // monto centrado con formato
+        alignment: { horizontal: 'center', vertical: 'center' },
+        numFmt: '#,##0.00'
+    };
+
+    // ── Construir hoja celda a celda ─────────────────────────────
+    var ws = {};
+    var nc = headers.length;
+    var nr = dataRows.length;
+
+    // Fila 0 — cabeceras
+    headers.forEach(function(h, c) {
+        ws[XLSX.utils.encode_cell({ r:0, c:c })] = { v: h, t: 's', s: sHdr };
+    });
+
+    // Filas de datos
+    dataRows.forEach(function(row, r) {
+        row.forEach(function(val, c) {
+            var isMoney = c >= firstMoneyCol;
+            ws[XLSX.utils.encode_cell({ r: r+1, c: c })] = {
+                v: val,
+                t: typeof val === 'number' ? 'n' : 's',
+                s: isMoney ? sMon : sTxt
+            };
+        });
+    });
+
+    // ── Fila de totales ──────────────────────────────────────────
+    var sTot = {
+        font:      { bold: true, color: { rgb: '48CAE4' }, sz: 10 },
+        fill:      { fgColor: { rgb: '001F42' } },
+        alignment: { horizontal: 'center', vertical: 'center' },
+        border:    { top: { style: 'medium', color: { rgb: '48CAE4' } } },
+        numFmt:    '#,##0.00'
+    };
+    var sTotLbl = {
+        font:      { bold: true, color: { rgb: '48CAE4' }, sz: 10 },
+        fill:      { fgColor: { rgb: '001F42' } },
+        alignment: { horizontal: 'center', vertical: 'center' },
+        border:    { top: { style: 'medium', color: { rgb: '48CAE4' } } }
+    };
+
+    var totRow = nr + 1;   // fila de totales (0-index: encabezado=0, datos=1..nr, total=nr+1)
+    headers.forEach(function(h, c) {
+        if (c === 0) {
+            ws[XLSX.utils.encode_cell({ r: totRow, c: 0 })] = { v: 'TOTAL', t: 's', s: sTotLbl };
+        } else if (c < firstMoneyCol) {
+            ws[XLSX.utils.encode_cell({ r: totRow, c: c })] = { v: '', t: 's', s: sTotLbl };
+        } else {
+            // Sumar la columna
+            var sum = 0;
+            dataRows.forEach(function(row) { sum += (typeof row[c] === 'number' ? row[c] : 0); });
+            ws[XLSX.utils.encode_cell({ r: totRow, c: c })] = { v: sum, t: 'n', s: sTot };
+        }
+    });
+
+    ws['!ref'] = XLSX.utils.encode_range({ s:{r:0,c:0}, e:{r:totRow,c:nc-1} });
+
+    // Ancho de columnas
+    ws['!cols'] = headers.map(function(h, i) {
+        var max = h.length;
+        dataRows.forEach(function(row) {
+            var len = String(row[i] !== undefined ? row[i] : '').length;
+            if (len > max) max = len;
+        });
+        return { wch: Math.min(max + 3, 28) };
+    });
+
+    // Altura de la fila de cabecera
+    ws['!rows'] = [{ hpt: 22 }];
+
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, canal === 'taq' ? 'Taquilla' : 'Web');
+    XLSX.writeFile(wb, 'VentasPorAgente_' + (canal==='taq'?'Taq':'Web') + '_' + fechaD + '_' + fechaH + '.xlsx');
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   EXPORTAR PDF — agrupado por agente con totales tipo card
+══════════════════════════════════════════════════════════════════ */
+function exportarPDF() {
+    if (!lastData || !lastData.length) {
+        Swal.fire({ icon:'warning', title:'Sin datos', text:'Primero ejecuta una búsqueda.', background:'#002E5C', color:'#fff' });
+        return;
+    }
+    var fechaD = document.getElementById('fechaD').value;
+    var fechaH = document.getElementById('fechaH').value;
+
+    var doc = new window.jspdf.jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+
+    // Agrupar
+    var grupos = {}, orden = [];
+    lastData.forEach(function(r) {
+        var ag = r.agente || r.Agente || '(Sin Agente)';
+        if (!grupos[ag]) { grupos[ag] = []; orden.push(ag); }
+        grupos[ag].push(r);
+    });
+
+    // ── Portada / Encabezado ─────────────────────────────────────
+    var pW = doc.internal.pageSize.getWidth();
+
+    doc.setFillColor(40);
+    doc.rect(0, 0, pW, 22, 'F');
+    doc.setFontSize(13); doc.setTextColor(255);
+    doc.text('Ventas por Agente — ' + (canal==='taq'?'Canal Taquilla':'Canal Web'), 10, 10);
+    doc.setFontSize(8); doc.setTextColor(200);
+    doc.text('Período: ' + fechaD + ' al ' + fechaH + '   ·   Generado: ' + new Date().toLocaleString('es-VE'), 10, 17);
+
+    var y = 28;
+
+    orden.forEach(function(ag) {
+        var rows = grupos[ag];
+
+        // Calcular totales
+        var tot = { vD:0, vP:0, tV:0, pD:0, pP:0, tP:0, pen:0, util:0 };
+        rows.forEach(function(r) {
+            tot.vD   += parseFloat(r.ventaDir    || r.VentaDir    || 0);
+            tot.vP   += parseFloat(r.ventaPar    || r.VentaPar    || 0);
+            tot.tV   += parseFloat(r.totalVentas || r.TotalVentas || 0);
+            tot.pD   += parseFloat(r.premiosDir  || r.PremiosDir  || 0);
+            tot.pP   += parseFloat(r.premiosPar  || r.PremiosPar  || 0);
+            tot.tP   += parseFloat(r.totalPremios|| r.TotalPremios|| 0);
+            tot.pen  += parseFloat(r.pendientes  || r.Pendientes  || 0);
+            tot.util += parseFloat(r.utilidad    || r.Utilidad    || 0);
+        });
+        var bal = (tot.vP + tot.vD) - (tot.pP + tot.pD);
+
+        // Estimar espacio necesario (encabezado 8 + cards 16 + tabla ~6*rows)
+        var spaceNeeded = 30 + Math.min(rows.length, 20) * 6;
+        if (y + spaceNeeded > doc.internal.pageSize.getHeight() - 10) {
+            doc.addPage(); y = 15;
+        }
+
+        // ── Nombre del agente ────────────────────────────────────
+        doc.setFillColor(220);
+        doc.roundedRect(8, y, pW - 16, 8, 2, 2, 'F');
+        doc.setFontSize(10); doc.setTextColor(30);
+        doc.text('  ' + ag, 12, y + 5.5);
+        y += 12;
+
+        // ── Cards de totales ─────────────────────────────────────
+        // Grises: ventas=claro(190), premios=medio(150), totales=oscuro(100), util/pen=muy oscuro(70)
+        var cards = canal === 'taq'
+            ? [
+                { l:'Ventas Dir',    v: fmt(tot.vD),   g:190 },
+                { l:'Ventas Par',    v: fmt(tot.vP),   g:190 },
+                { l:'Total Ventas',  v: fmt(tot.tV),   g:160 },
+                { l:'Premios Dir',   v: fmt(tot.pD),   g:150 },
+                { l:'Premios Par',   v: fmt(tot.pP),   g:150 },
+                { l:'Total Premios', v: fmt(tot.tP),   g:120 },
+                { l:'Pendientes',    v: fmt(tot.pen),  g:100 },
+                { l:'Utilidad',      v: fmt(tot.util), g: tot.util >= 0 ? 80 : 110 }
+              ]
+            : (function(){
+                var tV2=0,tVB2=0,tP2=0,tPB2=0,u2=0,pen2=0,tkt2=0;
+                rows.forEach(function(r){
+                    tkt2+=wI(r,'cantTickets'); tV2+=wN(r,'totalVentas'); tVB2+=wN(r,'totalVentasBono');
+                    tP2+=wN(r,'totalPremios'); tPB2+=wN(r,'totalPremiosBono');
+                    u2+=wN(r,'utilidad'); pen2+=wN(r,'pendientes');
+                });
+                return [
+                    { l:'Tickets',       v: String(tkt2), g:200 },
+                    { l:'Total Ventas',  v: fmt(tV2),     g:180 },
+                    { l:'Ventas Bono',   v: fmt(tVB2),    g:165 },
+                    { l:'Total Premios', v: fmt(tP2),     g:140 },
+                    { l:'Premios Bono',  v: fmt(tPB2),    g:125 },
+                    { l:'Utilidad',      v: fmt(u2),      g: u2>=0 ? 80 : 110 },
+                    { l:'Pendientes',    v: fmt(pen2),    g:100 }
+                ];
+              })();
+
+        var cardW = (pW - 16) / cards.length;
+        cards.forEach(function(c, i) {
+            var cx  = 8 + i * cardW;
+            var bg  = c.g;                        // 0-255 grayscale
+            var brd = Math.max(0, bg - 40);       // borde más oscuro
+            var txtVal = bg < 130 ? 255 : 30;     // blanco sobre oscuro, negro sobre claro
+            var txtLbl = bg < 130 ? 180 : 90;
+            // fondo (grayscale de 1 argumento — evita conversión interna RGB→PDF)
+            doc.setFillColor(bg);
+            doc.roundedRect(cx + 0.5, y, cardW - 1, 14, 1.5, 1.5, 'F');
+            // borde
+            doc.setDrawColor(brd);
+            doc.setLineWidth(0.25);
+            doc.roundedRect(cx + 0.5, y, cardW - 1, 14, 1.5, 1.5, 'S');
+            // label
+            doc.setFontSize(6); doc.setTextColor(txtLbl);
+            doc.text(String(c.l).toUpperCase(), cx + cardW/2, y + 4.5, { align:'center' });
+            // valor
+            doc.setFontSize(8); doc.setTextColor(txtVal);
+            doc.text(String(c.v), cx + cardW/2, y + 10.5, { align:'center' });
+        });
+        y += 18;
+
+        // ── Tabla de usuarios ────────────────────────────────────
+        var head, body;
+        if (canal === 'taq') {
+            head = [['Usuario','V.Dir','V.Par','Total V.','P.Dir','P.Par','Total P.','Pendientes','Utilidad']];
+            body = rows.map(function(r) {
+                return [
+                    r.usuario    || r.Usuario    || '—',
+                    fmt(r.ventaDir    || r.VentaDir    || 0),
+                    fmt(r.ventaPar    || r.VentaPar    || 0),
+                    fmt(r.totalVentas || r.TotalVentas || 0),
+                    fmt(r.premiosDir  || r.PremiosDir  || 0),
+                    fmt(r.premiosPar  || r.PremiosPar  || 0),
+                    fmt(r.totalPremios|| r.TotalPremios|| 0),
+                    fmt(r.pendientes  || r.Pendientes  || 0),
+                    fmt(r.utilidad    || r.Utilidad    || 0)
+                ];
+            });
+            // Fila total
+            body.push(['TOTAL', fmt(tot.vD), fmt(tot.vP), fmt(tot.tV), fmt(tot.pD), fmt(tot.pP), fmt(tot.tP), fmt(tot.pen), fmt(tot.util)]);
+        } else {
+            // Calcular totales Web localmente
+            var tw = { tkt:0, anu:0, sinR:0, vP:0, vD:0, vPB:0, vDB:0,
+                       pP:0, pD:0, pPB:0, pDB:0, tV:0, tP:0, tVB:0, tPB2:0, util:0, pen:0 };
+            rows.forEach(function(r){
+                tw.tkt  += wI(r,'cantTickets');       tw.anu  += wI(r,'cantTicketsAnulados');
+                tw.sinR += wI(r,'cantTicketsSinResultado');
+                tw.vP   += wN(r,'ventaPar');          tw.vD   += wN(r,'ventaDir');
+                tw.vPB  += wN(r,'ventaParBono');      tw.vDB  += wN(r,'ventaDirBono');
+                tw.pP   += wN(r,'premiosPar');        tw.pD   += wN(r,'premiosDir');
+                tw.pPB  += wN(r,'premiosParBono');    tw.pDB  += wN(r,'premiosDirBono');
+                tw.tV   += wN(r,'totalVentas');       tw.tP   += wN(r,'totalPremios');
+                tw.tVB  += wN(r,'totalVentasBono');   tw.tPB2 += wN(r,'totalPremiosBono');
+                tw.util += wN(r,'utilidad');          tw.pen  += wN(r,'pendientes');
+            });
+            head = [['Usuario','País','Tkt','Anul','SinR','V.Par','V.Dir','V.ParB','V.DirB','P.Par','P.Dir','P.ParB','P.DirB','T.Vtas','T.Prem','T.VtaB','T.PrmB','Utilidad','Pendient.']];
+            body = rows.map(function(r) {
+                return [
+                    r.usuario||r.Usuario||'—', r.pais||r.Pais||'—',
+                    String(wI(r,'cantTickets')), String(wI(r,'cantTicketsAnulados')), String(wI(r,'cantTicketsSinResultado')),
+                    fmt(wN(r,'ventaPar')),       fmt(wN(r,'ventaDir')),
+                    fmt(wN(r,'ventaParBono')),   fmt(wN(r,'ventaDirBono')),
+                    fmt(wN(r,'premiosPar')),     fmt(wN(r,'premiosDir')),
+                    fmt(wN(r,'premiosParBono')), fmt(wN(r,'premiosDirBono')),
+                    fmt(wN(r,'totalVentas')),    fmt(wN(r,'totalPremios')),
+                    fmt(wN(r,'totalVentasBono')),fmt(wN(r,'totalPremiosBono')),
+                    fmt(wN(r,'utilidad')),       fmt(wN(r,'pendientes'))
+                ];
+            });
+            // Fila total
+            body.push(['TOTAL','',
+                String(tw.tkt), String(tw.anu), String(tw.sinR),
+                fmt(tw.vP),fmt(tw.vD),fmt(tw.vPB),fmt(tw.vDB),
+                fmt(tw.pP),fmt(tw.pD),fmt(tw.pPB),fmt(tw.pDB),
+                fmt(tw.tV),fmt(tw.tP),fmt(tw.tVB),fmt(tw.tPB2),
+                fmt(tw.util),fmt(tw.pen)
+            ]);
+        }
+
+        doc.autoTable({
+            startY: y,
+            head: head,
+            body: body,
+            headStyles: { fillColor:[60,60,60], textColor:[255,255,255], fontSize:7, fontStyle:'bold', halign:'center' },
+            bodyStyles: { fontSize:6.5, textColor:[30,30,30], fillColor:[255,255,255], halign:'center' },
+            alternateRowStyles: { fillColor:[242,242,242] },
+            didParseCell: function(data) {
+                if (data.row.index === body.length - 1 && data.section === 'body') {
+                    data.cell.styles.fontStyle = 'bold';
+                    data.cell.styles.textColor = [255,255,255];
+                    data.cell.styles.fillColor = [70,70,70];
+                }
+            },
+            margin: { left:8, right:8 },
+            tableWidth: pW - 16
+        });
+
+        y = doc.lastAutoTable.finalY + 8;
+    });
+
+    doc.save('VentasPorAgente_' + (canal==='taq'?'Taq':'Web') + '_' + fechaD + '_' + fechaH + '.pdf');
 }
 </script>
+<!-- Librerías de exportación (carga diferida, solo esta vista) -->
+<!-- xlsx-js-style: fork de SheetJS con soporte completo de estilos de celda -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
 }
+

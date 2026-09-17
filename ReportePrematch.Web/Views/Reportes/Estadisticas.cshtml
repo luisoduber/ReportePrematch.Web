@@ -6,12 +6,24 @@
     .canal-toggle { display:inline-flex; border:1px solid rgba(255,255,255,0.25); border-radius:30px; overflow:hidden; }
     .tog-btn { border:none; background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.35); padding:8px 20px; font-size:11px; font-weight:700; letter-spacing:.8px; cursor:pointer; transition:all .25s; white-space:nowrap; }
     .tog-btn.active { background:var(--sa-5,#0077B6); color:#fff; }
+    @@media (max-width:768px) { .canal-toggle { width:100%; } .tog-btn { flex:1; text-align:center; } }
+
+    .agent-block { margin-bottom: 2rem; }
+    .agent-block-header {
+        display: flex; align-items: center; gap: .6rem;
+        font-size: 1rem; font-weight: 700; letter-spacing: .04em;
+        color: #48CAE4; margin-bottom: .6rem;
+        padding-bottom: .35rem;
+        border-bottom: 1px solid rgba(72,202,228,.25);
+    }
+    .agent-block-header i { font-size: 1.1rem; }
+
     .quick-metrics-bar { display:flex; gap:.5rem; flex-wrap:wrap; }
-    .metric-card { flex:1; min-width:120px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:.5rem .75rem; text-align:center; }
-    @@media (max-width:768px) { .metric-card { min-width:80px; flex:1 1 80px; padding:.45rem .55rem; } .canal-toggle { width:100%; } .tog-btn { flex:1; text-align:center; } }
+    .metric-card { flex:1; min-width:110px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:.5rem .75rem; text-align:center; }
+    @@media (max-width:768px) { .metric-card { min-width:80px; flex:1 1 80px; padding:.45rem .55rem; } }
     @@media (max-width:430px) { .metric-card { min-width:68px; flex:1 1 68px; padding:.38rem .45rem; } .metric-value { font-size:.88rem; } }
-    .metric-label { font-size:.65rem; color:rgba(255,255,255,0.5); letter-spacing:.5px; text-transform:uppercase; margin-bottom:.25rem; }
-    .metric-value { font-size:1.05rem; font-weight:700; }
+    .metric-label { font-size:.62rem; color:rgba(255,255,255,0.5); letter-spacing:.5px; text-transform:uppercase; margin-bottom:.25rem; }
+    .metric-value { font-size:1rem; font-weight:700; }
     .metric-blue  { color:#48CAE4; }
     .metric-red   { color:#f87171; }
     .metric-green { color:#4ade80; }
@@ -66,55 +78,52 @@
         </div>
     </div>
 
-    <!-- Métricas rápidas -->
-    <div id="metricsBar" class="quick-metrics-bar mt-3" style="display:none;">
-        <div class="metric-card"><div class="metric-label">Total Ventas</div><div class="metric-value metric-blue"  id="metVentas">—</div></div>
-        <div class="metric-card"><div class="metric-label">Total Pagos</div><div class="metric-value metric-red"    id="metPagos">—</div></div>
-        <div class="metric-card"><div class="metric-label">Pendientes</div><div class="metric-value metric-blue"   id="metPendientes">—</div></div>
-        <div class="metric-card"><div class="metric-label">Utilidad</div><div class="metric-value metric-green"  id="metUtilidad">—</div></div>
+
+    <!-- Barra exportacion -->
+    <div id="exportBar" class="mt-3 d-none d-flex gap-2 flex-wrap">
+        <button class="btn-glass btn-primary" onclick="exportExcel()">
+            <i class="ti ti-file-spreadsheet"></i> Excel completo
+        </button>
+        <button class="btn-glass" style="border-color:rgba(255,100,100,.5);color:#f87171;" onclick="exportPDF()">
+            <i class="ti ti-file-type-pdf"></i> PDF por agente
+        </button>
     </div>
 
-    <div class="table-responsive mt-3">
-        <table id="@ViewBag.TableId" class="glass-table w-100">
-            <thead>
-                <tr>
-                    <th>Deporte</th>
-                    <th style="text-align:center;">Ventas</th>
-                    <th style="text-align:center;">Pagos</th>
-                    <th style="text-align:center;">Pendientes</th>
-                    <th style="text-align:center;">Utilidad</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-            <tfoot>
-                <tr>
-                    <th style="text-align:center;">TOTAL</th>
-                    <th id="totVentas"     style="text-align:center;"></th>
-                    <th id="totPagos"      style="text-align:center;"></th>
-                    <th id="totPendientes" style="text-align:center;"></th>
-                    <th id="totUtilidad"   style="text-align:center;"></th>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
+    <!-- Bloques por agente -->
+    <div id="agentBlocks" class="mt-3"></div>
 </section>
 
 @section Scripts {
 <script>
-const tableId       = '#@ViewBag.TableId';
 const esAdmin       = '@ViewBag.TipoUsuario' !== 'Usuario Regular';
 const agenteSession = '@ViewBag.Agente';
 const urlTaq        = '@Url.Action("GetEstadisticasTaq","Reportes")';
 const urlWeb        = '@Url.Action("GetEstadisticasWeb","Reportes")';
 let canal = 'taq';
-let dt;
+let lastData = [];
+let dtInstances = [];
 
+/* ── helpers ──────────────────────────────────────────────────────────── */
 function fmt(v) {
     return parseFloat(v || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
-
 function n(v) { return parseFloat(v || 0); }
+function gf(r, key) {
+    /* acepta PascalCase y camelCase */
+    if (r[key] !== undefined) return r[key];
+    var lo = key.charAt(0).toLowerCase() + key.slice(1);
+    if (r[lo] !== undefined) return r[lo];
+    var up = key.charAt(0).toUpperCase() + key.slice(1);
+    return r[up] !== undefined ? r[up] : undefined;
+}
+function card(label, value, cls) {
+    return '<div class="metric-card">'
+        + '<div class="metric-label">' + label + '</div>'
+        + '<div class="metric-value ' + cls + '">' + value + '</div>'
+        + '</div>';
+}
 
+/* ── canal toggle ─────────────────────────────────────────────────────── */
 function setCanal(c) {
     if (canal === c) return;
     canal = c;
@@ -123,16 +132,21 @@ function setCanal(c) {
     document.getElementById('canalSub').textContent = c === 'taq'
         ? 'Canal Taquilla · Resumen estadístico por Deporte'
         : 'Canal Web · Resumen estadístico por Deporte';
-    if (dt) { dt.destroy(); dt = null; }
-    $(tableId + ' tbody').empty();
-    $(tableId + ' tfoot th[id]').text('');
-    document.getElementById('metricsBar').style.display = 'none';
+    limpiarBloques();
 }
 
+function limpiarBloques() {
+    dtInstances.forEach(function(dt){ try { dt.destroy(); } catch(e){} });
+    dtInstances = [];
+    document.getElementById('agentBlocks').innerHTML = '';
+    lastData = []; document.getElementById('exportBar').classList.add('d-none');
+}
+
+/* ── agentes ──────────────────────────────────────────────────────────── */
 function cargarAgentes() {
     if (!esAdmin) return;
     $.post('@Url.Action("GetListAgenciasApi","Reportes")')
-        .done(function (lista) {
+        .done(function(lista) {
             const sel = document.getElementById('agente');
             if (!sel) return;
             if (sel.tomselect) sel.tomselect.destroy();
@@ -140,22 +154,88 @@ function cargarAgentes() {
             const optTodos = document.createElement('option');
             optTodos.value = ''; optTodos.textContent = 'TODOS';
             sel.appendChild(optTodos);
-            (lista || []).forEach(function (a) {
+            (lista || []).forEach(function(a) {
                 const opt = document.createElement('option');
                 opt.value = a; opt.textContent = a;
                 sel.appendChild(opt);
             });
-            new TomSelect(sel, {
-                maxOptions: 2000, create: false, allowEmptyOption: true,
-                placeholder: 'Buscar agente...', searchField: ['text']
-            });
+            new TomSelect(sel, { maxOptions: 2000, create: false, allowEmptyOption: true, placeholder: 'Buscar agente...', searchField: ['text'] });
             if (agenteSession) sel.tomselect.setValue(agenteSession, true);
         })
-        .fail(function (xhr) {
+        .fail(function(xhr) {
             Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar la lista de agentes (HTTP ' + xhr.status + ').', background: '#002E5C', color: '#fff' });
         });
 }
 
+/* ── render bloque por agente ─────────────────────────────────────────── */
+function renderBloqueAgente(agente, rows, idx) {
+    var totV = 0, totP = 0, totPend = 0, totU = 0;
+    rows.forEach(function(r) {
+        totV    += n(gf(r,'Ventas')     ?? 0);
+        totP    += n(gf(r,'Pagos')      ?? 0);
+        totPend += n(gf(r,'Pendientes') ?? 0);
+        totU    += n(gf(r,'Utilidad')   ?? 0);
+    });
+
+    var tableId = 'tblEst_' + idx;
+    var block = document.createElement('div');
+    block.className = 'agent-block';
+    block.innerHTML =
+        '<div class="agent-block-header"><i class="ti ti-user"></i>' + agente + '</div>' +
+        '<div class="quick-metrics-bar mb-2">' +
+            card('Total Ventas', fmt(totV),    'metric-blue') +
+            card('Total Pagos',  fmt(totP),    'metric-red')  +
+            card('Pendientes',   fmt(totPend), 'metric-blue') +
+            card('Utilidad',     fmt(totU),    totU >= 0 ? 'metric-green' : 'metric-red') +
+        '</div>' +
+        '<div class="table-responsive">' +
+        '<table id="' + tableId + '" class="glass-table w-100">' +
+        '<thead><tr>' +
+            '<th>Deporte</th>' +
+            '<th style="text-align:center;">Ventas</th>' +
+            '<th style="text-align:center;">Pagos</th>' +
+            '<th style="text-align:center;">Pendientes</th>' +
+            '<th style="text-align:center;">Utilidad</th>' +
+        '</tr></thead><tbody></tbody>' +
+        '<tfoot><tr>' +
+            '<th style="text-align:center;">TOTAL</th>' +
+            '<th style="text-align:center;">' + fmt(totV)    + '</th>' +
+            '<th style="text-align:center;">' + fmt(totP)    + '</th>' +
+            '<th style="text-align:center;">' + fmt(totPend) + '</th>' +
+            '<th style="text-align:center;color:' + (totU >= 0 ? 'var(--av-5,#7FCA8A)' : '#FC8181') + ';font-weight:600;">' + fmt(totU) + '</th>' +
+        '</tr></tfoot>' +
+        '</table></div>';
+
+    document.getElementById('agentBlocks').appendChild(block);
+
+    var dt = $('#' + tableId).DataTable({
+        data: rows,
+        columns: [
+            { data: null, render: function(d){ return gf(d,'Deporte') ?? '—'; } },
+            { data: null, className: 'text-center col-monto-pos',
+              render: function(d, type){ var v = n(gf(d,'Ventas') ?? 0); return (type==='display'||type==='filter') ? fmt(v) : v; } },
+            { data: null, className: 'text-center col-monto-neg',
+              render: function(d, type){ var v = n(gf(d,'Pagos') ?? 0); return (type==='display'||type==='filter') ? fmt(v) : v; } },
+            { data: null, className: 'text-center',
+              render: function(d, type){ var v = n(gf(d,'Pendientes') ?? 0); return (type==='display'||type==='filter') ? fmt(v) : v; } },
+            { data: null, className: 'text-center',
+              createdCell: function(td, _d, row){
+                  var u = n(gf(row,'Utilidad') ?? 0);
+                  $(td).text(fmt(u));
+                  td.style.color = u >= 0 ? 'var(--av-5,#7FCA8A)' : '#FC8181';
+                  td.style.fontWeight = '600';
+              },
+              render: function(d, type){ var u = n(gf(d,'Utilidad') ?? 0); return (type==='display'||type==='filter') ? fmt(u) : u; } }
+        ],
+        language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
+        pageLength: 25, order: [[0, 'asc']], dom: 'Bfrtip',
+        buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm', title: agente, exportOptions: { columns: ':visible' } }]
+    });
+
+    dtInstances.push(dt);
+}
+
+/* ── carga principal ──────────────────────────────────────────────────── */
 function cargarReporte() {
     const fechaD = document.getElementById('fechaD').value;
     const fechaH = document.getElementById('fechaH').value;
@@ -166,109 +246,57 @@ function cargarReporte() {
         return;
     }
 
+    limpiarBloques();
     showBusy(canal === 'taq' ? 'Consultando estadísticas taquilla...' : 'Consultando estadísticas web...');
 
     $.post(canal === 'taq' ? urlTaq : urlWeb, { fechaD, fechaH, agente })
-        .done(function (data) {
+        .done(function(data) {
             hideBusy();
-            if (!data || data.length === 0) {
+            if (!data || !data.length) {
                 Swal.fire({ icon: 'info', title: 'Sin resultados', text: 'No hay datos para el período seleccionado.', background: '#002E5C', color: '#fff' });
                 return;
             }
 
-            var totV = 0, totP = 0, totPend = 0, totU = 0;
-            data.forEach(function (r) {
-                totV    += n(r.Ventas     ?? r.ventas     ?? 0);
-                totP    += n(r.Pagos      ?? r.pagos      ?? 0);
-                totPend += n(r.Pendientes ?? r.pendientes ?? 0);
-                totU    += n(r.Utilidad   ?? r.utilidad   ?? 0);
+            // Agrupar por agente (si el API devuelve campo Agente/agente)
+            // Si no existe el campo, todos van a un bloque genérico
+            var grupos = {};
+            var orden  = [];
+            data.forEach(function(r) {
+                var ag = gf(r, 'Agente') || agente || 'General';
+                if (!grupos[ag]) { grupos[ag] = []; orden.push(ag); }
+                grupos[ag].push(r);
             });
 
-            document.getElementById('metVentas').textContent     = fmt(totV);
-            document.getElementById('metPagos').textContent      = fmt(totP);
-            document.getElementById('metPendientes').textContent = fmt(totPend);
-            var elBM = document.getElementById('metUtilidad');
-            elBM.textContent = fmt(totU);
-            elBM.className   = 'metric-value ' + (totU >= 0 ? 'metric-green' : 'metric-red');
-            document.getElementById('metricsBar').style.display = 'flex';
-
-            if (dt) { dt.destroy(); }
-            dt = $(tableId).DataTable({
-                data: data,
-                columns: [
-                    {
-                        data: null,
-                        render: function (d) { return d.Deporte ?? d.deporte ?? '—'; }
-                    },
-                    {
-                        data: null,
-                        className: 'text-center col-monto-pos',
-                        render: function (d, type) {
-                            var v = n(d.Ventas ?? d.ventas ?? 0);
-                            return (type === 'display' || type === 'filter') ? fmt(v) : v;
-                        }
-                    },
-                    {
-                        data: null,
-                        className: 'text-center col-monto-neg',
-                        render: function (d, type) {
-                            var v = n(d.Pagos ?? d.pagos ?? 0);
-                            return (type === 'display' || type === 'filter') ? fmt(v) : v;
-                        }
-                    },
-                    {
-                        data: null,
-                        className: 'text-center',
-                        render: function (d, type) {
-                            var v = n(d.Pendientes ?? d.pendientes ?? 0);
-                            return (type === 'display' || type === 'filter') ? fmt(v) : v;
-                        }
-                    },
-                    {
-                        data: null,
-                        className: 'text-center',
-                        createdCell: function (td, _d, row) {
-                            var u = n(row.Utilidad ?? row.utilidad ?? 0);
-                            $(td).text(fmt(u));
-                            td.style.color      = u >= 0 ? 'var(--av-5, #7FCA8A)' : '#FC8181';
-                            td.style.fontWeight = '600';
-                        },
-                        render: function (d, type) {
-                            var u = n(d.Utilidad ?? d.utilidad ?? 0);
-                            return (type === 'display' || type === 'filter') ? fmt(u) : u;
-                        }
-                    }
-                ],
-                footerCallback: function () {
-                    document.getElementById('totVentas').textContent     = fmt(totV);
-                    document.getElementById('totPagos').textContent      = fmt(totP);
-                    document.getElementById('totPendientes').textContent = fmt(totPend);
-                    var elTU = document.getElementById('totUtilidad');
-                    elTU.textContent      = fmt(totU);
-                    elTU.style.color      = totU >= 0 ? 'var(--av-5, #7FCA8A)' : '#FC8181';
-                    elTU.style.fontWeight = '600';
-                },
-                language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
-                pageLength: 25,
-                order: [[0, 'asc']],
-                dom: 'Bfrtip',
-                buttons: [
-                    {
-                        extend: 'excelHtml5',
-                        text: '<i class="ti ti-file-spreadsheet"></i> Excel',
-                        className: 'btn-glass btn-primary btn-sm',
-                        exportOptions: { columns: ':visible' }
-                    }
-                ]
+            orden.forEach(function(ag, idx) {
+                renderBloqueAgente(ag, grupos[ag], idx);
             });
+            lastData = data; document.getElementById('exportBar').classList.remove('d-none');
         })
-        .fail(function (xhr) {
+        .fail(function(xhr) {
             hideBusy();
             Swal.fire({ icon: 'error', title: 'Error', text: 'Error HTTP ' + xhr.status + ' al consultar estadísticas.', background: '#002E5C', color: '#fff' });
         });
 }
 
-$(document).ready(function () {
+
+/* -- Exportacion -------------------------------------------------- */
+var EXPORT_CONFIG = {
+    reportName: 'Estadisticas',
+    groupField: function(r){ return gf(r,'Agente') || '(Sin Agente)'; },
+    cols: [
+        { head: 'Agente',      get: function(r){ return gf(r,'Agente') || '(Sin Agente)'; }, type: 'text' },
+        { head: 'Deporte',     get: function(r){ return gf(r,'Deporte') || gf(r,'deporte') || '--'; }, type: 'text' },
+        { head: 'Ventas',      get: function(r){ return n(gf(r,'Ventas')     ?? 0); }, type: 'money' },
+        { head: 'Pagos',       get: function(r){ return n(gf(r,'Pagos')      ?? 0); }, type: 'money' },
+        { head: 'Pendientes',  get: function(r){ return n(gf(r,'Pendientes') ?? 0); }, type: 'money' },
+        { head: 'Utilidad',    get: function(r){ return n(gf(r,'Utilidad')   ?? 0); }, type: 'money' }
+    ]
+};
+function exportExcel() { ExportHelpers.exportarExcel(lastData, EXPORT_CONFIG); }
+function exportPDF() {
+    ExportHelpers.exportarPDF(lastData, EXPORT_CONFIG, document.getElementById('fechaD').value, document.getElementById('fechaH').value);
+}
+$(document).ready(function() {
     cargarAgentes();
     if (!esAdmin) { cargarReporte(); }
 });

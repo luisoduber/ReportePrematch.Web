@@ -186,7 +186,7 @@ function cargarReporte() {
             dt = $('#@ViewBag.TableId').DataTable({
                 data: data,
                 columns: [
-                    { data:'usuario',          defaultContent:'—', className:'text-center' },
+                    { data:'usuario',          className:'text-center', render:function(d){ return d ? d.toUpperCase() : '—'; } },
                     { data:'ventaDir',         className:'text-center', createdCell:function(td,d){$(td).text(fmt(d)).addClass('col-monto-pos');} },
                     { data:'ventaDirBono',     className:'text-center', createdCell:function(td,d){$(td).text(fmt(d)).addClass('col-monto-pos');} },
                     { data:'ventaPar',         className:'text-center', createdCell:function(td,d){$(td).text(fmt(d)).addClass('col-monto-pos');} },

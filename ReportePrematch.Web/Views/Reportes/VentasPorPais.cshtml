@@ -2,6 +2,42 @@
     Layout = "_Layout";
 }
 
+<style>
+.canal-toggle {
+    display: flex; border-radius: 8px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.15);
+}
+.canal-toggle .toggle-btn {
+    flex: 1; padding: 6px 14px;
+    background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.6);
+    border: none; cursor: pointer; font-size: 0.8rem;
+    transition: background 0.2s, color 0.2s; white-space: nowrap;
+}
+.canal-toggle .toggle-btn:first-child { border-right: 1px solid rgba(255,255,255,0.1); }
+.canal-toggle .toggle-btn.active { background: var(--sa-5, #0077B6); color: #fff; font-weight: 600; }
+.canal-toggle .toggle-btn:hover:not(.active) { background: rgba(255,255,255,0.12); color: #fff; }
+
+.agent-block { margin-bottom: 2rem; }
+.agent-block-header {
+    display: flex; align-items: center; gap: .6rem;
+    font-size: 1rem; font-weight: 700; letter-spacing: .04em;
+    color: #48CAE4; margin-bottom: .6rem;
+    padding-bottom: .35rem;
+    border-bottom: 1px solid rgba(72,202,228,.25);
+}
+.agent-block-header i { font-size: 1.1rem; }
+
+.quick-metrics-bar { display:flex; gap:.5rem; flex-wrap:wrap; }
+.metric-card { flex:1; min-width:110px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:.5rem .75rem; text-align:center; }
+@@media (max-width:768px) { .metric-card { min-width:80px; flex:1 1 80px; padding:.45rem .55rem; } }
+@@media (max-width:430px) { .metric-card { min-width:68px; flex:1 1 68px; padding:.38rem .45rem; } .metric-value { font-size:.88rem; } }
+.metric-label { font-size:.62rem; color:rgba(255,255,255,0.5); letter-spacing:.5px; text-transform:uppercase; margin-bottom:.25rem; }
+.metric-value { font-size:1rem; font-weight:700; }
+.metric-blue  { color:#48CAE4; }
+.metric-red   { color:#f87171; }
+.metric-green { color:#4ade80; }
+</style>
+
 <section class="glass-card">
     <div class="welcome-bar">
         <div>
@@ -30,7 +66,6 @@
                     <option value="VENEZUELA" style="background:#002E5C;color:#fff;">VENEZUELA</option>
                 </select>
             </div>
-            <!-- Toggle Canal -->
             <div class="col-md-auto">
                 <label class="field-label">Canal</label>
                 <div class="canal-toggle" id="toggleCanal">
@@ -50,109 +85,134 @@
         </div>
     </div>
 
-    <!-- Métricas -->
-    <div id="metricsBar" class="quick-metrics-bar mt-3" style="display:none;">
-        <div class="metric-card"><div class="metric-label">Venta Par</div><div class="metric-value metric-blue"  id="metVentaPar">—</div></div>
-        <div class="metric-card"><div class="metric-label">Venta Dir</div><div class="metric-value metric-blue"  id="metVentaDir">—</div></div>
-        <div class="metric-card"><div class="metric-label">Premios Par</div><div class="metric-value metric-red" id="metPremiosPar">—</div></div>
-        <div class="metric-card"><div class="metric-label">Premios Dir</div><div class="metric-value metric-red" id="metPremiosDir">—</div></div>
-        <div class="metric-card"><div class="metric-label">Balance</div><div class="metric-value metric-green"   id="metBalance">—</div></div>
+
+    <!-- Barra exportacion -->
+    <div id="exportBar" class="mt-3 d-none d-flex gap-2 flex-wrap">
+        <button class="btn-glass btn-primary" onclick="exportExcel()">
+            <i class="ti ti-file-spreadsheet"></i> Excel completo
+        </button>
+        <button class="btn-glass" style="border-color:rgba(255,100,100,.5);color:#f87171;" onclick="exportPDF()">
+            <i class="ti ti-file-type-pdf"></i> PDF por agente
+        </button>
     </div>
 
-    <div class="table-responsive mt-3">
-        <table id="tblVentasPorPais" class="glass-table w-100">
-            <thead>
-                <tr>
-                    <th style="text-align:center;">País</th>
-                    <th style="text-align:center;">Agente</th>
-                    <th style="text-align:center;">Venta Par</th>
-                    <th style="text-align:center;">Venta Dir</th>
-                    <th style="text-align:center;">Premios Par</th>
-                    <th style="text-align:center;">Premios Dir</th>
-                    <th style="text-align:center;">Balance</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-    </div>
+    <!-- Bloques por agente -->
+    <div id="agentBlocks" class="mt-3"></div>
 </section>
-
-<style>
-.quick-metrics-bar { display:flex; gap:.5rem; flex-wrap:wrap; }
-.metric-card { flex:1; min-width:120px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:.5rem .75rem; text-align:center; }
-@@media (max-width:768px) { .metric-card { min-width:80px; flex:1 1 80px; padding:.45rem .55rem; } }
-@@media (max-width:430px) { .metric-card { min-width:68px; flex:1 1 68px; padding:.38rem .45rem; } .metric-value { font-size:.88rem; } }
-.metric-label { font-size:.65rem; color:rgba(255,255,255,0.5); letter-spacing:.5px; text-transform:uppercase; margin-bottom:.25rem; }
-.metric-value { font-size:1.05rem; font-weight:700; }
-.metric-blue  { color:#48CAE4; }
-.metric-red   { color:#f87171; }
-.metric-green { color:#4ade80; }
-.canal-toggle {
-    display: flex;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.15);
-}
-.canal-toggle .toggle-btn {
-    flex: 1;
-    padding: 6px 14px;
-    background: rgba(255,255,255,0.05);
-    color: rgba(255,255,255,0.6);
-    border: none;
-    cursor: pointer;
-    font-size: 0.8rem;
-    transition: background 0.2s, color 0.2s;
-    white-space: nowrap;
-}
-.canal-toggle .toggle-btn:first-child { border-right: 1px solid rgba(255,255,255,0.1); }
-.canal-toggle .toggle-btn.active {
-    background: var(--sa-5, #0077B6);
-    color: #fff;
-    font-weight: 600;
-}
-.canal-toggle .toggle-btn:hover:not(.active) {
-    background: rgba(255,255,255,0.12);
-    color: #fff;
-}
-</style>
 
 @section Scripts {
 <script>
-let dt;
 let canal = 'taq';
+let lastData = [];
+let dtInstances = [];
 
 const urlMap = {
     'taq': '@Url.Action("GetVentasPorPaisTaq","Reportes")',
     'web': '@Url.Action("GetVentasPorPaisWeb","Reportes")'
 };
 
-const subtituloMap = {
-    'taq': 'Canal Taquilla · Por País',
-    'web': 'Canal Web · Por País'
-};
-
 function setCanal(val, btn) {
     canal = val;
-    document.querySelectorAll('#toggleCanal .toggle-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('#toggleCanal .toggle-btn').forEach(function(b){ b.classList.remove('active'); });
     btn.classList.add('active');
-    document.getElementById('subtitulo').textContent = subtituloMap[val];
-    if (dt) { dt.destroy(); dt = null; }
-    $('#tblVentasPorPais tbody').empty();
-    ['metVentaPar','metVentaDir','metPremiosPar','metPremiosDir','metBalance'].forEach(function(id) {
-        document.getElementById(id).textContent = '—';
-    });
-    document.getElementById('metBalance').className = 'metric-value metric-green';
-    document.getElementById('metricsBar').style.display = 'none';
+    document.getElementById('subtitulo').textContent = val === 'taq' ? 'Canal Taquilla · Por País' : 'Canal Web · Por País';
+    limpiarBloques();
 }
 
 function fmt(v) {
     return parseFloat(v || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
+function parseAmt(v) {
+    var s = String(v || '0').replace(/\./g, '').replace(',', '.');
+    return parseFloat(s) || 0;
+}
+function card(label, value, cls) {
+    return '<div class="metric-card">'
+        + '<div class="metric-label">' + label + '</div>'
+        + '<div class="metric-value ' + cls + '">' + value + '</div>'
+        + '</div>';
+}
 
+function limpiarBloques() {
+    dtInstances.forEach(function(dt){ try { dt.destroy(); } catch(e){} });
+    dtInstances = [];
+    document.getElementById('agentBlocks').innerHTML = '';
+    lastData = []; document.getElementById('exportBar').classList.add('d-none');
+}
+
+/* ── render bloque por agente ─────────────────────────────────────────── */
+function renderBloqueAgente(agente, rows, idx) {
+    var totVP = 0, totVD = 0, totPP = 0, totPD = 0, totBal = 0;
+    rows.forEach(function(r) {
+        totVP  += parseAmt(r.ventaPar);
+        totVD  += parseAmt(r.ventaDir);
+        totPP  += parseAmt(r.premiosPar);
+        totPD  += parseAmt(r.premiosDir);
+        totBal += parseAmt(r.utilidad);
+    });
+
+    var tableId = 'tblPais_' + idx;
+    var block = document.createElement('div');
+    block.className = 'agent-block';
+    block.innerHTML =
+        '<div class="agent-block-header"><i class="ti ti-user"></i>' + agente + '</div>' +
+        '<div class="quick-metrics-bar mb-2">' +
+            card('Venta Par',   fmt(totVP),  'metric-blue')  +
+            card('Venta Dir',   fmt(totVD),  'metric-blue')  +
+            card('Premios Par', fmt(totPP),  'metric-red')   +
+            card('Premios Dir', fmt(totPD),  'metric-red')   +
+            card('Balance',     fmt(totBal), totBal >= 0 ? 'metric-green' : 'metric-red') +
+        '</div>' +
+        '<div class="table-responsive">' +
+        '<table id="' + tableId + '" class="glass-table w-100">' +
+        '<thead><tr>' +
+            '<th style="text-align:center;">País</th>' +
+            '<th style="text-align:center;">Venta Par</th>' +
+            '<th style="text-align:center;">Venta Dir</th>' +
+            '<th style="text-align:center;">Premios Par</th>' +
+            '<th style="text-align:center;">Premios Dir</th>' +
+            '<th style="text-align:center;">Balance</th>' +
+        '</tr></thead><tbody></tbody>' +
+        '<tfoot><tr>' +
+            '<th style="text-align:center;">TOTAL</th>' +
+            '<th style="text-align:center;">' + fmt(totVP)  + '</th>' +
+            '<th style="text-align:center;">' + fmt(totVD)  + '</th>' +
+            '<th style="text-align:center;">' + fmt(totPP)  + '</th>' +
+            '<th style="text-align:center;">' + fmt(totPD)  + '</th>' +
+            '<th style="text-align:center;color:' + (totBal >= 0 ? 'var(--av-5,#7FCA8A)' : '#FC8181') + ';font-weight:600;">' + fmt(totBal) + '</th>' +
+        '</tr></tfoot>' +
+        '</table></div>';
+
+    document.getElementById('agentBlocks').appendChild(block);
+
+    var dt = $('#' + tableId).DataTable({
+        data: rows,
+        columns: [
+            { data: 'pais',       className: 'text-center', defaultContent: '—' },
+            { data: 'ventaPar',   className: 'text-center col-monto-pos', defaultContent: '—' },
+            { data: 'ventaDir',   className: 'text-center col-monto-pos', defaultContent: '—' },
+            { data: 'premiosPar', className: 'text-center col-monto-neg', defaultContent: '—' },
+            { data: 'premiosDir', className: 'text-center col-monto-neg', defaultContent: '—' },
+            { data: 'utilidad',   className: 'text-center', defaultContent: '—',
+              createdCell: function(td, d) {
+                  var n = parseAmt(d);
+                  $(td).addClass(n < 0 ? 'col-monto-neg' : 'col-monto-pos');
+              }
+            }
+        ],
+        language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
+        pageLength: 25, order: [[0, 'asc']], dom: 'Bfrtip',
+        buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm', title: agente }]
+    });
+
+    dtInstances.push(dt);
+}
+
+/* ── carga principal ──────────────────────────────────────────────────── */
 function cargarReporte() {
     const fechaD = document.getElementById('fechaD').value;
     const fechaH = document.getElementById('fechaH').value;
-    const pais = document.getElementById('agente').value;
+    const pais   = document.getElementById('agente').value;
 
     if (!fechaD || !fechaH) {
         Swal.fire({ icon: 'warning', title: 'Fechas requeridas', background: '#002E5C', color: '#fff' });
@@ -163,66 +223,54 @@ function cargarReporte() {
         return;
     }
 
-    const url = urlMap[canal];
+    limpiarBloques();
     showBusy('Consultando...');
 
-    $.post(url, { fechaD, fechaH, pais })
+    $.post(urlMap[canal], { fechaD, fechaH, pais })
         .done(function(data) {
+            hideBusy();
             if (!data || !data.length) {
-                document.getElementById('metricsBar').style.display = 'none';
                 Swal.fire({ icon: 'info', title: 'Sin resultados', background: '#002E5C', color: '#fff' });
-                hideBusy();
                 return;
             }
 
-            // Totales cards
-            function parseAmt(v) { var s = String(v || '0').replace(/\./g, '').replace(',', '.'); return parseFloat(s) || 0; }
-            var totVP = 0, totVD = 0, totPP = 0, totPD = 0, totBal = 0;
+            // Agrupar por agente
+            var grupos = {};
+            var orden  = [];
             data.forEach(function(r) {
-                totVP  += parseAmt(r.ventaPar);
-                totVD  += parseAmt(r.ventaDir);
-                totPP  += parseAmt(r.premiosPar);
-                totPD  += parseAmt(r.premiosDir);
-                totBal += parseAmt(r.utilidad);
+                var ag = r.agente || '(Sin Agente)';
+                if (!grupos[ag]) { grupos[ag] = []; orden.push(ag); }
+                grupos[ag].push(r);
             });
-            document.getElementById('metVentaPar').textContent  = fmt(totVP);
-            document.getElementById('metVentaDir').textContent  = fmt(totVD);
-            document.getElementById('metPremiosPar').textContent = fmt(totPP);
-            document.getElementById('metPremiosDir').textContent = fmt(totPD);
-            var elBal = document.getElementById('metBalance');
-            elBal.textContent = fmt(totBal);
-            elBal.className   = 'metric-value ' + (totBal >= 0 ? 'metric-green' : 'metric-red');
-            document.getElementById('metricsBar').style.display = 'flex';
 
-            if (dt) { dt.destroy(); dt = null; }
-            dt = $('#tblVentasPorPais').DataTable({
-                data,
-                columns: [
-                    { data: 'pais',      className: 'text-center', defaultContent: '—' },
-                    { data: 'agente',    className: 'text-center', defaultContent: '—' },
-                    { data: 'ventaPar',  className: 'text-center', defaultContent: '—', createdCell: function(td) { $(td).addClass('col-monto-pos'); } },
-                    { data: 'ventaDir',  className: 'text-center', defaultContent: '—', createdCell: function(td) { $(td).addClass('col-monto-pos'); } },
-                    { data: 'premiosPar',className: 'text-center', defaultContent: '—', createdCell: function(td) { $(td).addClass('col-monto-neg'); } },
-                    { data: 'premiosDir',className: 'text-center', defaultContent: '—', createdCell: function(td) { $(td).addClass('col-monto-neg'); } },
-                    { data: 'utilidad',  className: 'text-center', defaultContent: '—',
-                      createdCell: function(td, d) {
-                          var n = parseFloat((d || '0').replace(/\./g, '').replace(',', '.'));
-                          $(td).addClass(n < 0 ? 'col-monto-neg' : 'col-monto-pos');
-                      }
-                    }
-                ],
-                language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
-                pageLength: 25, order: [[0, 'asc']], dom: 'Bfrtip',
-                buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm' }]
-            });
-            hideBusy();
+            orden.forEach(function(ag, idx) { renderBloqueAgente(ag, grupos[ag], idx); });
+            lastData = data; document.getElementById('exportBar').classList.remove('d-none');
         })
         .fail(function() {
-            Swal.fire({ icon: 'error', title: 'Error de conexión', background: '#002E5C', color: '#fff' });
             hideBusy();
+            Swal.fire({ icon: 'error', title: 'Error de conexión', background: '#002E5C', color: '#fff' });
         });
 }
 
+
+/* -- Exportacion -------------------------------------------------- */
+var EXPORT_CONFIG = {
+    reportName: 'Ventas Por Pais',
+    groupField: function(r){ return r.agente || '(Sin Agente)'; },
+    cols: [
+        { head: 'Agente',      get: function(r){ return r.agente || '(Sin Agente)'; }, type: 'text' },
+        { head: 'Pais',        get: function(r){ return r.pais || r.Pais || '--'; },   type: 'text' },
+        { head: 'Venta Par',   get: function(r){ return parseAmt(r.ventaPar); },        type: 'money' },
+        { head: 'Venta Dir',   get: function(r){ return parseAmt(r.ventaDir); },        type: 'money' },
+        { head: 'Premios Par', get: function(r){ return parseAmt(r.premiosPar); },      type: 'money' },
+        { head: 'Premios Dir', get: function(r){ return parseAmt(r.premiosDir); },      type: 'money' },
+        { head: 'Balance',     get: function(r){ return parseAmt(r.utilidad); },        type: 'money' }
+    ]
+};
+function exportExcel() { ExportHelpers.exportarExcel(lastData, EXPORT_CONFIG); }
+function exportPDF() {
+    ExportHelpers.exportarPDF(lastData, EXPORT_CONFIG, document.getElementById('fechaD').value, document.getElementById('fechaH').value);
+}
 $(document).ready(function() {
     // No carga automáticamente — el usuario debe seleccionar un país y presionar Buscar
 });

@@ -260,6 +260,19 @@ public class ReportesService : IReportesService
         return result ?? new List<TicketsDetalladosDto>();
     }
 
+    public async Task<object> GetTicketsDetalladosWebIIAsync(
+        string fechaD, string fechaH, string agente, string pais, string role)
+    {
+        var query = new Dictionary<string, string>
+        {
+            ["fechaD"] = fechaD, ["fechaH"] = fechaH, ["agente"] = agente,
+            ["pais"] = pais, ["role"] = role
+        };
+        var result = await _api.GetQueryAsync<List<TicketsDetalladosDto>>(
+            "api/Reportes/TicketsDetalladosWebII", query);
+        return result ?? new List<TicketsDetalladosDto>();
+    }
+
     public async Task<object> GetTicketsDetalladosTaqAsync(
         string fechaD, string fechaH, string agente, string pais, string role)
     {
@@ -1159,5 +1172,23 @@ ORDER BY 1,2,3 ASC";
             .Where(s => !string.IsNullOrEmpty(s))
             .OrderBy(s => s)
             .ToList();
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       KING MIDAS
+    ══════════════════════════════════════════════════════════ */
+
+    public async Task<object> GetKingMidasAsync(string startDate, string endDate, string agentName)
+    {
+        var query = new Dictionary<string, string>
+        {
+            ["startDate"] = startDate,
+            ["endDate"]   = endDate
+        };
+        if (!string.IsNullOrWhiteSpace(agentName) && agentName.ToUpper() != "TODOS")
+            query["agentName"] = agentName;
+
+        var result = await _api.GetQueryAsync<List<KingMidasDto>>("api/Casino/KingMidas", query);
+        return result ?? new List<KingMidasDto>();
     }
 }

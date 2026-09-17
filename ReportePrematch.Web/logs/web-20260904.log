@@ -1,0 +1,937 @@
+2026-09-04 11:33:58.964 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 11:34:00.340 -04:00 [INF] HTTP GET / responded 200 in 247.3935 ms
+2026-09-04 11:34:00.990 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 3.2816 ms
+2026-09-04 11:34:12.532 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 11:34:12.540 -04:00 [INF] HTTP POST / responded 302 in 817.0858 ms
+2026-09-04 11:34:12.703 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 156.5611 ms
+2026-09-04 11:34:13.885 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 753.7503 ms
+2026-09-04 11:34:23.616 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 982.1057 ms
+2026-09-04 11:34:35.016 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 281.5177 ms
+2026-09-04 11:34:38.292 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 251.0053 ms
+2026-09-04 11:34:42.881 -04:00 [INF] HTTP POST /Reportes/GetDetalleTicket responded 200 in 2551.8309 ms
+2026-09-04 11:46:15.597 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 11:46:16.746 -04:00 [INF] HTTP GET / responded 200 in 205.9878 ms
+2026-09-04 11:46:27.645 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 11:46:27.653 -04:00 [INF] HTTP POST / responded 302 in 865.5869 ms
+2026-09-04 11:46:27.771 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 109.4120 ms
+2026-09-04 11:46:28.759 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 778.9558 ms
+2026-09-04 11:46:32.623 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 1061.5358 ms
+2026-09-04 11:47:02.624 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 127.2543 ms
+2026-09-04 11:47:05.486 -04:00 [INF] HTTP POST /Reportes/GetDetalleTicket responded 200 in 369.6064 ms
+2026-09-04 11:47:10.082 -04:00 [INF] HTTP POST /Reportes/GetDetalleTicket responded 200 in 455.6442 ms
+2026-09-04 11:47:18.865 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 1649.9912 ms
+2026-09-04 11:48:03.746 -04:00 [INF] HTTP GET /Reportes/TicketsEnJuego responded 200 in 28.5960 ms
+2026-09-04 11:48:04.605 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 647.4361 ms
+2026-09-04 11:48:10.076 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoPorCobrarTaq responded 200 in 234.4401 ms
+2026-09-04 11:50:09.443 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 11:50:10.362 -04:00 [INF] HTTP GET / responded 200 in 199.7802 ms
+2026-09-04 11:50:21.744 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 11:50:21.752 -04:00 [INF] HTTP POST / responded 302 in 838.4189 ms
+2026-09-04 11:50:21.855 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 96.3648 ms
+2026-09-04 11:50:22.757 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 704.3099 ms
+2026-09-04 11:50:26.424 -04:00 [INF] HTTP GET /Reportes/TicketsEnJuego responded 200 in 18.5773 ms
+2026-09-04 11:50:27.150 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 611.2592 ms
+2026-09-04 11:50:28.962 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoPorCobrarTaq responded 200 in 361.1283 ms
+2026-09-04 11:50:38.561 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoPorPagarTaq responded 200 in 220.5031 ms
+2026-09-04 11:50:44.286 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoPorPagarWeb responded 200 in 309.0389 ms
+2026-09-04 11:50:49.659 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoPorCobrarWeb responded 200 in 283.5877 ms
+2026-09-04 11:50:52.918 -04:00 [INF] HTTP GET /Reportes/BusquedaTickets responded 200 in 20.3361 ms
+2026-09-04 11:50:53.671 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 641.8263 ms
+2026-09-04 11:52:34.467 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 11:52:35.277 -04:00 [INF] HTTP GET / responded 200 in 221.1145 ms
+2026-09-04 11:52:45.511 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 11:52:45.519 -04:00 [INF] HTTP POST / responded 302 in 762.6405 ms
+2026-09-04 11:52:45.628 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 102.4780 ms
+2026-09-04 11:52:46.606 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 778.5104 ms
+2026-09-04 11:52:48.986 -04:00 [INF] HTTP GET /Reportes/BusquedaTickets responded 200 in 25.0618 ms
+2026-09-04 11:52:49.605 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 506.5896 ms
+2026-09-04 11:53:18.352 -04:00 [INF] HTTP POST /Reportes/GetBusquedaTicketsTaqApi responded 200 in 394.0638 ms
+2026-09-04 11:53:24.429 -04:00 [INF] HTTP POST /Reportes/GetBusquedaTicketsTaqApi responded 200 in 111.8823 ms
+2026-09-04 11:53:29.984 -04:00 [INF] HTTP POST /Reportes/GetBusquedaTicketsTaqApi responded 200 in 200.6965 ms
+2026-09-04 11:53:37.696 -04:00 [INF] HTTP GET /Reportes/TicketsEnJuego responded 200 in 18.4587 ms
+2026-09-04 11:53:38.498 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 669.8419 ms
+2026-09-04 11:53:42.631 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 1.8490 ms
+2026-09-04 11:53:43.344 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 593.1240 ms
+2026-09-04 11:53:45.127 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 657.3325 ms
+2026-09-04 11:53:49.085 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 1563.9261 ms
+2026-09-04 11:53:53.618 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikols responded 200 in 21.5121 ms
+2026-09-04 11:53:54.269 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 542.1960 ms
+2026-09-04 11:56:07.159 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 11:56:07.936 -04:00 [INF] HTTP GET / responded 200 in 188.6375 ms
+2026-09-04 11:56:22.321 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 11:56:22.330 -04:00 [INF] HTTP POST / responded 302 in 783.9332 ms
+2026-09-04 11:56:22.439 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 101.3029 ms
+2026-09-04 11:56:23.366 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 727.2118 ms
+2026-09-04 11:56:25.754 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikols responded 200 in 24.3603 ms
+2026-09-04 11:56:26.587 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 635.2254 ms
+2026-09-04 11:56:31.257 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsTaq responded 200 in 2128.8336 ms
+2026-09-04 11:56:35.889 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 173.1619 ms
+2026-09-04 11:56:48.714 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 114.9365 ms
+2026-09-04 11:56:54.533 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 152.3581 ms
+2026-09-04 11:59:11.869 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikols responded 200 in 7175.0207 ms
+2026-09-04 11:59:13.150 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 704.5066 ms
+2026-09-04 11:59:13.225 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 1.0902 ms
+2026-09-04 11:59:19.043 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsTaq responded 200 in 2660.8435 ms
+2026-09-04 11:59:21.128 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 111.7822 ms
+2026-09-04 11:59:24.774 -04:00 [INF] HTTP POST /Reportes/GetDetalleTicket responded 200 in 496.2115 ms
+2026-09-04 11:59:33.523 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 147.9079 ms
+2026-09-04 11:59:37.437 -04:00 [INF] HTTP POST /Reportes/GetDetalleTicket responded 200 in 286.5578 ms
+2026-09-04 11:59:42.271 -04:00 [INF] HTTP GET /Reportes/TicketsDetallados responded 200 in 21.7696 ms
+2026-09-04 11:59:42.890 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 491.0071 ms
+2026-09-04 12:00:54.127 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 12:00:54.898 -04:00 [INF] HTTP GET / responded 200 in 206.4643 ms
+2026-09-04 12:01:06.075 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 12:01:06.082 -04:00 [INF] HTTP POST / responded 302 in 814.1705 ms
+2026-09-04 12:01:06.191 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 101.3051 ms
+2026-09-04 12:01:06.945 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 553.9867 ms
+2026-09-04 12:02:02.783 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 12:02:03.577 -04:00 [INF] HTTP GET / responded 200 in 199.1782 ms
+2026-09-04 12:02:20.815 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-1) para vlapenta
+2026-09-04 12:02:20.819 -04:00 [WRN] Login fallido para usuario vlapenta
+2026-09-04 12:02:20.826 -04:00 [INF] HTTP POST / responded 200 in 829.2099 ms
+2026-09-04 12:02:27.975 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 12:02:27.979 -04:00 [INF] HTTP POST / responded 302 in 218.7016 ms
+2026-09-04 12:02:28.076 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 91.8766 ms
+2026-09-04 12:02:28.998 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 725.0999 ms
+2026-09-04 12:02:33.770 -04:00 [INF] HTTP GET /Reportes/TicketsDetallados responded 200 in 20.6301 ms
+2026-09-04 12:02:34.491 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 601.4811 ms
+2026-09-04 12:02:36.589 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 950.4743 ms
+2026-09-04 12:02:49.387 -04:00 [INF] HTTP POST /Reportes/GetDetalleTicket responded 200 in 364.7958 ms
+2026-09-04 12:02:58.114 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosWeb responded 200 in 868.4224 ms
+2026-09-04 12:03:03.539 -04:00 [INF] HTTP POST /Reportes/GetDetalleTicket responded 200 in 286.0110 ms
+2026-09-04 12:03:12.584 -04:00 [INF] HTTP GET /Reportes/Estadisticas responded 200 in 32.2402 ms
+2026-09-04 12:03:13.333 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 646.2560 ms
+2026-09-04 12:05:01.982 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 12:05:02.703 -04:00 [INF] HTTP GET / responded 200 in 186.8496 ms
+2026-09-04 12:05:14.748 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 12:05:14.756 -04:00 [INF] HTTP POST / responded 302 in 812.6052 ms
+2026-09-04 12:05:14.862 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 98.0376 ms
+2026-09-04 12:05:15.863 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 811.2295 ms
+2026-09-04 12:05:18.457 -04:00 [INF] HTTP GET /Reportes/Estadisticas responded 200 in 21.5144 ms
+2026-09-04 12:05:19.248 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 682.6257 ms
+2026-09-04 12:05:21.306 -04:00 [INF] HTTP POST /Reportes/GetEstadisticasTaq responded 200 in 1006.2369 ms
+2026-09-04 12:05:47.622 -04:00 [INF] HTTP GET /Reportes/DeportesMasVendidos responded 200 in 25.2827 ms
+2026-09-04 12:05:48.484 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 665.7995 ms
+2026-09-04 12:05:55.002 -04:00 [INF] HTTP POST /Reportes/GetDeportesMasVendidosPorAgente responded 200 in 517.0645 ms
+2026-09-04 12:05:55.080 -04:00 [INF] HTTP POST /Reportes/GetDeportesMasVendidosPorDeporte responded 200 in 595.8806 ms
+2026-09-04 12:08:01.350 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 12:08:02.075 -04:00 [INF] HTTP GET / responded 200 in 199.3427 ms
+2026-09-04 12:08:10.876 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 12:08:10.884 -04:00 [INF] HTTP POST / responded 302 in 834.5414 ms
+2026-09-04 12:08:10.991 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 99.3326 ms
+2026-09-04 12:08:11.875 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 687.1590 ms
+2026-09-04 12:08:14.205 -04:00 [INF] HTTP GET /Reportes/DeportesMasVendidos responded 200 in 26.6707 ms
+2026-09-04 12:08:14.967 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 639.1749 ms
+2026-09-04 12:08:16.355 -04:00 [INF] HTTP POST /Reportes/GetDeportesMasVendidosPorAgente responded 200 in 635.7663 ms
+2026-09-04 12:08:16.557 -04:00 [INF] HTTP POST /Reportes/GetDeportesMasVendidosPorDeporte responded 200 in 837.6884 ms
+2026-09-04 12:08:31.930 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteGameID responded 200 in 43.8687 ms
+2026-09-04 12:08:32.574 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 521.8802 ms
+2026-09-04 12:11:02.446 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 12:11:03.225 -04:00 [INF] HTTP GET / responded 200 in 202.2098 ms
+2026-09-04 12:11:16.104 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 12:11:16.111 -04:00 [INF] HTTP POST / responded 302 in 838.9711 ms
+2026-09-04 12:11:16.217 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 100.0072 ms
+2026-09-04 12:11:17.226 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 808.5332 ms
+2026-09-04 12:11:20.899 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteGameID responded 200 in 21.7268 ms
+2026-09-04 12:11:21.685 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 652.7088 ms
+2026-09-04 12:11:32.619 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteGameID responded 200 in 4667.6949 ms
+2026-09-04 12:11:54.154 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteGameID responded 200 in 2374.3614 ms
+2026-09-04 12:12:10.194 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteGameID responded 200 in 2383.8399 ms
+2026-09-04 12:12:22.741 -04:00 [INF] Logout: vlapenta
+2026-09-04 12:12:22.742 -04:00 [INF] HTTP GET /Home/Logout responded 302 in 6.4997 ms
+2026-09-04 12:12:22.750 -04:00 [INF] HTTP GET / responded 200 in 2.4929 ms
+2026-09-04 12:12:31.032 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 12:12:31.812 -04:00 [INF] HTTP GET / responded 200 in 212.3535 ms
+2026-09-04 12:12:44.704 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 12:12:44.712 -04:00 [INF] HTTP POST / responded 302 in 725.2206 ms
+2026-09-04 12:12:44.815 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 96.4561 ms
+2026-09-04 12:12:45.765 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 746.9016 ms
+2026-09-04 12:12:50.892 -04:00 [INF] HTTP GET /Reportes/VentasPorPais responded 200 in 17.9305 ms
+2026-09-04 12:23:39.001 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 12:23:39.993 -04:00 [INF] HTTP GET / responded 200 in 215.2571 ms
+2026-09-04 12:24:02.828 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 12:24:02.835 -04:00 [INF] HTTP POST / responded 302 in 797.5399 ms
+2026-09-04 12:24:02.966 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 122.5647 ms
+2026-09-04 12:24:03.962 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 795.5421 ms
+2026-09-04 12:24:09.433 -04:00 [INF] HTTP GET /Reportes/VentasPorPais responded 200 in 15.6417 ms
+2026-09-04 12:24:22.054 -04:00 [INF] HTTP POST /Reportes/GetVentasPorPaisTaq responded 200 in 617.3390 ms
+2026-09-04 12:24:42.044 -04:00 [INF] HTTP POST /Reportes/GetVentasPorPaisWeb responded 200 in 773.0256 ms
+2026-09-04 12:24:48.263 -04:00 [INF] HTTP GET /Reportes/VentasDetalladasLive responded 200 in 33.3663 ms
+2026-09-04 12:24:49.076 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 699.7530 ms
+2026-09-04 12:25:39.550 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 12:25:40.610 -04:00 [INF] HTTP GET / responded 200 in 205.8895 ms
+2026-09-04 12:26:01.647 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-1) para vlapenta
+2026-09-04 12:26:01.651 -04:00 [WRN] Login fallido para usuario vlapenta
+2026-09-04 12:26:01.658 -04:00 [INF] HTTP POST / responded 200 in 742.3856 ms
+2026-09-04 12:26:11.734 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 12:26:11.738 -04:00 [INF] HTTP POST / responded 302 in 173.1676 ms
+2026-09-04 12:26:11.833 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 89.7560 ms
+2026-09-04 12:26:12.719 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 681.9608 ms
+2026-09-04 12:26:21.868 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 973.2882 ms
+2026-09-04 12:26:26.027 -04:00 [INF] HTTP GET /Reportes/VentasDetalladasLive responded 200 in 8221.9740 ms
+2026-09-04 12:26:27.064 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 500.2900 ms
+2026-09-04 12:26:32.189 -04:00 [INF] HTTP POST /Reportes/GetVentasDetalladasLive responded 200 in 345.4711 ms
+2026-09-04 12:26:47.969 -04:00 [INF] HTTP GET /Reportes/Props responded 200 in 27.4690 ms
+2026-09-04 12:26:48.572 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 500.8118 ms
+2026-09-04 12:32:54.643 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 12:32:55.374 -04:00 [INF] HTTP GET / responded 200 in 207.8586 ms
+2026-09-04 12:33:06.426 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 12:33:06.435 -04:00 [INF] HTTP POST / responded 302 in 821.7155 ms
+2026-09-04 12:33:06.539 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 96.6773 ms
+2026-09-04 12:33:07.519 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 783.3946 ms
+2026-09-04 12:33:13.581 -04:00 [INF] HTTP GET /Reportes/Props responded 200 in 20.7625 ms
+2026-09-04 12:33:14.293 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 608.4898 ms
+2026-09-04 12:33:19.442 -04:00 [INF] HTTP POST /Reportes/GetProps responded 200 in 351.0760 ms
+2026-09-04 12:34:11.057 -04:00 [INF] HTTP GET /Reportes/IconSlot responded 200 in 22.7229 ms
+2026-09-04 12:34:11.847 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 623.0360 ms
+2026-09-04 12:38:17.485 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 12:38:18.654 -04:00 [INF] HTTP GET / responded 200 in 202.6966 ms
+2026-09-04 12:38:29.815 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 12:38:29.823 -04:00 [INF] HTTP POST / responded 302 in 857.3267 ms
+2026-09-04 12:38:29.922 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 92.1056 ms
+2026-09-04 12:38:30.883 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 756.6298 ms
+2026-09-04 12:38:37.741 -04:00 [INF] HTTP GET /Reportes/IconSlot responded 200 in 41.7992 ms
+2026-09-04 12:38:38.489 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 628.3282 ms
+2026-09-04 12:38:42.951 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/CasinoIconSlot. JSON: {"codigo":-2146233079,"mensaje":"ExecuteReader: CommandText property has not been initialized"}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 12:38:42.972 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 544.1159 ms
+2026-09-04 12:38:59.499 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/CasinoIconSlot. JSON: {"codigo":-2146233079,"mensaje":"ExecuteReader: CommandText property has not been initialized"}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 12:38:59.504 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 180.1400 ms
+2026-09-04 12:39:10.270 -04:00 [INF] HTTP GET /Reportes/IconSlot responded 200 in 2.5549 ms
+2026-09-04 12:39:11.216 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 749.5986 ms
+2026-09-04 12:39:20.709 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/CasinoIconSlot. JSON: {"codigo":-2146233079,"mensaje":"ExecuteReader: CommandText property has not been initialized"}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 12:39:20.715 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 332.4134 ms
+2026-09-04 12:39:33.113 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/CasinoIconSlot. JSON: {"codigo":-2146233079,"mensaje":"ExecuteReader: CommandText property has not been initialized"}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 12:39:33.118 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 297.3063 ms
+2026-09-04 12:39:39.782 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/CasinoIconSlot. JSON: {"codigo":-2146233079,"mensaje":"ExecuteReader: CommandText property has not been initialized"}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 12:39:39.790 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 208.5427 ms
+2026-09-04 12:40:02.391 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 5905.0925 ms
+2026-09-04 12:41:32.352 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 12:41:33.526 -04:00 [INF] HTTP GET / responded 200 in 193.4277 ms
+2026-09-04 12:41:42.997 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 12:41:43.004 -04:00 [INF] HTTP POST / responded 302 in 826.2126 ms
+2026-09-04 12:41:43.103 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 92.1550 ms
+2026-09-04 12:41:44.023 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 723.2521 ms
+2026-09-04 12:41:45.889 -04:00 [INF] HTTP GET /Reportes/IconSlot responded 200 in 17.4375 ms
+2026-09-04 12:41:46.465 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 464.2447 ms
+2026-09-04 12:41:53.423 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 860.1391 ms
+2026-09-04 12:42:06.292 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/CasinoIconSlot. JSON: {"codigo":-2146233079,"mensaje":"ExecuteReader: CommandText property has not been initialized"}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 12:42:06.310 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 153.2545 ms
+2026-09-04 12:42:18.163 -04:00 [INF] HTTP GET /Reportes/Pragmatic responded 200 in 48.1614 ms
+2026-09-04 12:42:18.969 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 690.9092 ms
+2026-09-04 12:44:04.813 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 12:44:05.946 -04:00 [INF] HTTP GET / responded 200 in 189.3498 ms
+2026-09-04 12:44:16.989 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 12:44:16.997 -04:00 [INF] HTTP POST / responded 302 in 862.6250 ms
+2026-09-04 12:44:17.102 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 95.6134 ms
+2026-09-04 12:44:18.016 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 719.1918 ms
+2026-09-04 12:44:23.759 -04:00 [INF] HTTP GET /Reportes/Pragmatic responded 200 in 19.8390 ms
+2026-09-04 12:44:24.519 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 648.0061 ms
+2026-09-04 12:44:27.025 -04:00 [INF] HTTP POST /Reportes/GetPragmatic responded 200 in 566.8661 ms
+2026-09-04 12:44:34.430 -04:00 [INF] HTTP GET /Reportes/VirtualesBR responded 200 in 19.6250 ms
+2026-09-04 12:44:35.130 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 513.2448 ms
+2026-09-04 12:45:52.051 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 12:45:53.207 -04:00 [INF] HTTP GET / responded 200 in 203.3418 ms
+2026-09-04 12:46:02.947 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 12:46:02.954 -04:00 [INF] HTTP POST / responded 302 in 776.3444 ms
+2026-09-04 12:46:03.054 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 93.4061 ms
+2026-09-04 12:46:04.036 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 773.9257 ms
+2026-09-04 12:46:09.893 -04:00 [INF] HTTP GET /Reportes/VirtualesBR responded 200 in 18.0898 ms
+2026-09-04 12:46:10.694 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 678.0491 ms
+2026-09-04 12:46:14.138 -04:00 [INF] HTTP POST /Reportes/GetVirtualesBR responded 200 in 2456.2445 ms
+2026-09-04 12:46:19.446 -04:00 [INF] HTTP POST /Reportes/GetVirtualesBR responded 200 in 1265.0059 ms
+2026-09-04 12:46:29.084 -04:00 [INF] HTTP POST /Reportes/GetVirtualesBR responded 200 in 1138.7674 ms
+2026-09-04 12:46:37.935 -04:00 [INF] HTTP POST /Reportes/GetVirtualesBR responded 200 in 1811.0560 ms
+2026-09-04 12:47:10.556 -04:00 [INF] HTTP POST /Reportes/GetVirtualesBR responded 200 in 1466.4950 ms
+2026-09-04 12:47:20.715 -04:00 [INF] HTTP GET /Reportes/Aviatrix responded 200 in 26.8455 ms
+2026-09-04 12:47:21.542 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 642.3793 ms
+2026-09-04 12:47:43.297 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 12:47:44.055 -04:00 [INF] HTTP GET / responded 200 in 210.6917 ms
+2026-09-04 12:47:59.476 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 12:47:59.483 -04:00 [INF] HTTP POST / responded 302 in 742.9429 ms
+2026-09-04 12:47:59.586 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 96.5175 ms
+2026-09-04 12:48:00.488 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 705.3556 ms
+2026-09-04 12:48:04.497 -04:00 [INF] HTTP GET /Reportes/Aviatrix responded 200 in 26.9477 ms
+2026-09-04 12:48:05.213 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 599.2449 ms
+2026-09-04 12:48:13.682 -04:00 [INF] HTTP POST /Reportes/GetAviatrix responded 200 in 1393.3529 ms
+2026-09-04 12:48:38.796 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 12:48:39.521 -04:00 [INF] HTTP GET / responded 200 in 227.8179 ms
+2026-09-04 12:48:48.580 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 12:48:48.587 -04:00 [INF] HTTP POST / responded 302 in 818.7616 ms
+2026-09-04 12:48:48.688 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 94.1085 ms
+2026-09-04 12:48:49.425 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 539.5355 ms
+2026-09-04 12:48:52.714 -04:00 [INF] HTTP GET /Reportes/Aviatrix responded 200 in 20.4985 ms
+2026-09-04 12:48:53.346 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 526.6057 ms
+2026-09-04 12:48:54.863 -04:00 [INF] HTTP POST /Reportes/GetAviatrix responded 200 in 359.4315 ms
+2026-09-04 12:49:10.355 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 12:49:11.392 -04:00 [INF] HTTP GET / responded 200 in 214.8615 ms
+2026-09-04 12:49:39.811 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 12:49:39.819 -04:00 [INF] HTTP POST / responded 302 in 869.2555 ms
+2026-09-04 12:49:39.923 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 96.4636 ms
+2026-09-04 12:49:40.863 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 745.0853 ms
+2026-09-04 12:49:42.964 -04:00 [INF] HTTP GET /Reportes/Casino7777 responded 200 in 21.6090 ms
+2026-09-04 12:49:43.565 -04:00 [INF] HTTP POST /Reportes/GetCasino7777Agentes responded 200 in 473.1441 ms
+2026-09-04 12:51:38.744 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 12:51:39.491 -04:00 [INF] HTTP GET / responded 200 in 213.6571 ms
+2026-09-04 12:51:54.890 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 12:51:54.896 -04:00 [INF] HTTP POST / responded 302 in 801.1939 ms
+2026-09-04 12:51:55.001 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 97.0671 ms
+2026-09-04 12:51:55.908 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 711.0089 ms
+2026-09-04 12:51:58.422 -04:00 [INF] HTTP GET /Reportes/Casino7777 responded 200 in 21.4194 ms
+2026-09-04 12:51:59.213 -04:00 [INF] HTTP POST /Reportes/GetCasino7777Agentes responded 200 in 681.6497 ms
+2026-09-04 12:52:01.734 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 1465.8201 ms
+2026-09-04 12:52:01.735 -04:00 [INF] HTTP POST /Reportes/GetCasino7777ResumenGeneral responded 200 in 1466.0161 ms
+2026-09-04 12:52:08.949 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 397.1504 ms
+2026-09-04 12:52:09.046 -04:00 [INF] HTTP POST /Reportes/GetCasino7777ResumenGeneral responded 200 in 493.6690 ms
+2026-09-04 12:52:17.525 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 285.1488 ms
+2026-09-04 12:52:17.767 -04:00 [INF] HTTP POST /Reportes/GetCasino7777ResumenGeneral responded 200 in 527.1581 ms
+2026-09-04 12:52:40.016 -04:00 [INF] HTTP GET /Reportes/Endorphine responded 200 in 32.9619 ms
+2026-09-04 12:52:40.717 -04:00 [INF] HTTP POST /Reportes/GetEndorphineAgentes responded 200 in 507.7876 ms
+2026-09-04 12:54:50.094 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 12:54:51.045 -04:00 [INF] HTTP GET / responded 200 in 207.5732 ms
+2026-09-04 12:55:03.241 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 12:55:03.248 -04:00 [INF] HTTP POST / responded 302 in 889.7693 ms
+2026-09-04 12:55:03.352 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 96.7358 ms
+2026-09-04 12:55:04.293 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 738.3424 ms
+2026-09-04 12:55:08.659 -04:00 [INF] HTTP GET /Reportes/Endorphine responded 200 in 17.6319 ms
+2026-09-04 12:55:09.508 -04:00 [INF] HTTP POST /Reportes/GetEndorphineAgentes responded 200 in 727.4973 ms
+2026-09-04 12:55:10.776 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 479.6048 ms
+2026-09-04 12:55:10.785 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 488.3131 ms
+2026-09-04 12:55:18.993 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 390.9859 ms
+2026-09-04 12:55:19.033 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 430.8282 ms
+2026-09-04 12:55:35.388 -04:00 [INF] HTTP GET /Reportes/InOutGaming responded 200 in 18.8184 ms
+2026-09-04 12:55:36.093 -04:00 [INF] HTTP POST /Reportes/GetInOutGamingAgentes responded 200 in 545.0187 ms
+2026-09-04 13:01:25.643 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 13:01:26.839 -04:00 [INF] HTTP GET / responded 200 in 202.7882 ms
+2026-09-04 13:01:36.426 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 13:01:36.433 -04:00 [INF] HTTP POST / responded 302 in 814.1030 ms
+2026-09-04 13:01:36.536 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 95.3334 ms
+2026-09-04 13:01:37.526 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 780.7647 ms
+2026-09-04 13:01:46.035 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 852.9805 ms
+2026-09-04 13:01:51.541 -04:00 [INF] HTTP GET /Reportes/InOutGaming responded 200 in 21.0309 ms
+2026-09-04 13:01:52.340 -04:00 [INF] HTTP POST /Reportes/GetInOutGamingAgentes responded 200 in 676.3691 ms
+2026-09-04 13:01:59.278 -04:00 [INF] HTTP POST /Reportes/GetInOutGamingResumenGeneral responded 200 in 500.4051 ms
+2026-09-04 13:01:59.312 -04:00 [INF] HTTP POST /Reportes/GetInOutGaming responded 200 in 534.5914 ms
+2026-09-04 13:02:08.287 -04:00 [INF] HTTP POST /Reportes/GetInOutGamingResumenGeneral responded 200 in 243.1266 ms
+2026-09-04 13:02:08.520 -04:00 [INF] HTTP POST /Reportes/GetInOutGaming responded 200 in 476.1429 ms
+2026-09-04 13:02:20.213 -04:00 [INF] HTTP GET /Reportes/Odyseus responded 200 in 17.4127 ms
+2026-09-04 13:02:20.847 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 517.7039 ms
+2026-09-04 13:03:57.569 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 13:03:58.712 -04:00 [INF] HTTP GET / responded 200 in 206.6861 ms
+2026-09-04 13:04:13.110 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 13:04:13.116 -04:00 [INF] HTTP POST / responded 302 in 853.7547 ms
+2026-09-04 13:04:13.218 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 94.8385 ms
+2026-09-04 13:04:14.179 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 754.9040 ms
+2026-09-04 13:04:17.307 -04:00 [INF] HTTP GET /Reportes/Odyseus responded 200 in 17.0388 ms
+2026-09-04 13:04:17.865 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 443.2949 ms
+2026-09-04 13:04:44.407 -04:00 [INF] HTTP POST /Reportes/GetOdyseus responded 200 in 13482.3885 ms
+2026-09-04 13:05:07.026 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 13:05:08.171 -04:00 [INF] HTTP GET / responded 200 in 199.3510 ms
+2026-09-04 13:05:17.535 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 13:05:17.541 -04:00 [INF] HTTP POST / responded 302 in 760.8211 ms
+2026-09-04 13:05:17.638 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 90.6677 ms
+2026-09-04 13:05:19.046 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 1206.8803 ms
+2026-09-04 13:05:21.944 -04:00 [INF] HTTP GET /Reportes/Odyseus responded 200 in 17.1868 ms
+2026-09-04 13:05:22.512 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 465.0775 ms
+2026-09-04 13:05:43.636 -04:00 [INF] HTTP POST /Reportes/GetOdyseus responded 200 in 13029.5421 ms
+2026-09-04 13:05:56.517 -04:00 [INF] HTTP GET /Reportes/VIG responded 200 in 135.2575 ms
+2026-09-04 13:05:57.323 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 642.0093 ms
+2026-09-04 13:09:23.188 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 13:09:24.338 -04:00 [INF] HTTP GET / responded 200 in 188.2591 ms
+2026-09-04 13:09:36.961 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 13:09:36.970 -04:00 [INF] HTTP POST / responded 302 in 820.2401 ms
+2026-09-04 13:09:37.070 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 93.4022 ms
+2026-09-04 13:09:38.073 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 802.4385 ms
+2026-09-04 13:09:40.246 -04:00 [INF] HTTP GET /Reportes/VIG responded 200 in 18.1798 ms
+2026-09-04 13:09:40.963 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 598.8204 ms
+2026-09-04 13:09:43.313 -04:00 [INF] HTTP POST /Reportes/GetVIG responded 200 in 1237.6410 ms
+2026-09-04 13:09:55.477 -04:00 [INF] HTTP GET /Reportes/KingMidas responded 200 in 18.7222 ms
+2026-09-04 13:09:56.210 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 621.1495 ms
+2026-09-04 13:11:43.361 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 13:11:44.165 -04:00 [INF] HTTP GET / responded 200 in 207.7032 ms
+2026-09-04 13:11:54.992 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 13:11:55.000 -04:00 [INF] HTTP POST / responded 302 in 794.6622 ms
+2026-09-04 13:11:55.104 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 96.5983 ms
+2026-09-04 13:11:56.468 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 1165.9580 ms
+2026-09-04 13:12:01.325 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 2127.1633 ms
+2026-09-04 13:12:04.373 -04:00 [INF] HTTP GET /Reportes/KingMidas responded 200 in 20.2302 ms
+2026-09-04 13:12:07.286 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 524.6467 ms
+2026-09-04 13:12:10.490 -04:00 [INF] HTTP POST /Reportes/GetKingMidas responded 200 in 463.9694 ms
+2026-09-04 13:12:21.593 -04:00 [INF] HTTP POST /Reportes/GetKingMidas responded 200 in 3891.8006 ms
+2026-09-04 13:12:38.365 -04:00 [INF] HTTP GET /Reportes/Hipismo responded 200 in 18.0646 ms
+2026-09-04 13:12:39.225 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 655.5500 ms
+2026-09-04 13:12:56.802 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 13:12:57.914 -04:00 [INF] HTTP GET / responded 200 in 211.9946 ms
+2026-09-04 13:13:07.609 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 13:13:07.618 -04:00 [INF] HTTP POST / responded 302 in 746.5254 ms
+2026-09-04 13:13:07.728 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 103.0975 ms
+2026-09-04 13:13:08.598 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 681.9159 ms
+2026-09-04 13:14:47.612 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 13:14:48.751 -04:00 [INF] HTTP GET / responded 200 in 202.5535 ms
+2026-09-04 13:15:03.777 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 13:15:03.786 -04:00 [INF] HTTP POST / responded 302 in 781.6949 ms
+2026-09-04 13:15:03.889 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 95.9987 ms
+2026-09-04 13:15:04.857 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 768.5084 ms
+2026-09-04 13:15:08.323 -04:00 [INF] HTTP GET /Reportes/Hipismo responded 200 in 20.1771 ms
+2026-09-04 13:15:08.905 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 463.5994 ms
+2026-09-04 13:15:16.528 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Hipismo/ReporteCaballo. JSON: {"codigo":-2147467261,"mensaje":"Object reference not set to an instance of an object."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 13:15:16.553 -04:00 [INF] HTTP POST /Reportes/GetHipismo responded 200 in 558.9351 ms
+2026-09-04 13:15:29.566 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Hipismo/ReporteCaballo. JSON: {"codigo":-2147467261,"mensaje":"Object reference not set to an instance of an object."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 13:15:29.573 -04:00 [INF] HTTP POST /Reportes/GetHipismo responded 200 in 132.0352 ms
+2026-09-04 13:15:41.874 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Hipismo/ReporteCaballo. JSON: {"codigo":-2147467261,"mensaje":"Object reference not set to an instance of an object."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 13:15:41.881 -04:00 [INF] HTTP POST /Reportes/GetHipismo responded 200 in 217.0098 ms
+2026-09-04 13:16:08.823 -04:00 [INF] HTTP POST /Reportes/GetHipismo responded 200 in 3130.6119 ms
+2026-09-04 13:18:31.739 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 13:18:32.464 -04:00 [INF] HTTP GET / responded 200 in 195.3736 ms
+2026-09-04 13:18:42.989 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 13:18:42.996 -04:00 [INF] HTTP POST / responded 302 in 790.6280 ms
+2026-09-04 13:18:43.100 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 97.0619 ms
+2026-09-04 13:18:44.089 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 787.3322 ms
+2026-09-04 13:18:48.100 -04:00 [INF] HTTP GET /Reportes/Loteria responded 200 in 19.1154 ms
+2026-09-04 13:18:48.718 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 518.0022 ms
+2026-09-04 13:18:55.700 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/Loterias. JSON: {"codigo":-2147467261,"mensaje":"Object reference not set to an instance of an object."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.LoteriasDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 13:18:55.718 -04:00 [INF] HTTP POST /Reportes/GetLoteria responded 200 in 555.1124 ms
+2026-09-04 13:19:08.179 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/Loterias. JSON: {"codigo":-2147467261,"mensaje":"Object reference not set to an instance of an object."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.LoteriasDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 13:19:08.187 -04:00 [INF] HTTP POST /Reportes/GetLoteria responded 200 in 207.8915 ms
+2026-09-04 13:19:20.133 -04:00 [INF] HTTP POST /Reportes/GetLoteria responded 200 in 4458.1505 ms
+2026-09-04 13:19:37.979 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 13:19:38.972 -04:00 [INF] HTTP GET / responded 200 in 194.0634 ms
+2026-09-04 13:19:49.452 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 13:19:49.459 -04:00 [INF] HTTP POST / responded 302 in 737.8676 ms
+2026-09-04 13:19:49.565 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 99.5731 ms
+2026-09-04 13:19:50.493 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 734.5982 ms
+2026-09-04 13:19:54.030 -04:00 [INF] HTTP GET /Reportes/LoteriaTriple responded 200 in 22.6391 ms
+2026-09-04 13:19:54.787 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 648.6150 ms
+2026-09-04 13:20:33.379 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/Triples. JSON: {"codigo":-2147467261,"mensaje":"Object reference not set to an instance of an object."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.LoteriasDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 13:20:33.392 -04:00 [INF] HTTP POST /Reportes/GetLoteriaTriple responded 200 in 443.1773 ms
+2026-09-04 13:20:50.385 -04:00 [INF] HTTP POST /Reportes/GetLoteriaTriple responded 200 in 11630.9074 ms
+2026-09-04 13:21:20.227 -04:00 [INF] HTTP POST /Reportes/GetLoteriaTriple responded 200 in 17001.7637 ms
+2026-09-04 13:21:25.832 -04:00 [INF] HTTP GET /Reportes/FantasyBsb responded 200 in 22.0822 ms
+2026-09-04 13:21:26.654 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 659.9590 ms
+2026-09-04 13:22:39.777 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 13:22:40.507 -04:00 [INF] HTTP GET / responded 200 in 209.3362 ms
+2026-09-04 13:22:50.406 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 13:22:50.412 -04:00 [INF] HTTP POST / responded 302 in 750.0845 ms
+2026-09-04 13:22:50.517 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 97.4849 ms
+2026-09-04 13:22:51.294 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 570.6080 ms
+2026-09-04 13:22:55.776 -04:00 [INF] HTTP GET /Reportes/FantasyBsb responded 200 in 25.4020 ms
+2026-09-04 13:22:56.565 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 678.6050 ms
+2026-09-04 13:23:28.721 -04:00 [INF] HTTP POST /Reportes/GetFantasyBsb responded 200 in 1010.9245 ms
+2026-09-04 13:23:34.612 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/FantasyBsb. JSON: {"codigo":-2147467261,"mensaje":"Object reference not set to an instance of an object."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.FantasyBsbDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 13:23:34.632 -04:00 [INF] HTTP POST /Reportes/GetFantasyBsb responded 200 in 161.3106 ms
+2026-09-04 13:23:39.932 -04:00 [INF] HTTP GET /Reportes/SaldosDisponibles responded 200 in 26.9638 ms
+2026-09-04 13:23:40.711 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 626.9233 ms
+2026-09-04 13:23:47.320 -04:00 [INF] HTTP POST /Reportes/GetSaldosDisponibles responded 200 in 5026.2400 ms
+2026-09-04 13:23:53.703 -04:00 [INF] HTTP POST /Reportes/GetSaldosDisponibles responded 200 in 264.2818 ms
+2026-09-04 13:24:02.774 -04:00 [INF] HTTP POST /Reportes/GetSaldosDisponibles responded 200 in 715.0157 ms
+2026-09-04 13:26:22.251 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 13:26:23.460 -04:00 [INF] HTTP GET / responded 200 in 199.7225 ms
+2026-09-04 13:26:31.520 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 13:26:31.529 -04:00 [INF] HTTP POST / responded 302 in 727.8694 ms
+2026-09-04 13:26:31.633 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 96.0259 ms
+2026-09-04 13:26:32.597 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 757.7879 ms
+2026-09-04 13:26:35.463 -04:00 [INF] HTTP GET /Reportes/SaldosDisponibles responded 200 in 26.8888 ms
+2026-09-04 13:26:36.210 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 632.0811 ms
+2026-09-04 13:26:38.181 -04:00 [INF] HTTP POST /Reportes/GetSaldosDisponibles responded 200 in 472.3724 ms
+2026-09-04 13:26:44.296 -04:00 [INF] HTTP POST /Reportes/GetSaldosDisponibles responded 200 in 766.3372 ms
+2026-09-04 13:26:54.215 -04:00 [INF] HTTP GET /Reportes/VerCierreTaquilla responded 200 in 27.5132 ms
+2026-09-04 13:26:54.987 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 647.0250 ms
+2026-09-04 13:26:55.537 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 518.2273 ms
+2026-09-04 13:26:58.304 -04:00 [INF] SOAP Licencias → GetCierreTaquilla agente=TODOS
+2026-09-04 13:27:00.457 -04:00 [ERR] Error SOAP Licencias GetCierreTaquilla
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetCierreTaquillaAsync(String agente, String agencia, String usuario, String fecha) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 850
+2026-09-04 13:27:00.640 -04:00 [ERR] HTTP POST /Reportes/GetCierreTaquilla responded 500 in 2352.1930 ms
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetCierreTaquillaAsync(String agente, String agencia, String usuario, String fecha) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 850
+   at ReportePrematch.Web.Controllers.ReportesController.GetCierreTaquilla(String agente, String agencia, String usuario, String fecha) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 595
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-09-04 13:27:00.651 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetCierreTaquillaAsync(String agente, String agencia, String usuario, String fecha) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 850
+   at ReportePrematch.Web.Controllers.ReportesController.GetCierreTaquilla(String agente, String agencia, String usuario, String fecha) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 595
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-09-04 17:16:19.599 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 17:16:20.966 -04:00 [INF] HTTP GET / responded 200 in 258.3246 ms
+2026-09-04 17:16:21.546 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 5.0353 ms
+2026-09-04 17:16:36.068 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 17:16:36.075 -04:00 [INF] HTTP POST / responded 302 in 1075.7937 ms
+2026-09-04 17:16:36.238 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 155.2174 ms
+2026-09-04 17:16:39.661 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 2834.2315 ms
+2026-09-04 17:16:42.319 -04:00 [INF] HTTP GET /Reportes/IconSlot responded 200 in 39.8998 ms
+2026-09-04 17:16:43.289 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 855.0267 ms
+2026-09-04 17:16:45.463 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/CasinoIconSlot. JSON: {"codigo":-2146233079,"mensaje":"ExecuteReader: CommandText property has not been initialized"}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 17:16:45.484 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 589.4504 ms
+2026-09-04 17:16:56.516 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/CasinoIconSlot. JSON: {"codigo":-2146233079,"mensaje":"ExecuteReader: CommandText property has not been initialized"}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 17:16:56.552 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 200.6737 ms
+2026-09-04 17:17:30.417 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 27260.0782 ms
+2026-09-04 17:21:38.944 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/CasinoIconSlot. JSON: {"codigo":-2146233079,"mensaje":"ExecuteReader: CommandText property has not been initialized"}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 17:21:38.949 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 631.7945 ms
+2026-09-04 17:21:42.728 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.2103 ms
+2026-09-04 17:21:50.428 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/CasinoIconSlot. JSON: {"codigo":-2146233079,"mensaje":"ExecuteReader: CommandText property has not been initialized"}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 17:21:50.435 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 247.9760 ms
+2026-09-04 17:37:02.917 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 17:37:04.389 -04:00 [INF] HTTP GET / responded 200 in 245.5813 ms
+2026-09-04 17:37:04.985 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 4.5744 ms
+2026-09-04 17:37:38.247 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 17:37:39.312 -04:00 [INF] HTTP GET / responded 200 in 211.1527 ms
+2026-09-04 17:37:39.887 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 3.8888 ms
+2026-09-04 17:37:52.969 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-1) para vlapenta
+2026-09-04 17:37:52.973 -04:00 [WRN] Login fallido para usuario vlapenta
+2026-09-04 17:37:52.979 -04:00 [INF] HTTP POST / responded 200 in 971.5401 ms
+2026-09-04 17:37:58.419 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-1) para vlapenta
+2026-09-04 17:37:58.422 -04:00 [WRN] Login fallido para usuario vlapenta
+2026-09-04 17:37:58.425 -04:00 [INF] HTTP POST / responded 200 in 265.1021 ms
+2026-09-04 17:38:13.079 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 17:38:13.083 -04:00 [INF] HTTP POST / responded 302 in 263.3845 ms
+2026-09-04 17:38:13.197 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 101.6308 ms
+2026-09-04 17:38:14.387 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 998.3352 ms
+2026-09-04 17:38:16.629 -04:00 [INF] HTTP GET /Reportes/IconSlot responded 200 in 17.2002 ms
+2026-09-04 17:38:17.403 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 656.2124 ms
+2026-09-04 17:38:19.426 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/CasinoIconSlot. JSON: {"codigo":-2146233079,"mensaje":"ExecuteReader: CommandText property has not been initialized"}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 17:38:19.461 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 566.6476 ms
+2026-09-04 17:38:27.082 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/CasinoIconSlot. JSON: {"codigo":-2146233079,"mensaje":"ExecuteReader: CommandText property has not been initialized"}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 17:38:27.088 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 145.6710 ms
+2026-09-04 17:40:31.939 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 17:40:33.093 -04:00 [INF] HTTP GET / responded 200 in 211.1898 ms
+2026-09-04 17:40:33.679 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 5.4580 ms
+2026-09-04 17:40:42.561 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 17:40:42.568 -04:00 [INF] HTTP POST / responded 302 in 924.6670 ms
+2026-09-04 17:40:42.666 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 91.5936 ms
+2026-09-04 17:40:43.920 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 971.3071 ms
+2026-09-04 17:40:52.963 -04:00 [INF] HTTP GET /Reportes/IconSlot responded 200 in 18.3551 ms
+2026-09-04 17:40:53.860 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 775.5480 ms
+2026-09-04 17:40:55.127 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/CasinoIconSlot. JSON: {"codigo":-2146233079,"mensaje":"ExecuteReader: CommandText property has not been initialized"}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 17:40:55.148 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 476.9983 ms
+2026-09-04 17:41:00.198 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/CasinoIconSlot. JSON: {"codigo":-2146233079,"mensaje":"ExecuteReader: CommandText property has not been initialized"}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 17:41:00.204 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 265.0706 ms
+2026-09-04 17:41:20.642 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.2126 ms
+2026-09-04 17:41:23.428 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/CasinoIconSlot. JSON: {"codigo":-2146233079,"mensaje":"ExecuteReader: CommandText property has not been initialized"}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 17:41:23.433 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 164.5608 ms
+2026-09-04 17:41:32.150 -04:00 [INF] HTTP GET /Reportes/GetIconSlot responded 405 in 0.5663 ms
+2026-09-04 17:42:06.623 -04:00 [INF] HTTP GET /Reportes/GetIconSlot responded 405 in 0.6156 ms
+2026-09-04 17:42:07.661 -04:00 [INF] HTTP GET /Reportes/GetIconSlot responded 405 in 0.1806 ms
+2026-09-04 17:42:15.725 -04:00 [INF] HTTP GET /Reportes/GetIconSlot responded 405 in 0.1547 ms
+2026-09-04 17:42:16.635 -04:00 [INF] HTTP GET /Reportes/GetIconSlot responded 405 in 0.2254 ms
+2026-09-04 17:43:23.563 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/CasinoIconSlot. JSON: {"codigo":-2146233079,"mensaje":"ExecuteReader: CommandText property has not been initialized"}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 17:43:23.568 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 404.1130 ms
+2026-09-04 17:47:19.899 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 17:47:20.607 -04:00 [INF] HTTP GET / responded 200 in 223.0309 ms
+2026-09-04 17:47:21.329 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 4.0456 ms
+2026-09-04 17:47:32.506 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 17:47:32.513 -04:00 [INF] HTTP POST / responded 302 in 994.3250 ms
+2026-09-04 17:47:32.616 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 95.8581 ms
+2026-09-04 17:47:33.686 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 855.7736 ms
+2026-09-04 17:47:36.249 -04:00 [INF] HTTP GET /Reportes/IconSlot responded 200 in 24.6859 ms
+2026-09-04 17:47:37.144 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 781.7847 ms
+2026-09-04 17:47:38.486 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/CasinoIconSlot. JSON: {"codigo":-2146233079,"mensaje":"ExecuteReader: CommandText property has not been initialized"}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 17:47:38.505 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 659.0958 ms
+2026-09-04 17:47:44.745 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/CasinoIconSlot. JSON: {"codigo":-2146233079,"mensaje":"ExecuteReader: CommandText property has not been initialized"}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 17:47:44.751 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 277.5022 ms
+2026-09-04 17:47:47.775 -04:00 [INF] HTTP GET /Reportes/VirtualesBR responded 200 in 16.6700 ms
+2026-09-04 17:47:49.605 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 1670.3492 ms
+2026-09-04 17:47:52.143 -04:00 [INF] HTTP POST /Reportes/GetVirtualesBR responded 200 in 1862.2964 ms
+2026-09-04 17:48:01.828 -04:00 [INF] HTTP POST /Reportes/GetVirtualesBR responded 200 in 2637.5840 ms
+2026-09-04 17:48:05.774 -04:00 [INF] HTTP GET /Reportes/Hipismo responded 200 in 15.6379 ms
+2026-09-04 17:48:06.695 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 803.6153 ms
+2026-09-04 17:48:07.793 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Hipismo/ReporteCaballo. JSON: {"codigo":-2147467261,"mensaje":"Object reference not set to an instance of an object."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 17:48:07.799 -04:00 [INF] HTTP POST /Reportes/GetHipismo responded 200 in 287.2641 ms
+2026-09-04 17:48:12.879 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Hipismo/ReporteCaballo. JSON: {"codigo":-2147467261,"mensaje":"Object reference not set to an instance of an object."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 17:48:12.886 -04:00 [INF] HTTP POST /Reportes/GetHipismo responded 200 in 268.1270 ms
+2026-09-04 17:48:21.505 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Hipismo/ReporteCaballo. JSON: {"codigo":-2147467261,"mensaje":"Object reference not set to an instance of an object."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-09-04 17:48:21.510 -04:00 [INF] HTTP POST /Reportes/GetHipismo responded 200 in 260.2983 ms
+2026-09-04 17:48:28.532 -04:00 [INF] HTTP POST /Reportes/GetHipismo responded 200 in 1559.7322 ms
+2026-09-04 17:50:57.002 -04:00 [INF] HTTP GET /Reportes/Hipismo responded 200 in 7383.6575 ms
+2026-09-04 17:50:58.701 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 783.0116 ms
+2026-09-04 17:50:58.764 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 0.3150 ms
+2026-09-04 17:51:02.786 -04:00 [INF] HTTP POST /Reportes/GetHipismo responded 200 in 2530.3309 ms
+2026-09-04 17:51:07.006 -04:00 [INF] HTTP POST /Reportes/GetDetallesHipismo responded 200 in 426.5094 ms
+2026-09-04 17:51:16.389 -04:00 [INF] HTTP POST /Reportes/GetHipismo responded 200 in 2791.0471 ms
+2026-09-04 17:51:26.336 -04:00 [INF] HTTP POST /Reportes/GetHipismo responded 200 in 1399.1283 ms
+2026-09-04 17:51:33.506 -04:00 [INF] HTTP POST /Reportes/GetHipismo responded 200 in 2219.5116 ms
+2026-09-04 17:51:38.052 -04:00 [INF] HTTP GET /Reportes/Loteria responded 200 in 301.5298 ms
+2026-09-04 17:51:39.024 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 751.4024 ms
+2026-09-04 17:51:44.343 -04:00 [INF] HTTP POST /Reportes/GetLoteria responded 200 in 2465.9251 ms
+2026-09-04 17:51:49.583 -04:00 [INF] HTTP GET /Reportes/LoteriaTriple responded 200 in 348.2212 ms
+2026-09-04 17:51:50.466 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 776.9176 ms
+2026-09-04 17:51:53.757 -04:00 [INF] HTTP GET /Reportes/Loteria responded 200 in 2.1108 ms
+2026-09-04 17:51:54.866 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 821.1137 ms
+2026-09-04 17:51:57.825 -04:00 [INF] HTTP POST /Reportes/GetLoteria responded 200 in 2332.5082 ms
+2026-09-04 17:52:07.153 -04:00 [INF] HTTP POST /Reportes/GetLoteria responded 200 in 2313.6304 ms
+2026-09-04 17:52:11.282 -04:00 [INF] HTTP GET /Reportes/LoteriaTriple responded 200 in 1.1103 ms
+2026-09-04 17:52:12.225 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 668.1860 ms
+2026-09-04 17:52:19.969 -04:00 [INF] HTTP POST /Reportes/GetLoteriaTriple responded 200 in 5992.2048 ms
+2026-09-04 17:52:34.056 -04:00 [INF] HTTP POST /Reportes/GetLoteriaTriple responded 200 in 6156.9742 ms
+2026-09-04 17:52:47.376 -04:00 [INF] HTTP POST /Reportes/GetLoteriaTriple responded 200 in 6646.7344 ms
+2026-09-04 17:52:58.765 -04:00 [INF] HTTP POST /Reportes/GetLoteriaTriple responded 200 in 7649.1244 ms
+2026-09-04 17:53:22.812 -04:00 [INF] HTTP POST /Reportes/GetLoteriaTriple responded 200 in 11139.5024 ms
+2026-09-04 17:53:27.531 -04:00 [INF] HTTP GET /Reportes/FantasyBsb responded 200 in 99.7531 ms
+2026-09-04 17:53:28.388 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 734.6869 ms
+2026-09-04 17:53:35.322 -04:00 [INF] HTTP POST /Reportes/GetFantasyBsb responded 200 in 318.6076 ms
+2026-09-04 17:53:43.411 -04:00 [INF] HTTP POST /Reportes/GetFantasyBsb responded 200 in 297.9477 ms
+2026-09-04 17:53:50.548 -04:00 [INF] HTTP POST /Reportes/GetFantasyBsb responded 200 in 195.1789 ms
+2026-09-04 17:53:59.126 -04:00 [INF] HTTP POST /Reportes/GetFantasyBsb responded 200 in 280.3743 ms
+2026-09-04 17:54:05.732 -04:00 [INF] HTTP POST /Reportes/GetFantasyBsb responded 200 in 316.7393 ms
+2026-09-04 17:54:15.123 -04:00 [INF] HTTP POST /Reportes/GetFantasyBsb responded 200 in 473.5192 ms
+2026-09-04 17:54:23.654 -04:00 [INF] HTTP POST /Reportes/GetFantasyBsb responded 200 in 1334.9134 ms
+2026-09-04 17:56:38.818 -04:00 [INF] HTTP GET /Reportes/FantasyBsb responded 200 in 4.9309 ms
+2026-09-04 17:56:40.266 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 744.5379 ms
+2026-09-04 17:56:40.416 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 0.0961 ms
+2026-09-04 17:56:54.220 -04:00 [INF] HTTP POST /Reportes/GetFantasyBsb responded 200 in 1762.7382 ms
+2026-09-04 17:58:53.738 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 17:58:54.507 -04:00 [INF] HTTP GET / responded 200 in 232.9408 ms
+2026-09-04 17:59:04.379 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-1) para vlapenta
+2026-09-04 17:59:04.383 -04:00 [WRN] Login fallido para usuario vlapenta
+2026-09-04 17:59:04.391 -04:00 [INF] HTTP POST / responded 200 in 988.7904 ms
+2026-09-04 17:59:09.424 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-1) para vlapenta
+2026-09-04 17:59:09.425 -04:00 [WRN] Login fallido para usuario vlapenta
+2026-09-04 17:59:09.428 -04:00 [INF] HTTP POST / responded 200 in 262.5204 ms
+2026-09-04 17:59:17.303 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-1) para vlapenta
+2026-09-04 17:59:17.304 -04:00 [WRN] Login fallido para usuario vlapenta
+2026-09-04 17:59:17.306 -04:00 [INF] HTTP POST / responded 200 in 253.3691 ms
+2026-09-04 17:59:24.207 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 17:59:24.210 -04:00 [INF] HTTP POST / responded 302 in 207.6469 ms
+2026-09-04 17:59:24.307 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 92.4303 ms
+2026-09-04 17:59:25.411 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 891.0337 ms
+2026-09-04 17:59:28.697 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 1889.4449 ms
+2026-09-04 17:59:42.416 -04:00 [INF] HTTP GET /Reportes/IconSlot responded 200 in 23.1925 ms
+2026-09-04 17:59:43.316 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 668.9101 ms
+2026-09-04 17:59:50.934 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 802.8455 ms
+2026-09-04 18:03:03.271 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 18:03:04.200 -04:00 [INF] HTTP GET / responded 200 in 205.7925 ms
+2026-09-04 18:03:15.915 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 18:03:15.923 -04:00 [INF] HTTP POST / responded 302 in 909.8380 ms
+2026-09-04 18:03:16.025 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 96.4135 ms
+2026-09-04 18:03:17.139 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 907.0123 ms
+2026-09-04 18:10:10.975 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 18:10:12.383 -04:00 [INF] HTTP GET / responded 200 in 268.9961 ms
+2026-09-04 18:10:37.615 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 18:10:37.622 -04:00 [INF] HTTP POST / responded 302 in 1084.7531 ms
+2026-09-04 18:10:37.733 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 102.7711 ms
+2026-09-04 18:10:40.214 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 1692.8546 ms
+2026-09-04 18:10:43.091 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 1808.7685 ms
+2026-09-04 18:15:29.310 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 18:15:30.973 -04:00 [INF] HTTP GET / responded 200 in 305.2091 ms
+2026-09-04 18:15:45.387 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 18:15:45.394 -04:00 [INF] HTTP POST / responded 302 in 1089.3639 ms
+2026-09-04 18:15:45.508 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 106.8613 ms
+2026-09-04 18:15:47.928 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 1798.1889 ms
+2026-09-04 18:15:51.812 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 2952.3885 ms
+2026-09-04 18:19:27.223 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-04 18:19:28.823 -04:00 [INF] HTTP GET / responded 200 in 234.3798 ms
+2026-09-04 18:19:47.797 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-04 18:19:47.804 -04:00 [INF] HTTP POST / responded 302 in 919.8441 ms
+2026-09-04 18:19:47.905 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 94.2581 ms
+2026-09-04 18:19:49.981 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 1827.1842 ms
+2026-09-04 18:20:22.861 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 5241.7154 ms

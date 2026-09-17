@@ -85,7 +85,7 @@
 
             <!-- Menú Casino -->
             <div class="nav-dropdown">
-                <button class="nav-module @(IsActive("Casino", "IconBet", "IconSlot", "Poker", "Pragmatic", "Virtuales", "Aviatrix", "Casino7777", "Endorphine", "InOutGaming", "Odyseus", "VIG"))">
+                <button class="nav-module @(IsActive("Casino", "IconBet", "IconSlot", "Poker", "Pragmatic", "Virtuales", "Aviatrix", "Casino7777", "Endorphine", "InOutGaming", "Odyseus", "VIG", "KingMidas"))">
                     <i class="ti ti-poker-chip"></i><span>Casino</span>
                 </button>
                 <div class="nav-dropdown-menu">
@@ -102,8 +102,9 @@
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="Casino7777"><i class="ti ti-number-7"></i> Casino 7777</a>
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="Endorphine"><i class="ti ti-flower"></i> Endorphine</a>
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="InOutGaming"><i class="ti ti-arrows-exchange"></i> InOutGaming</a>
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="Odyseus"><i class="ti ti-ship"></i> Odiseus</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="Odyseus"><i class="ti ti-ship"></i> Odysseus</a>
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VIG"><i class="ti ti-chart-bar"></i> VIG</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="KingMidas"><i class="ti ti-crown"></i> KingMidas</a>
                 </div>
             </div>
 
@@ -190,8 +191,9 @@
         <a class="mob-nav-item" asp-controller="Reportes" asp-action="Casino7777"><i class="ti ti-number-7"></i> Casino 7777</a>
         <a class="mob-nav-item" asp-controller="Reportes" asp-action="Endorphine"><i class="ti ti-flower"></i> Endorphine</a>
         <a class="mob-nav-item" asp-controller="Reportes" asp-action="InOutGaming"><i class="ti ti-arrows-exchange"></i> InOutGaming</a>
-        <a class="mob-nav-item" asp-controller="Reportes" asp-action="Odyseus"><i class="ti ti-ship"></i> Odiseus</a>
+        <a class="mob-nav-item" asp-controller="Reportes" asp-action="Odyseus"><i class="ti ti-ship"></i> Odysseus</a>
         <a class="mob-nav-item" asp-controller="Reportes" asp-action="VIG"><i class="ti ti-chart-bar"></i> VIG</a>
+        <a class="mob-nav-item" asp-controller="Reportes" asp-action="KingMidas"><i class="ti ti-crown"></i> KingMidas</a>
 
         <div class="mob-nav-section-label">Otros</div>
         <a class="mob-nav-item" asp-controller="Reportes" asp-action="Hipismo"><i class="ti ti-horse"></i> Hipismo</a>
@@ -239,6 +241,26 @@
     <script src="~/js/busy.js" asp-append-version="true"></script>
     <!-- Tom Select -->
     <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+
+    <!-- Parche global: fuerza dropdownParent:'body' en TODAS las instancias de TomSelect
+         para que el dropdown escape el backdrop-filter de los contenedores glass -->
+    <script>
+    (function () {
+        var _Orig = TomSelect;
+        class TomSelectFixed extends _Orig {
+            constructor(el, opts) {
+                super(el, Object.assign({ dropdownParent: 'body' }, opts || {}));
+            }
+        }
+        window.TomSelect = TomSelectFixed;
+    })();
+    </script>
+
+    <!-- Exportación Excel + PDF (global) -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+    <script src="~/js/export-helpers.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 

@@ -1293,14 +1293,15 @@ div.dataTables_wrapper .dataTables_length select {
 .ts-wrapper.single.dropdown-active .ts-control:after {
     border-color: transparent transparent rgba(255,255,255,0.6) !important;
 }
-/* Dropdown panel */
+/* Dropdown panel — renderizado en <body> via dropdownParent:'body' (escapa backdrop-filter) */
 .ts-dropdown {
-    background: var(--sa-2) !important;
-    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    background: #001f42 !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
     border-radius: 10px !important;
     color: #fff !important;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.4) !important;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.75) !important;
     margin-top: 4px !important;
+    z-index: 9999 !important;
 }
 /* Caja de búsqueda dentro del dropdown */
 .ts-dropdown .ts-dropdown-search-field input {

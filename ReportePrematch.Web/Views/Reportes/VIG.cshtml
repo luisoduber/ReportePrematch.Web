@@ -3,17 +3,26 @@
 }
 
 <style>
-    .quick-metrics-bar { display:flex; gap:.5rem; flex-wrap:wrap; }
-    .metric-card { flex:1; min-width:120px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:.5rem .75rem; text-align:center; }
-    @@media (max-width:768px) { .metric-card { min-width:80px; flex:1 1 80px; padding:.45rem .55rem; } }
-    @@media (max-width:430px) { .metric-card { min-width:68px; flex:1 1 68px; padding:.38rem .45rem; } .metric-value { font-size:.88rem; } }
-    .metric-label { font-size:.65rem; color:rgba(255,255,255,0.5); letter-spacing:.5px; text-transform:uppercase; margin-bottom:.25rem; }
-    .metric-value { font-size:1.05rem; font-weight:700; }
-    .metric-blue   { color:#48CAE4; }
-    .metric-red    { color:#f87171; }
-    .metric-green  { color:#4ade80; }
-    .metric-yellow { color:#facc15; }
-    #tblVIG td, #tblVIG th { text-align: center !important; }
+.agent-block { margin-bottom: 2rem; }
+.agent-block-header {
+    display: flex; align-items: center; gap: .6rem;
+    font-size: 1rem; font-weight: 700; letter-spacing: .04em;
+    color: #48CAE4; margin-bottom: .6rem;
+    padding-bottom: .35rem;
+    border-bottom: 1px solid rgba(72,202,228,.25);
+}
+.agent-block-header i { font-size: 1.1rem; }
+
+.quick-metrics-bar { display:flex; gap:.5rem; flex-wrap:wrap; }
+.metric-card { flex:1; min-width:110px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:.5rem .75rem; text-align:center; }
+@@media (max-width:768px) { .metric-card { min-width:80px; flex:1 1 80px; padding:.45rem .55rem; } }
+@@media (max-width:430px) { .metric-card { min-width:68px; flex:1 1 68px; padding:.38rem .45rem; } .metric-value { font-size:.88rem; } }
+.metric-label { font-size:.62rem; color:rgba(255,255,255,0.5); letter-spacing:.5px; text-transform:uppercase; margin-bottom:.25rem; }
+.metric-value { font-size:1rem; font-weight:700; }
+.metric-blue   { color:#48CAE4; }
+.metric-red    { color:#f87171; }
+.metric-green  { color:#4ade80; }
+.metric-yellow { color:#facc15; }
 </style>
 
 <section class="glass-card">
@@ -27,7 +36,6 @@
         </button>
     </div>
 
-    <!-- Filtros -->
     <div class="glass-panel mt-3 p-3">
         <div class="row g-2 align-items-end">
             <div class="col-md-3">
@@ -59,73 +67,173 @@
         </div>
     </div>
 
-    <!-- Cards métricas -->
-    <div id="metricsBar" class="quick-metrics-bar mt-3" style="display:none;">
-        <div class="metric-card"><div class="metric-label">Total Riesgo</div><div class="metric-value metric-blue"   id="metRiesgo">—</div></div>
-        <div class="metric-card"><div class="metric-label">Total Premios</div><div class="metric-value metric-red"    id="metPremios">—</div></div>
-        <div class="metric-card"><div class="metric-label">Total Reversos</div><div class="metric-value metric-yellow" id="metReversos">—</div></div>
-        <div class="metric-card"><div class="metric-label">GGR</div><div class="metric-value metric-green"  id="metGGR">—</div></div>
-        <div class="metric-card"><div class="metric-label">RTP General %</div><div class="metric-value metric-yellow" id="metRTPGeneral">—</div></div>
-        <div class="metric-card"><div class="metric-label">Apuestas</div><div class="metric-value metric-blue"   id="metApuestas">—</div></div>
-        <div class="metric-card"><div class="metric-label">Premios (cant.)</div><div class="metric-value metric-blue"   id="metCantPremios">—</div></div>
-        <div class="metric-card"><div class="metric-label">Reversos (cant.)</div><div class="metric-value metric-blue"   id="metCantReversos">—</div></div>
+
+    <!-- Barra exportacion -->
+    <div id="exportBar" class="mt-3 d-none d-flex gap-2 flex-wrap">
+        <button class="btn-glass btn-primary" onclick="exportExcel()">
+            <i class="ti ti-file-spreadsheet"></i> Excel completo
+        </button>
+        <button class="btn-glass" style="border-color:rgba(255,100,100,.5);color:#f87171;" onclick="exportPDF()">
+            <i class="ti ti-file-type-pdf"></i> PDF por agente
+        </button>
     </div>
 
-    <!-- Tabla -->
-    <div class="table-responsive mt-3">
-        <table id="@ViewBag.TableId" class="glass-table w-100">
-            <thead>
-                <tr>
-                    <th style="text-align:center;">Agente</th>
-                    <th style="text-align:center;">Usuario</th>
-                    <th style="text-align:center;">Riesgo</th>
-                    <th style="text-align:center;">Premios</th>
-                    <th style="text-align:center;">Reversos</th>
-                    <th style="text-align:center;">GGR</th>
-                    <th style="text-align:center;">RTP General %</th>
-                    <th style="text-align:center;">RTP Agente %</th>
-                    <th style="text-align:center;">RTP Usuario %</th>
-                    <th style="text-align:center;">Apuestas</th>
-                    <th style="text-align:center;">Cant. Premios</th>
-                    <th style="text-align:center;">Cant. Reversos</th>
-                    <th style="text-align:center;">Total Tx</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-            <tfoot>
-                <tr>
-                    <th colspan="2" style="text-align:center;">TOTAL</th>
-                    <th id="totRiesgo"      style="text-align:center;"></th>
-                    <th id="totPremios"     style="text-align:center;"></th>
-                    <th id="totReversos"    style="text-align:center;"></th>
-                    <th id="totGGR"         style="text-align:center;"></th>
-                    <th id="totRTPGen"      style="text-align:center;"></th>
-                    <th id="totRTPAg"       style="text-align:center;"></th>
-                    <th id="totRTPUsr"      style="text-align:center;"></th>
-                    <th id="totApuestas"    style="text-align:center;"></th>
-                    <th id="totCantPremios" style="text-align:center;"></th>
-                    <th id="totCantRev"     style="text-align:center;"></th>
-                    <th id="totTx"          style="text-align:center;"></th>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
+    <!-- Bloques por agente -->
+    <div id="agentBlocks" class="mt-3"></div>
 </section>
 
 @section Scripts {
 <script>
-const tableId       = '#@ViewBag.TableId';
 const esAdmin       = '@ViewBag.TipoUsuario' !== 'Usuario Regular';
 const agenteSession = '@ViewBag.Agente';
-let dt;
+let lastData = [];
+let dtInstances = [];
 
 function fmt(v)    { return parseFloat(v || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
 function fmtPct(v) { return parseFloat(v || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' %'; }
+function fmtN(v)   { return (v || 0).toLocaleString('es-VE'); }
+function rtpField(r, base) {
+    return r[base] || r[base.replace('rTP_','rtP_')] || r[base.replace('rTP_','rtp_')] || 0;
+}
+function card(label, value, cls) {
+    return '<div class="metric-card">'
+        + '<div class="metric-label">' + label + '</div>'
+        + '<div class="metric-value ' + cls + '">' + value + '</div>'
+        + '</div>';
+}
 
+function limpiarBloques() {
+    dtInstances.forEach(function(dt){ try { dt.destroy(); } catch(e){} });
+    dtInstances = [];
+    document.getElementById('agentBlocks').innerHTML = '';
+    lastData = []; document.getElementById('exportBar').classList.add('d-none');
+}
+
+/* ── render bloque por agente ─────────────────────────────────────────── */
+function renderBloqueAgente(agente, rows, idx) {
+    var totR = 0, totP = 0, totRev = 0, totG = 0;
+    var totAp = 0, totCP = 0, totCR = 0, totTx = 0;
+
+    rows.forEach(function(r) {
+        totR   += (r.riesgo   || 0);
+        totP   += (r.premios  || 0);
+        totRev += (r.reversos || 0);
+        totG   += (r.gGR || r.ggr || r.GGR || 0);
+        totAp  += (r.cantApuestas        || 0);
+        totCP  += (r.cantPremios          || 0);
+        totCR  += (r.cantReversos         || 0);
+        totTx  += (r.totalTransacciones   || 0);
+    });
+
+    // RTP General is a global value from the API, take from first row
+    var rtpGen = rtpField(rows[0], 'rTP_General');
+    // RTP Usuario calculated from block totals
+    var rtpUsr = totR > 0 ? (totP / totR * 100) : 0;
+
+    var tableId = 'tblVIG_' + idx;
+    var block = document.createElement('div');
+    block.className = 'agent-block';
+    block.innerHTML =
+        '<div class="agent-block-header"><i class="ti ti-user"></i>' + agente + '</div>' +
+        '<div class="quick-metrics-bar mb-2">' +
+            card('Total Riesgo',   fmt(totR),       'metric-blue')   +
+            card('Total Premios',  fmt(totP),        'metric-red')    +
+            card('Total Reversos', fmt(totRev),      'metric-yellow') +
+            card('GGR',            fmt(totG),        totG >= 0 ? 'metric-green' : 'metric-red') +
+            card('RTP General %',  fmtPct(rtpGen),   'metric-yellow') +
+            card('Apuestas',       fmtN(totAp),      'metric-blue')   +
+            card('Premios (cant.)',fmtN(totCP),      'metric-blue')   +
+            card('Reversos (cant.)',fmtN(totCR),     'metric-blue')   +
+        '</div>' +
+        '<div class="table-responsive">' +
+        '<table id="' + tableId + '" class="glass-table w-100">' +
+        '<thead><tr>' +
+            '<th class="text-center">Usuario</th>' +
+            '<th class="text-center">Riesgo</th>' +
+            '<th class="text-center">Premios</th>' +
+            '<th class="text-center">Reversos</th>' +
+            '<th class="text-center">GGR</th>' +
+            '<th class="text-center">RTP General %</th>' +
+            '<th class="text-center">RTP Agente %</th>' +
+            '<th class="text-center">RTP Usuario %</th>' +
+            '<th class="text-center">Apuestas</th>' +
+            '<th class="text-center">Cant. Premios</th>' +
+            '<th class="text-center">Cant. Reversos</th>' +
+            '<th class="text-center">Total Tx</th>' +
+        '</tr></thead><tbody></tbody>' +
+        '<tfoot><tr>' +
+            '<th class="text-center">TOTAL</th>' +
+            '<th class="text-center">' + fmt(totR)         + '</th>' +
+            '<th class="text-center">' + fmt(totP)         + '</th>' +
+            '<th class="text-center">' + fmt(totRev)       + '</th>' +
+            '<th style="text-align:center;color:' + (totG >= 0 ? 'var(--av-5,#7FCA8A)' : '#FC8181') + ';font-weight:600;">' + fmt(totG) + '</th>' +
+            '<th class="text-center">' + fmtPct(rtpGen)    + '</th>' +
+            '<th class="text-center">—</th>' +
+            '<th class="text-center">' + fmtPct(rtpUsr)    + '</th>' +
+            '<th class="text-center">' + fmtN(totAp)       + '</th>' +
+            '<th class="text-center">' + fmtN(totCP)       + '</th>' +
+            '<th class="text-center">' + fmtN(totCR)       + '</th>' +
+            '<th class="text-center">' + fmtN(totTx)       + '</th>' +
+        '</tr></tfoot>' +
+        '</table></div>';
+
+    document.getElementById('agentBlocks').appendChild(block);
+
+    var dt = $('#' + tableId).DataTable({
+        data: rows,
+        pageLength: 25,
+        order: [[4, 'desc']],
+        language: {
+            decimal: ',', thousands: '.',
+            search: 'Buscar:', lengthMenu: 'Mostrar _MENU_ registros',
+            info: 'Mostrando _START_ a _END_ de _TOTAL_ registros',
+            infoEmpty: 'Sin registros', infoFiltered: '(filtrado de _MAX_ total)',
+            zeroRecords: 'No se encontraron registros',
+            paginate: { first: '«', previous: '‹', next: '›', last: '»' }
+        },
+        columns: [
+            { data: 'userName',            className: 'text-center', render: function(d){ return d ? d.toUpperCase() : '—'; } },
+            { data: 'riesgo',              defaultContent: '—', className: 'text-center col-monto-pos',
+              render: function(d){ return fmt(d); } },
+            { data: 'premios',             defaultContent: '—', className: 'text-center col-monto-neg',
+              render: function(d){ return fmt(d); } },
+            { data: 'reversos',            defaultContent: '—', className: 'text-center col-monto-neg',
+              render: function(d){ return fmt(d); } },
+            { data: null, className: 'text-center',
+              render: function(r){ return fmt(r.gGR || r.ggr || r.GGR || 0); },
+              createdCell: function(td, _d, r) {
+                  var v = r.gGR || r.ggr || r.GGR || 0;
+                  $(td).addClass(v < 0 ? 'col-monto-neg' : 'col-monto-pos');
+              }},
+            { data: null, className: 'text-center',
+              render: function(r){ return fmtPct(rtpField(r, 'rTP_General')); } },
+            { data: null, className: 'text-center',
+              render: function(r){ return fmtPct(rtpField(r, 'rTP_Agente')); } },
+            { data: null, className: 'text-center',
+              render: function(r){ return fmtPct(rtpField(r, 'rTP_Usuario')); } },
+            { data: 'cantApuestas',       defaultContent: '—', className: 'text-center',
+              render: function(d){ return fmtN(d); } },
+            { data: 'cantPremios',         defaultContent: '—', className: 'text-center',
+              render: function(d){ return fmtN(d); } },
+            { data: 'cantReversos',        defaultContent: '—', className: 'text-center',
+              render: function(d){ return fmtN(d); } },
+            { data: 'totalTransacciones',  defaultContent: '—', className: 'text-center',
+              render: function(d){ return fmtN(d); } }
+        ],
+        columnDefs: [{ targets: '_all', className: 'dt-center' }],
+        dom: 'Bfrtip',
+        buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel',
+            className: 'btn-glass btn-primary btn-sm', title: agente }]
+    });
+
+    dtInstances.push(dt);
+}
+
+/* ── agentes ──────────────────────────────────────────────────────────── */
 function cargarAgentes() {
     if (!esAdmin) return;
     $.post('@Url.Action("GetListAgenciasApi","Reportes")')
-        .done(function (lista) {
+        .done(function(lista) {
             const sel = document.getElementById('agente');
             if (!sel) return;
             if (sel.tomselect) sel.tomselect.destroy();
@@ -133,7 +241,7 @@ function cargarAgentes() {
             const optTodos = document.createElement('option');
             optTodos.value = ''; optTodos.textContent = 'TODOS';
             sel.appendChild(optTodos);
-            (lista || []).forEach(function (a) {
+            (lista || []).forEach(function(a) {
                 const opt = document.createElement('option');
                 opt.value = a; opt.textContent = a;
                 sel.appendChild(opt);
@@ -141,139 +249,76 @@ function cargarAgentes() {
             new TomSelect(sel, { maxOptions: 2000, create: false, allowEmptyOption: true, placeholder: 'Buscar agente...', searchField: ['text'] });
             if (agenteSession) sel.tomselect.setValue(agenteSession, true);
         })
-        .fail(function (xhr) {
-            Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar agentes (HTTP ' + xhr.status + ').', background: '#002E5C', color: '#fff' });
+        .fail(function(xhr) {
+            Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar la lista de agentes (HTTP ' + xhr.status + ').', background: '#002E5C', color: '#fff' });
         });
 }
 
-function limpiarTotales() {
-    ['totRiesgo','totPremios','totReversos','totGGR','totRTPGen','totRTPAg','totRTPUsr',
-     'totApuestas','totCantPremios','totCantRev','totTx'].forEach(function(id) {
-        document.getElementById(id).textContent = '';
-    });
-    document.getElementById('metricsBar').style.display = 'none';
-}
-
+/* ── carga principal ──────────────────────────────────────────────────── */
 function cargarReporte() {
     const fechaD   = document.getElementById('fechaD').value;
     const fechaH   = document.getElementById('fechaH').value;
     const agenteEl = document.getElementById('agente');
-    const agente   = agenteEl ? (agenteEl.tomselect ? agenteEl.tomselect.getValue() : agenteEl.value) : agenteSession;
+    const agente   = (agenteEl ? (agenteEl.tomselect ? agenteEl.tomselect.getValue() : agenteEl.value) : agenteSession) || 'TODOS';
 
     if (!fechaD || !fechaH) {
         Swal.fire({ icon: 'warning', title: 'Fechas requeridas', background: '#002E5C', color: '#fff' });
         return;
     }
 
-    if (dt) { dt.destroy(); dt = null; }
-    $(tableId + ' tbody').empty();
-    limpiarTotales();
+    limpiarBloques();
     showBusy('Consultando VIG...');
 
     $.post('@Url.Action("GetVIG","Reportes")', { fechaD, fechaH, agente })
-        .done(function (data) {
+        .done(function(data) {
             hideBusy();
             if (!data || !data.length) {
                 Swal.fire({ icon: 'info', title: 'Sin datos', text: 'No se encontraron registros.', background: '#002E5C', color: '#fff' });
                 return;
             }
 
-            var totR = 0, totP = 0, totRev = 0, totG = 0;
-            var totAp = 0, totCP = 0, totCR = 0, totTx = 0;
-
-            data.forEach(function (r) {
-                totR   += (r.riesgo   || 0);
-                totP   += (r.premios  || 0);
-                totRev += (r.reversos || 0);
-                totG   += (r.gGR || r.ggr || r.GGR || 0);
-                totAp  += (r.cantApuestas  || 0);
-                totCP  += (r.cantPremios   || 0);
-                totCR  += (r.cantReversos  || 0);
-                totTx  += (r.totalTransacciones || 0);
+            var grupos = {}, orden = [];
+            data.forEach(function(r) {
+                var ag = r.agente || '(Sin Agente)';
+                if (!grupos[ag]) { grupos[ag] = []; orden.push(ag); }
+                grupos[ag].push(r);
             });
 
-            // RTP General — igual para todas las filas, tomamos del primero
-            var rtpGen  = data[0].rTP_General || data[0].rtP_General || data[0].rtp_General || 0;
-
-            // Cards
-            document.getElementById('metRiesgo').textContent     = fmt(totR);
-            document.getElementById('metPremios').textContent    = fmt(totP);
-            document.getElementById('metReversos').textContent   = fmt(totRev);
-            var elGGR = document.getElementById('metGGR');
-            elGGR.textContent = fmt(totG);
-            elGGR.className   = 'metric-value ' + (totG >= 0 ? 'metric-green' : 'metric-red');
-            document.getElementById('metRTPGeneral').textContent   = fmtPct(rtpGen);
-            document.getElementById('metApuestas').textContent     = totAp.toLocaleString('es-VE');
-            document.getElementById('metCantPremios').textContent  = totCP.toLocaleString('es-VE');
-            document.getElementById('metCantReversos').textContent = totCR.toLocaleString('es-VE');
-            document.getElementById('metricsBar').style.display = 'flex';
-
-            // RTP global calculado
-            var rtpGlobal = totR > 0 ? (totP / totR * 100) : 0;
-
-            dt = $(tableId).DataTable({
-                data: data,
-                destroy: true,
-                pageLength: 25,
-                order: [[5, 'desc']],
-                language: {
-                    decimal: ',', thousands: '.',
-                    search: 'Buscar:', lengthMenu: 'Mostrar _MENU_ registros',
-                    info: 'Mostrando _START_ a _END_ de _TOTAL_ registros',
-                    infoEmpty: 'Sin registros', infoFiltered: '(filtrado de _MAX_ total)',
-                    zeroRecords: 'No se encontraron registros',
-                    paginate: { first: '«', previous: '‹', next: '›', last: '»' }
-                },
-                columns: [
-                    { data: 'agente',   className: 'dt-center' },
-                    { data: 'userName', className: 'dt-center' },
-                    { data: 'riesgo',   className: 'dt-center col-monto-pos', render: function(d){ return fmt(d); } },
-                    { data: 'premios',  className: 'dt-center col-monto-neg', render: function(d){ return fmt(d); } },
-                    { data: 'reversos', className: 'dt-center col-monto-neg', render: function(d){ return fmt(d); } },
-                    { data: null, className: 'dt-center',
-                      render: function(d){ return fmt(d.gGR || d.ggr || d.GGR || 0); },
-                      createdCell: function(td, d) {
-                          var v = d.gGR || d.ggr || d.GGR || 0;
-                          $(td).addClass(v < 0 ? 'col-monto-neg' : 'col-monto-pos');
-                      }
-                    },
-                    { data: null, className: 'dt-center', render: function(d){ return fmtPct(d.rTP_General || d.rtP_General || d.rtp_General || 0); } },
-                    { data: null, className: 'dt-center', render: function(d){ return fmtPct(d.rTP_Agente  || d.rtP_Agente  || d.rtp_Agente  || 0); } },
-                    { data: null, className: 'dt-center', render: function(d){ return fmtPct(d.rTP_Usuario || d.rtP_Usuario || d.rtp_Usuario || 0); } },
-                    { data: 'cantApuestas',      className: 'dt-center', render: function(d){ return (d||0).toLocaleString('es-VE'); } },
-                    { data: 'cantPremios',        className: 'dt-center', render: function(d){ return (d||0).toLocaleString('es-VE'); } },
-                    { data: 'cantReversos',       className: 'dt-center', render: function(d){ return (d||0).toLocaleString('es-VE'); } },
-                    { data: 'totalTransacciones', className: 'dt-center', render: function(d){ return (d||0).toLocaleString('es-VE'); } }
-                ],
-                columnDefs: [{ targets: '_all', className: 'dt-center' }],
-                buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm',
-                    customize: function(xlsx) {
-                        // IdAgente se excluye del DataTable pero puede incluirse en Excel si se desea
-                    }
-                }],
-                dom: 'Bfrtip'
-            });
-
-            // Tfoot
-            document.getElementById('totRiesgo').textContent      = fmt(totR);
-            document.getElementById('totPremios').textContent     = fmt(totP);
-            document.getElementById('totReversos').textContent    = fmt(totRev);
-            document.getElementById('totGGR').textContent         = fmt(totG);
-            document.getElementById('totRTPGen').textContent      = fmtPct(rtpGen);
-            document.getElementById('totRTPAg').textContent       = '—';
-            document.getElementById('totRTPUsr').textContent      = fmtPct(rtpGlobal);
-            document.getElementById('totApuestas').textContent    = totAp.toLocaleString('es-VE');
-            document.getElementById('totCantPremios').textContent = totCP.toLocaleString('es-VE');
-            document.getElementById('totCantRev').textContent     = totCR.toLocaleString('es-VE');
-            document.getElementById('totTx').textContent          = totTx.toLocaleString('es-VE');
+            orden.forEach(function(ag, idx) { renderBloqueAgente(ag, grupos[ag], idx); });
+            lastData = data; document.getElementById('exportBar').classList.remove('d-none');
         })
-        .fail(function (xhr) {
+        .fail(function(xhr) {
             hideBusy();
             Swal.fire({ icon: 'error', title: 'Error', text: 'No se pudo cargar el reporte (HTTP ' + xhr.status + ').', background: '#002E5C', color: '#fff' });
         });
 }
 
-$(document).ready(function () {
+
+/* -- Exportacion -------------------------------------------------- */
+var EXPORT_CONFIG = {
+    reportName: 'VIG',
+    groupField: function(r){ return r.agente||r.Agente||'(Sin Agente)'; },
+    cols: [
+        { head: 'Agente', get: function(r){ return r.agente||r.Agente||'(Sin Agente)'; }, type: 'text' },
+        { head: 'Usuario', get: function(r){ return r.userName||'--'; }, type: 'text' },
+        { head: 'Riesgo', get: function(r){ return r.riesgo||0; }, type: 'money' },
+        { head: 'Premios', get: function(r){ return r.premios||0; }, type: 'money' },
+        { head: 'Reversos', get: function(r){ return r.reversos||0; }, type: 'money' },
+        { head: 'GGR', get: function(r){ return r.gGR||r.ggr||r.GGR||0; }, type: 'money' },
+        { head: 'RTP General%', get: function(r){ return r.rTP_General||0; }, type: 'pct' },
+        { head: 'RTP Agente%', get: function(r){ return r.rTP_Agente||0; }, type: 'pct' },
+        { head: 'RTP Usuario%', get: function(r){ return r.rTP_Usuario||0; }, type: 'pct' },
+        { head: 'Cant Apuestas', get: function(r){ return r.cantApuestas||0; }, type: 'int' },
+        { head: 'Cant Premios', get: function(r){ return r.cantPremios||0; }, type: 'int' },
+        { head: 'Cant Reversos', get: function(r){ return r.cantReversos||0; }, type: 'int' },
+        { head: 'Transacciones', get: function(r){ return r.totalTransacciones||0; }, type: 'int' }
+    ]
+};
+function exportExcel() { ExportHelpers.exportarExcel(lastData, EXPORT_CONFIG); }
+function exportPDF() {
+    ExportHelpers.exportarPDF(lastData, EXPORT_CONFIG, document.getElementById('fechaD').value, document.getElementById('fechaH').value);
+}
+$(document).ready(function() {
     cargarAgentes();
     if (!esAdmin) { cargarReporte(); }
 });

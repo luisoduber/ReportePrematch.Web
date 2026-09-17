@@ -159,7 +159,7 @@ function cargarReporte() {
                 columns: [
                     { data: 'ticket',    className: 'text-center', createdCell: function(td){ $(td).addClass('col-ticket'); } },
                     { data: 'agente',    className: 'text-center', defaultContent: '—' },
-                    { data: 'usuario',   className: 'text-center', defaultContent: '—' },
+                    { data: 'usuario',   className: 'text-center', render: function(d){ return d ? d.toUpperCase() : '—'; } },
                     { data: null,        className: 'text-center', defaultContent: '—', render: function(d,t,r){ return fmtFecha(r.fecha); } },
                     { data: 'tipoAp',    className: 'text-center', defaultContent: '—' },
                     { data: 'tipoSaldo', className: 'text-center', defaultContent: '—' },

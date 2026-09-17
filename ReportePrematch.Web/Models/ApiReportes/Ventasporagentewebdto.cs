@@ -5,6 +5,10 @@ public sealed class VentasPorAgenteWebDto
     public string Usuario { get; init; } = string.Empty;
     public string Pais { get; init; } = string.Empty;
 
+    public int CantTickets            { get; init; }
+    public int CantTicketsAnulados    { get; init; }
+    public int CantTicketsSinResultado{ get; init; }
+
     public decimal VentaPar { get; init; }
     public decimal VentaDir { get; init; }
     public decimal VentaParBono { get; init; }

@@ -11,6 +11,7 @@ public interface IReportesService
     Task<object> GetDeportesMasVendidosPorAgenteAsync(string fechaD, string fechaH, string agente, string pais, string role);
     Task<object> GetDeportesMasVendidosPorDeporteAsync(string fechaD, string fechaH, string agente, string pais, string role);
     Task<object> GetTicketsDetalladosWebAsync(string fechaD, string fechaH, string agente, string pais, string role);
+    Task<object> GetTicketsDetalladosWebIIAsync(string fechaD, string fechaH, string agente, string pais, string role);
     Task<object> GetTicketsDetalladosTaqAsync(string fechaD, string fechaH, string agente, string pais, string role);
     Task<object> GetVentasPorPaisWebAsync(string fechaD, string fechaH, string pais);
     Task<object> GetVentasPorPaisTaqAsync(string fechaD, string fechaH, string pais);
@@ -74,4 +75,5 @@ public interface IReportesService
     Task<object> GetInOutGamingAsync(string fechaInicio, string fechaFin, string agente);
     Task<object> GetInOutGamingResumenGeneralAsync(string fechaInicio, string fechaFin, string agente);
     Task<List<string>> GetInOutGamingAgentesAsync();
+    Task<object> GetKingMidasAsync(string startDate, string endDate, string agentName);
 }

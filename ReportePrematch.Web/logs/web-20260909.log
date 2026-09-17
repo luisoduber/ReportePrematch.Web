@@ -1,0 +1,17 @@
+2026-09-09 19:29:09.874 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-09 19:29:11.697 -04:00 [INF] HTTP GET / responded 200 in 253.3116 ms
+2026-09-09 19:29:12.808 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 3.7704 ms
+2026-09-09 19:29:29.162 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-09 19:29:29.169 -04:00 [INF] HTTP POST / responded 302 in 1929.6159 ms
+2026-09-09 19:29:29.356 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 180.6154 ms
+2026-09-09 19:29:32.840 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 2874.6234 ms
+2026-09-09 19:29:42.605 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 2139.1737 ms
+2026-09-09 19:29:55.864 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 543.9761 ms
+2026-09-09 19:30:00.174 -04:00 [INF] HTTP POST /Reportes/GetDetalleTicket responded 200 in 723.1989 ms
+2026-09-09 19:42:04.836 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 2932.7559 ms
+2026-09-09 19:44:11.575 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 3.7189 ms
+2026-09-09 19:44:12.683 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 761.8179 ms
+2026-09-09 19:44:18.398 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 2219.3961 ms
+2026-09-09 20:14:46.518 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 14282.6948 ms
+2026-09-09 20:27:54.996 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 6350.0498 ms
+2026-09-09 20:42:15.076 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 6715.5308 ms

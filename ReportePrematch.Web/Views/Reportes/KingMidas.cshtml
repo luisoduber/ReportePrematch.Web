@@ -1,0 +1,281 @@
+@{
+    Layout = "_Layout";
+}
+
+<style>
+.agent-block { margin-bottom: 2rem; }
+.agent-block-header {
+    display: flex; align-items: center; gap: .6rem;
+    font-size: 1rem; font-weight: 700; letter-spacing: .04em;
+    color: #48CAE4; margin-bottom: .6rem;
+    padding-bottom: .35rem;
+    border-bottom: 1px solid rgba(72,202,228,.25);
+}
+.agent-block-header i { font-size: 1.1rem; }
+
+.quick-metrics-bar { display:flex; gap:.5rem; flex-wrap:wrap; }
+.metric-card { flex:1; min-width:110px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:.5rem .75rem; text-align:center; }
+@@media (max-width:768px) { .metric-card { min-width:80px; flex:1 1 80px; padding:.45rem .55rem; } }
+@@media (max-width:430px) { .metric-card { min-width:68px; flex:1 1 68px; padding:.38rem .45rem; } .metric-value { font-size:.88rem; } }
+.metric-label { font-size:.62rem; color:rgba(255,255,255,0.5); letter-spacing:.5px; text-transform:uppercase; margin-bottom:.25rem; }
+.metric-value { font-size:1rem; font-weight:700; }
+.metric-blue   { color:#48CAE4; }
+.metric-red    { color:#f87171; }
+.metric-green  { color:#4ade80; }
+.metric-yellow { color:#facc15; }
+</style>
+
+<section class="glass-card">
+    <div class="welcome-bar">
+        <div>
+            <div class="welcome-title">@ViewBag.NombrePagina</div>
+            <div class="welcome-sub">Casino · KingMidas por Agente</div>
+        </div>
+        <button class="btn-glass btn-primary" onclick="cargarReporte()">
+            <i class="ti ti-refresh"></i> Actualizar
+        </button>
+    </div>
+
+    <div class="glass-panel mt-3 p-3">
+        <div class="row g-2 align-items-end">
+            <div class="col-md-3">
+                <label class="field-label">Fecha Desde</label>
+                <input type="date" id="fechaInicio" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-3">
+                <label class="field-label">Fecha Hasta</label>
+                <input type="date" id="fechaFin" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-3">
+                <label class="field-label">Agente</label>
+                @if (ViewBag.TipoUsuario == "Usuario Regular")
+                {
+                    <input type="text" id="agente" class="glass-input" value="@ViewBag.Agente" readonly />
+                }
+                else
+                {
+                    <select id="agente" class="glass-input" style="color:#fff;">
+                        <option value="" style="background:#002E5C;color:#fff;">TODOS</option>
+                    </select>
+                }
+            </div>
+            <div class="col-md-3">
+                <button class="btn-glass btn-primary w-100" onclick="cargarReporte()">
+                    <i class="ti ti-search"></i> Buscar
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Barra exportacion -->
+    <div id="exportBar" class="mt-3 d-none d-flex gap-2 flex-wrap">
+        <button class="btn-glass btn-primary" onclick="exportExcel()">
+            <i class="ti ti-file-spreadsheet"></i> Excel completo
+        </button>
+        <button class="btn-glass" style="border-color:rgba(255,100,100,.5);color:#f87171;" onclick="exportPDF()">
+            <i class="ti ti-file-type-pdf"></i> PDF por agente
+        </button>
+    </div>
+
+    <!-- Bloques por agente -->
+    <div id="agentBlocks" class="mt-3"></div>
+</section>
+
+@section Scripts {
+<script>
+const esAdmin       = '@ViewBag.TipoUsuario' !== 'Usuario Regular';
+const agenteSession = '@ViewBag.Agente';
+let lastData = [];
+let dtInstances = [];
+
+function fmt(v)  { return parseFloat(v || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+function fmtPct(v) { return fmt(v) + ' %'; }
+function fmtN(v) { return (parseInt(v) || 0).toLocaleString('es-VE'); }
+function card(label, value, cls) {
+    return '<div class="metric-card">'
+        + '<div class="metric-label">' + label + '</div>'
+        + '<div class="metric-value ' + cls + '">' + value + '</div>'
+        + '</div>';
+}
+
+function limpiarBloques() {
+    dtInstances.forEach(function(dt){ try { dt.destroy(); } catch(e){} });
+    dtInstances = [];
+    document.getElementById('agentBlocks').innerHTML = '';
+    lastData = []; document.getElementById('exportBar').classList.add('d-none');
+}
+
+/* ── render bloque por agente ─────────────────────────────────────────── */
+function renderBloqueAgente(agente, rows, idx) {
+    var totD = 0, totC = 0, totG = 0, totTx = 0;
+    rows.forEach(function(r) {
+        totD  += parseFloat(r.totalDebit        || 0);
+        totC  += parseFloat(r.totalCredit       || 0);
+        totG  += parseFloat(r.ggr               || 0);
+        totTx += parseInt(r.transactionsCount   || 0);
+    });
+    var rtp = totD > 0 ? (totC / totD * 100) : 0;
+
+    var tableId = 'tblKM_' + idx;
+    var block = document.createElement('div');
+    block.className = 'agent-block';
+    block.innerHTML =
+        '<div class="agent-block-header"><i class="ti ti-user"></i>' + agente + '</div>' +
+        '<div class="quick-metrics-bar mb-2">' +
+            card('Total Apostado', fmt(totD), 'metric-blue')  +
+            card('Total Pagado',   fmt(totC), 'metric-red')   +
+            card('GGR',           fmt(totG), totG >= 0 ? 'metric-green' : 'metric-red') +
+            card('Transacciones', fmtN(totTx), 'metric-blue') +
+            card('RTP %',         fmtPct(rtp), 'metric-yellow') +
+        '</div>' +
+        '<div class="table-responsive">' +
+        '<table id="' + tableId + '" class="glass-table w-100">' +
+        '<thead><tr>' +
+            '<th class="text-center">Usuario</th>' +
+            '<th class="text-center">Total Apostado</th>' +
+            '<th class="text-center">Total Pagado</th>' +
+            '<th class="text-center">GGR</th>' +
+            '<th class="text-center">Transacciones</th>' +
+            '<th class="text-center">RTP %</th>' +
+        '</tr></thead><tbody></tbody>' +
+        '<tfoot><tr>' +
+            '<th class="text-center">TOTAL</th>' +
+            '<th class="text-center">'  + fmt(totD)   + '</th>' +
+            '<th class="text-center">'  + fmt(totC)   + '</th>' +
+            '<th style="text-align:center;color:' + (totG >= 0 ? 'var(--av-5,#7FCA8A)' : '#FC8181') + ';font-weight:600;">' + fmt(totG) + '</th>' +
+            '<th class="text-center">'  + fmtN(totTx) + '</th>' +
+            '<th class="text-center">'  + fmtPct(rtp) + '</th>' +
+        '</tr></tfoot>' +
+        '</table></div>';
+
+    document.getElementById('agentBlocks').appendChild(block);
+
+    var dt = $('#' + tableId).DataTable({
+        data: rows,
+        pageLength: 25,
+        order: [[3, 'desc']],
+        language: {
+            decimal: ',', thousands: '.',
+            search: 'Buscar:', lengthMenu: 'Mostrar _MENU_ registros',
+            info: 'Mostrando _START_ a _END_ de _TOTAL_ registros',
+            infoEmpty: 'Sin registros', infoFiltered: '(filtrado de _MAX_ total)',
+            zeroRecords: 'No se encontraron registros',
+            paginate: { first: '«', previous: '‹', next: '›', last: '»' }
+        },
+        columns: [
+            { data: 'playerUsername',    className: 'text-center', render: function(d){ return d ? d.toUpperCase() : '—'; } },
+            { data: 'totalDebit',        defaultContent: '0.00', className: 'text-center col-monto-pos',
+              render: function(d){ return fmt(d); } },
+            { data: 'totalCredit',       defaultContent: '0.00', className: 'text-center col-monto-neg',
+              render: function(d){ return fmt(d); } },
+            { data: 'ggr',               defaultContent: '0.00', className: 'text-center',
+              render: function(d){ return fmt(d); },
+              createdCell: function(td, d){ var n = parseFloat(d || 0); $(td).addClass(n >= 0 ? 'col-monto-pos' : 'col-monto-neg'); } },
+            { data: 'transactionsCount', defaultContent: '0', className: 'text-center',
+              render: function(d){ return fmtN(d); } },
+            { data: 'rtp', defaultContent: '—', className: 'text-center',
+              render: function(d){ return d != null ? fmt(d) + ' %' : '—'; } }
+        ],
+        columnDefs: [{ targets: '_all', className: 'dt-center' }],
+        dom: 'Bfrtip',
+        buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel',
+            className: 'btn-glass btn-primary btn-sm', title: agente }]
+    });
+
+    dtInstances.push(dt);
+}
+
+/* ── agentes ──────────────────────────────────────────────────────────── */
+function cargarAgentes() {
+    if (!esAdmin) return;
+    $.post('@Url.Action("GetListAgenciasApi","Reportes")')
+        .done(function(lista) {
+            const sel = document.getElementById('agente');
+            if (!sel) return;
+            if (sel.tomselect) sel.tomselect.destroy();
+            sel.innerHTML = '';
+            const optTodos = document.createElement('option');
+            optTodos.value = ''; optTodos.textContent = 'TODOS';
+            sel.appendChild(optTodos);
+            (lista || []).forEach(function(a) {
+                const opt = document.createElement('option');
+                opt.value = a; opt.textContent = a;
+                sel.appendChild(opt);
+            });
+            new TomSelect(sel, { maxOptions: 2000, create: false, allowEmptyOption: true, placeholder: 'Buscar agente...', searchField: ['text'] });
+            if (agenteSession) sel.tomselect.setValue(agenteSession, true);
+        })
+        .fail(function(xhr) {
+            Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar la lista de agentes.', background: '#002E5C', color: '#fff' });
+        });
+}
+
+/* ── carga principal ──────────────────────────────────────────────────── */
+function cargarReporte() {
+    const fechaInicio = document.getElementById('fechaInicio').value;
+    const fechaFin    = document.getElementById('fechaFin').value;
+    const agenteEl    = document.getElementById('agente');
+    const agente      = (agenteEl ? (agenteEl.tomselect ? agenteEl.tomselect.getValue() : agenteEl.value) : agenteSession) || 'TODOS';
+
+    if (!fechaInicio || !fechaFin) {
+        Swal.fire({ icon: 'warning', title: 'Fechas requeridas', background: '#002E5C', color: '#fff' });
+        return;
+    }
+
+    limpiarBloques();
+    showBusy('Consultando KingMidas...');
+
+    $.post('@Url.Action("GetKingMidas","Reportes")', { startDate: fechaInicio, endDate: fechaFin, agente })
+        .done(function(data) {
+            hideBusy();
+            if (!data || !data.length) {
+                Swal.fire({ icon: 'info', title: 'Sin resultados', background: '#002E5C', color: '#fff' });
+                return;
+            }
+
+            // Excluir fila de totales de la API (sortPriority === 1), solo usar filas de detalle
+            var detail = data.filter(function(r){ return r.sortPriority !== 1; });
+            if (!detail.length) detail = data;
+
+            var grupos = {}, orden = [];
+            detail.forEach(function(r) {
+                var ag = r.agent || '(Sin Agente)';
+                if (!grupos[ag]) { grupos[ag] = []; orden.push(ag); }
+                grupos[ag].push(r);
+            });
+
+            orden.forEach(function(ag, idx) { renderBloqueAgente(ag, grupos[ag], idx); });
+            lastData = detail; document.getElementById('exportBar').classList.remove('d-none');
+        })
+        .fail(function(xhr) {
+            hideBusy();
+            Swal.fire({ icon: 'error', title: 'Error', text: 'No se pudo cargar el reporte (HTTP ' + xhr.status + ').', background: '#002E5C', color: '#fff' });
+        });
+}
+
+
+/* -- Exportacion -------------------------------------------------- */
+var EXPORT_CONFIG = {
+    reportName: 'KingMidas',
+    groupField: function(r){ return r.agente||r.Agente||'(Sin Agente)'; },
+    cols: [
+        { head: 'Agente', get: function(r){ return r.agente||r.Agente||'(Sin Agente)'; }, type: 'text' },
+        { head: 'Usuario', get: function(r){ return r.playerUsername||'--'; }, type: 'text' },
+        { head: 'Total Debit', get: function(r){ return parseFloat(r.totalDebit||0); }, type: 'money' },
+        { head: 'Total Credit', get: function(r){ return parseFloat(r.totalCredit||0); }, type: 'money' },
+        { head: 'GGR', get: function(r){ return parseFloat(r.ggr||0); }, type: 'money' },
+        { head: 'Transacciones', get: function(r){ return r.transactionsCount||0; }, type: 'int' },
+        { head: 'RTP%', get: function(r){ return r.rtp||0; }, type: 'pct' }
+    ]
+};
+function exportExcel() { ExportHelpers.exportarExcel(lastData, EXPORT_CONFIG); }
+function exportPDF() {
+    ExportHelpers.exportarPDF(lastData, EXPORT_CONFIG, document.getElementById('fechaInicio').value, document.getElementById('fechaFin').value);
+}
+$(document).ready(function() {
+    cargarAgentes();
+    if (!esAdmin) { cargarReporte(); }
+});
+</script>
+}

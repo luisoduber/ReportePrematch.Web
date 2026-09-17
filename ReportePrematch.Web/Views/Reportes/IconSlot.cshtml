@@ -2,11 +2,33 @@
     Layout = "_Layout";
 }
 
+<style>
+.agent-block { margin-bottom: 2rem; }
+.agent-block-header {
+    display: flex; align-items: center; gap: .6rem;
+    font-size: 1rem; font-weight: 700; letter-spacing: .04em;
+    color: #48CAE4; margin-bottom: .6rem;
+    padding-bottom: .35rem;
+    border-bottom: 1px solid rgba(72,202,228,.25);
+}
+.agent-block-header i { font-size: 1.1rem; }
+
+.quick-metrics-bar { display:flex; gap:.5rem; flex-wrap:wrap; }
+.metric-card { flex:1; min-width:110px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:.5rem .75rem; text-align:center; }
+@@media (max-width:768px) { .metric-card { min-width:80px; flex:1 1 80px; padding:.45rem .55rem; } }
+@@media (max-width:430px) { .metric-card { min-width:68px; flex:1 1 68px; padding:.38rem .45rem; } .metric-value { font-size:.88rem; } }
+.metric-label { font-size:.62rem; color:rgba(255,255,255,0.5); letter-spacing:.5px; text-transform:uppercase; margin-bottom:.25rem; }
+.metric-value { font-size:1rem; font-weight:700; }
+.metric-blue  { color:#48CAE4; }
+.metric-red   { color:#f87171; }
+.metric-green { color:#4ade80; }
+</style>
+
 <section class="glass-card">
     <div class="welcome-bar">
         <div>
             <div class="welcome-title">@ViewBag.NombrePagina</div>
-            <div class="welcome-sub">Casino · IconBet Slots</div>
+            <div class="welcome-sub">Casino · IconBet Slots por Agente</div>
         </div>
         <button class="btn-glass btn-primary" onclick="cargarReporte()">
             <i class="ti ti-refresh"></i> Actualizar
@@ -44,51 +66,126 @@
         </div>
     </div>
 
-    <!-- Cards de totales -->
-    <div class="quick-metrics-bar mt-3" id="metricsBar" style="display:none;">
-        <div class="metric-card">
-            <div class="metric-label">Total Apostado</div>
-            <div class="metric-value metric-blue" id="metVentas">—</div>
-        </div>
-        <div class="metric-card">
-            <div class="metric-label">Total Pagado</div>
-            <div class="metric-value metric-red" id="metPremios">—</div>
-        </div>
-        <div class="metric-card">
-            <div class="metric-label">Balance</div>
-            <div class="metric-value metric-green" id="metUtilidad">—</div>
-        </div>
+
+    <!-- Barra exportacion -->
+    <div id="exportBar" class="mt-3 d-none d-flex gap-2 flex-wrap">
+        <button class="btn-glass btn-primary" onclick="exportExcel()">
+            <i class="ti ti-file-spreadsheet"></i> Excel completo
+        </button>
+        <button class="btn-glass" style="border-color:rgba(255,100,100,.5);color:#f87171;" onclick="exportPDF()">
+            <i class="ti ti-file-type-pdf"></i> PDF por agente
+        </button>
     </div>
 
-    <div class="table-responsive mt-3">
-        <table id="@ViewBag.TableId" class="glass-table w-100">
-            <thead>
-                <tr>
-                    <th style="text-align:center;">Agente</th>
-                    <th style="text-align:center;">Usuario</th>
-                    <th style="text-align:center;">Total Apostado</th>
-                    <th style="text-align:center;">Total Pagado</th>
-                    <th style="text-align:center;">Balance</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-            <tfoot>
-                <tr>
-                    <th colspan="2" style="text-align:center;">TOTAL</th>
-                    <th id="totVentas"   style="text-align:center;"></th>
-                    <th id="totPremios"  style="text-align:center;"></th>
-                    <th id="totUtilidad" style="text-align:center;"></th>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
+    <!-- Bloques por agente -->
+    <div id="agentBlocks" class="mt-3"></div>
 </section>
 
 @section Scripts {
 <script>
 const esAdmin       = '@ViewBag.TipoUsuario' !== 'Usuario Regular';
 const agenteSession = '@ViewBag.Agente';
+let lastData = [];
+let dtInstances = [];
 
+function fmt(v) {
+    return parseFloat(v || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+function numericVal(v) {
+    if (typeof v === 'number') return v;
+    return parseFloat((v || '0').toString().replace(/\./g, '').replace(',', '.')) || 0;
+}
+function card(label, value, cls) {
+    return '<div class="metric-card">'
+        + '<div class="metric-label">' + label + '</div>'
+        + '<div class="metric-value ' + cls + '">' + value + '</div>'
+        + '</div>';
+}
+
+function limpiarBloques() {
+    dtInstances.forEach(function(dt){ try { dt.destroy(); } catch(e){} });
+    dtInstances = [];
+    document.getElementById('agentBlocks').innerHTML = '';
+    lastData = []; document.getElementById('exportBar').classList.add('d-none');
+}
+
+/* ── helpers de campo (acepta camelCase y PascalCase) ─────────────────── */
+function fV(r) { return r.ventas   || r.Ventas   || '0'; }
+function fP(r) { return r.premios  || r.Premios  || '0'; }
+function fU(r) { return r.utilidad || r.Utilidad || '0'; }
+function fUser(r) { return r.usuario  || r.Usuario  || '—'; }
+function fAg(r)   { return r.agente   || r.Agente   || '(Sin Agente)'; }
+
+/* ── render bloque por agente ─────────────────────────────────────────── */
+function renderBloqueAgente(agente, rows, idx) {
+    var totV = 0, totP = 0, totU = 0;
+    rows.forEach(function(r) {
+        totV += numericVal(fV(r));
+        totP += numericVal(fP(r));
+        totU += numericVal(fU(r));
+    });
+
+    var tableId = 'tblIcon_' + idx;
+    var block = document.createElement('div');
+    block.className = 'agent-block';
+    block.innerHTML =
+        '<div class="agent-block-header"><i class="ti ti-user"></i>' + agente + '</div>' +
+        '<div class="quick-metrics-bar mb-2">' +
+            card('Total Apostado', fmt(totV), 'metric-blue') +
+            card('Total Pagado',   fmt(totP), 'metric-red')  +
+            card('Balance',        fmt(totU), totU >= 0 ? 'metric-green' : 'metric-red') +
+        '</div>' +
+        '<div class="table-responsive">' +
+        '<table id="' + tableId + '" class="glass-table w-100">' +
+        '<thead><tr>' +
+            '<th style="text-align:center;">Usuario</th>' +
+            '<th style="text-align:center;">Total Apostado</th>' +
+            '<th style="text-align:center;">Total Pagado</th>' +
+            '<th style="text-align:center;">Balance</th>' +
+        '</tr></thead><tbody></tbody>' +
+        '<tfoot><tr>' +
+            '<th style="text-align:center;">TOTAL</th>' +
+            '<th style="text-align:center;">' + fmt(totV) + '</th>' +
+            '<th style="text-align:center;">' + fmt(totP) + '</th>' +
+            '<th style="text-align:center;color:' + (totU >= 0 ? 'var(--av-5,#7FCA8A)' : '#FC8181') + ';font-weight:600;">' + fmt(totU) + '</th>' +
+        '</tr></tfoot>' +
+        '</table></div>';
+
+    document.getElementById('agentBlocks').appendChild(block);
+
+    try {
+        var dt = $('#' + tableId).DataTable({
+            data: rows,
+            columns: [
+                { data: null, className: 'text-center',
+                  render: function(r){ return fUser(r); } },
+                { data: null, className: 'text-center col-monto-pos',
+                  render: function(r){ return fmt(numericVal(fV(r))); } },
+                { data: null, className: 'text-center col-monto-neg',
+                  render: function(r){ return fmt(numericVal(fP(r))); } },
+                { data: null, className: 'text-center',
+                  render: function(r){
+                      var n = numericVal(fU(r));
+                      return '<span class="' + (n < 0 ? 'col-monto-neg' : 'col-monto-pos') + '">' + fmt(n) + '</span>';
+                  }}
+            ],
+            language: {
+                emptyTable: 'Sin datos', zeroRecords: 'Sin resultados',
+                info: 'Mostrando _START_ a _END_ de _TOTAL_',
+                infoEmpty: 'Sin registros', search: 'Buscar:',
+                paginate: { first:'«', last:'»', next:'›', previous:'‹' }
+            },
+            pageLength: 25, order: [[0, 'asc']], dom: 'Bfrtip',
+            buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel',
+                className: 'btn-glass btn-primary btn-sm', title: agente }]
+        });
+        dtInstances.push(dt);
+    } catch(e) {
+        console.error('DataTable error bloque ' + agente + ':', e);
+    }
+}
+
+/* ── agentes ──────────────────────────────────────────────────────────── */
 function cargarAgentes() {
     if (!esAdmin) return;
     $.post('@Url.Action("GetListAgenciasApi","Reportes")')
@@ -105,10 +202,7 @@ function cargarAgentes() {
                 opt.value = a; opt.textContent = a;
                 sel.appendChild(opt);
             });
-            new TomSelect(sel, {
-                maxOptions: 2000, create: false, allowEmptyOption: true,
-                placeholder: 'Buscar agente...', searchField: ['text']
-            });
+            new TomSelect(sel, { maxOptions: 2000, create: false, allowEmptyOption: true, placeholder: 'Buscar agente...', searchField: ['text'] });
             if (agenteSession) sel.tomselect.setValue(agenteSession, true);
         })
         .fail(function(xhr) {
@@ -116,82 +210,64 @@ function cargarAgentes() {
         });
 }
 
-let dt;
-function fmt(v) {
-    return parseFloat(v || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-}
-
-function numericVal(v) {
-    if (typeof v === 'number') return v;
-    return parseFloat((v || '0').toString().replace(/\./g, '').replace(',', '.')) || 0;
-}
-
+/* ── carga principal ──────────────────────────────────────────────────── */
 function cargarReporte() {
-    const fechaD = document.getElementById('fechaD').value;
-    const fechaH = document.getElementById('fechaH').value;
-    const agente = document.getElementById('agente').value || 'TODOS';
+    const fechaD   = document.getElementById('fechaD').value;
+    const fechaH   = document.getElementById('fechaH').value;
+    const agenteEl = document.getElementById('agente');
+    const agente   = (agenteEl ? (agenteEl.tomselect ? agenteEl.tomselect.getValue() : agenteEl.value) : agenteSession) || 'TODOS';
+
     if (!fechaD || !fechaH) {
         Swal.fire({ icon: 'warning', title: 'Fechas requeridas', background: '#002E5C', color: '#fff' });
         return;
     }
+
+    limpiarBloques();
     showBusy('Consultando...');
 
     $.post('@Url.Action("GetIconSlot","Reportes")', { fechaD, fechaH, agente })
         .done(function(data) {
+            hideBusy();
             if (!data || !data.length) {
                 Swal.fire({ icon: 'info', title: 'Sin resultados', background: '#002E5C', color: '#fff' });
-                hideBusy();
                 return;
             }
 
-            var totVentas = 0, totPremios = 0, totUtilidad = 0;
+            // Agrupar por agente (acepta camelCase y PascalCase)
+            var grupos = {};
+            var orden  = [];
             data.forEach(function(r) {
-                totVentas   += numericVal(r.ventas);
-                totPremios  += numericVal(r.premios);
-                totUtilidad += numericVal(r.utilidad);
+                var ag = fAg(r);
+                if (!grupos[ag]) { grupos[ag] = []; orden.push(ag); }
+                grupos[ag].push(r);
             });
 
-            document.getElementById('metVentas').textContent   = fmt(totVentas);
-            document.getElementById('metPremios').textContent  = fmt(totPremios);
-            var elUtil = document.getElementById('metUtilidad');
-            elUtil.textContent = fmt(totUtilidad);
-            elUtil.className = 'metric-value ' + (totUtilidad >= 0 ? 'metric-green' : 'metric-red');
-            document.getElementById('metricsBar').style.display = 'flex';
-
-            if (dt) { dt.destroy(); dt = null; }
-            dt = $('#@ViewBag.TableId').DataTable({
-                data,
-                columns: [
-                    { data: 'agente',   defaultContent: '—', className: 'text-center' },
-                    { data: 'usuario',  defaultContent: '—', className: 'text-center' },
-                    { data: 'ventas',   defaultContent: '0.00', className: 'text-center',
-                      createdCell: function(td, d) { $(td).text(fmt(numericVal(d))).addClass('col-monto-pos'); } },
-                    { data: 'premios',  defaultContent: '0.00', className: 'text-center',
-                      createdCell: function(td, d) { $(td).text(fmt(numericVal(d))).addClass('col-monto-neg'); } },
-                    { data: 'utilidad', defaultContent: '0.00', className: 'text-center',
-                      createdCell: function(td, d) {
-                          var n = numericVal(d);
-                          $(td).text(fmt(n)).addClass(n < 0 ? 'col-monto-neg' : 'col-monto-pos');
-                      }}
-                ],
-                footerCallback: function() {
-                    document.getElementById('totVentas').textContent   = fmt(totVentas);
-                    document.getElementById('totPremios').textContent  = fmt(totPremios);
-                    document.getElementById('totUtilidad').textContent = fmt(totUtilidad);
-                },
-                language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
-                pageLength: 25, order: [[0, 'asc']], dom: 'Bfrtip',
-                buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm' }]
-            });
-
-            hideBusy();
+            orden.forEach(function(ag, idx) { renderBloqueAgente(ag, grupos[ag], idx); });
+            lastData = data; document.getElementById('exportBar').classList.remove('d-none');
         })
         .fail(function() {
-            Swal.fire({ icon: 'error', title: 'Error', background: '#002E5C', color: '#fff' });
             hideBusy();
+            Swal.fire({ icon: 'error', title: 'Error', background: '#002E5C', color: '#fff' });
         });
 }
 
+
+/* -- Exportacion -------------------------------------------------- */
+var EXPORT_CONFIG = {
+    reportName: 'Icon Slots',
+    groupField: function(r){ return r.agente||r.Agente||'(Sin Agente)'; },
+    cols: [
+        { head: 'Agente', get: function(r){ return r.agente||r.Agente||'(Sin Agente)'; }, type: 'text' },
+        { head: 'Usuario', get: function(r){ return r.usuario||r.Usuario||'--'; }, type: 'text' },
+        { head: 'Ventas', get: function(r){ return numericVal(fV(r)); }, type: 'money' },
+        { head: 'Premios', get: function(r){ return numericVal(fP(r)); }, type: 'money' },
+        { head: 'Utilidad', get: function(r){ return numericVal(fU(r)); }, type: 'money' }
+    ]
+};
+function exportExcel() { ExportHelpers.exportarExcel(lastData, EXPORT_CONFIG); }
+function exportPDF() {
+    ExportHelpers.exportarPDF(lastData, EXPORT_CONFIG, document.getElementById('fechaD').value, document.getElementById('fechaH').value);
+}
 $(document).ready(function() {
     cargarAgentes();
     if (!esAdmin) { cargarReporte(); }

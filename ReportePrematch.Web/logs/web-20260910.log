@@ -1,0 +1,57 @@
+2026-09-10 14:07:37.162 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-10 14:07:38.725 -04:00 [INF] HTTP GET / responded 200 in 271.8648 ms
+2026-09-10 14:07:40.145 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 3.7687 ms
+2026-09-10 14:07:50.040 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-1) para vlapenta
+2026-09-10 14:07:50.045 -04:00 [WRN] Login fallido para usuario vlapenta
+2026-09-10 14:07:50.054 -04:00 [INF] HTTP POST / responded 200 in 1473.6911 ms
+2026-09-10 14:08:02.773 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-10 14:08:02.776 -04:00 [INF] HTTP POST / responded 302 in 293.0271 ms
+2026-09-10 14:08:03.010 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 221.0418 ms
+2026-09-10 14:08:08.080 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 4364.2591 ms
+2026-09-10 15:05:40.279 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-10 15:05:41.750 -04:00 [INF] HTTP GET / responded 200 in 202.2704 ms
+2026-09-10 15:05:51.056 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-10 15:05:51.064 -04:00 [INF] HTTP POST / responded 302 in 717.0667 ms
+2026-09-10 15:05:51.169 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 96.8476 ms
+2026-09-10 15:05:52.234 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 835.6728 ms
+2026-09-10 15:05:57.709 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 1469.0771 ms
+2026-09-10 15:06:10.601 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 4209.0827 ms
+2026-09-10 15:06:52.264 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 5859.6086 ms
+2026-09-10 15:07:11.062 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 4352.7699 ms
+2026-09-10 15:20:37.180 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-10 15:20:38.331 -04:00 [INF] HTTP GET / responded 200 in 204.5586 ms
+2026-09-10 15:20:49.855 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-10 15:20:49.864 -04:00 [INF] HTTP POST / responded 302 in 925.6399 ms
+2026-09-10 15:20:49.963 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 92.1138 ms
+2026-09-10 15:20:50.895 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 710.8090 ms
+2026-09-10 15:21:12.995 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 5032.9472 ms
+2026-09-10 15:21:33.810 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 490.1717 ms
+2026-09-10 15:21:40.789 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 173.7592 ms
+2026-09-10 15:23:52.797 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 4701.7753 ms
+2026-09-10 15:26:36.626 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.8177 ms
+2026-09-10 15:45:34.163 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-10 15:45:35.639 -04:00 [INF] HTTP GET / responded 200 in 219.5017 ms
+2026-09-10 15:45:51.930 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-10 15:45:51.937 -04:00 [INF] HTTP POST / responded 302 in 726.9619 ms
+2026-09-10 15:45:52.064 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 119.7481 ms
+2026-09-10 15:45:54.840 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 2540.1692 ms
+2026-09-10 15:46:14.437 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 2278.5626 ms
+2026-09-10 15:46:26.855 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.6900 ms
+2026-09-10 15:49:03.426 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-10 15:49:04.250 -04:00 [INF] HTTP GET / responded 200 in 207.7889 ms
+2026-09-10 15:49:18.776 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-1) para vlapenta
+2026-09-10 15:49:18.779 -04:00 [WRN] Login fallido para usuario vlapenta
+2026-09-10 15:49:18.786 -04:00 [INF] HTTP POST / responded 200 in 1633.2143 ms
+2026-09-10 15:49:28.269 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-10 15:49:28.273 -04:00 [INF] HTTP POST / responded 302 in 150.7326 ms
+2026-09-10 15:49:28.375 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 95.7543 ms
+2026-09-10 15:49:29.415 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 817.8910 ms
+2026-09-10 15:49:44.084 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 1792.7449 ms
+2026-09-10 15:50:57.730 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-10 15:50:58.602 -04:00 [INF] HTTP GET / responded 200 in 213.4082 ms
+2026-09-10 15:51:26.982 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-10 15:51:26.990 -04:00 [INF] HTTP POST / responded 302 in 650.4791 ms
+2026-09-10 15:51:34.315 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 7317.3580 ms
+2026-09-10 15:51:35.053 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 500.6356 ms
+2026-09-10 15:52:11.044 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 22035.1336 ms
+2026-09-10 15:52:33.349 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.8800 ms

@@ -38,7 +38,7 @@ public sealed class ApiClient(HttpClient http, ILogger<ApiClient> logger) : IApi
         try
         {
             var qs = string.Join("&", query
-                .Where(kv => kv.Value is not null)
+                .Where(kv => !string.IsNullOrEmpty(kv.Value))
                 .Select(kv => $"{HttpUtility.UrlEncode(kv.Key)}={HttpUtility.UrlEncode(kv.Value)}"));
 
             var url = qs.Length > 0 ? $"{endpoint}?{qs}" : endpoint;

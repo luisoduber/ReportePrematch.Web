@@ -6,12 +6,24 @@
     .canal-toggle { display:inline-flex; border:1px solid rgba(255,255,255,0.25); border-radius:30px; overflow:hidden; }
     .tog-btn { border:none; background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.35); padding:8px 20px; font-size:11px; font-weight:700; letter-spacing:.8px; cursor:pointer; transition:all .25s; white-space:nowrap; }
     .tog-btn.active { background:var(--sa-5,#0077B6); color:#fff; }
+    @@media (max-width:768px) { .canal-toggle { width:100%; } .tog-btn { flex:1; text-align:center; } }
+
+    .agent-block { margin-bottom: 2rem; }
+    .agent-block-header {
+        display: flex; align-items: center; gap: .6rem;
+        font-size: 1rem; font-weight: 700; letter-spacing: .04em;
+        color: #48CAE4; margin-bottom: .6rem;
+        padding-bottom: .35rem;
+        border-bottom: 1px solid rgba(72,202,228,.25);
+    }
+    .agent-block-header i { font-size: 1.1rem; }
+
     .quick-metrics-bar { display:flex; gap:.5rem; flex-wrap:wrap; }
-    .metric-card { flex:1; min-width:120px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:.5rem .75rem; text-align:center; }
-    @@media (max-width:768px) { .metric-card { min-width:80px; flex:1 1 80px; padding:.45rem .55rem; } .canal-toggle { width:100%; } .tog-btn { flex:1; text-align:center; } }
+    .metric-card { flex:1; min-width:110px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:.5rem .75rem; text-align:center; }
+    @@media (max-width:768px) { .metric-card { min-width:80px; flex:1 1 80px; padding:.45rem .55rem; } }
     @@media (max-width:430px) { .metric-card { min-width:68px; flex:1 1 68px; padding:.38rem .45rem; } .metric-value { font-size:.88rem; } }
-    .metric-label { font-size:.65rem; color:rgba(255,255,255,0.5); letter-spacing:.5px; text-transform:uppercase; margin-bottom:.25rem; }
-    .metric-value { font-size:1.05rem; font-weight:700; }
+    .metric-label { font-size:.62rem; color:rgba(255,255,255,0.5); letter-spacing:.5px; text-transform:uppercase; margin-bottom:.25rem; }
+    .metric-value { font-size:1rem; font-weight:700; }
     .metric-blue  { color:#48CAE4; }
     .metric-red   { color:#f87171; }
     .metric-green { color:#4ade80; }
@@ -66,53 +78,33 @@
         </div>
     </div>
 
-    <!-- Métricas -->
-    <div id="metricsBar" class="quick-metrics-bar mt-3" style="display:none;">
-        <div class="metric-card"><div class="metric-label">Total Ventas</div><div class="metric-value metric-blue"  id="metVentas">—</div></div>
-        <div class="metric-card"><div class="metric-label">Total Pagos</div><div class="metric-value metric-red"   id="metPagos">—</div></div>
-        <div class="metric-card"><div class="metric-label">Pendientes</div><div class="metric-value metric-blue"  id="metPendientes">—</div></div>
-        <div class="metric-card"><div class="metric-label">Balance</div><div class="metric-value metric-green" id="metBalance">—</div></div>
+
+    <!-- Barra exportacion -->
+    <div id="exportBar" class="mt-3 d-none d-flex gap-2 flex-wrap">
+        <button class="btn-glass btn-primary" onclick="exportExcel()">
+            <i class="ti ti-file-spreadsheet"></i> Excel completo
+        </button>
+        <button class="btn-glass" style="border-color:rgba(255,100,100,.5);color:#f87171;" onclick="exportPDF()">
+            <i class="ti ti-file-type-pdf"></i> PDF por agente
+        </button>
     </div>
 
-    <div class="table-responsive mt-3">
-        <table id="@ViewBag.TableId" class="glass-table w-100">
-            <thead>
-                <tr id="theadRow">
-                    <th style="text-align:center;"></th>
-                    <th style="text-align:center; display:none;">Agente</th>
-                    <th style="text-align:center;">Usuario</th>
-                    <th style="text-align:center;">Ventas</th>
-                    <th style="text-align:center;">Pagos</th>
-                    <th style="text-align:center;">Pendientes</th>
-                    <th style="text-align:center;">Balance</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-            <tfoot>
-                <tr id="tfootRow">
-                    <th colspan="2" style="text-align:center;">TOTAL</th>
-                    <th id="totVentas"     style="text-align:center;"></th>
-                    <th id="totPagos"      style="text-align:center;"></th>
-                    <th id="totPendientes" style="text-align:center;"></th>
-                    <th id="totBalance"    style="text-align:center;"></th>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
+    <!-- Bloques por agente -->
+    <div id="agentBlocks" class="mt-3"></div>
 </section>
 
 @section Scripts {
 <script>
-const tableId       = '#@ViewBag.TableId';
 const esAdmin       = '@ViewBag.TipoUsuario' !== 'Usuario Regular';
 const agenteSession = '@ViewBag.Agente';
 const urlTaq        = '@Url.Action("GetVentasPorAgenteNikolsTaq","Reportes")';
 const urlWeb        = '@Url.Action("GetVentasPorAgenteNikolsWeb","Reportes")';
 let canal = 'taq';
-let dt;
+let lastData = [];
+let dtInstances = [];
 let ticketsCache = {};
 
-/* ── helpers ─────────────────────────────────────────────────────────── */
+/* ── helpers ──────────────────────────────────────────────────────────── */
 function fmt(v) {
     if (v === null || v === undefined || v === '') return '0,00';
     if (typeof v === 'string' && v.includes(',')) return v;
@@ -141,125 +133,218 @@ function fmtFecha(val) {
     }
     return hora ? fechaParte + ' ' + hora : fechaParte;
 }
-
-/* ── headers dinámicos ───────────────────────────────────────────────── */
-function setHeadersTaq() {
-    document.getElementById('theadRow').innerHTML =
-        '<th style="text-align:center;"></th>' +
-        '<th style="text-align:center; display:none;">Agente</th>' +
-        '<th style="text-align:center;">Usuario</th>' +
-        '<th style="text-align:center;">Ventas</th>' +
-        '<th style="text-align:center;">Pagos</th>' +
-        '<th style="text-align:center;">Pendientes</th>' +
-        '<th style="text-align:center;">Balance</th>';
-    document.getElementById('tfootRow').innerHTML =
-        '<th colspan="2" style="text-align:center;">TOTAL</th>' +
-        '<th id="totVentas"     style="text-align:center;"></th>' +
-        '<th id="totPagos"      style="text-align:center;"></th>' +
-        '<th id="totPendientes" style="text-align:center;"></th>' +
-        '<th id="totBalance"    style="text-align:center;"></th>';
-}
-function setHeadersWeb() {
-    document.getElementById('theadRow').innerHTML =
-        '<th style="display:none;">Agente</th>' +
-        '<th style="text-align:center;">Usuario</th>' +
-        '<th style="text-align:center;">Ventas</th>' +
-        '<th style="text-align:center;">Pagos</th>' +
-        '<th style="text-align:center;">Pendientes</th>' +
-        '<th style="text-align:center;">Balance</th>';
-    document.getElementById('tfootRow').innerHTML =
-        '<th colspan="1" style="text-align:center;">TOTAL</th>' +
-        '<th id="totVentas"     style="text-align:center;"></th>' +
-        '<th id="totPagos"      style="text-align:center;"></th>' +
-        '<th id="totPendientes" style="text-align:center;"></th>' +
-        '<th id="totBalance"    style="text-align:center;"></th>';
+function card(label, value, cls) {
+    return '<div class="metric-card">'
+        + '<div class="metric-label">' + label + '</div>'
+        + '<div class="metric-value ' + cls + '">' + value + '</div>'
+        + '</div>';
 }
 
-/* ── toggle ──────────────────────────────────────────────────────────── */
+/* ── canal toggle ────────────────────────────────────────────────────── */
 function setCanal(c) {
     if (canal === c) return;
     canal = c;
     document.getElementById('btnCanalTaq').classList.toggle('active', c === 'taq');
     document.getElementById('btnCanalWeb').classList.toggle('active', c === 'web');
-    document.getElementById('canalSub').textContent = c === 'taq'
-        ? 'Canal Taquilla · Nikols'
-        : 'Canal Web · Nikols';
-    if (dt) { dt.destroy(); dt = null; }
-    $(tableId + ' tbody').empty();
+    document.getElementById('canalSub').textContent = c === 'taq' ? 'Canal Taquilla · Nikols' : 'Canal Web · Nikols';
+    limpiarBloques();
     ticketsCache = {};
-    document.getElementById('metricsBar').style.display = 'none';
-    if (c === 'taq') setHeadersTaq(); else setHeadersWeb();
 }
 
-/* ── child row tickets (Taquilla) ────────────────────────────────────── */
+function limpiarBloques() {
+    dtInstances.forEach(function(dt){ try { dt.destroy(); } catch(e){} });
+    dtInstances = [];
+    document.getElementById('agentBlocks').innerHTML = '';
+    lastData = []; document.getElementById('exportBar').classList.add('d-none');
+}
+
+/* ── child row tickets (Taquilla) ─────────────────────────────────────── */
 function buildTicketsHTML(tickets) {
     if (!tickets || !tickets.length)
         return '<div class="p-2" style="color:#aac;">Sin tickets para este usuario.</div>';
     var rows = '';
     tickets.forEach(function(t) {
+        var tid = t.ticket || 0;
         rows += '<tr style="text-align:center;">'
-            + '<td class="col-ticket">' + (t.ticket   || '—') + '</td>'
-            + '<td>' + (t.tipoAp    || '—') + '</td>'
-            + '<td class="col-monto-pos">' + fmt(t.riesgo    || t.arriesgando) + '</td>'
-            + '<td class="col-monto-neg">' + fmt(t.ganando)  + '</td>'
+            + '<td class="col-ticket"><span onclick="verDetalleTicket(' + tid + ')" style="cursor:pointer;color:#48CAE4;text-decoration:underline;font-weight:700;">' + (tid || '—') + '</span></td>'
+            + '<td>' + (t.tipoAp || '—') + '</td>'
+            + '<td class="col-monto-pos">' + fmt(t.riesgo || t.arriesgando) + '</td>'
+            + '<td class="col-monto-neg">' + fmt(t.ganando) + '</td>'
             + '<td>' + (t.operacion || '—') + '</td>'
-            + '<td>' + fmtFecha(t.fecha)    + '</td>'
+            + '<td>' + fmtFecha(t.fecha) + '</td>'
             + '</tr>';
     });
-    return '<div class="p-2"><table class="glass-table w-100" style="font-size:1em;text-align:center;">'
+    return '<div class="p-2"><table class="glass-table w-100" style="font-size:.93em;text-align:center;">'
         + '<thead><tr><th>Ticket</th><th>Tipo Apuesta</th><th>Riesgo</th><th>Premio</th><th>Operación</th><th>Fecha</th></tr></thead>'
         + '<tbody>' + rows + '</tbody></table></div>';
 }
 
-/* compara usuario ignorando case y espacios */
-function mismoUsuario(ticketUsuario, usuario) {
-    return (ticketUsuario || '').toLowerCase().trim() === (usuario || '').toLowerCase().trim();
+function mismoUsuario(a, b) {
+    return (a || '').toLowerCase().trim() === (b || '').toLowerCase().trim();
 }
 
-function toggleDetalle(tr, row) {
+function toggleDetalle(tr, row, agente, fechaD, fechaH) {
     if (row.child.isShown()) {
         row.child.hide();
         tr.querySelector('.btn-expand').textContent = '+';
         tr.classList.remove('shown');
         return;
     }
-    var d        = row.data();
-    var usuario  = d.usuario || '';
-    var agente   = d.agente  || '';
-    var fechaD   = document.getElementById('fechaD').value;
-    var fechaH   = document.getElementById('fechaH').value;
-
+    var usuario = row.data().usuario || '';
     row.child('<div class="p-2" style="color:#aac;">Cargando...</div>').show();
     tr.querySelector('.btn-expand').textContent = '−';
     tr.classList.add('shown');
 
-    /* intenta primero con el agente específico, luego con TODOS si no hay resultados */
     function buscarYMostrar(agenteParam) {
         var cacheKey = agenteParam + '|' + fechaD + '|' + fechaH;
         function mostrar(allTickets) {
             var filtrados = (allTickets || []).filter(function(t){ return mismoUsuario(t.usuario, usuario); });
-            if (!filtrados.length && agenteParam !== 'TODOS') {
-                /* reintento con TODOS */
-                buscarYMostrar('TODOS');
-                return;
-            }
+            if (!filtrados.length && agenteParam !== 'TODOS') { buscarYMostrar('TODOS'); return; }
             row.child(buildTicketsHTML(filtrados)).show();
         }
         if (ticketsCache[cacheKey] !== undefined) { mostrar(ticketsCache[cacheKey]); return; }
         $.post('@Url.Action("GetTicketsDetalladosTaq","Reportes")', { fechaD, fechaH, agente: agenteParam })
-            .done(function(tickets) {
-                ticketsCache[cacheKey] = tickets || [];
-                mostrar(ticketsCache[cacheKey]);
-            })
-            .fail(function(xhr) {
-                row.child('<div class="p-2" style="color:#f88;">Error HTTP ' + xhr.status + ' al cargar tickets.</div>').show();
-            });
+            .done(function(tickets) { ticketsCache[cacheKey] = tickets || []; mostrar(ticketsCache[cacheKey]); })
+            .fail(function(xhr) { row.child('<div class="p-2" style="color:#f88;">Error HTTP ' + xhr.status + '.</div>').show(); });
     }
-
     buscarYMostrar(agente || 'TODOS');
 }
 
-/* ── agentes ─────────────────────────────────────────────────────────── */
+/* ── render bloque Taquilla ───────────────────────────────────────────── */
+function renderBloqueTaq(agente, rows, idx, fechaD, fechaH) {
+    // Agregar por usuario (el endpoint puede traer filas por ticket/día)
+    var grouped = {};
+    rows.forEach(function(r) {
+        var usr = get(r, 'Usuario') || '(sin usuario)';
+        if (!grouped[usr]) grouped[usr] = { usuario: usr, agente: agente, ventas: 0, pagos: 0, pendientes: 0, balance: 0 };
+        grouped[usr].ventas     += parseFmt(get(r, 'Ventas'));
+        grouped[usr].pagos      += parseFmt(get(r, 'Pagos'));
+        grouped[usr].pendientes += parseFmt(get(r, 'Pendientes'));
+        grouped[usr].balance    += parseFmt(get(r, 'Balance'));
+    });
+    var arr = Object.values(grouped);
+
+    var totV = 0, totP = 0, totPend = 0, totB = 0;
+    arr.forEach(function(r) { totV += r.ventas; totP += r.pagos; totPend += r.pendientes; totB += r.balance; });
+
+    var tableId = 'tblNikTaq_' + idx;
+    var block = document.createElement('div');
+    block.className = 'agent-block';
+    block.innerHTML =
+        '<div class="agent-block-header"><i class="ti ti-user"></i>' + agente + '</div>' +
+        '<div class="quick-metrics-bar mb-2">' +
+            card('Total Ventas', fmt(totV),    'metric-blue') +
+            card('Total Pagos',  fmt(totP),    'metric-red')  +
+            card('Pendientes',   fmt(totPend), 'metric-blue') +
+            card('Balance',      fmt(totB),    totB >= 0 ? 'metric-green' : 'metric-red') +
+        '</div>' +
+        '<div class="table-responsive">' +
+        '<table id="' + tableId + '" class="glass-table w-100">' +
+        '<thead><tr>' +
+            '<th style="text-align:center;"></th>' +
+            '<th style="text-align:center;">Usuario</th>' +
+            '<th style="text-align:center;">Ventas</th>' +
+            '<th style="text-align:center;">Pagos</th>' +
+            '<th style="text-align:center;">Pendientes</th>' +
+            '<th style="text-align:center;">Balance</th>' +
+        '</tr></thead><tbody></tbody>' +
+        '<tfoot><tr>' +
+            '<th colspan="2" style="text-align:center;">TOTAL</th>' +
+            '<th style="text-align:center;">' + fmt(totV)    + '</th>' +
+            '<th style="text-align:center;">' + fmt(totP)    + '</th>' +
+            '<th style="text-align:center;">' + fmt(totPend) + '</th>' +
+            '<th style="text-align:center;color:' + (totB >= 0 ? 'var(--av-5,#7FCA8A)' : '#FC8181') + ';font-weight:600;">' + fmt(totB) + '</th>' +
+        '</tr></tfoot>' +
+        '</table></div>';
+
+    document.getElementById('agentBlocks').appendChild(block);
+
+    var dt = $('#' + tableId).DataTable({
+        data: arr,
+        columns: [
+            { className: 'dt-control text-center', orderable: false, data: null, defaultContent: '',
+              createdCell: function(td) { var btn=document.createElement('button'); btn.className='btn-expand btn-glass btn-primary btn-sm'; btn.style.cssText='padding:1px 7px;font-size:.9em;min-width:24px;'; btn.textContent='+'; td.appendChild(btn); } },
+            { data: 'usuario',    className: 'text-center', render: function(d){ return d ? d.toUpperCase() : '—'; } },
+            { data: 'ventas',     className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } },
+            { data: 'pagos',      className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-neg'); } },
+            { data: 'pendientes', className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)); } },
+            { data: 'balance',    className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass(parseFloat(d||0)>=0?'col-monto-pos':'col-monto-neg'); } }
+        ],
+        language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
+        pageLength: 25, order: [[1, 'asc']], dom: 'Bfrtip',
+        buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm', title: agente, exportOptions: { columns: ':not(.dt-control)' } }]
+    });
+
+    var ag = agente, fd = fechaD, fh = fechaH;
+    $('#' + tableId + ' tbody').on('click', '.btn-expand', function() {
+        var tr = $(this).closest('tr')[0];
+        toggleDetalle(tr, dt.row(tr), ag, fd, fh);
+    });
+
+    dtInstances.push(dt);
+}
+
+/* ── render bloque Web ────────────────────────────────────────────────── */
+function renderBloqueWeb(agente, rows, idx) {
+    var totV = 0, totP = 0, totPend = 0, totB = 0;
+    rows.forEach(function(r) {
+        totV    += parseFmt(get(r, 'Ventas'));
+        totP    += parseFmt(get(r, 'Pagos'));
+        totPend += parseFmt(get(r, 'Pendientes'));
+        totB    += parseFmt(get(r, 'Balance'));
+    });
+
+    var tableId = 'tblNikWeb_' + idx;
+    var block = document.createElement('div');
+    block.className = 'agent-block';
+    block.innerHTML =
+        '<div class="agent-block-header"><i class="ti ti-user"></i>' + agente + '</div>' +
+        '<div class="quick-metrics-bar mb-2">' +
+            card('Total Ventas', fmt(totV),    'metric-blue') +
+            card('Total Pagos',  fmt(totP),    'metric-red')  +
+            card('Pendientes',   fmt(totPend), 'metric-blue') +
+            card('Balance',      fmt(totB),    totB >= 0 ? 'metric-green' : 'metric-red') +
+        '</div>' +
+        '<div class="table-responsive">' +
+        '<table id="' + tableId + '" class="glass-table w-100">' +
+        '<thead><tr>' +
+            '<th style="text-align:center;">Usuario</th>' +
+            '<th style="text-align:center;">Ventas</th>' +
+            '<th style="text-align:center;">Pagos</th>' +
+            '<th style="text-align:center;">Pendientes</th>' +
+            '<th style="text-align:center;">Balance</th>' +
+        '</tr></thead><tbody></tbody>' +
+        '<tfoot><tr>' +
+            '<th style="text-align:center;">TOTAL</th>' +
+            '<th style="text-align:center;">' + fmt(totV)    + '</th>' +
+            '<th style="text-align:center;">' + fmt(totP)    + '</th>' +
+            '<th style="text-align:center;">' + fmt(totPend) + '</th>' +
+            '<th style="text-align:center;color:' + (totB >= 0 ? 'var(--av-5,#7FCA8A)' : '#FC8181') + ';font-weight:600;">' + fmt(totB) + '</th>' +
+        '</tr></tfoot>' +
+        '</table></div>';
+
+    document.getElementById('agentBlocks').appendChild(block);
+
+    var dt = $('#' + tableId).DataTable({
+        data: rows,
+        columns: [
+            { data: null, className: 'text-center', render: function(d,t,r){ return get(r,'Usuario') || '—'; } },
+            { data: null, className: 'text-center col-monto-pos', render: function(d,t,r){ return fmt(get(r,'Ventas')); } },
+            { data: null, className: 'text-center col-monto-neg', render: function(d,t,r){ return fmt(get(r,'Pagos')); } },
+            { data: null, className: 'text-center', render: function(d,t,r){ return fmt(get(r,'Pendientes')); } },
+            { data: null, className: 'text-center',
+              createdCell: function(td,_d,r){ var b=parseFmt(get(r,'Balance')); $(td).text(fmt(get(r,'Balance'))).addClass(b>=0?'col-monto-pos':'col-monto-neg'); },
+              render: function(d,t,r){ return parseFmt(get(r,'Balance')); } }
+        ],
+        language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
+        pageLength: 25, order: [[0, 'asc']], dom: 'Bfrtip',
+        buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm', title: agente }]
+    });
+
+    dtInstances.push(dt);
+}
+
+/* ── agentes ──────────────────────────────────────────────────────────── */
 function cargarAgentes() {
     if (!esAdmin) return;
     $.post('@Url.Action("GetListAgenciasApi","Reportes")')
@@ -284,7 +369,7 @@ function cargarAgentes() {
         });
 }
 
-/* ── carga principal ─────────────────────────────────────────────────── */
+/* ── carga principal ──────────────────────────────────────────────────── */
 function cargarReporte() {
     const fechaD = document.getElementById('fechaD').value;
     const fechaH = document.getElementById('fechaH').value;
@@ -294,6 +379,7 @@ function cargarReporte() {
         return;
     }
     ticketsCache = {};
+    limpiarBloques();
     showBusy(canal === 'taq' ? 'Consultando Nikols taquilla...' : 'Consultando Nikols web...');
 
     $.post(canal === 'taq' ? urlTaq : urlWeb, { fechaD, fechaH, agente })
@@ -303,130 +389,21 @@ function cargarReporte() {
                 Swal.fire({ icon: 'info', title: 'Sin resultados', text: 'No hay datos para el período seleccionado.', background: '#002E5C', color: '#fff' });
                 return;
             }
-            if (dt) { dt.destroy(); dt = null; }
 
-            if (canal === 'taq') {
-                // ── GROUP BY usuario ──────────────────────────────────────
-                var grouped = {};
-                rows.forEach(function(r) {
-                    var usr = get(r, 'Usuario') || '(sin usuario)';
-                    var ag  = get(r, 'Agente')  || '';
-                    if (!grouped[usr]) {
-                        grouped[usr] = { usuario: usr, agente: ag, ventas: 0, pagos: 0, pendientes: 0, balance: 0 };
-                    }
-                    grouped[usr].ventas     += parseFmt(get(r, 'Ventas'));
-                    grouped[usr].pagos      += parseFmt(get(r, 'Pagos'));
-                    grouped[usr].pendientes += parseFmt(get(r, 'Pendientes'));
-                    grouped[usr].balance    += parseFmt(get(r, 'Balance'));
-                });
-                var groupedArr = Object.values(grouped);
+            // Agrupar por agente
+            var grupos = {};
+            var orden  = [];
+            rows.forEach(function(r) {
+                var ag = get(r, 'Agente') || '(Sin Agente)';
+                if (!grupos[ag]) { grupos[ag] = []; orden.push(ag); }
+                grupos[ag].push(r);
+            });
 
-                var totV = 0, totP = 0, totPend = 0, totB = 0;
-                groupedArr.forEach(function(r) {
-                    totV    += r.ventas;
-                    totP    += r.pagos;
-                    totPend += r.pendientes;
-                    totB    += r.balance;
-                });
-
-                document.getElementById('metVentas').textContent     = fmt(totV);
-                document.getElementById('metPagos').textContent      = fmt(totP);
-                document.getElementById('metPendientes').textContent = fmt(totPend);
-                document.getElementById('metBalance').textContent    = fmt(totB);
-                document.getElementById('metricsBar').style.display  = 'flex';
-
-                dt = $(tableId).DataTable({
-                    data: groupedArr,
-                    columns: [
-                        {
-                            className: 'dt-control text-center', orderable: false, data: null, defaultContent: '',
-                            createdCell: function(td) {
-                                var btn = document.createElement('button');
-                                btn.className = 'btn-expand btn-glass btn-primary btn-sm';
-                                btn.style.cssText = 'padding:1px 7px;font-size:.9em;min-width:24px;';
-                                btn.textContent = '+';
-                                td.appendChild(btn);
-                            }
-                        },
-                        { data: 'agente',     visible: false },
-                        { data: 'usuario',    defaultContent: '—', className: 'text-center' },
-                        { data: 'ventas',     className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } },
-                        { data: 'pagos',      className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-neg'); } },
-                        { data: 'pendientes', className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)); } },
-                        {
-                            data: 'balance', className: 'text-center',
-                            createdCell: function(td,d){ $(td).text(fmt(d)).addClass(parseFloat(d||0)>=0?'col-monto-pos':'col-monto-neg'); }
-                        }
-                    ],
-                    footerCallback: function() {
-                        document.getElementById('totVentas').textContent     = fmt(totV);
-                        document.getElementById('totPagos').textContent      = fmt(totP);
-                        document.getElementById('totPendientes').textContent = fmt(totPend);
-                        var elB = document.getElementById('totBalance');
-                        if (elB) {
-                            elB.textContent      = fmt(totB);
-                            elB.style.color      = totB >= 0 ? 'var(--av-5, #7FCA8A)' : '#FC8181';
-                            elB.style.fontWeight = '600';
-                            elB.style.textAlign  = 'center';
-                        }
-                    },
-                    language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
-                    pageLength: 25, order: [[2, 'asc']], dom: 'Bfrtip',
-                    buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm', exportOptions: { columns: ':not(.dt-control)' } }]
-                });
-
-                $(tableId + ' tbody').on('click', '.btn-expand', function() {
-                    var tr = $(this).closest('tr')[0];
-                    toggleDetalle(tr, dt.row(tr));
-                });
-
-            } else {
-                // ── Web — lista plana Agente / Usuario ────────────────────
-                var totV = 0, totP = 0, totPend = 0, totB = 0;
-                rows.forEach(function(r) {
-                    totV    += parseFmt(get(r, 'Ventas'));
-                    totP    += parseFmt(get(r, 'Pagos'));
-                    totPend += parseFmt(get(r, 'Pendientes'));
-                    totB    += parseFmt(get(r, 'Balance'));
-                });
-
-                document.getElementById('metVentas').textContent     = fmt(totV);
-                document.getElementById('metPagos').textContent      = fmt(totP);
-                document.getElementById('metPendientes').textContent = fmt(totPend);
-                document.getElementById('metBalance').textContent    = fmt(totB);
-                document.getElementById('metricsBar').style.display  = 'flex';
-
-                dt = $(tableId).DataTable({
-                    data: rows,
-                    columns: [
-                        { data: null, visible: false, render: function(d,t,r){ return get(r,'Agente') || '—'; } },
-                        { data: null, className: 'text-center', render: function(d,t,r){ return get(r,'Usuario') || '—'; } },
-                        { data: null, className: 'text-center col-monto-pos', render: function(d,t,r){ return fmt(get(r,'Ventas')); } },
-                        { data: null, className: 'text-center col-monto-neg', render: function(d,t,r){ return fmt(get(r,'Pagos')); } },
-                        { data: null, className: 'text-center', render: function(d,t,r){ return fmt(get(r,'Pendientes')); } },
-                        {
-                            data: null, className: 'text-center',
-                            createdCell: function(td,_d,r){ var b=parseFmt(get(r,'Balance')); $(td).text(fmt(get(r,'Balance'))).addClass(b>=0?'col-monto-pos':'col-monto-neg'); },
-                            render: function(d,t,r){ return fmt(get(r,'Balance')); }
-                        }
-                    ],
-                    footerCallback: function() {
-                        document.getElementById('totVentas').textContent     = fmt(totV);
-                        document.getElementById('totPagos').textContent      = fmt(totP);
-                        document.getElementById('totPendientes').textContent = fmt(totPend);
-                        var elB = document.getElementById('totBalance');
-                        if (elB) {
-                            elB.textContent      = fmt(totB);
-                            elB.style.color      = totB >= 0 ? 'var(--av-5, #7FCA8A)' : '#FC8181';
-                            elB.style.fontWeight = '600';
-                            elB.style.textAlign  = 'center';
-                        }
-                    },
-                    language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
-                    pageLength: 25, order: [[0, 'asc']], dom: 'Bfrtip',
-                    buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm', exportOptions: { columns: ':visible' } }]
-                });
-            }
+            orden.forEach(function(ag, idx) {
+                if (canal === 'taq') renderBloqueTaq(ag, grupos[ag], idx, fechaD, fechaH);
+                else                 renderBloqueWeb(ag, grupos[ag], idx);
+            });
+            lastData = rows; document.getElementById('exportBar').classList.remove('d-none');
         })
         .fail(function(xhr) {
             hideBusy();
@@ -434,9 +411,103 @@ function cargarReporte() {
         });
 }
 
+
+/* -- Exportacion -------------------------------------------------- */
+// nkNum: maneja tanto números crudos (taquilla) como strings con formato venezolano (web)
+function nkNum(v) {
+    if (v === null || v === undefined || v === '') return 0;
+    if (typeof v === 'number') return v;
+    return parseFloat(v.toString().replace(/\./g, '').replace(',', '.')) || 0;
+}
+var EXPORT_CONFIG = {
+    reportName: 'Ventas Nikols',
+    groupField: function(r){ return get(r,'Agente')||'(Sin Agente)'; },
+    cols: [
+        { head: 'Agente',     get: function(r){ return get(r,'Agente')||'(Sin Agente)'; }, type: 'text' },
+        { head: 'Usuario',    get: function(r){ return get(r,'Usuario')||'--'; },          type: 'text' },
+        { head: 'Ventas',     get: function(r){ return nkNum(get(r,'Ventas')); },          type: 'money' },
+        { head: 'Pagos',      get: function(r){ return nkNum(get(r,'Pagos')); },           type: 'money' },
+        { head: 'Pendientes', get: function(r){ return nkNum(get(r,'Pendientes')); },      type: 'money' },
+        { head: 'Balance',    get: function(r){ return nkNum(get(r,'Balance')); },         type: 'money' }
+    ]
+};
+function exportExcel() { ExportHelpers.exportarExcel(lastData, EXPORT_CONFIG); }
+function exportPDF() {
+    ExportHelpers.exportarPDF(lastData, EXPORT_CONFIG, document.getElementById('fechaD').value, document.getElementById('fechaH').value);
+}
 $(document).ready(function() {
     cargarAgentes();
     if (!esAdmin) { cargarReporte(); }
 });
+
+/* ── Modal detalle de ticket ──────────────────────────────────────────── */
+const urlDetalleTicket = '@Url.Action("GetDetalleTicket","Reportes")';
+
+function verDetalleTicket(idticket) {
+    if (!idticket) return;
+    Swal.fire({ title: 'Cargando ticket #' + idticket + '...', allowOutsideClick: false, background: '#002E5C', color: '#fff', didOpen: function(){ Swal.showLoading(); } });
+    $.post(urlDetalleTicket, { idticket: idticket })
+        .done(function(res) {
+            if (!res || !res.estatus) {
+                Swal.fire({ icon: 'error', title: 'Error', text: res?.mensaje || 'No se pudo cargar el ticket.', background: '#002E5C', color: '#fff' });
+                return;
+            }
+            const d = res.data;
+            const opMap = { 1:'Pendiente', 2:'Ganador', 3:'Perdedor', 4:'Anulado', 5:'Cobrado' };
+            const estatusColor = { 'Ganador':'#4ade80','Pendiente':'#48CAE4','Perdedor':'#f87171','Anulado':'#94a3b8','Cobrado':'#a78bfa' };
+            const eColor = estatusColor[d.estatus] || '#94a3b8';
+            var detalleRows = '';
+            (d.detalles || []).forEach(function(det) {
+                var ganoIcon = det.gano === 1 ? '<span style="color:#4ade80;font-weight:700;">✓</span>' : '<span style="color:#f87171;font-weight:700;">✗</span>';
+                detalleRows += '<tr style="border-bottom:1px solid rgba(255,255,255,.06);">'
+                    + '<td style="padding:7px 8px;text-align:center;color:#94a3b8;font-size:.8em;">' + (det.deporte  || '—') + '</td>'
+                    + '<td style="padding:7px 8px;text-align:center;font-size:.8em;">'              + (det.liga     || '—') + '</td>'
+                    + '<td style="padding:7px 8px;text-align:left;font-size:.82em;font-weight:600;color:#e2e8f0;">' + (det.equipo || '—') + '</td>'
+                    + '<td style="padding:7px 8px;text-align:center;font-size:.8em;color:#fbbf24;">'+ (det.logro    || '—') + '</td>'
+                    + '<td style="padding:7px 8px;text-align:center;font-size:.8em;">'              + (det.decimales|| '—') + '</td>'
+                    + '<td style="padding:7px 8px;text-align:center;font-size:.8em;color:#94a3b8;">'+ (det.marcador || '—') + '</td>'
+                    + '<td style="padding:7px 8px;text-align:center;">' + ganoIcon + '</td>'
+                    + '</tr>';
+            });
+            function chip(label, value, color) {
+                return '<div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:6px 12px;min-width:110px;">'
+                    + '<div style="font-size:.65em;color:#64748b;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px;">' + label + '</div>'
+                    + '<div style="font-size:.92em;font-weight:700;color:' + color + ';">' + value + '</div>'
+                    + '</div>';
+            }
+            var html = '<div style="text-align:left;">'
+                + '<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px;">'
+                    + chip('Ticket', '#' + d.ticket, '#48CAE4')
+                    + chip('Tipo', d.tipoApuesta || '—', '#a78bfa')
+                    + chip('Estatus', d.estatus || '—', eColor)
+                    + chip('Operación', opMap[d.operacion] || '—', '#94a3b8')
+                + '</div>'
+                + '<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;">'
+                    + chip('Agente', d.nombreAgente || '—', '#64748b')
+                    + chip('Usuario', d.usuario || '—', '#64748b')
+                    + chip('Fecha', fmtFecha(d.fecha), '#64748b')
+                + '</div>'
+                + '<div style="overflow-x:auto;border-radius:8px;border:1px solid rgba(255,255,255,.1);">'
+                + '<table style="width:100%;border-collapse:collapse;"><thead><tr style="background:rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.12);">'
+                + '<th style="padding:8px;text-align:center;font-size:.75em;color:#94a3b8;font-weight:600;">DEPORTE</th>'
+                + '<th style="padding:8px;text-align:center;font-size:.75em;color:#94a3b8;font-weight:600;">LIGA</th>'
+                + '<th style="padding:8px;text-align:left;font-size:.75em;color:#94a3b8;font-weight:600;">EQUIPO / SELECCIÓN</th>'
+                + '<th style="padding:8px;text-align:center;font-size:.75em;color:#94a3b8;font-weight:600;">LOGRO</th>'
+                + '<th style="padding:8px;text-align:center;font-size:.75em;color:#94a3b8;font-weight:600;">CUOTA</th>'
+                + '<th style="padding:8px;text-align:center;font-size:.75em;color:#94a3b8;font-weight:600;">MARCADOR</th>'
+                + '<th style="padding:8px;text-align:center;font-size:.75em;color:#94a3b8;font-weight:600;">GANÓ</th>'
+                + '</tr></thead><tbody>' + detalleRows + '</tbody></table></div></div>';
+            Swal.fire({
+                title: '<span style="color:#48CAE4;font-size:1.1em;">Detalle Ticket #' + d.ticket + '</span>',
+                html: html,
+                width: Math.min(820, window.innerWidth * 0.96) + 'px',
+                background: '#002E5C', color: '#fff',
+                showCloseButton: true, showConfirmButton: false
+            });
+        })
+        .fail(function() {
+            Swal.fire({ icon: 'error', title: 'Error de conexión', text: 'No se pudo comunicar con el servidor.', background: '#002E5C', color: '#fff' });
+        });
+}
 </script>
 }

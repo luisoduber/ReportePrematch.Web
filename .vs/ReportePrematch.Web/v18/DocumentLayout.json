@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "D:\\GITHUB\\ReportePrematch.Web\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\reporteprematch.web.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\reporteprematch.web.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\reporteprematch.web.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\reporteprematch.web.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+      "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|solutionrelative:reporteprematch.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B1C2D3E4-F5A6-7890-BCDE-F01234567891}|ReportePrematch.Web\\ReportePrematch.Web.csproj|d:\\github\\reporteprematch.web\\reporteprematch.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -153,7 +153,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -161,14 +161,14 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "ReportePrematch.Web",
               "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\ReportePrematch.Web.csproj",
               "RelativeDocumentMoniker": "ReportePrematch.Web\\ReportePrematch.Web.csproj",
               "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\ReportePrematch.Web.csproj",
               "RelativeToolTip": "ReportePrematch.Web\\ReportePrematch.Web.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-09-02T03:00:30.203Z",
+              "WhenOpened": "2026-09-17T22:52:43.538Z",
               "EditorCaption": ""
             },
             {
@@ -201,23 +201,22 @@
               "RelativeDocumentMoniker": "ReportePrematch.Web\\appsettings.Development.json",
               "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\appsettings.Development.json",
               "RelativeToolTip": "ReportePrematch.Web\\appsettings.Development.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2026-07-28T01:33:43.416Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\appsettings.json",
               "RelativeDocumentMoniker": "ReportePrematch.Web\\appsettings.json",
               "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\appsettings.json",
               "RelativeToolTip": "ReportePrematch.Web\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-07-28T01:31:06.374Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-28T01:31:06.374Z"
             },
             {
               "$type": "Document",
@@ -229,7 +228,8 @@
               "RelativeToolTip": "ReportePrematch.Web\\Controllers\\ReportesController.cs",
               "ViewState": "AgIAAH0AAAAAAAAAAAAYwJcAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-28T19:15:37.738Z"
+              "WhenOpened": "2026-07-28T19:15:37.738Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -265,7 +265,8 @@
               "RelativeToolTip": "ReportePrematch.Web\\Services\\Clients\\ReportesService.cs",
               "ViewState": "AgIAAHcEAAAAAAAAAAAqwIMEAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-29T06:04:33.099Z"
+              "WhenOpened": "2026-07-29T06:04:33.099Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",

@@ -1,0 +1,22 @@
+2026-09-17 11:07:30.303 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-17 11:07:31.865 -04:00 [INF] HTTP GET / responded 200 in 335.9586 ms
+2026-09-17 11:07:32.486 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 4.0593 ms
+2026-09-17 11:07:47.234 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-17 11:07:47.241 -04:00 [INF] HTTP POST / responded 302 in 1078.9732 ms
+2026-09-17 11:07:47.464 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 216.2403 ms
+2026-09-17 11:07:52.319 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 4512.5505 ms
+2026-09-17 11:07:59.972 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 1241.7025 ms
+2026-09-17 11:08:10.576 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosWebII responded 200 in 863.3361 ms
+2026-09-17 18:37:39.013 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-17 18:37:40.509 -04:00 [INF] HTTP GET / responded 200 in 309.6919 ms
+2026-09-17 18:37:41.598 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 2.7645 ms
+2026-09-17 18:38:06.107 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-1) para vlapenta
+2026-09-17 18:38:06.111 -04:00 [WRN] Login fallido para usuario vlapenta
+2026-09-17 18:38:06.119 -04:00 [INF] HTTP POST / responded 200 in 700.6123 ms
+2026-09-17 18:38:12.828 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-17 18:38:12.833 -04:00 [INF] HTTP POST / responded 302 in 150.0920 ms
+2026-09-17 18:38:13.031 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 192.9908 ms
+2026-09-17 18:38:16.287 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 2639.2173 ms
+2026-09-17 18:38:26.227 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 1836.2642 ms
+2026-09-17 18:38:31.943 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosWebII responded 200 in 1671.6584 ms
+2026-09-17 18:51:47.709 -04:00 [INF] HTTP POST /Reportes/GetDetalleTicket responded 200 in 1982.8268 ms

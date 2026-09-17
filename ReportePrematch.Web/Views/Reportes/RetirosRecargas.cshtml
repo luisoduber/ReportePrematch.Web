@@ -115,7 +115,7 @@ function cargarReporte(){
             if(dt)dt.destroy();
             dt=$('#@ViewBag.TableId').DataTable({
                 data,
-                columns: [{data:'agente'},{data:'usuario'},{data:'monto',createdCell:function(td){$(td).addClass('col-monto-pos');}},{data:'accion',defaultContent:'—'},{data:'fecha',defaultContent:'—'}],
+                columns: [{data:'agente'},{data:'usuario', render:function(d){ return d ? d.toUpperCase() : '—'; }},{data:'monto',createdCell:function(td){$(td).addClass('col-monto-pos');}},{data:'accion',defaultContent:'—'},{data:'fecha',defaultContent:'—'}],
                 language:{url:'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json'},
                 pageLength:25,order:[[0,'asc']],dom:'Bfrtip',
                 buttons:[{extend:'excelHtml5',text:'<i class="ti ti-file-spreadsheet"></i> Excel',className:'btn-glass btn-primary btn-sm'}]

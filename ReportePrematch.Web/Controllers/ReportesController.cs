@@ -144,7 +144,7 @@ public sealed class ReportesController(
     public IActionResult Odyseus()
     {
         if (!SesionActiva()) return RedirectToLogin();
-        CargarViewBag("Odiseus", "btnOdyseus", "tblOdyseus");
+        CargarViewBag("Odysseus", "btnOdyseus", "tblOdyseus");
         return View();
     }
     [HttpPost]
@@ -188,6 +188,17 @@ public sealed class ReportesController(
     [HttpPost]
     public async Task<IActionResult> GetEndorphineResumenGeneral(string fechaInicio, string fechaFin, string agente)
         => Json(await reportes.GetEndorphineResumenGeneralAsync(fechaInicio, fechaFin, agente ?? ""));
+
+    [HttpGet]
+    public IActionResult KingMidas()
+    {
+        if (!SesionActiva()) return RedirectToLogin();
+        CargarViewBag("KingMidas", "btnKingMidas", "tblKingMidas");
+        return View();
+    }
+    [HttpPost]
+    public async Task<IActionResult> GetKingMidas(string startDate, string endDate, string agente)
+        => Json(await reportes.GetKingMidasAsync(startDate, endDate, agente ?? ""));
 
     [HttpGet]
     public IActionResult InOutGaming()
@@ -337,6 +348,10 @@ public sealed class ReportesController(
     [HttpPost]
     public async Task<IActionResult> GetTicketsDetalladosWeb(string fechaD, string fechaH, string agente)
         => Json(await reportes.GetTicketsDetalladosWebAsync(fechaD, fechaH, agente, Pais, Role));
+
+    [HttpPost]
+    public async Task<IActionResult> GetTicketsDetalladosWebII(string fechaD, string fechaH, string agente)
+        => Json(await reportes.GetTicketsDetalladosWebIIAsync(fechaD, fechaH, agente, Pais, Role));
 
     [HttpGet]
     public IActionResult TicketsDetalladosTaq()
