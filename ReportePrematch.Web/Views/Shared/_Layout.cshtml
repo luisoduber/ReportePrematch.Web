@@ -38,11 +38,21 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css" />
     <!-- DataTables -->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/5.0.1/css/fixedColumns.bootstrap5.min.css" />
     <!-- Tom Select -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.bootstrap5.min.css" />
 
     <!-- Liquid Glass custom CSS -->
     <link rel="stylesheet" href="~/css/liquid-glass.css" asp-append-version="true" />
+    <style>
+        /* DataTables — ocultar texto alrededor del select de longitud, mantener solo el dropdown */
+        .dataTables_length label { font-size: 0 !important; gap: 0; }
+        .dataTables_length label select { font-size: 13px !important; }
+        /* Ocultar paginación numérica */
+        .dataTables_paginate { display: none !important; }
+        /* Dropdown de longitud alineado a la derecha */
+        .dataTables_length { text-align: right !important; }
+    </style>
 </head>
 <body class="min-h-screen" style="background: linear-gradient(135deg, var(--sa-1) 0%, var(--sa-2) 40%, var(--sa-3) 100%); background-attachment: fixed;">
 
@@ -237,6 +247,28 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedcolumns/5.0.1/js/dataTables.fixedColumns.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedcolumns/5.0.1/js/fixedColumns.bootstrap5.min.js"></script>
+    <script>
+    /* Quitar texto "entries per page" / "registros" del length menu en TODA tabla DataTables */
+
+    /* 1. Parchea la respuesta del archivo de idioma antes de que DataTables lo aplique */
+    $(document).on('xhr.dt', function(e, settings, json) {
+        if (json && json.lengthMenu !== undefined) json.lengthMenu = '_MENU_';
+    });
+
+    /* 2. Fija el default global para tablas sin language.url */
+    $.fn.dataTable.defaults.language = $.fn.dataTable.defaults.language || {};
+    $.fn.dataTable.defaults.language.lengthMenu = '_MENU_';
+
+    /* 3. Limpia el DOM del label tras cada init (por si acaso) */
+    $(document).on('init.dt', function(e, settings) {
+        $(settings.nTableWrapper).find('.dataTables_length label').each(function() {
+            var $sel = $(this).find('select').detach();
+            $(this).empty().append($sel);
+        });
+    });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="~/js/busy.js" asp-append-version="true"></script>
     <!-- Tom Select -->

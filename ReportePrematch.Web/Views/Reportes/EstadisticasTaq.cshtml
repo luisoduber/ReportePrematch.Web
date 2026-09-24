@@ -233,9 +233,10 @@ function cargarReporte() {
                     document.getElementById('totUtilidad').textContent   = fmt(totU);
                 },
                 language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
-                pageLength: 25,
+                pageLength: 100,
+                lengthMenu: [[100, 500, 1000, -1], ['100', '500', '1000', 'Todos']],
                 order: [[1, 'asc']],
-                dom: 'Bfrtip',
+                dom: 'Bfrt<"d-flex justify-content-end align-items-center mt-2"l>',
                 buttons: [
                     {
                         extend: 'excelHtml5',

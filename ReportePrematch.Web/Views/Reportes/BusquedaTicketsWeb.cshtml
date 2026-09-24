@@ -133,7 +133,7 @@ function cargarReporte(){
                     {data:'Estado',defaultContent:'—'}
                 ],
                 language:{url:'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json'},
-                pageLength:50,order:[[3,'desc']],dom:'Bfrtip',
+                pageLength:100,lengthMenu:[[100,500,1000,-1],['100','500','1000','Todos']],order:[[3,'desc']],dom:'Bfrt<"d-flex justify-content-end align-items-center mt-2"l>',
                 buttons:[{extend:'excelHtml5',text:'<i class="ti ti-file-spreadsheet"></i> Excel',className:'btn-glass btn-primary btn-sm'}]
             });
             hideBusy();

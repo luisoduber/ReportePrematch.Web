@@ -118,6 +118,10 @@ let dtInstances = [];
 function fmt(v) {
     return parseFloat(v || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
+/* Montos enteros (Riesgo, Premio, GGR, PromoWin) — sin decimales */
+function fmtM(v) {
+    return Math.round(parseFloat(v || 0)).toLocaleString('es-VE');
+}
 function fmtFecha(val) {
     if (!val) return '—';
     var s = val.toString().trim();
@@ -163,12 +167,14 @@ function cargarResumenGeneral(fechaInicio, fechaFin, agente) {
             document.getElementById('metAgentes').textContent  = (r.totalAgentes  || 0).toLocaleString('es-VE');
             document.getElementById('metApuestas').textContent = (r.totalApuestas  || 0).toLocaleString('es-VE');
             document.getElementById('metPremios').textContent  = (r.totalPremios   || 0).toLocaleString('es-VE');
-            document.getElementById('metRiesgo').textContent   = fmt(r.totalRiesgo_Bet);
-            document.getElementById('metPremio').textContent   = fmt(r.totalPremio_Win);
-            document.getElementById('metGGR').textContent      = fmt(r.ggR_Total  || r.gGR_Total  || r.ggr_Total  || 0);
-            document.getElementById('metHOLD').textContent     = fmt(r.holD_Porcentaje || r.hOLD_Porcentaje || r.hold_Porcentaje || 0);
-            document.getElementById('metRTP').textContent      = fmt(r.rtP_Porcentaje  || r.rTP_Porcentaje  || r.rtp_Porcentaje  || 0);
-            document.getElementById('metPromoWin').textContent = fmt(r.promoWin_Total  || 0);
+            document.getElementById('metRiesgo').textContent   = fmtM(r.totalRiesgo_Bet);
+            document.getElementById('metPremio').textContent   = fmtM(r.totalPremio_Win);
+            document.getElementById('metGGR').textContent      = fmtM(r.ggR_Total  || r.gGR_Total  || r.ggr_Total  || 0);
+            var _ri = r.totalRiesgo_Bet || 0, _pr = r.totalPremio_Win || 0,
+                _gg = r.ggR_Total || r.gGR_Total || r.ggr_Total || 0;
+            document.getElementById('metHOLD').textContent = _ri > 0 ? fmt(_gg / _ri * 100) : '0,00';
+            document.getElementById('metRTP').textContent  = _ri > 0 ? fmt(_pr / _ri * 100) : '0,00';
+            document.getElementById('metPromoWin').textContent = fmtM(r.promoWin_Total  || 0);
             document.getElementById('metricsBar').style.display = 'flex';
         });
 }
@@ -195,12 +201,12 @@ function renderBloqueAgente(agente, rows, idx) {
         '<div class="quick-metrics-bar mb-2">' +
             card('Apuestas',    totAp.toLocaleString('es-VE'), 'metric-blue')   +
             card('Premios',     totPr.toLocaleString('es-VE'), 'metric-blue')   +
-            card('Total Riesgo',fmt(totR),                     'metric-red')    +
-            card('Total Premio',fmt(totP),                     'metric-red')    +
-            card('GGR',         fmt(totG),                     totG >= 0 ? 'metric-green' : 'metric-red') +
+            card('Total Riesgo',fmtM(totR),                    'metric-red')    +
+            card('Total Premio',fmtM(totP),                    'metric-red')    +
+            card('GGR',         fmtM(totG),                    totG >= 0 ? 'metric-green' : 'metric-red') +
             card('HOLD %',      fmt(holdTot),                  'metric-yellow') +
             card('RTP %',       fmt(rtpTot),                   'metric-yellow') +
-            card('PromoWin',    fmt(totPromo),                 'metric-purple') +
+            card('PromoWin',    fmtM(totPromo),                'metric-purple') +
         '</div>' +
         '<div class="table-responsive">' +
         '<table id="' + tableId + '" class="glass-table w-100">' +
@@ -222,12 +228,12 @@ function renderBloqueAgente(agente, rows, idx) {
             '<th class="text-center" colspan="2">TOTAL</th>' +
             '<th class="text-center">' + totAp.toLocaleString('es-VE') + '</th>' +
             '<th class="text-center">' + totPr.toLocaleString('es-VE') + '</th>' +
-            '<th class="text-center">' + fmt(totR) + '</th>' +
-            '<th class="text-center">' + fmt(totP) + '</th>' +
-            '<th style="text-align:center;color:' + (totG >= 0 ? 'var(--av-5,#7FCA8A)' : '#FC8181') + ';font-weight:600;">' + fmt(totG) + '</th>' +
+            '<th class="text-center">' + fmtM(totR) + '</th>' +
+            '<th class="text-center">' + fmtM(totP) + '</th>' +
+            '<th style="text-align:center;color:' + (totG >= 0 ? 'var(--av-5,#7FCA8A)' : '#FC8181') + ';font-weight:600;">' + fmtM(totG) + '</th>' +
             '<th class="text-center" style="color:#facc15;">' + fmt(holdTot)  + '</th>' +
             '<th class="text-center" style="color:#facc15;">' + fmt(rtpTot)   + '</th>' +
-            '<th class="text-center" style="color:#c084fc;">' + fmt(totPromo) + '</th>' +
+            '<th class="text-center" style="color:#c084fc;">' + fmtM(totPromo) + '</th>' +
             '<th class="text-center" colspan="2"></th>' +
         '</tr></tfoot>' +
         '</table></div>';
@@ -246,28 +252,28 @@ function renderBloqueAgente(agente, rows, idx) {
             { data: null, className: 'text-center',
               render: function(r){ return (r.cantidadPremios  || 0).toLocaleString('es-VE'); } },
             { data: null, className: 'text-center col-monto-pos',
-              render: function(r){ return fmt(r.totalRiesgo_Bet || 0); } },
+              render: function(r){ return fmtM(r.totalRiesgo_Bet || 0); } },
             { data: null, className: 'text-center col-monto-neg',
-              render: function(r){ return fmt(r.totalPremio_Win || 0); } },
+              render: function(r){ return fmtM(r.totalPremio_Win || 0); } },
             { data: null, className: 'text-center',
-              render: function(r){ return fmt(r.gGR || r.ggr || 0); },
+              render: function(r){ return fmtM(r.gGR || r.ggr || 0); },
               createdCell: function(td, _d, r) {
                   var g = r.gGR || r.ggr || 0;
                   $(td).addClass(g >= 0 ? 'col-monto-pos' : 'col-monto-neg');
               }},
             { data: null, className: 'text-center',
-              render: function(r){ return fmt(r.hOLD_Porcentaje || r.hold_Porcentaje || 0); } },
+              render: function(r){ var ri=r.totalRiesgo_Bet||0, gg=r.gGR||r.ggr||0; return ri>0?fmt(gg/ri*100):'0,00'; } },
             { data: null, className: 'text-center',
-              render: function(r){ return fmt(r.rTP_Porcentaje  || r.rtp_Porcentaje  || 0); } },
+              render: function(r){ var ri=r.totalRiesgo_Bet||0, pr=r.totalPremio_Win||0; return ri>0?fmt(pr/ri*100):'0,00'; } },
             { data: null, className: 'text-center',
-              render: function(r){ return fmt(r.promoWin_Referencia || 0); } },
+              render: function(r){ return fmtM(r.promoWin_Referencia || 0); } },
             { data: null, className: 'text-center',
               render: function(r){ return fmtFecha(r.primeraTransaccion); } },
             { data: null, className: 'text-center',
               render: function(r){ return fmtFecha(r.ultimaTransaccion); } }
         ],
         language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
-        pageLength: 25, order: [[6, 'desc']], dom: 'Bfrtip',
+        pageLength: 100, lengthMenu: [[100, 500, 1000, -1], ['100', '500', '1000', 'Todos']], order: [[6, 'desc']], dom: 'Bfrt<"d-flex justify-content-end align-items-center mt-2"l>',
         buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm', title: agente }]
     });
 

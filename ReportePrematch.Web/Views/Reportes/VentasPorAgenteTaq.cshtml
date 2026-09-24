@@ -226,7 +226,7 @@ function desplegarTickets($span, row, tr) {
                 { data: null, className: 'text-center', render: function(d,t,r){ return fmtFecha(r.fecha); } }
             ],
             language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
-            pageLength: 25, order: [[0,'desc']], dom: 'Bfrtip',
+            pageLength: 100, lengthMenu: [[100, 500, 1000, -1], ['100', '500', '1000', 'Todos']], order: [[0,'desc']], dom: 'Bfrt<"d-flex justify-content-end align-items-center mt-2"l>',
             buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm' }]
         });
     }
@@ -324,7 +324,7 @@ function renderTaq(data) {
             document.getElementById('totUtil').textContent = fmt(totUtil);
         },
         language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
-        pageLength: 25, order: [[0,'asc']], dom: 'Bfrtip',
+        pageLength: 100, lengthMenu: [[100, 500, 1000, -1], ['100', '500', '1000', 'Todos']], order: [[0,'asc']], dom: 'Bfrt<"d-flex justify-content-end align-items-center mt-2"l>',
         buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm' }]
     });
 
@@ -406,7 +406,7 @@ function renderWeb(data) {
             document.getElementById('tBal').textContent = fmt(bal);
         },
         language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
-        pageLength: 25, order: [[0,'asc']], dom: 'Bfrtip',
+        pageLength: 100, lengthMenu: [[100, 500, 1000, -1], ['100', '500', '1000', 'Todos']], order: [[0,'asc']], dom: 'Bfrt<"d-flex justify-content-end align-items-center mt-2"l>',
         buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm' }]
     });
 }

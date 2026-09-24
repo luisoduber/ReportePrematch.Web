@@ -6,6 +6,30 @@
     .canal-toggle { display:inline-flex; border:1px solid rgba(255,255,255,0.25); border-radius:30px; overflow:hidden; }
     .tog-btn { border:none; background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.35); padding:8px 20px; font-size:11px; font-weight:700; letter-spacing:.8px; cursor:pointer; transition:all .25s; white-space:nowrap; }
     .tog-btn.active { background:var(--sa-5,#0077B6); color:#fff; }
+    /* Quitar flecha/triángulo nativo de DataTables en celdas dt-control */
+    table.dataTable td.dt-control::before,
+    table.dataTable tbody td.dt-control::before { display: none !important; }
+
+    /* FixedColumns — fondo opaco para evitar que las columnas móviles se superpongan */
+    #agentBlocks table.dataTable tbody td.dtfc-fixed-left {
+        background-color: #001E3C !important;
+    }
+    #agentBlocks table.dataTable thead th.dtfc-fixed-left {
+        background-color: #002447 !important;
+    }
+    #agentBlocks table.dataTable tfoot th.dtfc-fixed-left {
+        background-color: #001428 !important;
+    }
+    /* Sombra separadora al lado derecho de las columnas fijas */
+    #agentBlocks .dtfc-right-top-blocker,
+    #agentBlocks table.dataTable td.dtfc-fixed-left:nth-child(2),
+    #agentBlocks table.dataTable th.dtfc-fixed-left:nth-child(2) {
+        box-shadow: 4px 0 10px rgba(0,0,0,0.55) !important;
+    }
+    /* Hover en filas con columnas fijas */
+    #agentBlocks table.dataTable tbody tr:hover td.dtfc-fixed-left {
+        background-color: #00294F !important;
+    }
 
     .agent-block { margin-bottom:2rem; }
     .agent-block-header {
@@ -281,7 +305,7 @@ function renderBloqueTaq(agente, rows, idx, fechaD, fechaH) {
             { data: 'utilidad',     className: 'text-center', createdCell: function(td,d){ var n=parseFloat(d||0); $(td).text(fmt(d)).addClass(n>=0?'col-monto-pos':'col-monto-neg'); } }
         ],
         language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
-        pageLength: 25, order: [[1,'asc']], dom: 'Bfrtip',
+        pageLength: 100, lengthMenu: [[100, 500, 1000, -1], ['100', '500', '1000', 'Todos']], order: [[1,'asc']], dom: 'Bfrt<"d-flex justify-content-end align-items-center mt-2"l>',
         buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm', title: agente }]
     });
 
@@ -383,7 +407,7 @@ function renderBloqueWeb(agente, rows, idx, fechaD, fechaH) {
         '<thead><tr>' +
             '<th class="text-center"></th>'                +
             '<th class="text-center">Usuario</th>'         +
-            '<th class="text-center">País</th>'            +
+            '<th class="text-center" style="display:none">País</th>'            +
             '<th class="text-center">Tickets</th>'         +
             '<th class="text-center">Anulados</th>'        +
             '<th class="text-center">Sin Result.</th>'     +
@@ -434,7 +458,7 @@ function renderBloqueWeb(agente, rows, idx, fechaD, fechaH) {
             { className: 'dt-control text-center', orderable: false, data: null, defaultContent: '',
               createdCell: function(td) { var btn = document.createElement('button'); btn.className='btn-expand btn-glass btn-primary btn-sm'; btn.style.cssText='padding:1px 7px;font-size:.9em;min-width:24px;'; btn.textContent='+'; td.appendChild(btn); } },
             { data: null, className: 'text-center', render: function(r){ var u = r.usuario||r.Usuario||''; return u ? u.toUpperCase() : '—'; } },
-            { data: null, className: 'text-center', render: function(r){ return r.pais||r.Pais||'—'; } },
+            { data: null, className: 'text-center', render: function(r){ return r.pais||r.Pais||'—'; }, visible: false },
             { data: null, className: 'text-center', render: function(r){ return wI(r,'cantTickets'); } },
             { data: null, className: 'text-center', render: function(r){ return wI(r,'cantTicketsAnulados'); } },
             { data: null, className: 'text-center', render: function(r){ return wI(r,'cantTicketsSinResultado'); } },
@@ -459,7 +483,8 @@ function renderBloqueWeb(agente, rows, idx, fechaD, fechaH) {
             info:'Mostrando _START_ a _END_ de _TOTAL_', infoEmpty:'Sin registros',
             search:'Buscar:', paginate:{first:'«',last:'»',next:'›',previous:'‹'}
         },
-        pageLength: 25, order: [[0,'asc']], dom: 'Bfrtip',
+        pageLength: 100, lengthMenu: [[100, 500, 1000, -1], ['100', '500', '1000', 'Todos']], order: [[0,'asc']], dom: 'Bfrt<"d-flex justify-content-end align-items-center mt-2"l>',
+        fixedColumns: { left: 2 },
         buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel',
             className: 'btn-glass btn-primary btn-sm', title: agente }]
     });

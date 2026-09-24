@@ -1,0 +1,105 @@
+2026-09-21 14:42:56.823 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-21 14:42:59.033 -04:00 [INF] HTTP GET / responded 200 in 380.2076 ms
+2026-09-21 14:42:59.643 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 4.5698 ms
+2026-09-21 14:43:07.885 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-1) para vlapenta
+2026-09-21 14:43:07.888 -04:00 [WRN] Login fallido para usuario vlapenta
+2026-09-21 14:43:07.897 -04:00 [INF] HTTP POST / responded 200 in 695.6734 ms
+2026-09-21 14:43:15.357 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-21 14:43:15.361 -04:00 [INF] HTTP POST / responded 302 in 154.8158 ms
+2026-09-21 14:43:15.584 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 216.2384 ms
+2026-09-21 14:43:16.688 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 753.3882 ms
+2026-09-21 14:43:36.907 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 1249.1741 ms
+2026-09-21 14:43:41.593 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosWebII responded 200 in 851.8583 ms
+2026-09-21 14:43:48.509 -04:00 [INF] HTTP POST /Reportes/GetDetalleTicket responded 200 in 1693.7798 ms
+2026-09-21 14:44:28.995 -04:00 [INF] HTTP GET /Reportes/Endorphine responded 200 in 56.4491 ms
+2026-09-21 14:44:29.810 -04:00 [INF] HTTP POST /Reportes/GetEndorphineAgentes responded 200 in 621.2780 ms
+2026-09-21 14:46:46.103 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 748.7347 ms
+2026-09-21 14:46:46.119 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 764.1032 ms
+2026-09-21 15:08:38.528 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 2784.2140 ms
+2026-09-21 15:08:38.638 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 2894.5169 ms
+2026-09-21 15:08:44.988 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 610.8205 ms
+2026-09-21 15:08:45.011 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 633.7349 ms
+2026-09-21 15:08:55.418 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 407.4209 ms
+2026-09-21 15:08:55.499 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 488.2203 ms
+2026-09-21 15:13:25.721 -04:00 [INF] HTTP GET /Reportes/Endorphine responded 200 in 7174.7655 ms
+2026-09-21 15:13:27.369 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 0.2222 ms
+2026-09-21 15:13:27.585 -04:00 [INF] HTTP POST /Reportes/GetEndorphineAgentes responded 200 in 979.5078 ms
+2026-09-21 15:13:35.080 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 460.5825 ms
+2026-09-21 15:13:35.201 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 581.8279 ms
+2026-09-21 15:18:49.589 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-21 15:18:50.879 -04:00 [INF] HTTP GET / responded 200 in 220.5311 ms
+2026-09-21 15:19:05.357 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-21 15:19:05.364 -04:00 [INF] HTTP POST / responded 302 in 932.0988 ms
+2026-09-21 15:19:05.472 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 100.3978 ms
+2026-09-21 15:19:25.570 -04:00 [ERR] HTTP POST /Reportes/GetListAgenciasApi responded 500 in 19853.9970 ms
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 522 (<none>).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetEndorphineAgentesAsync() in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 1168
+   at ReportePrematch.Web.Controllers.ReportesController.GetListAgenciasApi() in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 225
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-09-21 15:19:25.600 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 522 (<none>).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetEndorphineAgentesAsync() in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 1168
+   at ReportePrematch.Web.Controllers.ReportesController.GetListAgenciasApi() in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 225
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-09-21 16:34:40.743 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-21 16:34:42.168 -04:00 [INF] HTTP GET / responded 200 in 313.7184 ms
+2026-09-21 16:34:46.690 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 1.8501 ms
+2026-09-21 16:34:56.018 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-21 16:34:56.025 -04:00 [INF] HTTP POST / responded 302 in 852.8201 ms
+2026-09-21 16:34:56.216 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 185.0510 ms
+2026-09-21 16:34:57.294 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 838.9459 ms
+2026-09-21 16:35:00.757 -04:00 [INF] HTTP GET /Reportes/Endorphine responded 200 in 42.5327 ms
+2026-09-21 16:35:01.591 -04:00 [INF] HTTP POST /Reportes/GetEndorphineAgentes responded 200 in 654.4184 ms
+2026-09-21 16:35:10.759 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 546.8180 ms
+2026-09-21 16:35:10.875 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 663.5103 ms
+2026-09-21 16:35:16.266 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 625.7523 ms
+2026-09-21 16:35:16.652 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 1012.0100 ms
+2026-09-21 16:43:08.476 -04:00 [INF] HTTP GET /Reportes/Endorphine responded 200 in 7002.1294 ms
+2026-09-21 16:43:10.042 -04:00 [INF] HTTP POST /Reportes/GetEndorphineAgentes responded 200 in 741.6549 ms
+2026-09-21 16:43:10.103 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 0.2096 ms
+2026-09-21 16:43:15.991 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 493.5450 ms
+2026-09-21 16:43:16.090 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 592.8094 ms
+2026-09-21 16:49:17.951 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-09-21 16:49:18.805 -04:00 [INF] HTTP GET / responded 200 in 195.2668 ms
+2026-09-21 16:50:35.451 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-09-21 16:50:35.458 -04:00 [INF] HTTP POST / responded 302 in 905.3976 ms
+2026-09-21 16:50:35.576 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 110.4058 ms
+2026-09-21 16:50:36.627 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 805.8410 ms
+2026-09-21 16:50:39.446 -04:00 [INF] HTTP GET /Reportes/Endorphine responded 200 in 21.5189 ms
+2026-09-21 16:50:40.328 -04:00 [INF] HTTP POST /Reportes/GetEndorphineAgentes responded 200 in 705.0672 ms
+2026-09-21 16:50:44.883 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 530.9711 ms
+2026-09-21 16:50:45.043 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 691.0088 ms

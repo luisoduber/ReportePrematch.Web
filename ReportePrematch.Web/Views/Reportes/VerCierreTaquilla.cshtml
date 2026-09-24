@@ -147,7 +147,7 @@ function cargarReporte(){
                     {data:'Estado',    defaultContent:'—'}
                 ],
                 language:{url:'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json'},
-                pageLength:25, dom:'Bfrtip',
+                pageLength:100, lengthMenu:[[100,500,1000,-1],['100','500','1000','Todos']], dom:'Bfrt<"d-flex justify-content-end align-items-center mt-2"l>',
                 buttons:[{extend:'excelHtml5',text:'<i class="ti ti-file-spreadsheet"></i> Excel',className:'btn-glass btn-primary btn-sm'}]
             });
             hideBusy();

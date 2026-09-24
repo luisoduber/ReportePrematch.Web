@@ -7,6 +7,9 @@
     .tog-btn { border:none; background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.35); padding:8px 20px; font-size:11px; font-weight:700; letter-spacing:.8px; cursor:pointer; transition:all .25s; white-space:nowrap; }
     .tog-btn.active { background:var(--sa-5,#0077B6); color:#fff; }
     @@media (max-width:768px) { .canal-toggle { width:100%; } .tog-btn { flex:1; text-align:center; } }
+    /* Quitar flecha/triángulo nativo de DataTables en celdas dt-control */
+    table.dataTable td.dt-control::before,
+    table.dataTable tbody td.dt-control::before { display: none !important; }
 
     .agent-block { margin-bottom: 2rem; }
     .agent-block-header {
@@ -271,7 +274,7 @@ function renderBloqueTaq(agente, rows, idx, fechaD, fechaH) {
             { data: 'balance',    className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass(parseFloat(d||0)>=0?'col-monto-pos':'col-monto-neg'); } }
         ],
         language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
-        pageLength: 25, order: [[1, 'asc']], dom: 'Bfrtip',
+        pageLength: 100, lengthMenu: [[100, 500, 1000, -1], ['100', '500', '1000', 'Todos']], order: [[1, 'asc']], dom: 'Bfrt<"d-flex justify-content-end align-items-center mt-2"l>',
         buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm', title: agente, exportOptions: { columns: ':not(.dt-control)' } }]
     });
 
@@ -337,7 +340,7 @@ function renderBloqueWeb(agente, rows, idx) {
               render: function(d,t,r){ return parseFmt(get(r,'Balance')); } }
         ],
         language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
-        pageLength: 25, order: [[0, 'asc']], dom: 'Bfrtip',
+        pageLength: 100, lengthMenu: [[100, 500, 1000, -1], ['100', '500', '1000', 'Todos']], order: [[0, 'asc']], dom: 'Bfrt<"d-flex justify-content-end align-items-center mt-2"l>',
         buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm', title: agente }]
     });
 

@@ -168,7 +168,7 @@ function renderBloqueAgente(agente, rows, idx) {
             { data: 'fechaTicket',   className: 'text-center',             defaultContent: '—' }
         ],
         language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
-        pageLength: 25, dom: 'Bfrtip', scrollX: true, autoWidth: false,
+        pageLength: 100, lengthMenu: [[100, 500, 1000, -1], ['100', '500', '1000', 'Todos']], dom: 'Bfrt<"d-flex justify-content-end align-items-center mt-2"l>', scrollX: true, autoWidth: false,
         buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm', title: agente }]
     });
 

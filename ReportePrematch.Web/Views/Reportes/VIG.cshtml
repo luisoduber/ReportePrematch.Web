@@ -181,7 +181,8 @@ function renderBloqueAgente(agente, rows, idx) {
 
     var dt = $('#' + tableId).DataTable({
         data: rows,
-        pageLength: 25,
+        pageLength: 100,
+        lengthMenu: [[100, 500, 1000, -1], ['100', '500', '1000', 'Todos']],
         order: [[4, 'desc']],
         language: {
             decimal: ',', thousands: '.',
@@ -221,7 +222,7 @@ function renderBloqueAgente(agente, rows, idx) {
               render: function(d){ return fmtN(d); } }
         ],
         columnDefs: [{ targets: '_all', className: 'dt-center' }],
-        dom: 'Bfrtip',
+        dom: 'Bfrt<"d-flex justify-content-end align-items-center mt-2"l>',
         buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel',
             className: 'btn-glass btn-primary btn-sm', title: agente }]
     });
