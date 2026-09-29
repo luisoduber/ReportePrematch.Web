@@ -409,9 +409,9 @@ public class ReportesService : IReportesService
             ["fechaD"] = fechaD, ["fechaH"] = fechaH, ["agente"] = agente,
             ["pais"] = pais, ["role"] = role
         };
-        var result = await _api.GetQueryAsync<List<CasinoDto>>(
+        var result = await _api.GetQueryAsync<List<IconSlotDto>>(
             "api/Reportes/CasinoIconSlot", query);
-        return result ?? new List<CasinoDto>();
+        return result ?? new List<IconSlotDto>();
     }
 
     /* ══════════════════════════════════════════════════════════
@@ -990,13 +990,14 @@ ORDER BY 1,2,3 ASC";
         return result ?? new List<LoteriasDto>();
     }
 
-    public async Task<object> GetOdyseusAsync(string fechaDesde, string fechaHasta, string agente)
+    public async Task<object> GetOdyseusAsync(string fechaDesde, string fechaHasta, string agente, string nombProd = null)
     {
         var query = new Dictionary<string, string>
         {
             ["fechaDesde"] = fechaDesde,
             ["fechaHasta"] = fechaHasta,
-            ["agentes"]    = agente ?? ""
+            ["agentes"]    = agente   ?? "",
+            ["nombProd"]   = nombProd ?? ""
         };
         var result = await _api.GetQueryAsync<List<OdyseusDto>>(
             "api/Reportes/Odyseus", query);
@@ -1190,5 +1191,32 @@ ORDER BY 1,2,3 ASC";
 
         var result = await _api.GetQueryAsync<List<KingMidasDto>>("api/Casino/KingMidas", query);
         return result ?? new List<KingMidasDto>();
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       ODYSSEUS — Productos
+    ══════════════════════════════════════════════════════════ */
+
+    private class ProdOdysseusItem
+    {
+        public int    IdProdOdysseus   { get; set; }
+        public string NombProdOdysseus { get; set; } = "";
+    }
+
+    public async Task<object> GetListProdOdysseusAsync()
+    {
+        var baseUrl = _config["OdysseusApi:BaseUrl"] ?? "https://allws.staging-gc.com/ApiReporte/";
+        var url = $"{baseUrl.TrimEnd('/')}/api/Odysseus/ListProdOdysseus";
+        var handler = new System.Net.Http.HttpClientHandler
+        {
+            ServerCertificateCustomValidationCallback =
+                System.Net.Http.HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+        };
+        using var http = new System.Net.Http.HttpClient(handler) { Timeout = TimeSpan.FromSeconds(30) };
+        var response = await http.GetAsync(url);
+        response.EnsureSuccessStatusCode();
+        var opts = new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+        var result = await response.Content.ReadFromJsonAsync<List<ProdOdysseusItem>>(opts);
+        return result ?? new List<ProdOdysseusItem>();
     }
 }

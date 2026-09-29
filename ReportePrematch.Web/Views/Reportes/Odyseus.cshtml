@@ -37,13 +37,19 @@
 
     <div class="glass-panel mt-3 p-3">
         <div class="row g-2 align-items-end">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label class="field-label">Fecha Desde</label>
                 <input type="date" id="fechaD" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label class="field-label">Fecha Hasta</label>
                 <input type="date" id="fechaH" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-3">
+                <label class="field-label">Productos</label>
+                <select id="producto" class="glass-input" style="color:#fff;">
+                    <option value="" style="background:#002E5C;color:#fff;">TODOS</option>
+                </select>
             </div>
             <div class="col-md-3">
                 <label class="field-label">Agente</label>
@@ -58,7 +64,7 @@
                     </select>
                 }
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <button class="btn-glass btn-primary w-100" onclick="cargarReporte()">
                     <i class="ti ti-search"></i> Buscar
                 </button>
@@ -179,6 +185,32 @@ function renderBloqueAgente(agente, rows, idx) {
     dtInstances.push(dt);
 }
 
+/* ── productos Odysseus ───────────────────────────────────────────────── */
+function cargarProductos() {
+    $.post('@Url.Action("GetListProdOdysseus","Reportes")')
+        .done(function(resp) {
+            console.log('[cargarProductos] resp:', JSON.stringify(resp));
+            const sel = document.getElementById('producto');
+            if (!sel) return;
+            /* la respuesta puede ser array directo o { $values:[...] } según el serializador */
+            var lista = Array.isArray(resp) ? resp : (resp && resp.$values ? resp.$values : []);
+            sel.innerHTML = '<option value="" style="background:#002E5C;color:#fff;">TODOS</option>';
+            lista.forEach(function(p) {
+                var val = p.nombProdOdysseus || p.NombProdOdysseus || p.nombprododysseus || '';
+                if (!val) return;
+                var opt = document.createElement('option');
+                opt.value       = val;
+                opt.textContent = val;
+                opt.style.background = '#002E5C';
+                opt.style.color      = '#fff';
+                sel.appendChild(opt);
+            });
+        })
+        .fail(function(xhr) {
+            console.error('cargarProductos error HTTP', xhr.status, xhr.responseText);
+        });
+}
+
 /* ── agentes ──────────────────────────────────────────────────────────── */
 function cargarAgentes() {
     if (!esAdmin) return;
@@ -219,7 +251,8 @@ function cargarReporte() {
     limpiarBloques();
     showBusy('Consultando Odysseus...');
 
-    $.post('@Url.Action("GetOdyseus","Reportes")', { fechaD, fechaH, agente })
+    const nombProd = document.getElementById('producto').value;
+    $.post('@Url.Action("GetOdyseus","Reportes")', { fechaD, fechaH, agente, nombProd })
         .done(function(data) {
             hideBusy();
             if (!data || !data.length) {
@@ -239,7 +272,12 @@ function cargarReporte() {
         })
         .fail(function(xhr) {
             hideBusy();
-            Swal.fire({ icon: 'error', title: 'Error', text: 'No se pudo cargar el reporte (HTTP ' + xhr.status + ').', background: '#002E5C', color: '#fff' });
+            var msg = 'No se pudo cargar el reporte (HTTP ' + xhr.status + ').';
+            try {
+                var resp = JSON.parse(xhr.responseText);
+                if (resp && resp.error) msg = resp.error;
+            } catch(e) {}
+            Swal.fire({ icon: xhr.status === 504 ? 'warning' : 'error', title: xhr.status === 504 ? 'Tiempo de espera agotado' : 'Error', text: msg, background: '#002E5C', color: '#fff' });
         });
 }
 
@@ -264,6 +302,7 @@ function exportPDF() {
 }
 $(document).ready(function() {
     cargarAgentes();
+    cargarProductos();
     if (!esAdmin) { cargarReporte(); }
 });
 </script>

@@ -56,7 +56,7 @@ public interface IReportesService
     Task<object> GetLoteriasAsync(string fechaD, string fechaH, string agente, string role = "", string pais = "");
     Task<object> GetLoteriasTripleAsync(string fechaD, string fechaH, string agente, string role);
     Task<object> GetAviatrixAsync(string fechaD, string fechaH, string agente, string role = "", string pais = "");
-    Task<object> GetOdyseusAsync(string fechaDesde, string fechaHasta, string agente);
+    Task<object> GetOdyseusAsync(string fechaDesde, string fechaHasta, string agente, string nombProd = null);
     Task<object> GetVigResumenAsync(string fechaDesde, string fechaHasta, string agente);
     Task<object> GetFantasyBsbAsync(string fechaD, string fechaH, string agente, string role = "", string pais = "");
     Task<object> GetDashboardClientesAsync(string fechaD, string fechaH, string agente);
@@ -76,4 +76,5 @@ public interface IReportesService
     Task<object> GetInOutGamingResumenGeneralAsync(string fechaInicio, string fechaFin, string agente);
     Task<List<string>> GetInOutGamingAgentesAsync();
     Task<object> GetKingMidasAsync(string startDate, string endDate, string agentName);
+    Task<object> GetListProdOdysseusAsync();
 }

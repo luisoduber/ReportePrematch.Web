@@ -201,9 +201,10 @@
               "RelativeDocumentMoniker": "ReportePrematch.Web\\appsettings.Development.json",
               "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\appsettings.Development.json",
               "RelativeToolTip": "ReportePrematch.Web\\appsettings.Development.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-07-28T01:33:43.416Z"
+              "WhenOpened": "2026-07-28T01:33:43.416Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -213,9 +214,10 @@
               "RelativeDocumentMoniker": "ReportePrematch.Web\\appsettings.json",
               "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\appsettings.json",
               "RelativeToolTip": "ReportePrematch.Web\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA6AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-07-28T01:31:06.374Z"
+              "WhenOpened": "2026-07-28T01:31:06.374Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -240,7 +242,8 @@
               "RelativeToolTip": "ReportePrematch.Web\\Services\\Interfaces\\IReportesService.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAtwBcAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-28T19:14:44.781Z"
+              "WhenOpened": "2026-07-28T19:14:44.781Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",

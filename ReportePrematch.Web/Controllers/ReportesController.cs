@@ -148,8 +148,25 @@ public sealed class ReportesController(
         return View();
     }
     [HttpPost]
-    public async Task<IActionResult> GetOdyseus(string fechaD, string fechaH, string agente)
-        => Json(await reportes.GetOdyseusAsync(fechaD, fechaH, agente ?? ""));
+    public async Task<IActionResult> GetOdyseus(string fechaD, string fechaH, string agente, string nombProd)
+    {
+        try
+        {
+            return Json(await reportes.GetOdyseusAsync(fechaD, fechaH, agente ?? "", nombProd));
+        }
+        catch (HttpRequestException ex) when ((int?)ex.StatusCode == 524 || ex.Message.Contains("524"))
+        {
+            return StatusCode(504, new { error = "El rango de fechas es muy amplio. Por favor reduzca el período de consulta e intente nuevamente." });
+        }
+        catch (TaskCanceledException)
+        {
+            return StatusCode(504, new { error = "La consulta tardó demasiado. Por favor reduzca el rango de fechas." });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { error = "Error al consultar Odysseus: " + ex.Message });
+        }
+    }
 
     [HttpGet]
     public IActionResult Casino7777()
@@ -223,6 +240,11 @@ public sealed class ReportesController(
     [HttpPost]
     public async Task<IActionResult> GetListAgenciasApi()
         => Json(await reportes.GetEndorphineAgentesAsync());
+
+    /// <summary>Productos Odysseus activos para el select de filtro.</summary>
+    [HttpPost]
+    public async Task<IActionResult> GetListProdOdysseus()
+        => Json(await reportes.GetListProdOdysseusAsync());
 
     [HttpGet]
     public IActionResult FantasyBsb()
