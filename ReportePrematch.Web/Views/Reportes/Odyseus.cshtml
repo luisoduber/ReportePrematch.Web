@@ -22,6 +22,10 @@
 .metric-blue  { color:#48CAE4; }
 .metric-red   { color:#f87171; }
 .metric-green { color:#4ade80; }
+
+/* quitar triángulo nativo DataTables en dt-control */
+table.dataTable td.dt-control::before,
+table.dataTable tbody td.dt-control::before { display:none !important; }
 </style>
 
 <section class="glass-card">
@@ -91,20 +95,25 @@
 <script>
 const esAdmin       = '@ViewBag.TipoUsuario' !== 'Usuario Regular';
 const agenteSession = '@ViewBag.Agente';
-let lastData = [];
-let dtInstances = [];
+const API_TICKETS   = '@Url.Action("GetDetTckUsuOdysseus","Reportes")';
+let lastData     = [];
+let dtInstances  = [];
+let ticketsCache = {};   // cache por "usuario|fechaD|fechaH"
 
 function fmt(v) {
     return parseFloat(v || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 function fmtFecha(val) {
     if (!val) return '—';
-    var s = val.toString().trim().split(/[T ]/)[0] || val;
-    if (/^\d{4}-\d{2}-\d{2}$/.test(s)) {
-        var p = s.split('-');
-        return p[2] + '/' + p[1] + '/' + p[0];
+    var s = val.toString().trim();
+    var partes = s.split(/[T ]/);
+    var fechaParte = partes[0] || s;
+    var hora = partes[1] ? partes[1].substring(0, 5) : '';
+    if (/^\d{4}-\d{2}-\d{2}$/.test(fechaParte)) {
+        var p = fechaParte.split('-');
+        fechaParte = p[2] + '/' + p[1] + '/' + p[0];
     }
-    return s;
+    return hora ? fechaParte + ' ' + hora : fechaParte;
 }
 function ggr(r) { return r.gGR || r.ggr || r.GGR || 0; }
 function card(label, value, cls) {
@@ -116,13 +125,93 @@ function card(label, value, cls) {
 
 function limpiarBloques() {
     dtInstances.forEach(function(dt){ try { dt.destroy(); } catch(e){} });
-    dtInstances = [];
+    dtInstances  = [];
+    ticketsCache = {};
     document.getElementById('agentBlocks').innerHTML = '';
-    lastData = []; document.getElementById('exportBar').classList.add('d-none');
+    lastData = [];
+    document.getElementById('exportBar').classList.add('d-none');
+}
+
+/* ── Child rows: HTML del detalle de tickets ─────────────────────────── */
+function buildDetalleOdyHTML(tickets) {
+    if (!tickets || !tickets.length)
+        return '<div class="p-2" style="color:#aac;">Sin tickets para este usuario en el período.</div>';
+
+    var rows = '';
+    tickets.forEach(function(t) {
+        var resultCls = '';
+        var s = (t.result || t.Result || '').toLowerCase();
+        if (s === 'won' || s === 'win') resultCls = 'color:#4ade80;font-weight:700;';
+        else if (s === 'lost' || s === 'lose') resultCls = 'color:#f87171;font-weight:700;';
+
+        rows += '<tr>'
+            + '<td style="text-align:center;">' + (t.ticketId || t.TicketId || '—') + '</td>'
+            + '<td style="text-align:center;">' + fmtFecha(t.fecha || t.Fecha) + '</td>'
+            + '<td style="text-align:center;">' + (t.transactionsType || t.TransactionsType || '—') + '</td>'
+            + '<td style="text-align:center;">' + (t.tipMon || t.TipMon || '—') + '</td>'
+            + '<td style="text-align:center;">' + fmt(t.units || t.Units) + '</td>'
+            + '<td style="text-align:center;" class="col-monto-pos">' + fmt(t.mont || t.Mont) + '</td>'
+            + '<td style="text-align:center;" class="col-monto-green">' + fmt(t.amountEarned || t.AmountEarned) + '</td>'
+            + '<td style="text-align:center;">' + (t.tipJug || t.TipJug || '—') + '</td>'
+            + '<td style="text-align:center;' + resultCls + '">' + (t.result || t.Result || '—') + '</td>'
+            + '</tr>';
+    });
+
+    return '<div class="p-2"><table class="glass-table w-100" style="font-size:.9em;">'
+        + '<thead><tr>'
+        + '<th style="text-align:center;">Ticket ID</th>'
+        + '<th style="text-align:center;">Fecha</th>'
+        + '<th style="text-align:center;">Tipo Trans.</th>'
+        + '<th style="text-align:center;">Moneda</th>'
+        + '<th style="text-align:center;">Unidades</th>'
+        + '<th style="text-align:center;">Monto</th>'
+        + '<th style="text-align:center;">Ganado</th>'
+        + '<th style="text-align:center;">Tipo Juego</th>'
+        + '<th style="text-align:center;">Resultado</th>'
+        + '</tr></thead><tbody>' + rows + '</tbody></table></div>';
+}
+
+/* ── Toggle child row ────────────────────────────────────────────────── */
+function toggleDetalleOdy(tr, row) {
+    if (row.child.isShown()) {
+        row.child.hide();
+        tr.querySelector('.btn-expand').textContent = '+';
+        tr.classList.remove('shown');
+        return;
+    }
+    var rowData  = row.data();
+    var usuario  = rowData.usuario || '';
+    // Usar la fecha de la fila, no la del filtro
+    var fechaRow = (rowData.fecha || '').toString().split(/[T ]/)[0];
+    var fechaD   = fechaRow;
+    var fechaH   = fechaRow;
+    var cacheKey = usuario + '|' + fechaD + '|' + fechaH;
+
+    function mostrar(tickets) {
+        row.child(buildDetalleOdyHTML(tickets)).show();
+        tr.querySelector('.btn-expand').textContent = '−';
+        tr.classList.add('shown');
+    }
+
+    if (ticketsCache[cacheKey] !== undefined) { mostrar(ticketsCache[cacheKey]); return; }
+
+    row.child('<div class="p-2" style="color:#aac;">Cargando...</div>').show();
+    tr.querySelector('.btn-expand').textContent = '−';
+    tr.classList.add('shown');
+
+    $.post(API_TICKETS, { userName: usuario, fechaDesde: fechaD, fechaHasta: fechaH })
+    .done(function(data) {
+        var lista = Array.isArray(data) ? data : (data && data.$values ? data.$values : []);
+        ticketsCache[cacheKey] = lista;
+        mostrar(lista);
+    })
+    .fail(function(xhr) {
+        row.child('<div class="p-2" style="color:#f88;">Error al cargar tickets (HTTP ' + xhr.status + ').</div>').show();
+    });
 }
 
 /* ── render bloque por agente ─────────────────────────────────────────── */
-function renderBloqueAgente(agente, rows, idx) {
+function renderBloqueAgente(agente, rows, idx, fechaD, fechaH) {
     var totR = 0, totP = 0, totG = 0;
     rows.forEach(function(r) {
         totR += (r.totalRiesgo  || 0);
@@ -143,17 +232,18 @@ function renderBloqueAgente(agente, rows, idx) {
         '<div class="table-responsive">' +
         '<table id="' + tableId + '" class="glass-table w-100">' +
         '<thead><tr>' +
-            '<th class="text-center">Producto</th>' +
-            '<th class="text-center">Usuario</th>' +
-            '<th class="text-center">Fecha</th>' +
-            '<th class="text-center">Total Riesgo</th>' +
-            '<th class="text-center">Total Premios</th>' +
-            '<th class="text-center">GGR</th>' +
+            '<th style="text-align:center;"></th>' +
+            '<th style="text-align:center;">Producto</th>' +
+            '<th style="text-align:center;">Usuario</th>' +
+            '<th style="text-align:center;">Fecha</th>' +
+            '<th style="text-align:center;">Total Riesgo</th>' +
+            '<th style="text-align:center;">Total Premios</th>' +
+            '<th style="text-align:center;">GGR</th>' +
         '</tr></thead><tbody></tbody>' +
         '<tfoot><tr>' +
-            '<th class="text-center" colspan="3">TOTAL</th>' +
-            '<th class="text-center">' + fmt(totR) + '</th>' +
-            '<th class="text-center">' + fmt(totP) + '</th>' +
+            '<th colspan="4" style="text-align:center;">TOTAL</th>' +
+            '<th style="text-align:center;">' + fmt(totR) + '</th>' +
+            '<th style="text-align:center;">' + fmt(totP) + '</th>' +
             '<th style="text-align:center;color:' + (totG >= 0 ? 'var(--av-5,#7FCA8A)' : '#FC8181') + ';font-weight:600;">' + fmt(totG) + '</th>' +
         '</tr></tfoot>' +
         '</table></div>';
@@ -163,8 +253,17 @@ function renderBloqueAgente(agente, rows, idx) {
     var dt = $('#' + tableId).DataTable({
         data: rows,
         columns: [
+            { className: 'dt-control text-center', orderable: false, data: null, defaultContent: '',
+              createdCell: function(td) {
+                  var btn = document.createElement('button');
+                  btn.className = 'btn-expand btn-glass btn-primary btn-sm';
+                  btn.style.cssText = 'padding:1px 7px;font-size:.9em;min-width:24px;';
+                  btn.textContent = '+';
+                  td.appendChild(btn);
+              }},
             { data: 'producto',     defaultContent: '—', className: 'text-center' },
-            { data: 'usuario',      className: 'text-center', render: function(d){ return d ? d.toUpperCase() : '—'; } },
+            { data: 'usuario', className: 'text-center',
+              render: function(d){ return d ? d.toUpperCase() : '—'; } },
             { data: 'fecha',        defaultContent: '—', className: 'text-center',
               render: function(d){ return fmtFecha(d); } },
             { data: 'totalRiesgo',  defaultContent: '—', className: 'text-center col-monto-pos',
@@ -178,8 +277,15 @@ function renderBloqueAgente(agente, rows, idx) {
               }}
         ],
         language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
-        pageLength: 100, lengthMenu: [[100, 500, 1000, -1], ['100', '500', '1000', 'Todos']], order: [[2, 'desc']], dom: 'Bfrt<"d-flex justify-content-end align-items-center mt-2"l>',
-        buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm', title: agente }]
+        pageLength: 100, lengthMenu: [[100,500,1000,-1],['100','500','1000','Todos']],
+        order: [[3,'desc']],
+        dom: 'Bfrt<"d-flex justify-content-end align-items-center mt-2"l>',
+        buttons: [{ extend:'excelHtml5', text:'<i class="ti ti-file-spreadsheet"></i> Excel', className:'btn-glass btn-primary btn-sm', title: agente }]
+    });
+
+    $('#' + tableId + ' tbody').on('click', '.btn-expand', function() {
+        var tr = $(this).closest('tr')[0];
+        toggleDetalleOdy(tr, dt.row(tr));
     });
 
     dtInstances.push(dt);
@@ -189,26 +295,20 @@ function renderBloqueAgente(agente, rows, idx) {
 function cargarProductos() {
     $.post('@Url.Action("GetListProdOdysseus","Reportes")')
         .done(function(resp) {
-            console.log('[cargarProductos] resp:', JSON.stringify(resp));
             const sel = document.getElementById('producto');
             if (!sel) return;
-            /* la respuesta puede ser array directo o { $values:[...] } según el serializador */
             var lista = Array.isArray(resp) ? resp : (resp && resp.$values ? resp.$values : []);
             sel.innerHTML = '<option value="" style="background:#002E5C;color:#fff;">TODOS</option>';
             lista.forEach(function(p) {
                 var val = p.nombProdOdysseus || p.NombProdOdysseus || p.nombprododysseus || '';
                 if (!val) return;
                 var opt = document.createElement('option');
-                opt.value       = val;
-                opt.textContent = val;
-                opt.style.background = '#002E5C';
-                opt.style.color      = '#fff';
+                opt.value = val; opt.textContent = val;
+                opt.style.background = '#002E5C'; opt.style.color = '#fff';
                 sel.appendChild(opt);
             });
         })
-        .fail(function(xhr) {
-            console.error('cargarProductos error HTTP', xhr.status, xhr.responseText);
-        });
+        .fail(function(xhr) { console.error('cargarProductos error HTTP', xhr.status); });
 }
 
 /* ── agentes ──────────────────────────────────────────────────────────── */
@@ -228,11 +328,11 @@ function cargarAgentes() {
                 opt.value = a; opt.textContent = a;
                 sel.appendChild(opt);
             });
-            new TomSelect(sel, { maxOptions: 2000, create: false, allowEmptyOption: true, placeholder: 'Buscar agente...', searchField: ['text'] });
+            new TomSelect(sel, { maxOptions:2000, create:false, allowEmptyOption:true, placeholder:'Buscar agente...', searchField:['text'] });
             if (agenteSession) sel.tomselect.setValue(agenteSession, true);
         })
         .fail(function(xhr) {
-            Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar la lista de agentes (HTTP ' + xhr.status + ').', background: '#002E5C', color: '#fff' });
+            Swal.fire({ icon:'warning', title:'Aviso', text:'No se pudo cargar agentes (HTTP ' + xhr.status + ').', background:'#002E5C', color:'#fff' });
         });
 }
 
@@ -244,7 +344,7 @@ function cargarReporte() {
     const agente   = agenteEl ? (agenteEl.tomselect ? agenteEl.tomselect.getValue() : agenteEl.value) : agenteSession;
 
     if (!fechaD || !fechaH) {
-        Swal.fire({ icon: 'warning', title: 'Fechas requeridas', background: '#002E5C', color: '#fff' });
+        Swal.fire({ icon:'warning', title:'Fechas requeridas', background:'#002E5C', color:'#fff' });
         return;
     }
 
@@ -256,50 +356,47 @@ function cargarReporte() {
         .done(function(data) {
             hideBusy();
             if (!data || !data.length) {
-                Swal.fire({ icon: 'info', title: 'Sin resultados', background: '#002E5C', color: '#fff' });
+                Swal.fire({ icon:'info', title:'Sin resultados', background:'#002E5C', color:'#fff' });
                 return;
             }
-
             var grupos = {}, orden = [];
             data.forEach(function(r) {
                 var ag = r.agente || '(Sin Agente)';
                 if (!grupos[ag]) { grupos[ag] = []; orden.push(ag); }
                 grupos[ag].push(r);
             });
-
-            orden.forEach(function(ag, idx) { renderBloqueAgente(ag, grupos[ag], idx); });
-            lastData = data; document.getElementById('exportBar').classList.remove('d-none');
+            orden.forEach(function(ag, idx) { renderBloqueAgente(ag, grupos[ag], idx, fechaD, fechaH); });
+            lastData = data;
+            document.getElementById('exportBar').classList.remove('d-none');
         })
         .fail(function(xhr) {
             hideBusy();
             var msg = 'No se pudo cargar el reporte (HTTP ' + xhr.status + ').';
-            try {
-                var resp = JSON.parse(xhr.responseText);
-                if (resp && resp.error) msg = resp.error;
-            } catch(e) {}
-            Swal.fire({ icon: xhr.status === 504 ? 'warning' : 'error', title: xhr.status === 504 ? 'Tiempo de espera agotado' : 'Error', text: msg, background: '#002E5C', color: '#fff' });
+            try { var resp = JSON.parse(xhr.responseText); if (resp && resp.error) msg = resp.error; } catch(e){}
+            Swal.fire({ icon: xhr.status===504?'warning':'error', title: xhr.status===504?'Tiempo de espera agotado':'Error', text:msg, background:'#002E5C', color:'#fff' });
         });
 }
 
-
-/* -- Exportacion -------------------------------------------------- */
+/* ── Exportación ──────────────────────────────────────────────────────── */
 var EXPORT_CONFIG = {
     reportName: 'Odyseus',
     groupField: function(r){ return r.agente || r.Agente || '(Sin Agente)'; },
     cols: [
-        { head: 'Agente',    get: function(r){ return r.agente || r.Agente || '(Sin Agente)'; }, type: 'text' },
-        { head: 'Producto',  get: function(r){ return r.producto || '--'; },                     type: 'text' },
-        { head: 'Usuario',   get: function(r){ return r.usuario || '--'; },                      type: 'text' },
-        { head: 'Fecha',     get: function(r){ return fmtFecha(r.fecha); },                      type: 'text' },
-        { head: 'Riesgo',    get: function(r){ return parseFloat(r.totalRiesgo  || 0); },        type: 'money' },
-        { head: 'Premios',   get: function(r){ return parseFloat(r.totalPremios || 0); },        type: 'money' },
-        { head: 'GGR',       get: function(r){ return ggr(r); },                                 type: 'money' }
+        { head:'Agente',   get:function(r){ return r.agente || r.Agente || '(Sin Agente)'; }, type:'text'  },
+        { head:'Producto', get:function(r){ return r.producto || '--'; },                     type:'text'  },
+        { head:'Usuario',  get:function(r){ return r.usuario || '--'; },                      type:'text'  },
+        { head:'Fecha',    get:function(r){ return fmtFecha(r.fecha); },                      type:'text'  },
+        { head:'Riesgo',   get:function(r){ return parseFloat(r.totalRiesgo  || 0); },        type:'money' },
+        { head:'Premios',  get:function(r){ return parseFloat(r.totalPremios || 0); },        type:'money' },
+        { head:'GGR',      get:function(r){ return ggr(r); },                                 type:'money' }
     ]
 };
 function exportExcel() { ExportHelpers.exportarExcel(lastData, EXPORT_CONFIG); }
 function exportPDF() {
-    ExportHelpers.exportarPDF(lastData, EXPORT_CONFIG, document.getElementById('fechaD').value, document.getElementById('fechaH').value);
+    ExportHelpers.exportarPDF(lastData, EXPORT_CONFIG,
+        document.getElementById('fechaD').value, document.getElementById('fechaH').value);
 }
+
 $(document).ready(function() {
     cargarAgentes();
     cargarProductos();

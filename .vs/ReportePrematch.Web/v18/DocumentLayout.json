@@ -168,7 +168,8 @@
               "ToolTip": "D:\\GITHUB\\ReportePrematch.Web\\ReportePrematch.Web\\ReportePrematch.Web.csproj",
               "RelativeToolTip": "ReportePrematch.Web\\ReportePrematch.Web.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-09-17T22:52:43.538Z"
+              "WhenOpened": "2026-09-17T22:52:43.538Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -202,7 +203,8 @@
               "RelativeToolTip": "ReportePrematch.Web\\appsettings.Development.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-07-28T01:33:43.416Z"
+              "WhenOpened": "2026-07-28T01:33:43.416Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -226,7 +228,8 @@
               "RelativeToolTip": "ReportePrematch.Web\\Controllers\\ReportesController.cs",
               "ViewState": "AgIAAH0AAAAAAAAAAAAYwJcAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-28T19:15:37.738Z"
+              "WhenOpened": "2026-07-28T19:15:37.738Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -238,7 +241,8 @@
               "RelativeToolTip": "ReportePrematch.Web\\Services\\Interfaces\\IReportesService.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAtwBcAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-28T19:14:44.781Z"
+              "WhenOpened": "2026-07-28T19:14:44.781Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -262,7 +266,8 @@
               "RelativeToolTip": "ReportePrematch.Web\\Services\\Clients\\ReportesService.cs",
               "ViewState": "AgIAAHcEAAAAAAAAAAAqwIMEAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-29T06:04:33.099Z"
+              "WhenOpened": "2026-07-29T06:04:33.099Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",

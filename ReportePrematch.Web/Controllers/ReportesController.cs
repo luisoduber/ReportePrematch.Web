@@ -246,6 +246,27 @@ public sealed class ReportesController(
     public async Task<IActionResult> GetListProdOdysseus()
         => Json(await reportes.GetListProdOdysseusAsync());
 
+    /// <summary>
+    /// Proxy: detalle de tickets de un usuario Odysseus para un rango de fechas.
+    /// Evita CORS llamando al API externo desde el servidor.
+    /// POST Reportes/GetDetTckUsuOdysseus
+    /// </summary>
+    [HttpPost]
+    public async Task<IActionResult> GetDetTckUsuOdysseus(
+        string userName, string fechaDesde, string fechaHasta)
+    {
+        try
+        {
+            var data = await reportes.GetDetTckUsuOdysseusAsync(userName, fechaDesde, fechaHasta);
+            return Json(data);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Error en GetDetTckUsuOdysseus user={User}", userName);
+            return StatusCode(500, new { error = ex.Message });
+        }
+    }
+
     [HttpGet]
     public IActionResult FantasyBsb()
     {

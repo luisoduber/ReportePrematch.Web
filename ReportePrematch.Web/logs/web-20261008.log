@@ -1,0 +1,45 @@
+2026-10-08 13:04:36.063 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-08 13:04:38.803 -04:00 [INF] HTTP GET / responded 200 in 609.9137 ms
+2026-10-08 13:04:41.009 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 3.7384 ms
+2026-10-08 13:04:59.691 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-10-08 13:04:59.701 -04:00 [INF] HTTP POST / responded 302 in 927.1504 ms
+2026-10-08 13:05:00.047 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 337.3036 ms
+2026-10-08 13:05:02.036 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 1091.8525 ms
+2026-10-08 13:05:07.885 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 4087.0769 ms
+2026-10-08 13:05:12.509 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 458.4525 ms
+2026-10-08 13:07:37.504 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 442.5037 ms
+2026-10-08 13:34:23.467 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-08 13:34:27.341 -04:00 [INF] HTTP GET / responded 200 in 714.0870 ms
+2026-10-08 13:34:29.139 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 10.7824 ms
+2026-10-08 13:34:41.656 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-10-08 13:34:41.665 -04:00 [INF] HTTP POST / responded 302 in 814.8295 ms
+2026-10-08 13:34:42.010 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 337.5350 ms
+2026-10-08 13:34:43.888 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 881.2826 ms
+2026-10-08 13:34:48.331 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 946.2912 ms
+2026-10-08 13:35:38.169 -04:00 [INF] Logout: vlapenta
+2026-10-08 13:35:38.198 -04:00 [INF] HTTP GET /Home/Logout responded 302 in 34.1328 ms
+2026-10-08 13:35:38.212 -04:00 [INF] HTTP GET / responded 200 in 5.4455 ms
+2026-10-08 13:36:02.868 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-3) para admcandyladyusd
+2026-10-08 13:36:02.871 -04:00 [WRN] Login fallido para usuario admcandyladyusd
+2026-10-08 13:36:02.926 -04:00 [INF] HTTP POST / responded 200 in 584.9593 ms
+2026-10-08 13:36:20.057 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-3) para admcandyladyusd
+2026-10-08 13:36:20.059 -04:00 [WRN] Login fallido para usuario admcandyladyusd
+2026-10-08 13:36:20.062 -04:00 [INF] HTTP POST / responded 200 in 157.4031 ms
+2026-10-08 13:36:30.471 -04:00 [INF] HTTP POST / responded 200 in 3.9262 ms
+2026-10-08 13:36:34.289 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-3) para admcandylady_usd
+2026-10-08 13:36:34.291 -04:00 [WRN] Login fallido para usuario admcandylady_usd
+2026-10-08 13:36:34.295 -04:00 [INF] HTTP POST / responded 200 in 262.2226 ms
+2026-10-08 13:36:53.623 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-3) para ADMCandyLady_usd
+2026-10-08 13:36:53.625 -04:00 [WRN] Login fallido para usuario ADMCandyLady_usd
+2026-10-08 13:36:53.627 -04:00 [INF] HTTP POST / responded 200 in 559.0102 ms
+2026-10-08 13:37:12.676 -04:00 [INF] Login exitoso: ADMCandyLady_USD [Usuario Regular]
+2026-10-08 13:37:12.678 -04:00 [INF] HTTP POST / responded 302 in 154.0109 ms
+2026-10-08 13:37:12.717 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 33.8687 ms
+2026-10-08 13:37:13.497 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 545.6187 ms
+2026-10-08 13:37:18.726 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 191.2167 ms
+2026-10-08 13:52:22.870 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 4369.0120 ms
+2026-10-08 13:52:24.575 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 556.8335 ms
+2026-10-08 13:52:26.521 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 1.0002 ms
+2026-10-08 13:52:29.844 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 293.0838 ms
+2026-10-08 13:52:53.073 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 207.4191 ms
+2026-10-08 13:52:57.923 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 190.5291 ms

@@ -77,4 +77,5 @@ public interface IReportesService
     Task<List<string>> GetInOutGamingAgentesAsync();
     Task<object> GetKingMidasAsync(string startDate, string endDate, string agentName);
     Task<object> GetListProdOdysseusAsync();
+    Task<object> GetDetTckUsuOdysseusAsync(string userName, string fechaDesde, string fechaHasta);
 }

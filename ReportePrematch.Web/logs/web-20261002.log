@@ -1,0 +1,30 @@
+2026-10-02 02:18:09.532 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-02 02:18:12.123 -04:00 [INF] HTTP GET / responded 200 in 664.3256 ms
+2026-10-02 02:18:13.541 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 3.4201 ms
+2026-10-02 02:18:22.374 -04:00 [INF] HTTP POST / responded 200 in 81.7796 ms
+2026-10-02 02:18:25.833 -04:00 [INF] HTTP POST / responded 200 in 11.6194 ms
+2026-10-02 02:22:18.535 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-02 02:22:20.518 -04:00 [INF] HTTP GET / responded 200 in 488.4791 ms
+2026-10-02 02:25:51.288 -04:00 [INF] HTTP GET / responded 200 in 46.7035 ms
+2026-10-02 02:25:52.591 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 5.9369 ms
+2026-10-02 02:26:00.844 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-02 02:26:02.867 -04:00 [INF] HTTP GET / responded 200 in 513.9307 ms
+2026-10-02 02:26:22.606 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-10-02 02:26:22.616 -04:00 [INF] HTTP POST / responded 302 in 10948.5152 ms
+2026-10-02 02:26:23.016 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 379.0053 ms
+2026-10-02 02:26:26.287 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 2544.9060 ms
+2026-10-02 02:26:33.480 -04:00 [INF] HTTP GET /Reportes/Odyseus responded 200 in 76.9032 ms
+2026-10-02 02:26:34.223 -04:00 [INF] HTTP POST /Reportes/GetListProdOdysseus responded 200 in 411.2888 ms
+2026-10-02 02:26:34.479 -04:00 [INF] HTTP POST /Reportes/GetListAgenciasApi responded 200 in 669.7140 ms
+2026-10-02 02:26:40.564 -04:00 [INF] HTTP POST /Reportes/GetOdyseus responded 200 in 4510.0439 ms
+2026-10-02 02:26:51.280 -04:00 [INF] HTTP POST /Reportes/GetDetTckUsuOdysseus responded 200 in 738.3470 ms
+2026-10-02 02:26:54.290 -04:00 [INF] HTTP POST /Reportes/GetDetTckUsuOdysseus responded 200 in 315.7780 ms
+2026-10-02 02:27:00.039 -04:00 [INF] HTTP POST /Reportes/GetDetTckUsuOdysseus responded 200 in 607.2168 ms
+2026-10-02 02:27:08.960 -04:00 [INF] HTTP POST /Reportes/GetDetTckUsuOdysseus responded 200 in 218.4876 ms
+2026-10-02 02:27:10.852 -04:00 [INF] HTTP POST /Reportes/GetDetTckUsuOdysseus responded 200 in 178.6686 ms
+2026-10-02 02:27:14.928 -04:00 [INF] HTTP POST /Reportes/GetDetTckUsuOdysseus responded 200 in 199.4654 ms
+2026-10-02 02:27:25.127 -04:00 [INF] HTTP POST /Reportes/GetDetTckUsuOdysseus responded 200 in 182.4754 ms
+2026-10-02 02:27:27.457 -04:00 [INF] HTTP POST /Reportes/GetDetTckUsuOdysseus responded 200 in 184.8611 ms
+2026-10-02 02:27:31.933 -04:00 [INF] HTTP POST /Reportes/GetDetTckUsuOdysseus responded 200 in 173.1287 ms
+2026-10-02 02:27:41.119 -04:00 [INF] HTTP POST /Reportes/GetDetTckUsuOdysseus responded 200 in 169.8027 ms
+2026-10-02 02:27:42.525 -04:00 [INF] HTTP POST /Reportes/GetDetTckUsuOdysseus responded 200 in 173.2635 ms

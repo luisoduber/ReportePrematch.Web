@@ -1219,4 +1219,26 @@ ORDER BY 1,2,3 ASC";
         var result = await response.Content.ReadFromJsonAsync<List<ProdOdysseusItem>>(opts);
         return result ?? new List<ProdOdysseusItem>();
     }
+
+    public async Task<object> GetDetTckUsuOdysseusAsync(
+        string userName, string fechaDesde, string fechaHasta)
+    {
+        var baseUrl = _config["OdysseusApi:BaseUrl"] ?? "https://allws.staging-gc.com/ApiReporte/";
+        var url = $"{baseUrl.TrimEnd('/')}/api/Odysseus/DetTckUsuOdysseus" +
+                  $"?userName={Uri.EscapeDataString(userName ?? "")}" +
+                  $"&fechaDesde={Uri.EscapeDataString(fechaDesde ?? "")}" +
+                  $"&fechaHasta={Uri.EscapeDataString(fechaHasta ?? "")}";
+
+        var handler = new System.Net.Http.HttpClientHandler
+        {
+            ServerCertificateCustomValidationCallback =
+                System.Net.Http.HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+        };
+        using var http = new System.Net.Http.HttpClient(handler) { Timeout = TimeSpan.FromSeconds(30) };
+        var response = await http.GetAsync(url);
+        response.EnsureSuccessStatusCode();
+        var opts = new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+        var result = await response.Content.ReadFromJsonAsync<object>(opts);
+        return result ?? new List<object>();
+    }
 }

@@ -195,7 +195,7 @@ function buildDetalleHTML(tickets) {
         rows += '<tr>'
             + '<td style="text-align:center;"><span onclick="verDetalleTicket(' + (t.ticket||0) + ')" style="cursor:pointer;color:#48CAE4;text-decoration:underline;font-weight:700;">' + (t.ticket||'—') + '</span></td>'
             + '<td style="text-align:center;">' + (t.tipoAp||'—') + '</td>'
-            + '<td class="col-monto-pos" style="text-align:center;">' + fmt(t.arriesgando) + '</td>'
+            + '<td class="col-monto-pos" style="text-align:center;">' + fmt(t.riesgo) + '</td>'
             + '<td class="col-monto-neg" style="text-align:center;">' + fmt(t.ganando) + '</td>'
             + '<td style="text-align:center;">' + (t.operacion||'—') + '</td>'
             + '<td style="text-align:center;">' + fmtFecha(t.fecha) + '</td>'
