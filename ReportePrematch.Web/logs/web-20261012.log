@@ -1,0 +1,1473 @@
+2026-10-12 10:52:29.368 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-12 10:52:30.726 -04:00 [INF] HTTP GET / responded 200 in 253.3819 ms
+2026-10-12 10:52:32.262 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 3.5330 ms
+2026-10-12 10:55:13.309 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-3) para  AdmCasaGrande
+2026-10-12 10:55:13.314 -04:00 [WRN] Login fallido para usuario  AdmCasaGrande
+2026-10-12 10:55:13.322 -04:00 [INF] HTTP POST / responded 200 in 1633.9903 ms
+2026-10-12 10:57:12.497 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-3) para  AdmCasaGrande
+2026-10-12 10:57:12.503 -04:00 [WRN] Login fallido para usuario  AdmCasaGrande
+2026-10-12 10:57:12.506 -04:00 [INF] HTTP POST / responded 200 in 1056.0106 ms
+2026-10-12 10:57:18.848 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-3) para  AdmCasaGrande
+2026-10-12 10:57:18.856 -04:00 [WRN] Login fallido para usuario  AdmCasaGrande
+2026-10-12 10:57:18.857 -04:00 [INF] HTTP POST / responded 200 in 933.3597 ms
+2026-10-12 10:57:26.671 -04:00 [INF] Login exitoso: AdmCasaGrande [Usuario Administrador]
+2026-10-12 10:57:26.675 -04:00 [INF] HTTP POST / responded 302 in 527.0791 ms
+2026-10-12 10:57:26.847 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 166.3646 ms
+2026-10-12 10:57:28.092 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 10:57:32.234 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 4150.1612 ms
+2026-10-12 10:57:41.251 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 1561.8952 ms
+2026-10-12 10:57:47.747 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 577.9651 ms
+2026-10-12 10:57:53.933 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 566.4519 ms
+2026-10-12 11:08:34.112 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 945.4647 ms
+2026-10-12 11:08:39.659 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 374.5924 ms
+2026-10-12 11:08:43.864 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 667.5728 ms
+2026-10-12 11:08:50.419 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 579.8383 ms
+2026-10-12 11:08:56.631 -04:00 [INF] HTTP POST /Reportes/GetDetalleTicket responded 200 in 2801.4159 ms
+2026-10-12 11:09:05.544 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 249.6000 ms
+2026-10-12 11:09:09.058 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 371.8879 ms
+2026-10-12 11:09:15.014 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 374.0425 ms
+2026-10-12 11:09:19.848 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 369.9785 ms
+2026-10-12 11:09:27.950 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 334.6063 ms
+2026-10-12 11:09:42.150 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 274.0988 ms
+2026-10-12 11:09:44.665 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosWebII responded 200 in 651.2590 ms
+2026-10-12 11:09:50.551 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 333.9487 ms
+2026-10-12 11:09:57.135 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 187.5430 ms
+2026-10-12 11:12:11.731 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 969.9747 ms
+2026-10-12 11:12:23.696 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 348.2913 ms
+2026-10-12 11:12:27.712 -04:00 [INF] Logout: AdmCasaGrande
+2026-10-12 11:12:27.715 -04:00 [INF] HTTP GET /Home/Logout responded 302 in 4.5211 ms
+2026-10-12 11:12:27.722 -04:00 [INF] HTTP GET / responded 200 in 1.2130 ms
+2026-10-12 11:12:37.269 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-1) para vlapenta
+2026-10-12 11:12:37.275 -04:00 [WRN] Login fallido para usuario vlapenta
+2026-10-12 11:12:37.277 -04:00 [INF] HTTP POST / responded 200 in 1142.3184 ms
+2026-10-12 11:12:48.803 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-10-12 11:12:48.809 -04:00 [INF] HTTP POST / responded 302 in 379.6035 ms
+2026-10-12 11:12:48.817 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 2.3883 ms
+2026-10-12 11:12:49.029 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-12 11:12:50.058 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 1029.4228 ms
+2026-10-12 11:12:54.148 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 624.5605 ms
+2026-10-12 11:15:27.139 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 1034.6999 ms
+2026-10-12 11:15:30.580 -04:00 [INF] Logout: vlapenta
+2026-10-12 11:15:30.582 -04:00 [INF] HTTP GET /Home/Logout responded 302 in 2.8776 ms
+2026-10-12 11:15:30.587 -04:00 [INF] HTTP GET / responded 200 in 0.8762 ms
+2026-10-12 11:20:19.842 -04:00 [INF] Login exitoso: AdmCasaGrande [Usuario Administrador]
+2026-10-12 11:20:19.843 -04:00 [INF] HTTP POST / responded 302 in 1212.0929 ms
+2026-10-12 11:20:19.850 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 2.6217 ms
+2026-10-12 11:20:20.057 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 11:20:20.888 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 831.9172 ms
+2026-10-12 11:20:28.824 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 827.3131 ms
+2026-10-12 11:20:35.913 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.1249 ms
+2026-10-12 11:20:38.292 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 344.1332 ms
+2026-10-12 11:20:50.576 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 342.5218 ms
+2026-10-12 12:57:24.262 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-12 12:57:25.334 -04:00 [INF] HTTP GET / responded 200 in 255.2023 ms
+2026-10-12 12:57:36.382 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-10-12 12:57:36.390 -04:00 [INF] HTTP POST / responded 302 in 1811.6722 ms
+2026-10-12 12:57:36.597 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 198.9696 ms
+2026-10-12 12:57:36.804 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-12 12:57:41.378 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 4582.5771 ms
+2026-10-12 12:57:44.942 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 2203.8443 ms
+2026-10-12 12:57:54.593 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 1377.2183 ms
+2026-10-12 12:59:06.560 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-12 12:59:07.422 -04:00 [INF] HTTP GET / responded 200 in 201.6374 ms
+2026-10-12 12:59:22.239 -04:00 [INF] Login exitoso: AdmCasaGrande [Usuario Administrador]
+2026-10-12 12:59:22.246 -04:00 [INF] HTTP POST / responded 302 in 2568.7508 ms
+2026-10-12 12:59:22.361 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 107.0579 ms
+2026-10-12 12:59:22.583 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 12:59:23.518 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 942.0471 ms
+2026-10-12 13:00:17.265 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 1334.8232 ms
+2026-10-12 13:00:34.680 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 350.4512 ms
+2026-10-12 13:00:41.822 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 995.0786 ms
+2026-10-12 13:00:46.020 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 445.9892 ms
+2026-10-12 13:00:49.999 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 590.5861 ms
+2026-10-12 13:01:05.474 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 406.0001 ms
+2026-10-12 13:01:08.329 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosWebII responded 200 in 563.4268 ms
+2026-10-12 13:01:17.124 -04:00 [INF] HTTP GET /Reportes/TicketsEnJuego responded 200 in 48.5379 ms
+2026-10-12 13:01:17.226 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 13:01:17.997 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 771.0658 ms
+2026-10-12 13:01:27.240 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoPorCobrarTaq responded 200 in 1073.5583 ms
+2026-10-12 13:01:57.122 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.6827 ms
+2026-10-12 13:02:01.571 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoPorCobrarTaq responded 200 in 329.1690 ms
+2026-10-12 13:02:13.680 -04:00 [INF] HTTP GET /Reportes/GetTicketsEnJuegoPorCobrarTaq responded 405 in 0.4807 ms
+2026-10-12 13:14:12.025 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-12 13:14:13.285 -04:00 [INF] HTTP GET / responded 200 in 222.9798 ms
+2026-10-12 13:14:25.022 -04:00 [INF] Login exitoso: AdmCasaGrande [Usuario Administrador]
+2026-10-12 13:14:25.029 -04:00 [INF] HTTP POST / responded 302 in 1604.7282 ms
+2026-10-12 13:14:25.137 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 100.5586 ms
+2026-10-12 13:14:25.366 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 13:14:33.876 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 8527.4190 ms
+2026-10-12 13:14:39.587 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 1795.4933 ms
+2026-10-12 13:14:45.110 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 619.8740 ms
+2026-10-12 13:14:52.840 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteWeb responded 200 in 303.2827 ms
+2026-10-12 13:14:56.270 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 365.6040 ms
+2026-10-12 13:15:04.335 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 545.2043 ms
+2026-10-12 13:15:09.295 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 239.4565 ms
+2026-10-12 13:15:12.896 -04:00 [INF] HTTP GET /Reportes/TicketsEnJuego responded 200 in 19.1351 ms
+2026-10-12 13:15:13.003 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 13:15:13.808 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 805.7457 ms
+2026-10-12 13:15:16.900 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoPorCobrarTaq responded 200 in 509.5115 ms
+2026-10-12 13:15:24.994 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoPorCobrarTaq responded 200 in 336.1861 ms
+2026-10-12 13:15:27.409 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoPorCobrarWeb responded 200 in 339.3426 ms
+2026-10-12 13:15:31.411 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoPorCobrarTaq responded 200 in 321.0978 ms
+2026-10-12 13:15:33.576 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoPorPagarTaq responded 200 in 339.4446 ms
+2026-10-12 13:15:35.956 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoPorCobrarTaq responded 200 in 329.0319 ms
+2026-10-12 13:15:38.672 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoPorPagarTaq responded 200 in 318.6102 ms
+2026-10-12 13:15:44.974 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoPorPagarTaq responded 200 in 332.7060 ms
+2026-10-12 13:15:48.204 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoPorPagarWeb responded 200 in 303.3139 ms
+2026-10-12 13:16:03.082 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoPorPagarWeb responded 200 in 321.9082 ms
+2026-10-12 13:16:05.561 -04:00 [INF] HTTP POST /Reportes/GetTicketsEnJuegoPorCobrarWeb responded 200 in 324.9794 ms
+2026-10-12 13:16:08.906 -04:00 [INF] HTTP GET /Reportes/BusquedaTickets responded 200 in 23.6628 ms
+2026-10-12 13:16:09.052 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 13:16:09.807 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 755.2098 ms
+2026-10-12 13:16:21.030 -04:00 [INF] HTTP POST /Reportes/GetBusquedaTicketsWebApi responded 200 in 395.3892 ms
+2026-10-12 13:16:24.985 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 1.8742 ms
+2026-10-12 13:16:25.081 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 13:16:25.805 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 724.5579 ms
+2026-10-12 13:16:27.927 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikols responded 200 in 15.9759 ms
+2026-10-12 13:16:28.016 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 13:16:28.719 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 702.4763 ms
+2026-10-12 13:16:36.895 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsTaq responded 200 in 5939.2039 ms
+2026-10-12 13:20:00.467 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsTaq responded 200 in 1016.1898 ms
+2026-10-12 13:20:08.956 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsTaq responded 200 in 2633.8806 ms
+2026-10-12 13:20:14.244 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsWeb responded 200 in 706.4567 ms
+2026-10-12 13:20:25.232 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsWeb responded 200 in 347.7888 ms
+2026-10-12 13:20:34.775 -04:00 [INF] Logout: AdmCasaGrande
+2026-10-12 13:20:34.776 -04:00 [INF] HTTP GET /Home/Logout responded 302 in 3.1173 ms
+2026-10-12 13:20:34.782 -04:00 [INF] HTTP GET / responded 200 in 1.8922 ms
+2026-10-12 13:20:46.400 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-10-12 13:20:46.403 -04:00 [INF] HTTP POST / responded 302 in 1732.8484 ms
+2026-10-12 13:20:46.409 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 1.4921 ms
+2026-10-12 13:20:46.613 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-12 13:20:47.395 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 782.3228 ms
+2026-10-12 13:20:49.773 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikols responded 200 in 1.4354 ms
+2026-10-12 13:20:49.863 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-12 13:20:50.881 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 1018.1615 ms
+2026-10-12 13:20:54.200 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsTaq responded 200 in 2859.6769 ms
+2026-10-12 13:20:59.004 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsTaq responded 200 in 350.3040 ms
+2026-10-12 13:21:04.208 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsWeb responded 200 in 1069.3646 ms
+2026-10-12 13:21:12.326 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsWeb responded 200 in 489.1527 ms
+2026-10-12 13:21:14.417 -04:00 [INF] Logout: vlapenta
+2026-10-12 13:21:14.418 -04:00 [INF] HTTP GET /Home/Logout responded 302 in 2.2514 ms
+2026-10-12 13:21:14.426 -04:00 [INF] HTTP GET / responded 200 in 1.5311 ms
+2026-10-12 13:21:24.198 -04:00 [INF] Login exitoso: AdmCasaGrande [Usuario Administrador]
+2026-10-12 13:21:24.200 -04:00 [INF] HTTP POST / responded 302 in 375.6591 ms
+2026-10-12 13:21:24.205 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 1.2061 ms
+2026-10-12 13:21:24.389 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 13:21:25.149 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 759.6507 ms
+2026-10-12 13:21:50.163 -04:00 [INF] HTTP GET /Reportes/TicketsDetallados responded 200 in 16.3007 ms
+2026-10-12 13:21:50.334 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 13:21:51.343 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 1008.8882 ms
+2026-10-12 13:21:52.694 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 442.7663 ms
+2026-10-12 13:22:04.887 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 829.6702 ms
+2026-10-12 13:22:13.846 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosWeb responded 200 in 936.2471 ms
+2026-10-12 13:22:28.093 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosWeb responded 200 in 505.1031 ms
+2026-10-12 13:22:33.501 -04:00 [INF] HTTP POST /Reportes/GetDetalleTicket responded 200 in 2151.6093 ms
+2026-10-12 13:22:37.207 -04:00 [INF] HTTP GET /Reportes/Estadisticas responded 200 in 20.1812 ms
+2026-10-12 13:22:37.298 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 13:22:38.194 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 895.3193 ms
+2026-10-12 13:25:10.503 -04:00 [INF] HTTP POST /Reportes/GetEstadisticasTaq responded 200 in 1542.6654 ms
+2026-10-12 13:25:19.731 -04:00 [INF] HTTP POST /Reportes/GetEstadisticasTaq responded 200 in 343.0878 ms
+2026-10-12 13:25:24.180 -04:00 [INF] HTTP POST /Reportes/GetEstadisticasTaq responded 200 in 789.9495 ms
+2026-10-12 13:25:26.330 -04:00 [INF] HTTP POST /Reportes/GetEstadisticasWeb responded 200 in 706.4067 ms
+2026-10-12 13:25:31.393 -04:00 [INF] HTTP POST /Reportes/GetEstadisticasWeb responded 200 in 357.2789 ms
+2026-10-12 13:25:35.509 -04:00 [INF] HTTP GET /Reportes/DeportesMasVendidos responded 200 in 25.7196 ms
+2026-10-12 13:25:35.615 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 13:25:36.405 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 790.8224 ms
+2026-10-12 13:25:39.446 -04:00 [INF] HTTP POST /Reportes/GetDeportesMasVendidosPorAgente responded 200 in 571.3509 ms
+2026-10-12 13:25:39.894 -04:00 [INF] HTTP POST /Reportes/GetDeportesMasVendidosPorDeporte responded 200 in 1019.0410 ms
+2026-10-12 13:25:46.924 -04:00 [INF] HTTP POST /Reportes/GetDeportesMasVendidosPorAgente responded 200 in 334.7731 ms
+2026-10-12 13:25:46.955 -04:00 [INF] HTTP POST /Reportes/GetDeportesMasVendidosPorDeporte responded 200 in 365.8806 ms
+2026-10-12 13:25:54.433 -04:00 [INF] HTTP POST /Reportes/GetDeportesMasVendidosPorDeporte responded 200 in 411.6573 ms
+2026-10-12 13:25:54.455 -04:00 [INF] HTTP POST /Reportes/GetDeportesMasVendidosPorAgente responded 200 in 433.3584 ms
+2026-10-12 13:26:20.169 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteGameID responded 200 in 15.8853 ms
+2026-10-12 13:26:20.362 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 13:26:21.269 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 906.9845 ms
+2026-10-12 13:26:25.781 -04:00 [INF] HTTP GET /Reportes/VentasPorPais responded 200 in 11.9023 ms
+2026-10-12 13:26:30.968 -04:00 [INF] HTTP POST /Reportes/GetVentasPorPaisTaq responded 200 in 574.8001 ms
+2026-10-12 13:26:37.034 -04:00 [INF] HTTP GET /Reportes/VentasDetalladasLive responded 200 in 17.1897 ms
+2026-10-12 13:26:37.126 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 13:26:37.857 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 731.3861 ms
+2026-10-12 13:26:39.375 -04:00 [INF] HTTP POST /Reportes/GetVentasDetalladasLive responded 200 in 534.3088 ms
+2026-10-12 13:26:45.506 -04:00 [INF] HTTP POST /Reportes/GetVentasDetalladasLive responded 200 in 625.6164 ms
+2026-10-12 13:26:52.002 -04:00 [INF] HTTP POST /Reportes/GetVentasDetalladasLive responded 200 in 540.1795 ms
+2026-10-12 13:26:55.581 -04:00 [INF] HTTP POST /Reportes/GetVentasDetalladasLive responded 200 in 423.7772 ms
+2026-10-12 13:27:35.713 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.7451 ms
+2026-10-12 13:27:39.750 -04:00 [INF] HTTP POST /Reportes/GetVentasDetalladasLive responded 200 in 969.3628 ms
+2026-10-12 13:27:44.715 -04:00 [INF] HTTP GET /Reportes/GetVentasDetalladasLive responded 405 in 0.2725 ms
+2026-10-12 13:33:11.019 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-12 13:33:12.489 -04:00 [INF] HTTP GET / responded 200 in 268.5383 ms
+2026-10-12 13:33:30.929 -04:00 [INF] Login exitoso: AdmCasaGrande [Usuario Administrador]
+2026-10-12 13:33:30.935 -04:00 [INF] HTTP POST / responded 302 in 1730.4229 ms
+2026-10-12 13:33:31.037 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 94.9072 ms
+2026-10-12 13:33:31.258 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 13:33:36.438 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 5188.5781 ms
+2026-10-12 13:33:43.097 -04:00 [INF] HTTP GET /Reportes/VentasDetalladasLive responded 200 in 19.2078 ms
+2026-10-12 13:33:43.212 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 13:33:44.298 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 1087.4940 ms
+2026-10-12 13:33:53.504 -04:00 [INF] HTTP POST /Reportes/GetVentasDetalladasLive responded 200 in 8386.5117 ms
+2026-10-12 13:34:04.218 -04:00 [INF] HTTP POST /Reportes/GetVentasDetalladasLive responded 200 in 271.2071 ms
+2026-10-12 13:34:07.783 -04:00 [INF] HTTP GET /Reportes/Props responded 200 in 24.3806 ms
+2026-10-12 13:34:07.931 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 13:34:08.898 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 966.8852 ms
+2026-10-12 13:34:12.445 -04:00 [INF] HTTP POST /Reportes/GetProps responded 200 in 587.9422 ms
+2026-10-12 13:34:43.892 -04:00 [INF] HTTP GET /Reportes/VentasDetalladasLive responded 200 in 3.2414 ms
+2026-10-12 13:34:44.052 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 13:34:44.947 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 894.9984 ms
+2026-10-12 13:34:46.496 -04:00 [INF] HTTP POST /Reportes/GetVentasDetalladasLive responded 200 in 1062.1538 ms
+2026-10-12 13:35:03.620 -04:00 [INF] HTTP GET /Reportes/Props responded 200 in 2.0871 ms
+2026-10-12 13:35:03.781 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 13:35:04.607 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 827.1393 ms
+2026-10-12 13:35:05.586 -04:00 [INF] HTTP POST /Reportes/GetProps responded 200 in 317.0916 ms
+2026-10-12 13:35:14.092 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.7560 ms
+2026-10-12 13:35:17.742 -04:00 [INF] HTTP POST /Reportes/GetProps responded 200 in 309.8840 ms
+2026-10-12 13:35:23.914 -04:00 [INF] HTTP GET /Reportes/GetProps responded 405 in 0.3665 ms
+2026-10-12 13:43:11.887 -04:00 [INF] HTTP GET /Reportes/IconSlot responded 200 in 44.0760 ms
+2026-10-12 13:43:11.923 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.1759 ms
+2026-10-12 13:43:12.322 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 13:43:13.470 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 1148.5451 ms
+2026-10-12 13:43:15.552 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 1094.7252 ms
+2026-10-12 13:43:22.204 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 599.1183 ms
+2026-10-12 13:43:26.724 -04:00 [INF] HTTP GET /Reportes/GetIconSlot responded 405 in 0.2427 ms
+2026-10-12 13:44:35.909 -04:00 [INF] HTTP GET /Reportes/Pragmatic responded 200 in 17.6427 ms
+2026-10-12 13:44:35.976 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.1133 ms
+2026-10-12 13:44:36.385 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 13:44:37.286 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 901.0096 ms
+2026-10-12 13:44:39.380 -04:00 [INF] HTTP POST /Reportes/GetPragmatic responded 200 in 1238.1842 ms
+2026-10-12 13:47:05.061 -04:00 [INF] HTTP GET /Reportes/IconSlot responded 200 in 3.4105 ms
+2026-10-12 13:47:05.165 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.1876 ms
+2026-10-12 13:47:05.540 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 13:47:06.438 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 898.6760 ms
+2026-10-12 13:51:56.205 -04:00 [INF] HTTP GET /Reportes/Props responded 200 in 2.2049 ms
+2026-10-12 13:51:56.261 -04:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.1013 ms
+2026-10-12 13:51:56.621 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 13:52:00.688 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 4066.4873 ms
+2026-10-12 13:52:03.109 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/Props. JSON: {"codigo":-2146232060,"mensaje":"Invalid object name 'GCITBR.dbo.Agentes'."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.PropsApiDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-10-12 13:52:03.138 -04:00 [INF] HTTP POST /Reportes/GetProps responded 200 in 1465.6495 ms
+2026-10-12 13:52:13.889 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/Props. JSON: {"codigo":-2146232060,"mensaje":"Invalid object name 'GCITBR.dbo.Agentes'."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.PropsApiDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-10-12 13:52:13.893 -04:00 [INF] HTTP POST /Reportes/GetProps responded 200 in 553.6134 ms
+2026-10-12 13:52:30.993 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-12 13:52:31.893 -04:00 [INF] HTTP GET / responded 200 in 222.0613 ms
+2026-10-12 13:52:48.466 -04:00 [INF] Login exitoso: AdmCasaGrande [Usuario Administrador]
+2026-10-12 13:52:48.474 -04:00 [INF] HTTP POST / responded 302 in 1429.4647 ms
+2026-10-12 13:52:48.575 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 93.4844 ms
+2026-10-12 13:52:48.780 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 13:52:49.658 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 885.3039 ms
+2026-10-12 13:52:52.490 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 1267.7087 ms
+2026-10-12 13:53:00.410 -04:00 [INF] HTTP GET /Reportes/Props responded 200 in 24.1592 ms
+2026-10-12 13:53:00.585 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 13:53:01.561 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 976.8371 ms
+2026-10-12 13:53:02.475 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/Props. JSON: {"codigo":-2146232060,"mensaje":"Invalid object name 'GCITBR.dbo.Agentes'."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.PropsApiDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-10-12 13:53:02.487 -04:00 [INF] HTTP POST /Reportes/GetProps responded 200 in 389.2135 ms
+2026-10-12 13:53:06.589 -04:00 [INF] HTTP POST /Reportes/GetProps responded 200 in 465.8526 ms
+2026-10-12 13:53:11.417 -04:00 [INF] HTTP POST /Reportes/GetProps responded 200 in 370.4417 ms
+2026-10-12 13:53:16.285 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/Props. JSON: {"codigo":-2146232060,"mensaje":"Invalid object name 'GCITBR.dbo.Agentes'."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.PropsApiDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-10-12 13:53:16.291 -04:00 [INF] HTTP POST /Reportes/GetProps responded 200 in 350.6580 ms
+2026-10-12 13:53:41.516 -04:00 [INF] HTTP GET /Reportes/Pragmatic responded 200 in 17.0918 ms
+2026-10-12 13:53:41.676 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 13:53:42.554 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 879.1260 ms
+2026-10-12 13:53:43.571 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/Pragmatic. JSON: {"codigo":-2146232060,"mensaje":"Invalid object name 'GCITBR.dbo.Agentes'."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-10-12 13:53:43.576 -04:00 [INF] HTTP POST /Reportes/GetPragmatic responded 200 in 391.1268 ms
+2026-10-12 13:53:53.278 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/Pragmatic. JSON: {"codigo":-2146232060,"mensaje":"Invalid object name 'GCITBR.dbo.Agentes'."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-10-12 13:53:53.284 -04:00 [INF] HTTP POST /Reportes/GetPragmatic responded 200 in 353.9854 ms
+2026-10-12 13:53:58.559 -04:00 [INF] HTTP POST /Reportes/GetPragmatic responded 200 in 691.6080 ms
+2026-10-12 13:54:02.970 -04:00 [INF] HTTP GET /Reportes/IconSlot responded 200 in 16.0858 ms
+2026-10-12 13:54:03.124 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 13:54:03.862 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 738.5967 ms
+2026-10-12 13:54:04.921 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 432.9111 ms
+2026-10-12 13:54:09.479 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 337.6990 ms
+2026-10-12 14:05:28.850 -04:00 [INF] HTTP GET /Reportes/VirtualesBR responded 200 in 16.1975 ms
+2026-10-12 14:05:29.015 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 14:05:30.106 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 1090.5404 ms
+2026-10-12 14:05:31.650 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/VirtualesBR. JSON: {"codigo":-2146233079,"mensaje":"ExecuteReader: CommandText property has not been initialized"}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.PropsApiDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-10-12 14:05:31.654 -04:00 [INF] HTTP POST /Reportes/GetVirtualesBR responded 200 in 974.0177 ms
+2026-10-12 14:05:37.857 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/VirtualesBR. JSON: {"codigo":-2146233079,"mensaje":"ExecuteReader: CommandText property has not been initialized"}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.PropsApiDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-10-12 14:05:37.862 -04:00 [INF] HTTP POST /Reportes/GetVirtualesBR responded 200 in 500.5958 ms
+2026-10-12 14:05:41.014 -04:00 [INF] HTTP GET /Reportes/Aviatrix responded 200 in 15.4892 ms
+2026-10-12 14:05:41.150 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 14:05:42.037 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 887.6042 ms
+2026-10-12 14:05:43.046 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/Aviatrix. JSON: {"codigo":-2146232060,"mensaje":"Invalid object name 'Agentes'."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.AviatrixDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-10-12 14:05:43.052 -04:00 [INF] HTTP POST /Reportes/GetAviatrix responded 200 in 408.5047 ms
+2026-10-12 14:05:48.447 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/Aviatrix. JSON: {"codigo":-2146232060,"mensaje":"Invalid object name 'Agentes'."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.AviatrixDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-10-12 14:05:48.453 -04:00 [INF] HTTP POST /Reportes/GetAviatrix responded 200 in 369.8803 ms
+2026-10-12 14:05:52.487 -04:00 [INF] HTTP POST /Reportes/GetAviatrix responded 200 in 805.7153 ms
+2026-10-12 14:05:57.676 -04:00 [INF] HTTP POST /Reportes/GetAviatrix responded 200 in 549.4350 ms
+2026-10-12 14:06:01.286 -04:00 [INF] HTTP POST /Reportes/GetAviatrix responded 200 in 487.3581 ms
+2026-10-12 14:06:04.385 -04:00 [INF] HTTP GET /Reportes/Casino7777 responded 200 in 16.7598 ms
+2026-10-12 14:06:04.535 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 14:06:05.330 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 795.1203 ms
+2026-10-12 14:06:07.770 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 1932.5481 ms
+2026-10-12 14:06:07.770 -04:00 [INF] HTTP POST /Reportes/GetCasino7777ResumenGeneral responded 200 in 1932.9955 ms
+2026-10-12 14:06:15.366 -04:00 [INF] HTTP POST /Reportes/GetCasino7777ResumenGeneral responded 200 in 1050.7944 ms
+2026-10-12 14:06:15.426 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 1111.2118 ms
+2026-10-12 14:06:20.688 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 935.6456 ms
+2026-10-12 14:06:20.890 -04:00 [INF] HTTP POST /Reportes/GetCasino7777ResumenGeneral responded 200 in 1137.3832 ms
+2026-10-12 14:06:25.144 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 752.3550 ms
+2026-10-12 14:06:25.177 -04:00 [INF] HTTP POST /Reportes/GetCasino7777ResumenGeneral responded 200 in 785.5044 ms
+2026-10-12 14:08:13.522 -04:00 [INF] HTTP GET /Reportes/Endorphine responded 200 in 31.8842 ms
+2026-10-12 14:08:13.664 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 14:08:14.408 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 744.5423 ms
+2026-10-12 14:08:16.271 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 1016.0196 ms
+2026-10-12 14:08:16.272 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 1016.6057 ms
+2026-10-12 14:08:23.664 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 2101.4535 ms
+2026-10-12 14:08:52.654 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 31091.4312 ms
+2026-10-12 14:10:08.513 -04:00 [INF] Logout: AdmCasaGrande
+2026-10-12 14:10:08.515 -04:00 [INF] HTTP GET /Home/Logout responded 302 in 5.2234 ms
+2026-10-12 14:10:08.520 -04:00 [INF] HTTP GET / responded 200 in 1.4691 ms
+2026-10-12 14:10:21.532 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-10-12 14:10:21.536 -04:00 [INF] HTTP POST / responded 302 in 1222.9517 ms
+2026-10-12 14:10:21.542 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 1.3038 ms
+2026-10-12 14:10:21.721 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-12 14:10:22.805 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 1084.0416 ms
+2026-10-12 14:10:27.069 -04:00 [INF] HTTP GET /Reportes/Props responded 200 in 1.1450 ms
+2026-10-12 14:10:27.249 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-12 14:10:28.108 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 859.1700 ms
+2026-10-12 14:10:29.834 -04:00 [INF] HTTP POST /Reportes/GetProps responded 200 in 1065.5556 ms
+2026-10-12 14:11:01.981 -04:00 [INF] HTTP POST /Reportes/GetProps responded 200 in 318.4392 ms
+2026-10-12 14:11:49.861 -04:00 [INF] HTTP POST /Reportes/GetProps responded 200 in 377.0896 ms
+2026-10-12 14:11:59.179 -04:00 [INF] HTTP POST /Reportes/GetProps responded 200 in 333.6403 ms
+2026-10-12 14:12:08.407 -04:00 [INF] Logout: vlapenta
+2026-10-12 14:12:08.409 -04:00 [INF] HTTP GET /Home/Logout responded 302 in 3.3307 ms
+2026-10-12 14:12:08.416 -04:00 [INF] HTTP GET / responded 200 in 2.0001 ms
+2026-10-12 14:12:18.574 -04:00 [INF] Login exitoso: AdmCasaGrande [Usuario Administrador]
+2026-10-12 14:12:18.575 -04:00 [INF] HTTP POST / responded 302 in 1031.6631 ms
+2026-10-12 14:12:18.581 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 1.3064 ms
+2026-10-12 14:12:18.759 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 14:12:19.441 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 682.6808 ms
+2026-10-12 14:12:29.423 -04:00 [INF] HTTP GET /Reportes/Props responded 200 in 1.2813 ms
+2026-10-12 14:12:29.514 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 14:12:30.510 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 995.7100 ms
+2026-10-12 14:12:31.959 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/Props. JSON: {"codigo":-2146232060,"mensaje":"Invalid object name 'GCITBR.dbo.Agentes'."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.PropsApiDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-10-12 14:12:31.965 -04:00 [INF] HTTP POST /Reportes/GetProps responded 200 in 950.2500 ms
+2026-10-12 14:12:40.117 -04:00 [INF] HTTP POST /Reportes/GetProps responded 200 in 353.8400 ms
+2026-10-12 14:12:54.029 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/Props. JSON: {"codigo":-2146232060,"mensaje":"Invalid object name 'GCITBR.dbo.Agentes'."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.PropsApiDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-10-12 14:12:54.034 -04:00 [INF] HTTP POST /Reportes/GetProps responded 200 in 370.5608 ms
+2026-10-12 14:25:17.215 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-12 14:25:18.660 -04:00 [INF] HTTP GET / responded 200 in 263.3243 ms
+2026-10-12 14:25:36.153 -04:00 [INF] Login exitoso: AdmCasaGrande [Usuario Administrador]
+2026-10-12 14:25:36.160 -04:00 [INF] HTTP POST / responded 302 in 1869.7022 ms
+2026-10-12 14:25:36.294 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 126.3768 ms
+2026-10-12 14:25:36.539 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 14:25:40.853 -04:00 [ERR] HTTP POST /Reportes/GetListAgentFilt responded 500 in 4325.5037 ms
+System.Net.Http.HttpRequestException: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión. (localhost:44322)
+ ---> System.Net.Sockets.SocketException (10061): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.SocketsHttpHandler.<SendAsync>g__CreateHandlerAndSendAsync|115_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetListAgentFiltAsync(String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 1275
+   at ReportePrematch.Web.Controllers.ReportesController.GetListAgentFilt() in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 44
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-10-12 14:25:40.871 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Net.Http.HttpRequestException: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión. (localhost:44322)
+ ---> System.Net.Sockets.SocketException (10061): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.SocketsHttpHandler.<SendAsync>g__CreateHandlerAndSendAsync|115_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetListAgentFiltAsync(String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 1275
+   at ReportePrematch.Web.Controllers.ReportesController.GetListAgentFilt() in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 44
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-10-12 14:25:44.265 -04:00 [INF] HTTP GET /Reportes/Props responded 200 in 26.2969 ms
+2026-10-12 14:25:44.377 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 14:25:48.538 -04:00 [ERR] HTTP POST /Reportes/GetListAgentFilt responded 500 in 4160.7620 ms
+System.Net.Http.HttpRequestException: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión. (localhost:44322)
+ ---> System.Net.Sockets.SocketException (10061): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.SocketsHttpHandler.<SendAsync>g__CreateHandlerAndSendAsync|115_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetListAgentFiltAsync(String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 1275
+   at ReportePrematch.Web.Controllers.ReportesController.GetListAgentFilt() in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 44
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-10-12 14:25:48.552 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Net.Http.HttpRequestException: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión. (localhost:44322)
+ ---> System.Net.Sockets.SocketException (10061): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.SocketsHttpHandler.<SendAsync>g__CreateHandlerAndSendAsync|115_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetListAgentFiltAsync(String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 1275
+   at ReportePrematch.Web.Controllers.ReportesController.GetListAgentFilt() in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 44
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-10-12 14:55:56.971 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-12 14:55:58.525 -04:00 [INF] HTTP GET / responded 200 in 221.6760 ms
+2026-10-12 14:56:17.092 -04:00 [INF] Login exitoso: AdmCasaGrande [Usuario Administrador]
+2026-10-12 14:56:17.098 -04:00 [INF] HTTP POST / responded 302 in 1463.1575 ms
+2026-10-12 14:56:17.224 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 118.3360 ms
+2026-10-12 14:56:17.669 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 14:56:21.872 -04:00 [ERR] HTTP POST /Reportes/GetListAgentFilt responded 500 in 4216.1131 ms
+System.Net.Http.HttpRequestException: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión. (localhost:44322)
+ ---> System.Net.Sockets.SocketException (10061): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.SocketsHttpHandler.<SendAsync>g__CreateHandlerAndSendAsync|115_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetListAgentFiltAsync(String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 1275
+   at ReportePrematch.Web.Controllers.ReportesController.GetListAgentFilt() in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 44
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-10-12 14:56:21.887 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Net.Http.HttpRequestException: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión. (localhost:44322)
+ ---> System.Net.Sockets.SocketException (10061): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.SocketsHttpHandler.<SendAsync>g__CreateHandlerAndSendAsync|115_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetListAgentFiltAsync(String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 1275
+   at ReportePrematch.Web.Controllers.ReportesController.GetListAgentFilt() in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 44
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-10-12 14:56:27.398 -04:00 [INF] HTTP GET /Reportes/Props responded 200 in 26.3703 ms
+2026-10-12 14:56:27.506 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 14:56:31.652 -04:00 [ERR] HTTP POST /Reportes/GetListAgentFilt responded 500 in 4146.7140 ms
+System.Net.Http.HttpRequestException: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión. (localhost:44322)
+ ---> System.Net.Sockets.SocketException (10061): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.SocketsHttpHandler.<SendAsync>g__CreateHandlerAndSendAsync|115_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetListAgentFiltAsync(String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 1275
+   at ReportePrematch.Web.Controllers.ReportesController.GetListAgentFilt() in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 44
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-10-12 14:56:31.665 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Net.Http.HttpRequestException: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión. (localhost:44322)
+ ---> System.Net.Sockets.SocketException (10061): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.SocketsHttpHandler.<SendAsync>g__CreateHandlerAndSendAsync|115_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetListAgentFiltAsync(String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 1275
+   at ReportePrematch.Web.Controllers.ReportesController.GetListAgentFilt() in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 44
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-10-12 14:56:40.531 -04:00 [ERR] Error GET+QS api/Reportes/Props
+System.Net.Http.HttpRequestException: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión. (localhost:44322)
+ ---> System.Net.Sockets.SocketException (10061): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.SocketsHttpHandler.<SendAsync>g__CreateHandlerAndSendAsync|115_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 46
+2026-10-12 14:56:40.646 -04:00 [ERR] HTTP POST /Reportes/GetProps responded 500 in 4247.4251 ms
+System.Net.Http.HttpRequestException: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión. (localhost:44322)
+ ---> System.Net.Sockets.SocketException (10061): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.SocketsHttpHandler.<SendAsync>g__CreateHandlerAndSendAsync|115_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 46
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetPropsAsync(String fechaD, String fechaH, String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 446
+   at ReportePrematch.Web.Controllers.ReportesController.GetProps(String fechaD, String fechaH, String agente) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 560
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-10-12 14:56:40.660 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Net.Http.HttpRequestException: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión. (localhost:44322)
+ ---> System.Net.Sockets.SocketException (10061): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.SocketsHttpHandler.<SendAsync>g__CreateHandlerAndSendAsync|115_0(HttpRequestMessage request, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 46
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetPropsAsync(String fechaD, String fechaH, String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 446
+   at ReportePrematch.Web.Controllers.ReportesController.GetProps(String fechaD, String fechaH, String agente) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 560
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-10-12 14:57:25.461 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-12 14:57:26.354 -04:00 [INF] HTTP GET / responded 200 in 187.8157 ms
+2026-10-12 14:57:48.450 -04:00 [INF] Login exitoso: AdmCasaGrande [Usuario Administrador]
+2026-10-12 14:57:48.459 -04:00 [INF] HTTP POST / responded 302 in 1236.7448 ms
+2026-10-12 14:57:48.572 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 103.7828 ms
+2026-10-12 14:57:48.796 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 14:57:52.709 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 3923.5047 ms
+2026-10-12 14:57:54.508 -04:00 [INF] HTTP GET /Reportes/Props responded 200 in 20.3384 ms
+2026-10-12 14:57:54.612 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 14:57:55.511 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 901.0741 ms
+2026-10-12 14:57:57.653 -04:00 [INF] HTTP POST /Reportes/GetProps responded 200 in 1619.7953 ms
+2026-10-12 14:58:10.406 -04:00 [INF] HTTP POST /Reportes/GetProps responded 200 in 397.4677 ms
+2026-10-12 14:58:18.013 -04:00 [INF] HTTP GET /Reportes/IconSlot responded 200 in 25.5442 ms
+2026-10-12 14:58:18.148 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 14:58:18.929 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 781.2094 ms
+2026-10-12 14:58:19.960 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 426.2432 ms
+2026-10-12 14:58:25.286 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 331.9277 ms
+2026-10-12 14:58:32.487 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 410.9388 ms
+2026-10-12 14:58:35.974 -04:00 [INF] HTTP GET /Reportes/Pragmatic responded 200 in 14.7783 ms
+2026-10-12 14:58:36.117 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 14:58:38.123 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 2006.0862 ms
+2026-10-12 14:58:39.224 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/Pragmatic. JSON: {"codigo":-2146232060,"mensaje":"Invalid object name 'GCITBR.dbo.Agentes'."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-10-12 14:58:39.236 -04:00 [INF] HTTP POST /Reportes/GetPragmatic responded 200 in 404.5722 ms
+2026-10-12 14:58:46.052 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/Pragmatic. JSON: {"codigo":-2146232060,"mensaje":"Invalid object name 'GCITBR.dbo.Agentes'."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-10-12 14:58:46.058 -04:00 [INF] HTTP POST /Reportes/GetPragmatic responded 200 in 332.7185 ms
+2026-10-12 14:58:51.107 -04:00 [INF] HTTP GET /Reportes/Pragmatic responded 200 in 1.6866 ms
+2026-10-12 14:58:51.265 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 14:58:52.205 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 940.9626 ms
+2026-10-12 14:58:53.082 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/Pragmatic. JSON: {"codigo":-2146232060,"mensaje":"Invalid object name 'GCITBR.dbo.Agentes'."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-10-12 14:58:53.089 -04:00 [INF] HTTP POST /Reportes/GetPragmatic responded 200 in 340.9770 ms
+2026-10-12 14:58:59.509 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/Pragmatic. JSON: {"codigo":-2146232060,"mensaje":"Invalid object name 'GCITBR.dbo.Agentes'."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-10-12 14:58:59.515 -04:00 [INF] HTTP POST /Reportes/GetPragmatic responded 200 in 358.0775 ms
+2026-10-12 15:42:14.112 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-12 15:42:15.456 -04:00 [INF] HTTP GET / responded 200 in 313.5917 ms
+2026-10-12 15:42:31.530 -04:00 [INF] Login exitoso: AdmCasaGrande [Usuario Administrador]
+2026-10-12 15:42:31.539 -04:00 [INF] HTTP POST / responded 302 in 1530.4751 ms
+2026-10-12 15:42:31.769 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 220.8276 ms
+2026-10-12 15:42:31.986 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 15:42:35.503 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 3527.2791 ms
+2026-10-12 15:42:36.930 -04:00 [INF] HTTP GET /Reportes/Props responded 200 in 38.9634 ms
+2026-10-12 15:42:37.032 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 15:42:42.412 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 5380.3801 ms
+2026-10-12 15:42:44.946 -04:00 [INF] HTTP POST /Reportes/GetProps responded 200 in 1728.3101 ms
+2026-10-12 15:42:53.749 -04:00 [INF] HTTP POST /Reportes/GetProps responded 200 in 656.1654 ms
+2026-10-12 15:42:56.616 -04:00 [INF] HTTP GET /Reportes/IconSlot responded 200 in 38.6914 ms
+2026-10-12 15:42:56.735 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 15:42:57.567 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 832.6311 ms
+2026-10-12 15:42:58.716 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 615.8734 ms
+2026-10-12 15:43:04.115 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 591.9635 ms
+2026-10-12 15:43:19.458 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 5399.9437 ms
+2026-10-12 15:43:23.576 -04:00 [INF] HTTP GET /Reportes/Pragmatic responded 200 in 47.5584 ms
+2026-10-12 15:43:23.719 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 15:43:24.528 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 809.7095 ms
+2026-10-12 15:43:25.440 -04:00 [INF] HTTP POST /Reportes/GetPragmatic responded 200 in 437.2665 ms
+2026-10-12 15:43:35.123 -04:00 [INF] HTTP POST /Reportes/GetPragmatic responded 200 in 347.2192 ms
+2026-10-12 15:43:38.289 -04:00 [INF] HTTP GET /Reportes/VirtualesBR responded 200 in 44.9457 ms
+2026-10-12 15:43:38.405 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 15:43:39.183 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 778.7361 ms
+2026-10-12 15:43:40.131 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/VirtualesBR. JSON: {"codigo":-2146233079,"mensaje":"ExecuteReader: CommandText property has not been initialized"}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.PropsApiDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-10-12 15:43:40.163 -04:00 [INF] HTTP POST /Reportes/GetVirtualesBR responded 200 in 444.5440 ms
+2026-10-12 15:43:44.896 -04:00 [INF] HTTP GET /Reportes/Aviatrix responded 200 in 44.2280 ms
+2026-10-12 15:43:45.051 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 15:43:45.772 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 720.5719 ms
+2026-10-12 15:43:46.900 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/Aviatrix. JSON: {"codigo":-2146232060,"mensaje":"Invalid object name 'Agentes'."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.AviatrixDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-10-12 15:43:46.907 -04:00 [INF] HTTP POST /Reportes/GetAviatrix responded 200 in 398.3546 ms
+2026-10-12 15:43:52.360 -04:00 [INF] HTTP POST /Reportes/GetAviatrix responded 200 in 461.7177 ms
+2026-10-12 15:47:32.118 -04:00 [INF] HTTP GET /Reportes/Casino7777 responded 200 in 16.8596 ms
+2026-10-12 15:47:32.319 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 15:47:33.229 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 910.1082 ms
+2026-10-12 15:47:35.720 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 1957.9168 ms
+2026-10-12 15:47:35.848 -04:00 [INF] HTTP POST /Reportes/GetCasino7777ResumenGeneral responded 200 in 2086.0352 ms
+2026-10-12 15:47:41.662 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 1041.0268 ms
+2026-10-12 15:47:41.676 -04:00 [INF] HTTP POST /Reportes/GetCasino7777ResumenGeneral responded 200 in 1055.2154 ms
+2026-10-12 15:47:46.497 -04:00 [INF] HTTP POST /Reportes/GetCasino7777ResumenGeneral responded 200 in 973.7577 ms
+2026-10-12 15:47:46.587 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 1063.5287 ms
+2026-10-12 15:59:02.685 -04:00 [INF] HTTP GET /Reportes/VirtualesBR responded 200 in 3.0670 ms
+2026-10-12 15:59:02.845 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 15:59:07.645 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 4799.6498 ms
+2026-10-12 15:59:11.370 -04:00 [INF] HTTP POST /Reportes/GetVirtualesBR responded 200 in 2549.4838 ms
+2026-10-12 15:59:17.468 -04:00 [INF] HTTP POST /Reportes/GetVirtualesBR responded 200 in 2963.2003 ms
+2026-10-12 15:59:23.551 -04:00 [INF] HTTP POST /Reportes/GetVirtualesBR responded 200 in 1982.6761 ms
+2026-10-12 15:59:29.200 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-12 15:59:30.341 -04:00 [INF] HTTP GET / responded 200 in 210.8198 ms
+2026-10-12 15:59:44.890 -04:00 [INF] Login exitoso: AdmCasaGrande [Usuario Administrador]
+2026-10-12 15:59:44.897 -04:00 [INF] HTTP POST / responded 302 in 4256.4166 ms
+2026-10-12 15:59:45.003 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 97.3368 ms
+2026-10-12 15:59:45.214 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 15:59:46.105 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 904.6940 ms
+2026-10-12 15:59:48.608 -04:00 [INF] HTTP GET /Reportes/VirtualesBR responded 200 in 18.7210 ms
+2026-10-12 15:59:48.708 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 15:59:49.437 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 729.5214 ms
+2026-10-12 15:59:51.959 -04:00 [INF] HTTP POST /Reportes/GetVirtualesBR responded 200 in 1857.1535 ms
+2026-10-12 15:59:59.221 -04:00 [INF] HTTP POST /Reportes/GetVirtualesBR responded 200 in 3068.1172 ms
+2026-10-12 16:00:03.432 -04:00 [INF] HTTP GET /Reportes/Aviatrix responded 200 in 14.7893 ms
+2026-10-12 16:00:03.570 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 16:00:04.536 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 965.8854 ms
+2026-10-12 16:00:05.894 -04:00 [INF] HTTP POST /Reportes/GetAviatrix responded 200 in 747.4525 ms
+2026-10-12 16:00:13.830 -04:00 [INF] HTTP POST /Reportes/GetAviatrix responded 200 in 584.4679 ms
+2026-10-12 16:00:21.416 -04:00 [INF] HTTP POST /Reportes/GetAviatrix responded 200 in 572.3972 ms
+2026-10-12 16:00:27.918 -04:00 [INF] HTTP GET /Reportes/Casino7777 responded 200 in 15.6511 ms
+2026-10-12 16:00:28.070 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 16:00:28.933 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 862.9659 ms
+2026-10-12 16:00:31.428 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 1919.2370 ms
+2026-10-12 16:00:31.429 -04:00 [INF] HTTP POST /Reportes/GetCasino7777ResumenGeneral responded 200 in 1919.5211 ms
+2026-10-12 16:00:37.311 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 1155.6784 ms
+2026-10-12 16:00:37.326 -04:00 [INF] HTTP POST /Reportes/GetCasino7777ResumenGeneral responded 200 in 1170.5478 ms
+2026-10-12 16:04:20.803 -04:00 [INF] HTTP GET /Reportes/Pragmatic responded 200 in 15.8114 ms
+2026-10-12 16:04:20.907 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 16:04:21.907 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 1000.0227 ms
+2026-10-12 16:04:23.430 -04:00 [INF] HTTP POST /Reportes/GetPragmatic responded 200 in 944.5118 ms
+2026-10-12 16:04:32.262 -04:00 [INF] HTTP POST /Reportes/GetPragmatic responded 200 in 361.3541 ms
+2026-10-12 16:05:25.198 -04:00 [INF] HTTP GET /Reportes/VirtualesBR responded 200 in 3.8523 ms
+2026-10-12 16:05:25.315 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 16:05:26.240 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 924.9493 ms
+2026-10-12 16:05:28.116 -04:00 [INF] HTTP POST /Reportes/GetVirtualesBR responded 200 in 1382.2618 ms
+2026-10-12 16:05:34.341 -04:00 [INF] HTTP POST /Reportes/GetVirtualesBR responded 200 in 1248.5969 ms
+2026-10-12 16:05:40.018 -04:00 [INF] HTTP POST /Reportes/GetVirtualesBR responded 200 in 1500.7322 ms
+2026-10-12 16:05:42.810 -04:00 [INF] HTTP GET /Reportes/Casino7777 responded 200 in 2.0963 ms
+2026-10-12 16:05:42.896 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 16:05:43.631 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 735.9460 ms
+2026-10-12 16:05:44.785 -04:00 [INF] HTTP POST /Reportes/GetCasino7777ResumenGeneral responded 200 in 695.2552 ms
+2026-10-12 16:05:45.062 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 972.2622 ms
+2026-10-12 16:05:50.481 -04:00 [INF] HTTP POST /Reportes/GetCasino7777ResumenGeneral responded 200 in 955.7523 ms
+2026-10-12 16:05:50.511 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 986.1812 ms
+2026-10-12 16:17:03.891 -04:00 [INF] HTTP POST /Reportes/GetCasino7777ResumenGeneral responded 200 in 1083.2628 ms
+2026-10-12 16:17:04.063 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 1255.1626 ms
+2026-10-12 16:17:10.641 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 876.6084 ms
+2026-10-12 16:17:10.753 -04:00 [INF] HTTP POST /Reportes/GetCasino7777ResumenGeneral responded 200 in 989.1491 ms
+2026-10-12 16:17:15.153 -04:00 [INF] HTTP GET /Reportes/VirtualesBR responded 200 in 1.4247 ms
+2026-10-12 16:17:15.322 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 16:17:16.288 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 965.6910 ms
+2026-10-12 16:17:23.446 -04:00 [INF] HTTP POST /Reportes/GetVirtualesBR responded 200 in 2248.2648 ms
+2026-10-12 16:17:38.291 -04:00 [INF] HTTP POST /Reportes/GetVirtualesBR responded 200 in 1674.6421 ms
+2026-10-12 16:17:45.686 -04:00 [INF] HTTP GET /Reportes/Casino7777 responded 200 in 2.7830 ms
+2026-10-12 16:17:45.805 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 16:17:46.596 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 791.3024 ms
+2026-10-12 16:17:53.724 -04:00 [INF] HTTP POST /Reportes/GetCasino7777ResumenGeneral responded 200 in 892.4269 ms
+2026-10-12 16:17:53.990 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 1158.9238 ms
+2026-10-12 16:18:46.013 -04:00 [INF] HTTP GET /Reportes/Endorphine responded 200 in 19.1538 ms
+2026-10-12 16:18:46.169 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 16:18:47.072 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 902.6599 ms
+2026-10-12 16:18:52.495 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 1319.7383 ms
+2026-10-12 16:18:52.526 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 1350.8599 ms
+2026-10-12 16:18:56.960 -04:00 [INF] HTTP GET /Reportes/InOutGaming responded 200 in 22.4130 ms
+2026-10-12 16:18:57.115 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 16:18:57.806 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 691.2679 ms
+2026-10-12 16:19:05.852 -04:00 [INF] HTTP POST /Reportes/GetInOutGamingResumenGeneral responded 200 in 1043.2661 ms
+2026-10-12 16:19:05.972 -04:00 [INF] HTTP POST /Reportes/GetInOutGaming responded 200 in 1163.5139 ms
+2026-10-12 16:19:09.113 -04:00 [INF] HTTP GET /Reportes/Odyseus responded 200 in 59.2320 ms
+2026-10-12 16:19:09.204 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 16:19:10.049 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 844.9069 ms
+2026-10-12 16:19:10.185 -04:00 [INF] HTTP POST /Reportes/GetListProdOdysseus responded 200 in 980.8945 ms
+2026-10-12 16:19:18.941 -04:00 [INF] HTTP POST /Reportes/GetOdyseus responded 200 in 2061.1775 ms
+2026-10-12 16:19:37.266 -04:00 [INF] HTTP POST /Reportes/GetOdyseus responded 200 in 2427.2683 ms
+2026-10-12 16:19:47.488 -04:00 [INF] HTTP GET /Reportes/VIG responded 200 in 44.9482 ms
+2026-10-12 16:19:47.648 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 16:19:48.615 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 967.2116 ms
+2026-10-12 16:19:54.514 -04:00 [INF] HTTP POST /Reportes/GetVIG responded 200 in 1845.8524 ms
+2026-10-12 16:20:01.616 -04:00 [INF] HTTP GET /Reportes/KingMidas responded 200 in 44.7091 ms
+2026-10-12 16:20:01.797 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 16:20:02.661 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 865.1450 ms
+2026-10-12 16:20:08.430 -04:00 [INF] HTTP POST /Reportes/GetKingMidas responded 200 in 737.5187 ms
+2026-10-12 16:20:19.764 -04:00 [INF] HTTP POST /Reportes/GetKingMidas responded 200 in 864.8683 ms
+2026-10-12 16:34:14.015 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-12 16:34:17.376 -04:00 [INF] HTTP GET / responded 200 in 660.9983 ms
+2026-10-12 16:34:18.757 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 3.0830 ms
+2026-10-12 16:36:24.656 -04:00 [INF] Login exitoso: AdmCasaGrande [Usuario Administrador]
+2026-10-12 16:36:24.664 -04:00 [INF] HTTP POST / responded 302 in 986.3306 ms
+2026-10-12 16:36:24.937 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 267.7820 ms
+2026-10-12 16:36:25.717 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 16:36:26.363 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 658.0721 ms
+2026-10-12 16:36:29.585 -04:00 [INF] HTTP GET /Reportes/Casino7777 responded 200 in 20.7665 ms
+2026-10-12 16:36:29.757 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 16:36:30.269 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 512.5463 ms
+2026-10-12 16:36:31.452 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 532.8415 ms
+2026-10-12 16:36:31.465 -04:00 [INF] HTTP POST /Reportes/GetCasino7777ResumenGeneral responded 200 in 545.7395 ms
+2026-10-12 16:36:46.329 -04:00 [INF] HTTP POST /Reportes/GetCasino7777ResumenGeneral responded 200 in 584.9747 ms
+2026-10-12 16:36:46.501 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 756.9837 ms
+2026-10-12 16:36:50.846 -04:00 [INF] HTTP GET /Reportes/Endorphine responded 200 in 18.8984 ms
+2026-10-12 16:36:50.963 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 16:36:51.380 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 417.5796 ms
+2026-10-12 16:36:57.489 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 757.7536 ms
+2026-10-12 16:36:57.612 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 881.0288 ms
+2026-10-12 16:37:08.051 -04:00 [INF] HTTP GET /Reportes/InOutGaming responded 200 in 24.8077 ms
+2026-10-12 16:37:08.203 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 16:37:08.713 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 509.4387 ms
+2026-10-12 16:37:14.690 -04:00 [INF] HTTP POST /Reportes/GetInOutGamingResumenGeneral responded 200 in 401.3984 ms
+2026-10-12 16:37:14.802 -04:00 [INF] HTTP POST /Reportes/GetInOutGaming responded 200 in 513.3646 ms
+2026-10-12 16:37:43.044 -04:00 [INF] HTTP GET /Reportes/VIG responded 200 in 52.3886 ms
+2026-10-12 16:37:43.196 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 16:37:43.544 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 347.8330 ms
+2026-10-12 16:37:54.121 -04:00 [INF] HTTP POST /Reportes/GetVIG responded 200 in 4469.6271 ms
+2026-10-12 17:09:42.834 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-12 17:09:43.906 -04:00 [INF] HTTP GET / responded 200 in 286.1062 ms
+2026-10-12 17:10:04.876 -04:00 [INF] Login exitoso: AdmCasaGrande [Usuario Administrador]
+2026-10-12 17:10:04.883 -04:00 [INF] HTTP POST / responded 302 in 3797.3165 ms
+2026-10-12 17:10:05.115 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 225.3303 ms
+2026-10-12 17:10:05.842 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:10:10.399 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 4565.1360 ms
+2026-10-12 17:10:14.717 -04:00 [INF] HTTP GET /Reportes/Casino7777 responded 200 in 39.1026 ms
+2026-10-12 17:10:14.819 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:10:15.322 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 503.1653 ms
+2026-10-12 17:10:20.650 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 1652.7212 ms
+2026-10-12 17:10:20.650 -04:00 [INF] HTTP POST /Reportes/GetCasino7777ResumenGeneral responded 200 in 1652.8702 ms
+2026-10-12 17:10:24.994 -04:00 [INF] HTTP GET /Reportes/Casino7777 responded 200 in 3.5839 ms
+2026-10-12 17:10:25.084 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:10:25.526 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 442.6059 ms
+2026-10-12 17:10:30.256 -04:00 [INF] HTTP POST /Reportes/GetCasino7777ResumenGeneral responded 200 in 867.1065 ms
+2026-10-12 17:10:30.272 -04:00 [INF] HTTP POST /Reportes/GetCasino7777 responded 200 in 882.3213 ms
+2026-10-12 17:10:33.762 -04:00 [INF] HTTP GET /Reportes/Endorphine responded 200 in 46.2260 ms
+2026-10-12 17:10:33.848 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:10:34.336 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 488.4189 ms
+2026-10-12 17:10:40.789 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 745.2874 ms
+2026-10-12 17:10:40.815 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 771.6257 ms
+2026-10-12 17:10:46.476 -04:00 [INF] HTTP GET /Reportes/InOutGaming responded 200 in 47.5146 ms
+2026-10-12 17:10:46.622 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:10:47.209 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 587.3637 ms
+2026-10-12 17:10:51.674 -04:00 [INF] HTTP POST /Reportes/GetInOutGaming responded 200 in 597.1336 ms
+2026-10-12 17:10:51.717 -04:00 [INF] HTTP POST /Reportes/GetInOutGamingResumenGeneral responded 200 in 639.3862 ms
+2026-10-12 17:10:56.823 -04:00 [INF] HTTP GET /Reportes/VIG responded 200 in 47.8500 ms
+2026-10-12 17:10:56.978 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:10:57.515 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 537.6220 ms
+2026-10-12 17:11:07.532 -04:00 [INF] HTTP POST /Reportes/GetVIG responded 200 in 5053.1868 ms
+2026-10-12 17:11:10.362 -04:00 [INF] HTTP GET /Reportes/VIG responded 200 in 1.5642 ms
+2026-10-12 17:11:10.449 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:11:10.992 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 543.1680 ms
+2026-10-12 17:11:12.408 -04:00 [INF] HTTP GET /Reportes/Odyseus responded 200 in 35.6188 ms
+2026-10-12 17:11:12.508 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:11:12.853 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 345.9633 ms
+2026-10-12 17:11:12.903 -04:00 [INF] HTTP POST /Reportes/GetListProdOdysseus responded 200 in 396.0281 ms
+2026-10-12 17:11:17.513 -04:00 [INF] HTTP POST /Reportes/GetOdyseus responded 200 in 694.3256 ms
+2026-10-12 17:11:26.749 -04:00 [INF] HTTP POST /Reportes/GetOdyseus responded 200 in 2532.6656 ms
+2026-10-12 17:11:28.177 -04:00 [INF] HTTP GET /Reportes/KingMidas responded 200 in 43.9805 ms
+2026-10-12 17:11:28.326 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:11:28.755 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 429.2934 ms
+2026-10-12 17:11:36.143 -04:00 [INF] HTTP POST /Reportes/GetKingMidas responded 200 in 340.6061 ms
+2026-10-12 17:11:41.511 -04:00 [INF] HTTP POST /Reportes/GetKingMidas responded 200 in 401.8373 ms
+2026-10-12 17:11:44.067 -04:00 [INF] HTTP GET /Reportes/Hipismo responded 200 in 43.5232 ms
+2026-10-12 17:11:44.150 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:11:44.617 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 467.3570 ms
+2026-10-12 17:11:49.014 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Hipismo/ReporteCaballo. JSON: {"codigo":-2146233079,"mensaje":"ExecuteReader: CommandText property has not been initialized"}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-10-12 17:11:49.039 -04:00 [INF] HTTP POST /Reportes/GetHipismo responded 200 in 326.6374 ms
+2026-10-12 17:11:53.485 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Hipismo/ReporteCaballo. JSON: {"codigo":-2146233079,"mensaje":"ExecuteReader: CommandText property has not been initialized"}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.CasinoDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-10-12 17:11:53.489 -04:00 [INF] HTTP POST /Reportes/GetHipismo responded 200 in 253.0615 ms
+2026-10-12 17:11:56.383 -04:00 [INF] HTTP GET /Reportes/Loteria responded 200 in 40.7325 ms
+2026-10-12 17:11:56.462 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:11:56.896 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 434.0869 ms
+2026-10-12 17:12:04.367 -04:00 [INF] HTTP POST /Reportes/GetLoteria responded 200 in 2893.5624 ms
+2026-10-12 17:12:12.768 -04:00 [INF] HTTP POST /Reportes/GetLoteria responded 200 in 2691.1729 ms
+2026-10-12 17:12:22.173 -04:00 [INF] HTTP POST /Reportes/GetLoteria responded 200 in 2222.4638 ms
+2026-10-12 17:12:29.493 -04:00 [INF] HTTP POST /Reportes/GetLoteria responded 200 in 2749.7135 ms
+2026-10-12 17:12:37.302 -04:00 [INF] HTTP POST /Reportes/GetLoteria responded 200 in 2317.4990 ms
+2026-10-12 17:12:41.725 -04:00 [INF] HTTP GET /Reportes/LoteriaTriple responded 200 in 36.4097 ms
+2026-10-12 17:12:41.864 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:12:42.429 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 564.5973 ms
+2026-10-12 17:12:47.088 -04:00 [INF] HTTP POST /Reportes/GetLoteriaTriple responded 200 in 263.3341 ms
+2026-10-12 17:12:56.038 -04:00 [INF] HTTP POST /Reportes/GetLoteriaTriple responded 200 in 152.3782 ms
+2026-10-12 17:13:01.075 -04:00 [INF] HTTP GET /Reportes/FantasyBsb responded 200 in 37.5937 ms
+2026-10-12 17:13:01.265 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:13:01.845 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 580.2790 ms
+2026-10-12 17:13:02.892 -04:00 [INF] HTTP POST /Reportes/GetFantasyBsb responded 200 in 383.1408 ms
+2026-10-12 17:13:07.090 -04:00 [INF] HTTP POST /Reportes/GetFantasyBsb responded 200 in 218.2652 ms
+2026-10-12 17:17:59.587 -04:00 [INF] HTTP GET /Reportes/Loteria responded 200 in 3.0917 ms
+2026-10-12 17:17:59.771 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:18:00.222 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 451.8174 ms
+2026-10-12 17:18:08.435 -04:00 [INF] HTTP POST /Reportes/GetLoteria responded 200 in 3021.9774 ms
+2026-10-12 17:35:05.332 -04:00 [INF] HTTP GET /Reportes/LoteriaTriple responded 200 in 3.7724 ms
+2026-10-12 17:35:05.490 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:35:25.632 -04:00 [ERR] HTTP POST /Reportes/GetListAgentFilt responded 500 in 20142.1411 ms
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 522 (<none>).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetListAgentFiltAsync(String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 1276
+   at ReportePrematch.Web.Controllers.ReportesController.GetListAgentFilt() in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 44
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-10-12 17:35:25.642 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 522 (<none>).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetListAgentFiltAsync(String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 1276
+   at ReportePrematch.Web.Controllers.ReportesController.GetListAgentFilt() in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 44
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-10-12 17:39:29.453 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-12 17:39:30.663 -04:00 [INF] HTTP GET / responded 200 in 221.9823 ms
+2026-10-12 17:39:51.116 -04:00 [INF] Login exitoso: AdmCasaGrande [Usuario Administrador]
+2026-10-12 17:39:51.125 -04:00 [INF] HTTP POST / responded 302 in 1047.5540 ms
+2026-10-12 17:39:51.242 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 106.8139 ms
+2026-10-12 17:39:51.994 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:39:55.971 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 3987.0514 ms
+2026-10-12 17:40:06.356 -04:00 [INF] HTTP GET /Reportes/Hipismo responded 200 in 17.4576 ms
+2026-10-12 17:40:06.504 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:40:06.956 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 452.6835 ms
+2026-10-12 17:40:09.948 -04:00 [INF] HTTP POST /Reportes/GetHipismo responded 200 in 2274.6590 ms
+2026-10-12 17:40:28.855 -04:00 [INF] HTTP POST /Reportes/GetHipismo responded 200 in 2921.3104 ms
+2026-10-12 17:40:31.885 -04:00 [INF] HTTP GET /Reportes/Loteria responded 200 in 15.7799 ms
+2026-10-12 17:40:31.991 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:40:32.468 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 477.4342 ms
+2026-10-12 17:40:37.377 -04:00 [INF] HTTP POST /Reportes/GetLoteria responded 200 in 3263.7884 ms
+2026-10-12 17:40:46.909 -04:00 [INF] HTTP POST /Reportes/GetLoteria responded 200 in 2345.6968 ms
+2026-10-12 17:40:50.845 -04:00 [INF] HTTP GET /Reportes/LoteriaTriple responded 200 in 14.8946 ms
+2026-10-12 17:40:50.979 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:40:51.426 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 447.8199 ms
+2026-10-12 17:40:58.636 -04:00 [INF] HTTP POST /Reportes/GetLoteriaTriple responded 200 in 6226.9279 ms
+2026-10-12 17:41:10.032 -04:00 [INF] HTTP POST /Reportes/GetLoteriaTriple responded 200 in 5726.6318 ms
+2026-10-12 17:41:27.527 -04:00 [INF] HTTP POST /Reportes/GetLoteriaTriple responded 200 in 6891.4588 ms
+2026-10-12 17:41:32.245 -04:00 [INF] HTTP GET /Reportes/FantasyBsb responded 200 in 13.4302 ms
+2026-10-12 17:41:32.401 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:41:32.777 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 376.3313 ms
+2026-10-12 17:42:16.050 -04:00 [INF] HTTP POST /Reportes/GetFantasyBsb responded 200 in 584.2646 ms
+2026-10-12 17:42:20.733 -04:00 [INF] HTTP POST /Reportes/GetFantasyBsb responded 200 in 351.2741 ms
+2026-10-12 17:42:31.781 -04:00 [INF] HTTP POST /Reportes/GetFantasyBsb responded 200 in 352.1546 ms
+2026-10-12 17:42:35.631 -04:00 [INF] HTTP GET /Reportes/VIG responded 200 in 15.0435 ms
+2026-10-12 17:42:35.811 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:42:36.240 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 428.7768 ms
+2026-10-12 17:42:38.316 -04:00 [INF] HTTP POST /Reportes/GetVIG responded 200 in 1461.7748 ms
+2026-10-12 17:43:04.116 -04:00 [INF] HTTP POST /Reportes/GetVIG responded 200 in 20185.2548 ms
+2026-10-12 17:43:12.568 -04:00 [INF] HTTP GET /Reportes/InOutGaming responded 200 in 15.9143 ms
+2026-10-12 17:43:12.752 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:43:13.163 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 411.4865 ms
+2026-10-12 17:43:18.325 -04:00 [INF] HTTP POST /Reportes/GetInOutGaming responded 200 in 1820.1286 ms
+2026-10-12 17:43:18.325 -04:00 [INF] HTTP POST /Reportes/GetInOutGamingResumenGeneral responded 200 in 1820.4731 ms
+2026-10-12 17:43:27.641 -04:00 [INF] HTTP POST /Reportes/GetInOutGamingResumenGeneral responded 200 in 906.7933 ms
+2026-10-12 17:43:27.761 -04:00 [INF] HTTP POST /Reportes/GetInOutGaming responded 200 in 1025.8785 ms
+2026-10-12 17:43:31.192 -04:00 [INF] HTTP GET /Reportes/Endorphine responded 200 in 13.7138 ms
+2026-10-12 17:43:31.296 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:43:31.668 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 371.9119 ms
+2026-10-12 17:43:33.094 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 684.2532 ms
+2026-10-12 17:43:33.188 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 778.8881 ms
+2026-10-12 17:43:39.639 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 2266.9704 ms
+2026-10-12 17:43:39.893 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 2521.5225 ms
+2026-10-12 17:44:49.242 -04:00 [INF] HTTP GET /Reportes/InOutGaming responded 200 in 2.9788 ms
+2026-10-12 17:44:49.354 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:44:49.919 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 564.7235 ms
+2026-10-12 17:44:59.306 -04:00 [INF] HTTP GET /Reportes/VIG responded 200 in 1.4949 ms
+2026-10-12 17:44:59.473 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:44:59.906 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 433.0515 ms
+2026-10-12 17:45:14.535 -04:00 [INF] HTTP GET /Reportes/FantasyBsb responded 200 in 1.3800 ms
+2026-10-12 17:45:14.733 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 17:45:15.183 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 449.5028 ms
+2026-10-12 17:51:48.099 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-12 17:51:49.346 -04:00 [INF] HTTP GET / responded 200 in 243.7909 ms
+2026-10-12 17:52:04.018 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-10-12 17:52:04.024 -04:00 [INF] HTTP POST / responded 302 in 1410.6494 ms
+2026-10-12 17:52:04.127 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 95.3192 ms
+2026-10-12 17:52:04.842 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-12 17:52:05.619 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 787.9468 ms
+2026-10-12 17:52:14.916 -04:00 [INF] HTTP GET /Reportes/Endorphine responded 200 in 17.3660 ms
+2026-10-12 17:52:15.020 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-12 17:52:15.480 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 459.9863 ms
+2026-10-12 17:52:16.981 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 600.7410 ms
+2026-10-12 17:52:17.122 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 741.0721 ms
+2026-10-12 17:52:23.677 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 1855.6734 ms
+2026-10-12 17:52:23.688 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 1866.9589 ms
+2026-10-12 17:52:41.169 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 891.9432 ms
+2026-10-12 17:52:41.317 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 1039.8849 ms
+2026-10-12 17:52:46.318 -04:00 [INF] HTTP GET /Reportes/InOutGaming responded 200 in 15.1997 ms
+2026-10-12 17:52:46.432 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-12 17:52:46.986 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 554.5650 ms
+2026-10-12 17:52:50.457 -04:00 [INF] HTTP POST /Reportes/GetInOutGaming responded 200 in 580.6330 ms
+2026-10-12 17:52:50.497 -04:00 [INF] HTTP POST /Reportes/GetInOutGamingResumenGeneral responded 200 in 620.8650 ms
+2026-10-12 17:52:57.580 -04:00 [INF] HTTP POST /Reportes/GetInOutGaming responded 200 in 480.1620 ms
+2026-10-12 17:52:57.628 -04:00 [INF] HTTP POST /Reportes/GetInOutGamingResumenGeneral responded 200 in 527.7455 ms
+2026-10-12 17:53:01.510 -04:00 [INF] HTTP GET /Reportes/VIG responded 200 in 18.5469 ms
+2026-10-12 17:53:01.695 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-12 17:53:02.181 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 485.8236 ms
+2026-10-12 17:53:06.127 -04:00 [INF] HTTP POST /Reportes/GetVIG responded 200 in 989.4476 ms
+2026-10-12 17:53:28.821 -04:00 [INF] HTTP POST /Reportes/GetVIG responded 200 in 689.9352 ms
+2026-10-12 17:53:37.374 -04:00 [INF] HTTP POST /Reportes/GetVIG responded 200 in 523.4675 ms
+2026-10-12 17:53:43.233 -04:00 [INF] Logout: vlapenta
+2026-10-12 17:53:43.235 -04:00 [INF] HTTP GET /Home/Logout responded 302 in 5.1818 ms
+2026-10-12 17:53:43.242 -04:00 [INF] HTTP GET / responded 200 in 1.6343 ms
+2026-10-12 18:10:00.704 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-12 18:10:02.116 -04:00 [INF] HTTP GET / responded 200 in 203.8013 ms
+2026-10-12 18:10:18.314 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-10-12 18:10:18.322 -04:00 [INF] HTTP POST / responded 302 in 963.7033 ms
+2026-10-12 18:10:18.430 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 101.4247 ms
+2026-10-12 18:10:18.663 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-12 18:10:22.310 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 3658.9203 ms
+2026-10-12 18:10:23.999 -04:00 [INF] HTTP GET /Reportes/Endorphine responded 200 in 21.0849 ms
+2026-10-12 18:10:24.099 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-12 18:10:24.737 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 638.7906 ms
+2026-10-12 18:10:27.294 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 1870.4056 ms
+2026-10-12 18:10:27.345 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 1921.5295 ms
+2026-10-12 18:10:36.586 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 863.7035 ms
+2026-10-12 18:10:36.760 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 1037.3927 ms
+2026-10-12 18:10:42.973 -04:00 [INF] HTTP GET /Reportes/InOutGaming responded 200 in 15.4816 ms
+2026-10-12 18:10:43.133 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-12 18:10:43.687 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 554.3921 ms
+2026-10-12 18:10:45.307 -04:00 [INF] HTTP POST /Reportes/GetInOutGaming responded 200 in 605.3364 ms
+2026-10-12 18:10:45.356 -04:00 [INF] HTTP POST /Reportes/GetInOutGamingResumenGeneral responded 200 in 654.1721 ms
+2026-10-12 18:10:59.900 -04:00 [INF] Logout: vlapenta
+2026-10-12 18:10:59.901 -04:00 [INF] HTTP GET /Home/Logout responded 302 in 3.9138 ms
+2026-10-12 18:10:59.908 -04:00 [INF] HTTP GET / responded 200 in 1.6684 ms
+2026-10-12 18:11:09.500 -04:00 [INF] Login exitoso: AdmCasaGrande [Usuario Administrador]
+2026-10-12 18:11:09.502 -04:00 [INF] HTTP POST / responded 302 in 264.4987 ms
+2026-10-12 18:11:09.509 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 1.5341 ms
+2026-10-12 18:11:09.684 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 18:11:10.121 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 437.5895 ms
+2026-10-12 18:11:15.695 -04:00 [INF] HTTP GET /Reportes/Endorphine responded 200 in 1.9181 ms
+2026-10-12 18:11:15.787 -04:00 [WRN] GetListAgentFilt → role=[Usuario Administrador] agente=[] pais=[Vanuatu]
+2026-10-12 18:11:16.212 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 424.8726 ms
+2026-10-12 18:11:17.773 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 736.4691 ms
+2026-10-12 18:11:17.977 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 940.4173 ms
+2026-10-12 18:11:24.258 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 907.1909 ms
+2026-10-12 18:11:24.289 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 937.4132 ms
+2026-10-12 18:11:31.981 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 2736.9860 ms
+2026-10-12 18:11:33.447 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 4203.0429 ms
+2026-10-12 18:11:40.580 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 644.4545 ms
+2026-10-12 18:11:40.657 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 720.8386 ms
+2026-10-12 18:11:47.632 -04:00 [INF] Logout: AdmCasaGrande
+2026-10-12 18:11:47.634 -04:00 [INF] HTTP GET /Home/Logout responded 302 in 2.5964 ms
+2026-10-12 18:11:47.640 -04:00 [INF] HTTP GET / responded 200 in 1.5647 ms
+2026-10-12 18:11:57.745 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-10-12 18:11:57.747 -04:00 [INF] HTTP POST / responded 302 in 213.8555 ms
+2026-10-12 18:11:57.753 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 1.3882 ms
+2026-10-12 18:11:57.911 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-12 18:11:58.463 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 552.7875 ms
+2026-10-12 18:12:02.037 -04:00 [INF] HTTP GET /Reportes/Endorphine responded 200 in 1.7797 ms
+2026-10-12 18:12:02.122 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-12 18:12:02.635 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 512.4750 ms
+2026-10-12 18:12:03.687 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 613.5569 ms
+2026-10-12 18:12:03.813 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 739.0590 ms
+2026-10-12 18:12:32.595 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 1473.6922 ms
+2026-10-12 18:12:32.674 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 1553.1954 ms
+2026-10-12 18:12:47.172 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 627.2357 ms
+2026-10-12 18:12:47.236 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 690.9205 ms
+2026-10-12 18:13:00.499 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 682.3125 ms
+2026-10-12 18:13:00.532 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 715.8090 ms
+2026-10-12 18:13:09.390 -04:00 [INF] HTTP POST /Reportes/GetEndorphineResumenGeneral responded 200 in 2207.5771 ms
+2026-10-12 18:13:09.686 -04:00 [INF] HTTP POST /Reportes/GetEndorphine responded 200 in 2503.6818 ms
+2026-10-12 18:17:25.265 -04:00 [INF] HTTP GET /Reportes/InOutGaming responded 200 in 3.5188 ms
+2026-10-12 18:17:25.389 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-12 18:17:25.947 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 558.1313 ms
+2026-10-12 18:17:37.840 -04:00 [INF] HTTP POST /Reportes/GetInOutGaming responded 200 in 615.9705 ms
+2026-10-12 18:17:37.865 -04:00 [INF] HTTP POST /Reportes/GetInOutGamingResumenGeneral responded 200 in 641.1971 ms
+2026-10-12 18:20:56.154 -04:00 [INF] HTTP GET /Reportes/VIG responded 200 in 15.5460 ms
+2026-10-12 18:20:56.345 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-12 18:20:56.952 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 607.6694 ms
+2026-10-12 18:21:03.701 -04:00 [INF] HTTP POST /Reportes/GetVIG responded 200 in 1558.4572 ms
+2026-10-12 18:21:11.190 -04:00 [INF] HTTP POST /Reportes/GetVIG responded 200 in 1977.7117 ms
+2026-10-12 18:21:36.746 -04:00 [INF] HTTP GET /Reportes/Odyseus responded 200 in 25.0981 ms
+2026-10-12 18:21:36.907 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-12 18:21:37.306 -04:00 [INF] HTTP POST /Reportes/GetListProdOdysseus responded 200 in 399.8710 ms
+2026-10-12 18:21:37.406 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 499.4618 ms
+2026-10-12 18:21:41.404 -04:00 [INF] HTTP POST /Reportes/GetOdyseus responded 200 in 1293.0361 ms
+2026-10-12 18:24:49.093 -04:00 [INF] HTTP GET /Reportes/KingMidas responded 200 in 19.1589 ms
+2026-10-12 18:24:49.199 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-12 18:24:49.751 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 552.8435 ms
+2026-10-12 18:24:56.478 -04:00 [INF] HTTP POST /Reportes/GetKingMidas responded 200 in 1689.6380 ms
+2026-10-12 18:25:06.325 -04:00 [INF] HTTP GET /Reportes/VIG responded 200 in 4.0034 ms
+2026-10-12 18:25:06.431 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-12 18:25:06.944 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 512.5905 ms
+2026-10-12 18:25:12.721 -04:00 [INF] HTTP POST /Reportes/GetVIG responded 200 in 1813.4270 ms
+2026-10-12 18:58:57.197 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 302 in 1.5230 ms
+2026-10-12 18:58:57.208 -04:00 [INF] HTTP GET / responded 200 in 4.5606 ms
+2026-10-12 18:59:11.626 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-10-12 18:59:11.627 -04:00 [INF] HTTP POST / responded 302 in 904.1762 ms
+2026-10-12 18:59:11.636 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 3.1548 ms
+2026-10-12 18:59:12.528 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-12 18:59:15.600 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 3071.9323 ms
+2026-10-12 18:59:23.951 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 1888.9546 ms
+2026-10-12 18:59:45.683 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 260.9644 ms
+2026-10-12 18:59:52.056 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 1.9077 ms
+2026-10-12 18:59:52.390 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-12 18:59:53.009 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 619.3027 ms
+2026-10-12 19:00:05.053 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 229.5929 ms
+2026-10-12 19:00:16.533 -04:00 [INF] HTTP GET /Reportes/TicketsDetallados responded 200 in 25.9424 ms
+2026-10-12 19:00:16.638 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-12 19:00:17.262 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 624.0933 ms
+2026-10-12 19:00:33.167 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 475.4720 ms
+2026-10-12 19:01:15.257 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 405.3169 ms
+2026-10-12 19:01:46.783 -04:00 [INF] HTTP POST /Reportes/GetDetalleTicket responded 200 in 1978.1659 ms
+2026-10-12 19:12:09.333 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 524.8964 ms
+2026-10-12 19:12:23.415 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 7662.9622 ms
+2026-10-12 19:12:24.124 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-12 19:12:24.614 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 490.1177 ms
+2026-10-12 19:12:25.307 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 1.1388 ms
+2026-10-12 19:13:22.708 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 218.5336 ms
+2026-10-12 19:13:26.171 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 235.5487 ms
+2026-10-12 19:14:00.131 -04:00 [INF] HTTP POST /Reportes/GetDetalleTicket responded 200 in 445.7554 ms
+2026-10-12 19:14:09.867 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 384.4139 ms
+2026-10-12 19:17:02.690 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 3.1767 ms
+2026-10-12 19:17:03.142 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-12 19:17:03.725 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 583.3760 ms
+2026-10-12 19:17:04.053 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 0.0973 ms
+2026-10-12 19:18:44.364 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 441.8034 ms
+2026-10-12 19:18:51.893 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 213.9202 ms

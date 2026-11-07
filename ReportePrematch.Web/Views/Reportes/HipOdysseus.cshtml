@@ -1,0 +1,399 @@
+@{
+    Layout = "_Layout";
+}
+@* Hipismo · Odysseus — copia independiente de Odyseus.cshtml.
+   Usa sus propias acciones: GetHipOdysseus (→ api/Reportes/ListVentHipOdysseus) / GetDetTckUsuHipOdysseus.
+   Sin selector de productos: la API filtra fijo por "IconBetHorse IconBet". *@
+
+<style>
+.agent-block { margin-bottom: 2rem; }
+.agent-block-header {
+    display: flex; align-items: center; gap: .6rem;
+    font-size: 1rem; font-weight: 700; letter-spacing: .04em;
+    color: #48CAE4; margin-bottom: .6rem;
+    padding-bottom: .35rem;
+    border-bottom: 1px solid rgba(72,202,228,.25);
+}
+.agent-block-header i { font-size: 1.1rem; }
+
+.quick-metrics-bar { display:flex; gap:.5rem; flex-wrap:wrap; }
+.metric-card { flex:1; min-width:110px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:.5rem .75rem; text-align:center; }
+@@media (max-width:768px) { .metric-card { min-width:80px; flex:1 1 80px; padding:.45rem .55rem; } }
+@@media (max-width:430px) { .metric-card { min-width:68px; flex:1 1 68px; padding:.38rem .45rem; } .metric-value { font-size:.88rem; } }
+.metric-label { font-size:.62rem; color:rgba(255,255,255,0.5); letter-spacing:.5px; text-transform:uppercase; margin-bottom:.25rem; }
+.metric-value { font-size:1rem; font-weight:700; }
+.metric-blue  { color:#48CAE4; }
+.metric-red   { color:#f87171; }
+.metric-green { color:#4ade80; }
+
+/* quitar triángulo nativo DataTables en dt-control */
+table.dataTable td.dt-control::before,
+table.dataTable tbody td.dt-control::before { display:none !important; }
+</style>
+
+<section class="glass-card">
+    <div class="welcome-bar">
+        <div>
+            <div class="welcome-title">@ViewBag.NombrePagina</div>
+            <div class="welcome-sub">IconBet · Reporte por Agente</div>
+        </div>
+        <button class="btn-glass btn-primary" onclick="cargarReporte()">
+            <i class="ti ti-refresh"></i> Actualizar
+        </button>
+    </div>
+
+    <div class="glass-panel mt-3 p-3">
+        <div class="row g-2 align-items-end">
+            <div class="col-md-2">
+                <label class="field-label">Fecha Desde</label>
+                <input type="date" id="fechaD" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-2">
+                <label class="field-label">Fecha Hasta</label>
+                <input type="date" id="fechaH" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-4">
+                <label class="field-label">Agente</label>
+                @if (ViewBag.TipoUsuario == "Usuario Regular")
+                {
+                    <input type="text" id="agente" class="glass-input" value="@ViewBag.Agente" readonly />
+                }
+                else
+                {
+                    <select id="agente" class="glass-input" style="color:#fff;">
+                        <option value="" style="background:#002E5C;color:#fff;">TODOS</option>
+                    </select>
+                }
+            </div>
+            <div class="col-md-2">
+                <button class="btn-glass btn-primary w-100" onclick="cargarReporte()">
+                    <i class="ti ti-search"></i> Buscar
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Barra exportacion -->
+    <div id="exportBar" class="mt-3 d-none d-flex gap-2 flex-wrap">
+        <button class="btn-glass btn-primary" onclick="exportExcel()">
+            <i class="ti ti-file-spreadsheet"></i> Excel completo
+        </button>
+        <button class="btn-glass" style="border-color:rgba(255,100,100,.5);color:#f87171;" onclick="exportPDF()">
+            <i class="ti ti-file-type-pdf"></i> PDF por agente
+        </button>
+    </div>
+
+    <!-- Bloques por agente -->
+    <div id="agentBlocks" class="mt-3"></div>
+</section>
+
+@section Scripts {
+<script>
+const esAdmin       = '@ViewBag.TipoUsuario' !== 'Usuario Regular';
+const agenteSession = '@ViewBag.Agente';
+const API_TICKETS   = '@Url.Action("GetDetTckUsuHipOdysseus","Reportes")';
+let lastData     = [];
+let dtInstances  = [];
+let ticketsCache = {};   // cache por "usuario|fechaD|fechaH"
+
+function fmt(v) {
+    return parseFloat(v || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+function fmtFecha(val) {
+    if (!val) return '—';
+    var s = val.toString().trim();
+    var partes = s.split(/[T ]/);
+    var fechaParte = partes[0] || s;
+    var hora = partes[1] ? partes[1].substring(0, 5) : '';
+    if (/^\d{4}-\d{2}-\d{2}$/.test(fechaParte)) {
+        var p = fechaParte.split('-');
+        fechaParte = p[2] + '/' + p[1] + '/' + p[0];
+    }
+    return hora ? fechaParte + ' ' + hora : fechaParte;
+}
+function ggr(r) { return r.gGR || r.ggr || r.GGR || 0; }
+function card(label, value, cls) {
+    return '<div class="metric-card">'
+        + '<div class="metric-label">' + label + '</div>'
+        + '<div class="metric-value ' + cls + '">' + value + '</div>'
+        + '</div>';
+}
+
+function limpiarBloques() {
+    dtInstances.forEach(function(dt){ try { dt.destroy(); } catch(e){} });
+    dtInstances  = [];
+    ticketsCache = {};
+    document.getElementById('agentBlocks').innerHTML = '';
+    lastData = [];
+    document.getElementById('exportBar').classList.add('d-none');
+}
+
+/* ── Child rows: HTML del detalle de tickets ─────────────────────────── */
+function buildDetalleOdyHTML(tickets) {
+    if (!tickets || !tickets.length)
+        return '<div class="p-2" style="color:#aac;">Sin tickets para este usuario en el período.</div>';
+
+    var rows = '';
+    tickets.forEach(function(t) {
+        var resultCls = '';
+        var s = (t.result || t.Result || '').toLowerCase();
+        if (s === 'won' || s === 'win') resultCls = 'color:#4ade80;font-weight:700;';
+        else if (s === 'lost' || s === 'lose') resultCls = 'color:#f87171;font-weight:700;';
+
+        rows += '<tr>'
+            + '<td style="text-align:center;">' + (t.ticketId || t.TicketId || '—') + '</td>'
+            + '<td style="text-align:center;">' + fmtFecha(t.fecha || t.Fecha) + '</td>'
+            + '<td style="text-align:center;">' + (t.transactionsType || t.TransactionsType || '—') + '</td>'
+            + '<td style="text-align:center;">' + (t.tipMon || t.TipMon || '—') + '</td>'
+            + '<td style="text-align:center;">' + fmt(t.units || t.Units) + '</td>'
+            + '<td style="text-align:center;" class="col-monto-pos">' + fmt(t.mont || t.Mont) + '</td>'
+            + '<td style="text-align:center;" class="col-monto-green">' + fmt(t.amountEarned || t.AmountEarned) + '</td>'
+            + '<td style="text-align:center;">' + (t.tipJug || t.TipJug || '—') + '</td>'
+            + '<td style="text-align:center;' + resultCls + '">' + (t.result || t.Result || '—') + '</td>'
+            + '</tr>';
+    });
+
+    return '<div class="p-2"><table class="glass-table w-100" style="font-size:.9em;">'
+        + '<thead><tr>'
+        + '<th style="text-align:center;">Ticket ID</th>'
+        + '<th style="text-align:center;">Fecha</th>'
+        + '<th style="text-align:center;">Tipo Trans.</th>'
+        + '<th style="text-align:center;">Moneda</th>'
+        + '<th style="text-align:center;">Unidades</th>'
+        + '<th style="text-align:center;">Monto</th>'
+        + '<th style="text-align:center;">Ganado</th>'
+        + '<th style="text-align:center;">Tipo Juego</th>'
+        + '<th style="text-align:center;">Resultado</th>'
+        + '</tr></thead><tbody>' + rows + '</tbody></table></div>';
+}
+
+/* ── Agrupar filas por usuario (suma de todas las fechas del rango) ──── */
+function agruparPorUsuario(rows) {
+    var mapa = {}, orden = [];
+    rows.forEach(function(r) {
+        var usu = (r.usuario || '').toString();
+        var key = usu.toUpperCase();
+        if (!mapa[key]) {
+            mapa[key] = { agente: r.agente, usuario: usu, producto: r.producto,
+                          totalRiesgo: 0, totalPremios: 0, ggr: 0 };
+            orden.push(key);
+        }
+        mapa[key].totalRiesgo  += parseFloat(r.totalRiesgo  || 0);
+        mapa[key].totalPremios += parseFloat(r.totalPremios || 0);
+        mapa[key].ggr          += parseFloat(ggr(r) || 0);
+    });
+    return orden.map(function(k){ return mapa[k]; });
+}
+
+/* ── Toggle child row ────────────────────────────────────────────────── */
+// La fila principal ya no tiene fecha (está agrupada por usuario):
+// el detalle usa el rango de fechas del filtro.
+function toggleDetalleOdy(tr, row, fechaD, fechaH) {
+    if (row.child.isShown()) {
+        row.child.hide();
+        tr.querySelector('.btn-expand').textContent = '+';
+        tr.classList.remove('shown');
+        return;
+    }
+    var rowData  = row.data();
+    var usuario  = rowData.usuario || '';
+    var cacheKey = usuario + '|' + fechaD + '|' + fechaH;
+
+    function mostrar(tickets) {
+        row.child(buildDetalleOdyHTML(tickets)).show();
+        tr.querySelector('.btn-expand').textContent = '−';
+        tr.classList.add('shown');
+    }
+
+    if (ticketsCache[cacheKey] !== undefined) { mostrar(ticketsCache[cacheKey]); return; }
+
+    row.child('<div class="p-2" style="color:#aac;">Cargando...</div>').show();
+    tr.querySelector('.btn-expand').textContent = '−';
+    tr.classList.add('shown');
+
+    $.post(API_TICKETS, { userName: usuario, fechaDesde: fechaD, fechaHasta: fechaH })
+    .done(function(data) {
+        var lista = Array.isArray(data) ? data : (data && data.$values ? data.$values : []);
+        ticketsCache[cacheKey] = lista;
+        mostrar(lista);
+    })
+    .fail(function(xhr) {
+        row.child('<div class="p-2" style="color:#f88;">Error al cargar tickets (HTTP ' + xhr.status + ').</div>').show();
+    });
+}
+
+/* ── render bloque por agente ─────────────────────────────────────────── */
+function renderBloqueAgente(agente, rows, idx, fechaD, fechaH) {
+    var totR = 0, totP = 0, totG = 0;
+    rows.forEach(function(r) {
+        totR += (r.totalRiesgo  || 0);
+        totP += (r.totalPremios || 0);
+        totG += ggr(r);
+    });
+
+    var tableId = 'tblHipOdy_' + idx;
+    var block = document.createElement('div');
+    block.className = 'agent-block';
+    block.innerHTML =
+        '<div class="agent-block-header"><i class="ti ti-user"></i>' + agente + '</div>' +
+        '<div class="quick-metrics-bar mb-2">' +
+            card('Total Riesgo',  fmt(totR), 'metric-blue') +
+            card('Total Premios', fmt(totP), 'metric-red')  +
+            card('GGR',           fmt(totG), totG >= 0 ? 'metric-green' : 'metric-red') +
+        '</div>' +
+        '<div class="table-responsive">' +
+        '<table id="' + tableId + '" class="glass-table w-100">' +
+        '<thead><tr>' +
+            '<th style="text-align:center;"></th>' +
+            '<th style="text-align:center;">Producto</th>' +
+            '<th style="text-align:center;">Usuario</th>' +
+            '<th style="text-align:center;">Total Riesgo</th>' +
+            '<th style="text-align:center;">Total Premios</th>' +
+            '<th style="text-align:center;">GGR</th>' +
+        '</tr></thead><tbody></tbody>' +
+        '<tfoot><tr>' +
+            '<th colspan="3" style="text-align:center;">TOTAL</th>' +
+            '<th style="text-align:center;">' + fmt(totR) + '</th>' +
+            '<th style="text-align:center;">' + fmt(totP) + '</th>' +
+            '<th style="text-align:center;color:' + (totG >= 0 ? 'var(--av-5,#7FCA8A)' : '#FC8181') + ';font-weight:600;">' + fmt(totG) + '</th>' +
+        '</tr></tfoot>' +
+        '</table></div>';
+
+    document.getElementById('agentBlocks').appendChild(block);
+
+    var dt = $('#' + tableId).DataTable({
+        data: rows,
+        columns: [
+            { className: 'dt-control text-center', orderable: false, data: null, defaultContent: '',
+              createdCell: function(td) {
+                  var btn = document.createElement('button');
+                  btn.className = 'btn-expand btn-glass btn-primary btn-sm';
+                  btn.style.cssText = 'padding:1px 7px;font-size:.9em;min-width:24px;';
+                  btn.textContent = '+';
+                  td.appendChild(btn);
+              }},
+            { data: 'producto',     defaultContent: '—', className: 'text-center' },
+            { data: 'usuario', className: 'text-center',
+              render: function(d){ return d ? d.toUpperCase() : '—'; } },
+            { data: 'totalRiesgo',  defaultContent: '—', className: 'text-center col-monto-pos',
+              render: function(d){ return fmt(d); } },
+            { data: 'totalPremios', defaultContent: '—', className: 'text-center col-monto-neg',
+              render: function(d){ return fmt(d); } },
+            { data: null, className: 'text-center',
+              render: function(r){ return fmt(ggr(r)); },
+              createdCell: function(td, _d, r) {
+                  $(td).addClass(ggr(r) < 0 ? 'col-monto-neg' : 'col-monto-pos');
+              }}
+        ],
+        language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
+        pageLength: 100, lengthMenu: [[100,500,1000,-1],['100','500','1000','Todos']],
+        order: [[2,'asc']],   // por usuario
+        dom: 'Bfrt<"d-flex justify-content-end align-items-center mt-2"l>',
+        buttons: [{ extend:'excelHtml5', text:'<i class="ti ti-file-spreadsheet"></i> Excel', className:'btn-glass btn-primary btn-sm', title: agente }]
+    });
+
+    $('#' + tableId + ' tbody').on('click', '.btn-expand', function() {
+        var tr = $(this).closest('tr')[0];
+        toggleDetalleOdy(tr, dt.row(tr), fechaD, fechaH);
+    });
+
+    dtInstances.push(dt);
+}
+
+/* ── agentes ──────────────────────────────────────────────────────────── */
+function cargarAgentes() {
+    if (!esAdmin) return;
+    $.post('@Url.Action("GetListAgentFilt","Reportes")')
+        .done(function(lista) {
+            const sel = document.getElementById('agente');
+            if (!sel) return;
+            if (sel.tomselect) sel.tomselect.destroy();
+            sel.innerHTML = '';
+            const optTodos = document.createElement('option');
+            optTodos.value = ''; optTodos.textContent = 'TODOS';
+            sel.appendChild(optTodos);
+            (lista || []).forEach(function(a) {
+                const opt = document.createElement('option');
+                opt.value = a; opt.textContent = a;
+                sel.appendChild(opt);
+            });
+            new TomSelect(sel, { maxOptions:2000, create:false, allowEmptyOption:true, placeholder:'Buscar agente...', searchField:['text'] });
+            if (agenteSession) sel.tomselect.setValue(agenteSession, true);
+        })
+        .fail(function(xhr) {
+            Swal.fire({ icon:'warning', title:'Aviso', text:'No se pudo cargar agentes (HTTP ' + xhr.status + ').', background:'#002E5C', color:'#fff' });
+        });
+}
+
+/* ── carga principal ──────────────────────────────────────────────────── */
+function cargarReporte() {
+    const fechaD   = document.getElementById('fechaD').value;
+    const fechaH   = document.getElementById('fechaH').value;
+    const agenteEl = document.getElementById('agente');
+    const agente   = agenteEl ? (agenteEl.tomselect ? agenteEl.tomselect.getValue() : agenteEl.value) : agenteSession;
+
+    if (!fechaD || !fechaH) {
+        Swal.fire({ icon:'warning', title:'Fechas requeridas', background:'#002E5C', color:'#fff' });
+        return;
+    }
+
+    limpiarBloques();
+    showBusy('Consultando Odysseus...');
+
+    // Botón Buscar → Reportes/GetHipOdysseus → api/Reportes/ListVentHipOdysseus (producto fijo IconBetHorse IconBet)
+    $.post('@Url.Action("GetHipOdysseus","Reportes")', { fechaD, fechaH, agente })
+        .done(function(data) {
+            hideBusy();
+            if (!data || !data.length) {
+                Swal.fire({ icon:'info', title:'Sin resultados', background:'#002E5C', color:'#fff' });
+                return;
+            }
+            var grupos = {}, orden = [];
+            data.forEach(function(r) {
+                var ag = r.agente || '(Sin Agente)';
+                if (!grupos[ag]) { grupos[ag] = []; orden.push(ag); }
+                grupos[ag].push(r);
+            });
+            var agrupado = [];
+            orden.forEach(function(ag, idx) {
+                var porUsuario = agruparPorUsuario(grupos[ag]);   // una fila por usuario
+                agrupado = agrupado.concat(porUsuario);
+                renderBloqueAgente(ag, porUsuario, idx, fechaD, fechaH);
+            });
+            lastData = agrupado;   // Excel / PDF exportan la data agrupada por usuario
+            document.getElementById('exportBar').classList.remove('d-none');
+        })
+        .fail(function(xhr) {
+            hideBusy();
+            var msg = 'No se pudo cargar el reporte (HTTP ' + xhr.status + ').';
+            try { var resp = JSON.parse(xhr.responseText); if (resp && resp.error) msg = resp.error; } catch(e){}
+            Swal.fire({ icon: xhr.status===504?'warning':'error', title: xhr.status===504?'Tiempo de espera agotado':'Error', text:msg, background:'#002E5C', color:'#fff' });
+        });
+}
+
+/* ── Exportación ──────────────────────────────────────────────────────── */
+var EXPORT_CONFIG = {
+    reportName: 'HipOdysseus',
+    groupField: function(r){ return r.agente || r.Agente || '(Sin Agente)'; },
+    cols: [
+        { head:'Agente',   get:function(r){ return r.agente || r.Agente || '(Sin Agente)'; }, type:'text'  },
+        { head:'Producto', get:function(r){ return r.producto || '--'; },                     type:'text'  },
+        { head:'Usuario',  get:function(r){ return r.usuario || '--'; },                      type:'text'  },
+        { head:'Riesgo',   get:function(r){ return parseFloat(r.totalRiesgo  || 0); },        type:'money' },
+        { head:'Premios',  get:function(r){ return parseFloat(r.totalPremios || 0); },        type:'money' },
+        { head:'GGR',      get:function(r){ return ggr(r); },                                 type:'money' }
+    ]
+};
+function exportExcel() { ExportHelpers.exportarExcel(lastData, EXPORT_CONFIG); }
+function exportPDF() {
+    ExportHelpers.exportarPDF(lastData, EXPORT_CONFIG,
+        document.getElementById('fechaD').value, document.getElementById('fechaH').value);
+}
+
+$(document).ready(function() {
+    cargarAgentes();
+    if (!esAdmin) { cargarReporte(); }
+});
+</script>
+}

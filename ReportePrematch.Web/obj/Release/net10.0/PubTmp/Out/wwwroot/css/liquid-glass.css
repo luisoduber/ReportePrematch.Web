@@ -1339,3 +1339,49 @@ div.dataTables_wrapper .dataTables_length select {
     cursor: not-allowed;
     opacity: 0.7;
 }
+
+/* ──────────────────────────────────────────
+   24. CARDS DE MÉTRICAS — cifras grandes (≥ 1.000.000) en tablet / teléfono
+   Global para todas las vistas. Se usa !important porque varias vistas
+   redefinen .metric-card / .metric-value en su propio <style>.
+   El ajuste fino del tamaño de la cifra lo hace wwwroot/js/metric-fit.js.
+────────────────────────────────────────── */
+.metric-card {
+    min-width: 0;                       /* permite que el flex lo encoja sin desbordar */
+    overflow: hidden !important;        /* la cifra nunca se sale del card */
+    box-sizing: border-box;
+}
+.metric-value {
+    display: block;
+    max-width: 100%;
+    white-space: nowrap !important;     /* la cifra no se parte en dos líneas */
+    overflow: hidden;
+    line-height: 1.25;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+}
+.metric-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Tablet (≤ 992px): 3 cards por fila → más ancho para cada cifra */
+@media (max-width: 992px) {
+    .quick-metrics-bar .metric-card,
+    #globalCards .metric-card {
+        flex: 1 1 calc(33.333% - 0.5rem) !important;
+        min-width: 0 !important;
+    }
+}
+
+/* Teléfono (≤ 576px): 2 cards por fila */
+@media (max-width: 576px) {
+    .quick-metrics-bar .metric-card,
+    #globalCards .metric-card {
+        flex: 1 1 calc(50% - 0.5rem) !important;
+        min-width: 0 !important;
+        padding: 0.45rem 0.5rem !important;
+    }
+    .metric-label { font-size: 0.56rem !important; letter-spacing: 0.03em; }
+}

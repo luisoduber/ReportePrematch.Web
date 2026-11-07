@@ -17,6 +17,72 @@ public sealed class ReportesController(
 
     private bool SesionActiva() => HttpContext.Session.GetString("IDUusuario") != null;
 
+    /// <summary>
+    /// Validación global de sesión para TODAS las acciones de este controlador
+    /// (vistas y endpoints de datos). Si no hay nadie logueado:
+    /// - Peticiones GET (abrir una vista por URL) → redirige al login.
+    /// - Peticiones POST / AJAX (carga de datos)  → 401 Unauthorized, sin devolver datos.
+    /// </summary>
+    public override void OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext context)
+    {
+        if (!SesionActiva())
+        {
+            var esAjax = string.Equals(Request.Headers["X-Requested-With"], "XMLHttpRequest", StringComparison.OrdinalIgnoreCase);
+            if (HttpMethods.IsGet(Request.Method) && !esAjax)
+            {
+                HttpContext.Session.Clear();
+                context.Result = RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                context.Result = Unauthorized();
+            }
+            return;
+        }
+        base.OnActionExecuting(context);
+    }
+
+    // ─── DEBUG temporal: ver valores de sesión ───────────────────────────────────
+    [HttpGet]
+    public IActionResult DebugSession()
+    {
+        return Json(new
+        {
+            usuario     = HttpContext.Session.GetString("usuario"),
+            agente      = HttpContext.Session.GetString("agente"),
+            pais        = HttpContext.Session.GetString("pais"),
+            tipoUsuario = HttpContext.Session.GetString("tipoUsuario"),
+            IDLocal     = HttpContext.Session.GetString("IDLocal"),
+            idAgente    = HttpContext.Session.GetString("idAgente")
+        });
+    }
+
+    // ─── Lista de agentes filtrada por sesión (proxy → api/Agentes/ListAgentFilt) ──
+    [HttpPost]
+    public async Task<IActionResult> GetListAgentFilt()
+    {
+        if (!SesionActiva())
+        {
+            logger.LogWarning("GetListAgentFilt → sesión expirada (401)");
+            return Unauthorized();
+        }
+        var agente = HttpContext.Session.GetString("agente")      ?? "";
+        var pais   = HttpContext.Session.GetString("pais")        ?? "";
+        var role   = HttpContext.Session.GetString("tipoUsuario") ?? "";
+        logger.LogWarning("GetListAgentFilt → role=[{Role}] agente=[{Agente}] pais=[{Pais}]", role, agente, pais);
+        try
+        {
+            var lista = await reportes.GetListAgentFiltAsync(agente, pais, role);
+            return Json(lista);
+        }
+        catch (Exception ex)
+        {
+            // Antes la excepción no se capturaba y la vista solo veía "HTTP 500" sin detalle en el log.
+            logger.LogError(ex, "GetListAgentFilt → error consultando api/Agentes/ListAgentFilt: {Msg}", ex.Message);
+            return StatusCode(500, new { mensaje = ex.Message });
+        }
+    }
+
     private IActionResult RedirectToLogin()
     {
         HttpContext.Session.Clear();
@@ -116,7 +182,7 @@ public sealed class ReportesController(
     }
     [HttpPost]
     public async Task<IActionResult> GetLoteriaTriple(string fechaD, string fechaH, string agente)
-        => Json(await reportes.GetLoteriasTripleAsync(fechaD, fechaH, agente, Role));
+        => Json(await reportes.GetLoteriasTripleAsync(fechaD, fechaH, agente, Role, Pais));
 
     [HttpGet]
     public IActionResult Aviatrix()
@@ -138,7 +204,7 @@ public sealed class ReportesController(
     }
     [HttpPost]
     public async Task<IActionResult> GetVIG(string fechaD, string fechaH, string agente)
-        => Json(await reportes.GetVigResumenAsync(fechaD, fechaH, agente ?? ""));
+        => Json(await reportes.GetVigResumenAsync(fechaD, fechaH, agente ?? "", Pais, Role));
 
     [HttpGet]
     public IActionResult Odyseus()
@@ -152,7 +218,7 @@ public sealed class ReportesController(
     {
         try
         {
-            return Json(await reportes.GetOdyseusAsync(fechaD, fechaH, agente ?? "", nombProd));
+            return Json(await reportes.GetOdyseusAsync(fechaD, fechaH, agente ?? "", nombProd, Pais, Role));
         }
         catch (HttpRequestException ex) when ((int?)ex.StatusCode == 524 || ex.Message.Contains("524"))
         {
@@ -168,24 +234,8 @@ public sealed class ReportesController(
         }
     }
 
-    [HttpGet]
-    public IActionResult Casino7777()
-    {
-        if (!SesionActiva()) return RedirectToLogin();
-        CargarViewBag("Casino 7777", "btnCasino7777", "tblCasino7777");
-        return View();
-    }
-    [HttpPost]
-    public async Task<IActionResult> GetCasino7777(string fechaInicio, string fechaFin, string agente)
-        => Json(await reportes.GetCasino7777Async(fechaInicio, fechaFin, agente ?? ""));
-
-    [HttpPost]
-    public async Task<IActionResult> GetCasino7777ResumenGeneral(string fechaInicio, string fechaFin, string agente)
-        => Json(await reportes.GetCasino7777ResumenGeneralAsync(fechaInicio, fechaFin, agente ?? ""));
-
-    [HttpPost]
-    public async Task<IActionResult> GetCasino7777Agentes()
-        => Json(await reportes.GetCasino7777AgentesAsync());
+    // Casino 7777: reporte dado de baja. Se eliminaron las acciones Casino7777 / GetCasino7777 /
+    // GetCasino7777ResumenGeneral / GetCasino7777Agentes para que no sea accesible por URL (devuelve 404) ni desde el menú.
 
     [HttpGet]
     public IActionResult Endorphine()
@@ -196,7 +246,7 @@ public sealed class ReportesController(
     }
     [HttpPost]
     public async Task<IActionResult> GetEndorphine(string fechaInicio, string fechaFin, string agente)
-        => Json(await reportes.GetEndorphineAsync(fechaInicio, fechaFin, agente ?? ""));
+        => Json(await reportes.GetEndorphineAsync(fechaInicio, fechaFin, agente ?? "", Pais, Role));
 
     [HttpPost]
     public async Task<IActionResult> GetEndorphineAgentes()
@@ -204,7 +254,7 @@ public sealed class ReportesController(
 
     [HttpPost]
     public async Task<IActionResult> GetEndorphineResumenGeneral(string fechaInicio, string fechaFin, string agente)
-        => Json(await reportes.GetEndorphineResumenGeneralAsync(fechaInicio, fechaFin, agente ?? ""));
+        => Json(await reportes.GetEndorphineResumenGeneralAsync(fechaInicio, fechaFin, agente ?? "", Pais, Role));
 
     [HttpGet]
     public IActionResult KingMidas()
@@ -215,7 +265,7 @@ public sealed class ReportesController(
     }
     [HttpPost]
     public async Task<IActionResult> GetKingMidas(string startDate, string endDate, string agente)
-        => Json(await reportes.GetKingMidasAsync(startDate, endDate, agente ?? ""));
+        => Json(await reportes.GetKingMidasAsync(startDate, endDate, agente ?? "", Pais, Role));
 
     [HttpGet]
     public IActionResult InOutGaming()
@@ -226,7 +276,7 @@ public sealed class ReportesController(
     }
     [HttpPost]
     public async Task<IActionResult> GetInOutGaming(string fechaInicio, string fechaFin, string agente)
-        => Json(await reportes.GetInOutGamingAsync(fechaInicio, fechaFin, agente ?? ""));
+        => Json(await reportes.GetInOutGamingAsync(fechaInicio, fechaFin, agente ?? "", Pais, Role));
 
     [HttpPost]
     public async Task<IActionResult> GetInOutGamingAgentes()
@@ -234,12 +284,17 @@ public sealed class ReportesController(
 
     [HttpPost]
     public async Task<IActionResult> GetInOutGamingResumenGeneral(string fechaInicio, string fechaFin, string agente)
-        => Json(await reportes.GetInOutGamingResumenGeneralAsync(fechaInicio, fechaFin, agente ?? ""));
+        => Json(await reportes.GetInOutGamingResumenGeneralAsync(fechaInicio, fechaFin, agente ?? "", Pais, Role));
 
-    /// <summary>Lista de agentes desde GCITReportes API — reemplaza GetListAgencias (SOAP) en todas las vistas.</summary>
+    /// <summary>Lista de agentes filtrada por sesión — usada por todas las vistas vía cargarAgentes().</summary>
     [HttpPost]
     public async Task<IActionResult> GetListAgenciasApi()
-        => Json(await reportes.GetEndorphineAgentesAsync());
+    {
+        var agente = HttpContext.Session.GetString("agente")      ?? "";
+        var pais   = HttpContext.Session.GetString("pais")        ?? "";
+        var role   = HttpContext.Session.GetString("tipoUsuario") ?? "";
+        return Json(await reportes.GetListAgentFiltAsync(agente, pais, role));
+    }
 
     /// <summary>Productos Odysseus activos para el select de filtro.</summary>
     [HttpPost]
@@ -267,16 +322,83 @@ public sealed class ReportesController(
         }
     }
 
+    // ═══ CASINO · Bingo Maya (→ api/Casino/ListBingMay) ═══════════════════════
     [HttpGet]
-    public IActionResult FantasyBsb()
+    public IActionResult BingMay()
     {
         if (!SesionActiva()) return RedirectToLogin();
-        CargarViewBag("Fantasy Baseball", "btnFantasyBsb", "tblFantasyBsb");
+        CargarViewBag("Bingo Maya", "btnBingMay", "tblBingMay");
         return View();
     }
+
     [HttpPost]
-    public async Task<IActionResult> GetFantasyBsb(string fechaD, string fechaH, string agente)
-        => Json(await reportes.GetFantasyBsbAsync(fechaD, fechaH, agente, Role, Pais));
+    public async Task<IActionResult> GetBingMay(string fechaD, string fechaH, string agente)
+    {
+        try
+        {
+            return Json(await reportes.GetBingMayAsync(fechaD, fechaH, agente ?? "", Pais, Role));
+        }
+        catch (TaskCanceledException)
+        {
+            return StatusCode(504, new { error = "La consulta tardó demasiado. Por favor reduzca el rango de fechas." });
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Error en GetBingMay");
+            return StatusCode(500, new { error = "Error al consultar Bingo Maya: " + ex.Message });
+        }
+    }
+
+    // ═══ HIPISMO · HipOdysseus (copia independiente de Odysseus) ═══════════════
+    [HttpGet]
+    public IActionResult HipOdysseus()
+    {
+        if (!SesionActiva()) return RedirectToLogin();
+        CargarViewBag("Hipismo · Odysseus", "btnHipOdysseus", "tblHipOdysseus");
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> GetHipOdysseus(string fechaD, string fechaH, string agente)
+    {
+        try
+        {
+            // → api/Reportes/ListVentHipOdysseus (producto fijo "IconBetHorse IconBet")
+            return Json(await reportes.GetHipOdysseusAsync(fechaD, fechaH, agente ?? "", Pais, Role));
+        }
+        catch (HttpRequestException ex) when ((int?)ex.StatusCode == 524 || ex.Message.Contains("524"))
+        {
+            return StatusCode(504, new { error = "El rango de fechas es muy amplio. Por favor reduzca el período de consulta e intente nuevamente." });
+        }
+        catch (TaskCanceledException)
+        {
+            return StatusCode(504, new { error = "La consulta tardó demasiado. Por favor reduzca el rango de fechas." });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { error = "Error al consultar Hipismo Odysseus: " + ex.Message });
+        }
+    }
+
+    /// <summary>Proxy: detalle de tickets de un usuario para HipOdysseus.</summary>
+    [HttpPost]
+    public async Task<IActionResult> GetDetTckUsuHipOdysseus(
+        string userName, string fechaDesde, string fechaHasta)
+    {
+        try
+        {
+            var data = await reportes.GetDetTckUsuHipOdysseusAsync(userName, fechaDesde, fechaHasta);
+            return Json(data);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Error en GetDetTckUsuHipOdysseus user={User}", userName);
+            return StatusCode(500, new { error = ex.Message });
+        }
+    }
+
+    // Fantasy Baseball: reporte dado de baja. Se eliminaron las acciones FantasyBsb / GetFantasyBsb
+    // para que no sea accesible por URL (devuelve 404) ni desde el menú.
 
     [HttpPost]
     public async Task<IActionResult> GetDashboardClientes(string fechaD, string fechaH, string agente)
@@ -407,12 +529,41 @@ public sealed class ReportesController(
     public async Task<IActionResult> GetTicketsDetalladosTaq(string fechaD, string fechaH, string agente)
         => Json(await reportes.GetTicketsDetalladosTaqAsync(fechaD, fechaH, agente, Pais, Role));
 
+    // ═══ VENTAS POR PAÍS ═══════════════════════════════════════════════════════
+    // Solo la vista VentasPorPais está restringida a "Usuario suAdmin" (404 para otros perfiles).
+    // VentasPorPaisWeb / VentasPorPaisTaq y sus endpoints de datos quedan abiertos para todos los perfiles.
+    private bool EsSuAdmin() => Role.Trim().Equals("Usuario suAdmin", StringComparison.OrdinalIgnoreCase);
+
     [HttpGet]
     public IActionResult VentasPorPais()
     {
         if (!SesionActiva()) return RedirectToLogin();
+        if (!EsSuAdmin()) return NotFound();
         CargarViewBag("Ventas por País", "btnVentasPorPais", "tblVentasPorPais");
         return View();
+    }
+
+    /// <summary>
+    /// Lista de países para el select de VentasPorPais (proxy → api/Agentes/ListPaisesXfilt).
+    /// Usa el agente y el país de la sesión del login:
+    /// - suAdmin (sin agente ni país) → todos los países.
+    /// - Administrador (con país)     → solo su país.
+    /// - Regular (con agente)         → lista vacía (igual que el método original).
+    /// </summary>
+    [HttpPost]
+    public async Task<IActionResult> GetListPaisesXfilt()
+    {
+        var agente = HttpContext.Session.GetString("agente") ?? "";
+        var pais   = HttpContext.Session.GetString("pais")   ?? "";
+        try
+        {
+            return Json(await reportes.GetListPaisesXfiltAsync(agente, pais));
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "GetListPaisesXfilt → error consultando api/Agentes/ListPaisesXfilt: {Msg}", ex.Message);
+            return StatusCode(500, new { mensaje = ex.Message });
+        }
     }
 
     [HttpGet]
@@ -662,10 +813,10 @@ public sealed class ReportesController(
 
     [HttpPost]
     public async Task<IActionResult> GetTicketsEnJuegoPorPagarWeb(string fechaD, string fechaH, string agente)
-        => Json(await reportes.GetTicketsEnJuegoPorPagarWebAsync(fechaD, fechaH, agente));
+        => Json(await reportes.GetTicketsEnJuegoPorPagarWebAsync(fechaD, fechaH, agente, Pais, Role));
     [HttpPost]
     public async Task<IActionResult> GetTicketsEnJuegoPorCobrarWeb(string fechaD, string fechaH, string agente)
-        => Json(await reportes.GetTicketsEnJuegoPorCobrarWebAsync(fechaD, fechaH, agente));
+        => Json(await reportes.GetTicketsEnJuegoPorCobrarWebAsync(fechaD, fechaH, agente, Pais, Role));
 
     [HttpGet]
     public IActionResult TicketsEnJuegoWeb()
@@ -688,10 +839,10 @@ public sealed class ReportesController(
     }
     [HttpPost]
     public async Task<IActionResult> GetTicketsEnJuegoPorPagarTaq(string fechaD, string fechaH, string agente)
-        => Json(await reportes.GetTicketsEnJuegoPorPagarTaqAsync(fechaD, fechaH, agente));
+        => Json(await reportes.GetTicketsEnJuegoPorPagarTaqAsync(fechaD, fechaH, agente, Pais, Role));
     [HttpPost]
     public async Task<IActionResult> GetTicketsEnJuegoPorCobrarTaq(string fechaD, string fechaH, string agente)
-        => Json(await reportes.GetTicketsEnJuegoPorCobrarTaqAsync(fechaD, fechaH, agente));
+        => Json(await reportes.GetTicketsEnJuegoPorCobrarTaqAsync(fechaD, fechaH, agente, Pais, Role));
 
     [HttpGet]
     public IActionResult VentasPorAgenteNikols()

@@ -62,8 +62,7 @@
             <div class="col-md-3">
                 <label class="field-label">País</label>
                 <select id="agente" class="glass-input" style="color:#fff;">
-                    <option value="" disabled selected style="background:#002E5C;color:rgba(255,255,255,0.5);">Seleccione un país</option>
-                    <option value="VENEZUELA" style="background:#002E5C;color:#fff;">VENEZUELA</option>
+                    <option value="" disabled selected style="background:#002E5C;color:rgba(255,255,255,0.5);">Cargando países...</option>
                 </select>
             </div>
             <div class="col-md-auto">
@@ -271,8 +270,41 @@ function exportExcel() { ExportHelpers.exportarExcel(lastData, EXPORT_CONFIG); }
 function exportPDF() {
     ExportHelpers.exportarPDF(lastData, EXPORT_CONFIG, document.getElementById('fechaD').value, document.getElementById('fechaH').value);
 }
+/* ── países (api/Agentes/ListPaisesXfilt con agente/país de la sesión) ── */
+function cargarPaises() {
+    const sel = document.getElementById('agente');
+    function opcion(valor, texto, deshabilitada) {
+        const o = document.createElement('option');
+        o.value = valor; o.textContent = texto;
+        o.style.background = '#002E5C';
+        o.style.color = deshabilitada ? 'rgba(255,255,255,0.5)' : '#fff';
+        if (deshabilitada) { o.disabled = true; o.selected = true; }
+        return o;
+    }
+
+    $.post('@Url.Action("GetListPaisesXfilt","Reportes")')
+        .done(function(lista) {
+            sel.innerHTML = '';
+            lista = Array.isArray(lista) ? lista : [];
+            if (!lista.length) {
+                sel.appendChild(opcion('', 'Sin países disponibles', true));
+                return;
+            }
+            sel.appendChild(opcion('', 'Seleccione un país', true));
+            lista.forEach(function(p) { sel.appendChild(opcion(p, p, false)); });
+            // Si el perfil solo tiene un país (ej. Usuario Administrador), se deja seleccionado.
+            if (lista.length === 1) sel.value = lista[0];
+        })
+        .fail(function(xhr) {
+            sel.innerHTML = '';
+            sel.appendChild(opcion('', 'Error al cargar países', true));
+            Swal.fire({ icon: 'warning', title: 'Aviso', text: 'No se pudo cargar la lista de países (HTTP ' + xhr.status + ').', background: '#002E5C', color: '#fff' });
+        });
+}
+
 $(document).ready(function() {
-    // No carga automáticamente — el usuario debe seleccionar un país y presionar Buscar
+    cargarPaises();
+    // No carga el reporte automáticamente — el usuario debe seleccionar un país y presionar Buscar
 });
 </script>
 }

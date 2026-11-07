@@ -30,6 +30,24 @@
     .metric-blue  { color:#48CAE4; }
     .metric-red   { color:#f87171; }
     .metric-green { color:#4ade80; }
+
+    /* Coletilla "¿Cómo leer este reporte?" */
+    .help-note {
+        background: rgba(72,202,228,0.08);
+        border: 1px solid rgba(72,202,228,0.30);
+        border-left: 4px solid #48CAE4;
+        border-radius: 10px;
+        padding: .75rem 1rem;
+        font-size: .85rem;
+        line-height: 1.5;
+        color: rgba(255,255,255,0.85);
+    }
+    .help-note-title { font-weight: 700; color: #48CAE4; margin-bottom: .35rem; display:flex; align-items:center; gap:.4rem; }
+    .help-note ul { margin: .35rem 0 .5rem 0; padding-left: 1.1rem; }
+    .help-note li { margin-bottom: .15rem; }
+    .help-note b { color: #fff; }
+    .help-note-warn { color: #fbbf24; font-size: .82rem; margin-top: .25rem; }
+    @@media (max-width:576px) { .help-note { font-size: .78rem; padding: .6rem .75rem; } }
 </style>
 
 <section class="glass-card">
@@ -43,6 +61,20 @@
         </button>
     </div>
 
+    <!-- Coletilla explicativa (canal Taquilla) -->
+    <div id="helpNote" class="help-note mt-3">
+        <div class="help-note-title"><i class="ti ti-info-circle"></i> ¿Cómo leer este reporte?</div>
+        <div>Aquí ves solo los tickets que se vendieron en las fechas que elegiste, agrupados por la taquilla que los vendió.</div>
+        <ul>
+            <li><b>Venta:</b> el dinero que entró por esos tickets. Incluye los pendientes; los anulados no cuentan.</li>
+            <li><b>Premio:</b> lo que ya se le pagó a los ganadores de esos tickets (aunque hayan cobrado otro día).</li>
+            <li><b>Saldo:</b> lo que queda hoy = Venta − Premio.</li>
+            <li><b>Por pagar:</b> premios de ganadores que todavía no vienen a cobrar. Cuando cobren, pasan a Premio y el Saldo baja.</li>
+            <li><b>Pendiente:</b> parte de la Venta en tickets que aún no se sabe si ganan o pierden. Ya está sumada en la Venta; se muestra aparte solo como referencia.</li>
+        </ul>
+        <div class="help-note-warn"><i class="ti ti-alert-triangle"></i> <b style="color:#fbbf24;">Ojo:</b> el Saldo es una foto del momento. Si lo miras otro día puede cambiar, porque los ganadores que cobren después se restarán y algunos pendientes también pueden salir ganadores.</div>
+    </div>
+
     <div class="glass-panel mt-3 p-3">
         <div class="row g-2 align-items-end">
             <div class="col-md-2">
@@ -53,7 +85,7 @@
                 <label class="field-label">Fecha Hasta</label>
                 <input type="date" id="fechaH" class="glass-input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label class="field-label">Agente</label>
                 @if (ViewBag.TipoUsuario == "Usuario Regular")
                 {
@@ -66,11 +98,18 @@
                     </select>
                 }
             </div>
-            <div class="col-md-3 d-flex flex-column align-items-center justify-content-end pb-1">
+            <div class="col-md-2 d-flex flex-column align-items-center justify-content-end pb-1">
                 <label class="field-label mb-1">Canal</label>
                 <div class="canal-toggle">
                     <button class="tog-btn active" id="btnCanalTaq" onclick="setCanal('taq')">TAQUILLA</button>
                     <button class="tog-btn"        id="btnCanalWeb" onclick="setCanal('web')">WEB</button>
+                </div>
+            </div>
+            <div class="col-md-2 d-flex flex-column align-items-center justify-content-end pb-1">
+                <label class="field-label mb-1">Vista</label>
+                <div class="canal-toggle">
+                    <button class="tog-btn"        id="btnVistaAgr" onclick="setVista('agr')">AGRUPADO</button>
+                    <button class="tog-btn active" id="btnVistaDet" onclick="setVista('det')">DETALLADO</button>
                 </div>
             </div>
             <div class="col-md-2">
@@ -103,9 +142,12 @@ const agenteSession = '@ViewBag.Agente';
 const urlTaq        = '@Url.Action("GetVentasPorAgenteNikolsTaq","Reportes")';
 const urlWeb        = '@Url.Action("GetVentasPorAgenteNikolsWeb","Reportes")';
 let canal = 'taq';
+let vista = 'det';        // 'det' = Detallado (por usuario) · 'agr' = Agrupado (una fila por agente)
 let lastData = [];
 let dtInstances = [];
 let ticketsCache = {};
+// Última consulta: permite cambiar Agrupado/Detallado sin volver a consultar la API
+let lastRows = null, lastFechaD = '', lastFechaH = '';
 
 /* ── helpers ──────────────────────────────────────────────────────────── */
 function fmt(v) {
@@ -115,6 +157,8 @@ function fmt(v) {
 }
 function parseFmt(v) {
     if (v === null || v === undefined || v === '') return 0;
+    // Números crudos (taquilla) se devuelven tal cual: quitarles el "." rompía los decimales (12.5 → 125)
+    if (typeof v === 'number') return v;
     return parseFloat(v.toString().replace(/\./g, '').replace(',', '.')) || 0;
 }
 function get(row, key) {
@@ -136,6 +180,16 @@ function fmtFecha(val) {
     }
     return hora ? fechaParte + ' ' + hora : fechaParte;
 }
+// Nombres de columnas según el canal.
+// Taquilla (api/Reportes/VentasPorAgenteNikolsTaq) — resumen por taquilla:
+//   usuario = Taquilla · ventas = Venta · pagos = Premio · balance = Saldo · porPagar = Por Pagar · pendientes = Pendiente
+// Web: se mantienen los nombres de siempre (sin columna Por Pagar).
+function etiquetas() {
+    return canal === 'taq'
+        ? { usuario: 'Taquilla', ventas: 'Venta',  pagos: 'Premio', balance: 'Saldo',   porPagar: 'Por Pagar', pendientes: 'Pendiente' }
+        : { usuario: 'Usuario',  ventas: 'Ventas', pagos: 'Pagos',  balance: 'Balance', porPagar: null,        pendientes: 'Pendientes' };
+}
+
 function card(label, value, cls) {
     return '<div class="metric-card">'
         + '<div class="metric-label">' + label + '</div>'
@@ -150,8 +204,21 @@ function setCanal(c) {
     document.getElementById('btnCanalTaq').classList.toggle('active', c === 'taq');
     document.getElementById('btnCanalWeb').classList.toggle('active', c === 'web');
     document.getElementById('canalSub').textContent = c === 'taq' ? 'Canal Taquilla · Nikols' : 'Canal Web · Nikols';
+    // La coletilla describe el cálculo del canal Taquilla → solo se muestra ahí
+    document.getElementById('helpNote').classList.toggle('d-none', c !== 'taq');
     limpiarBloques();
+    lastRows = null;
     ticketsCache = {};
+}
+
+/* ── vista toggle (Agrupado / Detallado) ─────────────────────────────── */
+function setVista(v) {
+    if (vista === v) return;
+    vista = v;
+    document.getElementById('btnVistaAgr').classList.toggle('active', v === 'agr');
+    document.getElementById('btnVistaDet').classList.toggle('active', v === 'det');
+    // Si ya hay datos cargados, se redibuja con los mismos datos (sin volver a consultar)
+    if (lastRows && lastRows.length) renderResultados(lastRows, lastFechaD, lastFechaH);
 }
 
 function limpiarBloques() {
@@ -215,48 +282,55 @@ function toggleDetalle(tr, row, agente, fechaD, fechaH) {
 
 /* ── render bloque Taquilla ───────────────────────────────────────────── */
 function renderBloqueTaq(agente, rows, idx, fechaD, fechaH) {
-    // Agregar por usuario (el endpoint puede traer filas por ticket/día)
+    // Agregar por taquilla (el endpoint ya trae una fila por agente/taquilla; se agrupa por seguridad)
+    // Columnas del endpoint: Usuario = taquilla · Ventas = Venta · Pagos = Premio · Balance = Saldo
+    //                        PorPagar = Por Pagar · Pendientes = Pendiente
     var grouped = {};
     rows.forEach(function(r) {
-        var usr = get(r, 'Usuario') || '(sin usuario)';
-        if (!grouped[usr]) grouped[usr] = { usuario: usr, agente: agente, ventas: 0, pagos: 0, pendientes: 0, balance: 0 };
+        var usr = get(r, 'Usuario') || '(sin taquilla)';
+        if (!grouped[usr]) grouped[usr] = { usuario: usr, agente: agente, ventas: 0, pagos: 0, balance: 0, porPagar: 0, pendientes: 0 };
         grouped[usr].ventas     += parseFmt(get(r, 'Ventas'));
         grouped[usr].pagos      += parseFmt(get(r, 'Pagos'));
-        grouped[usr].pendientes += parseFmt(get(r, 'Pendientes'));
         grouped[usr].balance    += parseFmt(get(r, 'Balance'));
+        grouped[usr].porPagar   += parseFmt(get(r, 'PorPagar'));
+        grouped[usr].pendientes += parseFmt(get(r, 'Pendientes'));
     });
     var arr = Object.values(grouped);
 
-    var totV = 0, totP = 0, totPend = 0, totB = 0;
-    arr.forEach(function(r) { totV += r.ventas; totP += r.pagos; totPend += r.pendientes; totB += r.balance; });
+    var totV = 0, totP = 0, totB = 0, totPP = 0, totPend = 0;
+    arr.forEach(function(r) { totV += r.ventas; totP += r.pagos; totB += r.balance; totPP += r.porPagar; totPend += r.pendientes; });
 
+    var L = etiquetas();
     var tableId = 'tblNikTaq_' + idx;
     var block = document.createElement('div');
     block.className = 'agent-block';
     block.innerHTML =
         '<div class="agent-block-header"><i class="ti ti-user"></i>' + agente + '</div>' +
         '<div class="quick-metrics-bar mb-2">' +
-            card('Total Ventas', fmt(totV),    'metric-blue') +
-            card('Total Pagos',  fmt(totP),    'metric-red')  +
-            card('Pendientes',   fmt(totPend), 'metric-blue') +
-            card('Balance',      fmt(totB),    totB >= 0 ? 'metric-green' : 'metric-red') +
+            card('Total ' + L.ventas, fmt(totV),    'metric-blue') +
+            card('Total ' + L.pagos,  fmt(totP),    'metric-red')  +
+            card(L.balance,           fmt(totB),    totB >= 0 ? 'metric-green' : 'metric-red') +
+            card(L.porPagar,          fmt(totPP),   'metric-red')  +
+            card(L.pendientes,        fmt(totPend), 'metric-blue') +
         '</div>' +
         '<div class="table-responsive">' +
         '<table id="' + tableId + '" class="glass-table w-100">' +
         '<thead><tr>' +
             '<th style="text-align:center;"></th>' +
-            '<th style="text-align:center;">Usuario</th>' +
-            '<th style="text-align:center;">Ventas</th>' +
-            '<th style="text-align:center;">Pagos</th>' +
-            '<th style="text-align:center;">Pendientes</th>' +
-            '<th style="text-align:center;">Balance</th>' +
+            '<th style="text-align:center;">' + L.usuario    + '</th>' +
+            '<th style="text-align:center;">' + L.ventas     + '</th>' +
+            '<th style="text-align:center;">' + L.pagos      + '</th>' +
+            '<th style="text-align:center;">' + L.balance    + '</th>' +
+            '<th style="text-align:center;">' + L.porPagar   + '</th>' +
+            '<th style="text-align:center;">' + L.pendientes + '</th>' +
         '</tr></thead><tbody></tbody>' +
         '<tfoot><tr>' +
             '<th colspan="2" style="text-align:center;">TOTAL</th>' +
             '<th style="text-align:center;">' + fmt(totV)    + '</th>' +
             '<th style="text-align:center;">' + fmt(totP)    + '</th>' +
-            '<th style="text-align:center;">' + fmt(totPend) + '</th>' +
             '<th style="text-align:center;color:' + (totB >= 0 ? 'var(--av-5,#7FCA8A)' : '#FC8181') + ';font-weight:600;">' + fmt(totB) + '</th>' +
+            '<th style="text-align:center;">' + fmt(totPP)   + '</th>' +
+            '<th style="text-align:center;">' + fmt(totPend) + '</th>' +
         '</tr></tfoot>' +
         '</table></div>';
 
@@ -270,8 +344,9 @@ function renderBloqueTaq(agente, rows, idx, fechaD, fechaH) {
             { data: 'usuario',    className: 'text-center', render: function(d){ return d ? d.toUpperCase() : '—'; } },
             { data: 'ventas',     className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-pos'); } },
             { data: 'pagos',      className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass('col-monto-neg'); } },
-            { data: 'pendientes', className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)); } },
-            { data: 'balance',    className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass(parseFloat(d||0)>=0?'col-monto-pos':'col-monto-neg'); } }
+            { data: 'balance',    className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass(parseFloat(d||0)>=0?'col-monto-pos':'col-monto-neg'); } },
+            { data: 'porPagar',   className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)).addClass(d ? 'col-monto-neg' : ''); } },
+            { data: 'pendientes', className: 'text-center', createdCell: function(td,d){ $(td).text(fmt(d)); } }
         ],
         language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
         pageLength: 100, lengthMenu: [[100, 500, 1000, -1], ['100', '500', '1000', 'Todos']], order: [[1, 'asc']], dom: 'Bfrt<"d-flex justify-content-end align-items-center mt-2"l>',
@@ -347,10 +422,114 @@ function renderBloqueWeb(agente, rows, idx) {
     dtInstances.push(dt);
 }
 
+/* ── vista AGRUPADO: una fila por agente (sin usuarios) ──────────────── */
+function agruparPorAgente(rows) {
+    var mapa = {}, orden = [];
+    rows.forEach(function(r) {
+        var ag = get(r, 'Agente') || '(Sin Agente)';
+        if (!mapa[ag]) { mapa[ag] = { agente: ag, ventas: 0, pagos: 0, balance: 0, porPagar: 0, pendientes: 0 }; orden.push(ag); }
+        mapa[ag].ventas     += nkNum(get(r, 'Ventas'));
+        mapa[ag].pagos      += nkNum(get(r, 'Pagos'));
+        mapa[ag].balance    += nkNum(get(r, 'Balance'));
+        mapa[ag].porPagar   += nkNum(get(r, 'PorPagar'));
+        mapa[ag].pendientes += nkNum(get(r, 'Pendientes'));
+    });
+    return orden.map(function(k){ return mapa[k]; });
+}
+
+function renderAgrupado(arr) {
+    var totV = 0, totP = 0, totB = 0, totPP = 0, totPend = 0;
+    arr.forEach(function(r) { totV += r.ventas; totP += r.pagos; totB += r.balance; totPP += r.porPagar; totPend += r.pendientes; });
+
+    var L = etiquetas();
+    var conPorPagar = !!L.porPagar;     // solo canal Taquilla
+    var money = function(d,t){ return t === 'display' ? fmt(d) : d; };
+
+    var tableId = 'tblNikAgr';
+    var block = document.createElement('div');
+    block.className = 'agent-block';
+    block.innerHTML =
+        '<div class="agent-block-header"><i class="ti ti-users-group"></i>Resumen por Agente · '
+            + (canal === 'taq' ? 'Taquilla' : 'Web') + '</div>' +
+        '<div class="quick-metrics-bar mb-2">' +
+            card('Total ' + L.ventas, fmt(totV),    'metric-blue') +
+            card('Total ' + L.pagos,  fmt(totP),    'metric-red')  +
+            card(L.balance,           fmt(totB),    totB >= 0 ? 'metric-green' : 'metric-red') +
+            (conPorPagar ? card(L.porPagar, fmt(totPP), 'metric-red') : '') +
+            card(L.pendientes,        fmt(totPend), 'metric-blue') +
+        '</div>' +
+        '<div class="table-responsive">' +
+        '<table id="' + tableId + '" class="glass-table w-100">' +
+        '<thead><tr>' +
+            '<th style="text-align:center;">Agente</th>' +
+            '<th style="text-align:center;">' + L.ventas     + '</th>' +
+            '<th style="text-align:center;">' + L.pagos      + '</th>' +
+            '<th style="text-align:center;">' + L.balance    + '</th>' +
+            (conPorPagar ? '<th style="text-align:center;">' + L.porPagar + '</th>' : '') +
+            '<th style="text-align:center;">' + L.pendientes + '</th>' +
+        '</tr></thead><tbody></tbody>' +
+        '<tfoot><tr>' +
+            '<th style="text-align:center;">TOTAL</th>' +
+            '<th style="text-align:center;">' + fmt(totV)    + '</th>' +
+            '<th style="text-align:center;">' + fmt(totP)    + '</th>' +
+            '<th style="text-align:center;color:' + (totB >= 0 ? 'var(--av-5,#7FCA8A)' : '#FC8181') + ';font-weight:600;">' + fmt(totB) + '</th>' +
+            (conPorPagar ? '<th style="text-align:center;">' + fmt(totPP) + '</th>' : '') +
+            '<th style="text-align:center;">' + fmt(totPend) + '</th>' +
+        '</tr></tfoot>' +
+        '</table></div>';
+
+    document.getElementById('agentBlocks').appendChild(block);
+
+    var columnas = [
+        { data: 'agente',  className: 'text-center', render: function(d){ return d ? d.toUpperCase() : '—'; } },
+        { data: 'ventas',  className: 'text-center col-monto-pos', render: money },
+        { data: 'pagos',   className: 'text-center col-monto-neg', render: money },
+        { data: 'balance', className: 'text-center', render: money,
+          createdCell: function(td,d){ $(td).addClass(d >= 0 ? 'col-monto-pos' : 'col-monto-neg'); } }
+    ];
+    if (conPorPagar) columnas.push({ data: 'porPagar', className: 'text-center col-monto-neg', render: money });
+    columnas.push({ data: 'pendientes', className: 'text-center', render: money });
+
+    var dt = $('#' + tableId).DataTable({
+        data: arr,
+        columns: columnas,
+        language: { url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json' },
+        pageLength: 100, lengthMenu: [[100, 500, 1000, -1], ['100', '500', '1000', 'Todos']], order: [[0, 'asc']], dom: 'Bfrt<"d-flex justify-content-end align-items-center mt-2"l>',
+        buttons: [{ extend: 'excelHtml5', text: '<i class="ti ti-file-spreadsheet"></i> Excel', className: 'btn-glass btn-primary btn-sm', title: 'Resumen por Agente' }]
+    });
+
+    dtInstances.push(dt);
+}
+
+/* ── dibuja según la vista seleccionada (sin volver a consultar) ─────── */
+function renderResultados(rows, fechaD, fechaH) {
+    limpiarBloques();
+
+    if (vista === 'agr') {
+        var agrupado = agruparPorAgente(rows);
+        renderAgrupado(agrupado);
+        lastData = agrupado;     // Excel / PDF exportan el resumen por agente
+    } else {
+        // Detallado: igual que antes — un bloque por agente con sus usuarios
+        var grupos = {}, orden = [];
+        rows.forEach(function(r) {
+            var ag = get(r, 'Agente') || '(Sin Agente)';
+            if (!grupos[ag]) { grupos[ag] = []; orden.push(ag); }
+            grupos[ag].push(r);
+        });
+        orden.forEach(function(ag, idx) {
+            if (canal === 'taq') renderBloqueTaq(ag, grupos[ag], idx, fechaD, fechaH);
+            else                 renderBloqueWeb(ag, grupos[ag], idx);
+        });
+        lastData = rows;
+    }
+    document.getElementById('exportBar').classList.remove('d-none');
+}
+
 /* ── agentes ──────────────────────────────────────────────────────────── */
 function cargarAgentes() {
     if (!esAdmin) return;
-    $.post('@Url.Action("GetListAgenciasApi","Reportes")')
+    $.post('@Url.Action("GetListAgentFilt","Reportes")')
         .done(function(lista) {
             const sel = document.getElementById('agente');
             if (!sel) return;
@@ -382,6 +561,7 @@ function cargarReporte() {
         return;
     }
     ticketsCache = {};
+    lastRows = null;
     limpiarBloques();
     showBusy(canal === 'taq' ? 'Consultando Nikols taquilla...' : 'Consultando Nikols web...');
 
@@ -393,20 +573,9 @@ function cargarReporte() {
                 return;
             }
 
-            // Agrupar por agente
-            var grupos = {};
-            var orden  = [];
-            rows.forEach(function(r) {
-                var ag = get(r, 'Agente') || '(Sin Agente)';
-                if (!grupos[ag]) { grupos[ag] = []; orden.push(ag); }
-                grupos[ag].push(r);
-            });
-
-            orden.forEach(function(ag, idx) {
-                if (canal === 'taq') renderBloqueTaq(ag, grupos[ag], idx, fechaD, fechaH);
-                else                 renderBloqueWeb(ag, grupos[ag], idx);
-            });
-            lastData = rows; document.getElementById('exportBar').classList.remove('d-none');
+            // Se guarda la consulta para poder alternar Agrupado / Detallado sin volver a consultar
+            lastRows = rows; lastFechaD = fechaD; lastFechaH = fechaH;
+            renderResultados(rows, fechaD, fechaH);
         })
         .fail(function(xhr) {
             hideBusy();
@@ -430,13 +599,40 @@ var EXPORT_CONFIG = {
         { head: 'Usuario',    get: function(r){ return get(r,'Usuario')||'--'; },          type: 'text' },
         { head: 'Ventas',     get: function(r){ return nkNum(get(r,'Ventas')); },          type: 'money' },
         { head: 'Pagos',      get: function(r){ return nkNum(get(r,'Pagos')); },           type: 'money' },
-        { head: 'Pendientes', get: function(r){ return nkNum(get(r,'Pendientes')); },      type: 'money' },
-        { head: 'Balance',    get: function(r){ return nkNum(get(r,'Balance')); },         type: 'money' }
+        { head: 'Balance',    get: function(r){ return nkNum(get(r,'Balance')); },         type: 'money' },
+        { head: 'PorPagar',   get: function(r){ return nkNum(get(r,'PorPagar')); },        type: 'money' },
+        { head: 'Pendientes', get: function(r){ return nkNum(get(r,'Pendientes')); },      type: 'money' }
     ]
 };
-function exportExcel() { ExportHelpers.exportarExcel(lastData, EXPORT_CONFIG); }
+// Exportación en vista AGRUPADO: una fila por agente, todo en un solo grupo
+var EXPORT_CONFIG_AGR = {
+    reportName: 'Ventas Nikols - Resumen por Agente',
+    groupField: function(){ return 'Resumen por Agente'; },
+    cols: [
+        { head: 'Agente',     get: function(r){ return r.agente || '(Sin Agente)'; }, type: 'text' },
+        { head: 'Ventas',     get: function(r){ return r.ventas; },                   type: 'money' },
+        { head: 'Pagos',      get: function(r){ return r.pagos; },                    type: 'money' },
+        { head: 'Balance',    get: function(r){ return r.balance; },                  type: 'money' },
+        { head: 'PorPagar',   get: function(r){ return r.porPagar; },                 type: 'money' },
+        { head: 'Pendientes', get: function(r){ return r.pendientes; },               type: 'money' }
+    ]
+};
+// Ajusta los encabezados del Excel/PDF a los nombres del canal
+// (Taquilla: Taquilla / Venta / Premio / Saldo / Por Pagar / Pendiente). En Web se quita Por Pagar.
+function conEtiquetas(cfg) {
+    var L = etiquetas();
+    var mapa = { 'Usuario': L.usuario, 'Ventas': L.ventas, 'Pagos': L.pagos, 'Balance': L.balance,
+                 'PorPagar': L.porPagar, 'Pendientes': L.pendientes };
+    return Object.assign({}, cfg, {
+        cols: cfg.cols
+            .filter(function(c){ return !(c.head === 'PorPagar' && !L.porPagar); })
+            .map(function(c){ return Object.assign({}, c, { head: mapa[c.head] || c.head }); })
+    });
+}
+function configExport() { return conEtiquetas(vista === 'agr' ? EXPORT_CONFIG_AGR : EXPORT_CONFIG); }
+function exportExcel() { ExportHelpers.exportarExcel(lastData, configExport()); }
 function exportPDF() {
-    ExportHelpers.exportarPDF(lastData, EXPORT_CONFIG, document.getElementById('fechaD').value, document.getElementById('fechaH').value);
+    ExportHelpers.exportarPDF(lastData, configExport(), document.getElementById('fechaD').value, document.getElementById('fechaH').value);
 }
 $(document).ready(function() {
     cargarAgentes();

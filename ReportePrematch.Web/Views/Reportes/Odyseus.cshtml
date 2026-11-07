@@ -314,7 +314,7 @@ function cargarProductos() {
 /* ── agentes ──────────────────────────────────────────────────────────── */
 function cargarAgentes() {
     if (!esAdmin) return;
-    $.post('@Url.Action("GetListAgenciasApi","Reportes")')
+    $.post('@Url.Action("GetListAgentFilt","Reportes")')
         .done(function(lista) {
             const sel = document.getElementById('agente');
             if (!sel) return;

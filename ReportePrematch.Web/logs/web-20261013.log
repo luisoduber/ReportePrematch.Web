@@ -1,0 +1,25 @@
+2026-10-13 16:59:59.632 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-13 17:00:01.919 -04:00 [INF] HTTP GET / responded 200 in 259.3299 ms
+2026-10-13 17:00:03.018 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 3.7378 ms
+2026-10-13 17:02:30.736 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-10-13 17:02:30.745 -04:00 [INF] HTTP POST / responded 302 in 1352.4893 ms
+2026-10-13 17:02:31.137 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 385.7862 ms
+2026-10-13 17:02:31.842 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-13 17:02:32.490 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 656.1551 ms
+2026-10-13 17:02:38.536 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 3.9860 ms
+2026-10-13 17:02:38.709 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-13 17:02:39.255 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 545.8345 ms
+2026-10-13 17:02:53.708 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 579.6222 ms
+2026-10-13 17:02:57.775 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 684.2177 ms
+2026-10-13 17:04:26.271 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-13 17:04:28.046 -04:00 [INF] HTTP GET / responded 200 in 262.4192 ms
+2026-10-13 17:04:36.155 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-10-13 17:04:36.163 -04:00 [INF] HTTP POST / responded 302 in 626.3180 ms
+2026-10-13 17:04:36.267 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 97.2882 ms
+2026-10-13 17:04:36.476 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-13 17:04:36.931 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 464.4934 ms
+2026-10-13 17:04:49.526 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 488.8249 ms
+2026-10-13 17:04:59.966 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 200 in 166.0405 ms
+2026-10-13 17:05:04.812 -04:00 [INF] HTTP POST /Reportes/GetTicketsDetalladosTaq responded 200 in 321.0578 ms
+2026-10-13 17:26:53.500 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-13 17:26:55.178 -04:00 [INF] HTTP GET / responded 200 in 291.6484 ms

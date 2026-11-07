@@ -703,44 +703,48 @@ ORDER BY 1,2,3 ASC";
        TICKETS EN JUEGO  →  REST API
     ══════════════════════════════════════════════════════════ */
 
-    public async Task<object> GetTicketsEnJuegoPorPagarTaqAsync(string fechaD, string fechaH, string agente)
+    public async Task<object> GetTicketsEnJuegoPorPagarTaqAsync(string fechaD, string fechaH, string agente, string pais = "", string role = "")
     {
         var query = new Dictionary<string, string>
         {
-            ["fechaD"] = fechaD, ["fechaH"] = fechaH, ["agente"] = agente
+            ["fechaD"] = fechaD, ["fechaH"] = fechaH, ["agente"] = agente,
+            ["pais"] = pais ?? "", ["role"] = role ?? ""
         };
         var result = await _api.GetQueryAsync<List<TicketsEnJuegoDto>>(
             "api/Reportes/TicketsEnJuegoPorPagarTaq", query);
         return result ?? new List<TicketsEnJuegoDto>();
     }
 
-    public async Task<object> GetTicketsEnJuegoPorCobrarTaqAsync(string fechaD, string fechaH, string agente)
+    public async Task<object> GetTicketsEnJuegoPorCobrarTaqAsync(string fechaD, string fechaH, string agente, string pais = "", string role = "")
     {
         var query = new Dictionary<string, string>
         {
-            ["fechaD"] = fechaD, ["fechaH"] = fechaH, ["agente"] = agente
+            ["fechaD"] = fechaD, ["fechaH"] = fechaH, ["agente"] = agente,
+            ["pais"] = pais ?? "", ["role"] = role ?? ""
         };
         var result = await _api.GetQueryAsync<List<TicketsEnJuegoDto>>(
             "api/Reportes/TicketsEnJuegoPorCobrarTaq", query);
         return result ?? new List<TicketsEnJuegoDto>();
     }
 
-    public async Task<object> GetTicketsEnJuegoPorPagarWebAsync(string fechaD, string fechaH, string agente)
+    public async Task<object> GetTicketsEnJuegoPorPagarWebAsync(string fechaD, string fechaH, string agente, string pais = "", string role = "")
     {
         var query = new Dictionary<string, string>
         {
-            ["fechaD"] = fechaD, ["fechaH"] = fechaH, ["agente"] = agente
+            ["fechaD"] = fechaD, ["fechaH"] = fechaH, ["agente"] = agente,
+            ["pais"] = pais ?? "", ["role"] = role ?? ""
         };
         var result = await _api.GetQueryAsync<List<TicketsEnJuegoDto>>(
             "api/Reportes/TicketsEnJuegoPorPagarWeb", query);
         return result ?? new List<TicketsEnJuegoDto>();
     }
 
-    public async Task<object> GetTicketsEnJuegoPorCobrarWebAsync(string fechaD, string fechaH, string agente)
+    public async Task<object> GetTicketsEnJuegoPorCobrarWebAsync(string fechaD, string fechaH, string agente, string pais = "", string role = "")
     {
         var query = new Dictionary<string, string>
         {
-            ["fechaD"] = fechaD, ["fechaH"] = fechaH, ["agente"] = agente
+            ["fechaD"] = fechaD, ["fechaH"] = fechaH, ["agente"] = agente,
+            ["pais"] = pais ?? "", ["role"] = role ?? ""
         };
         var result = await _api.GetQueryAsync<List<TicketsEnJuegoDto>>(
             "api/Reportes/TicketsEnJuegoPorCobrarWeb", query);
@@ -978,26 +982,29 @@ ORDER BY 1,2,3 ASC";
     }
 
     public async Task<object> GetLoteriasTripleAsync(
-        string fechaD, string fechaH, string agente, string role)
+        string fechaD, string fechaH, string agente, string role, string pais = "")
     {
         var query = new Dictionary<string, string>
         {
             ["fechaD"] = fechaD, ["fechaH"] = fechaH,
-            ["agente"] = agente, ["role"] = role
+            ["agente"] = agente, ["role"] = role,
+            ["pais"]   = pais ?? ""
         };
         var result = await _api.GetQueryAsync<List<LoteriasDto>>(
             "api/Reportes/Triples", query);
         return result ?? new List<LoteriasDto>();
     }
 
-    public async Task<object> GetOdyseusAsync(string fechaDesde, string fechaHasta, string agente, string nombProd = null)
+    public async Task<object> GetOdyseusAsync(string fechaDesde, string fechaHasta, string agente, string nombProd = null, string pais = "", string role = "")
     {
         var query = new Dictionary<string, string>
         {
             ["fechaDesde"] = fechaDesde,
             ["fechaHasta"] = fechaHasta,
             ["agentes"]    = agente   ?? "",
-            ["nombProd"]   = nombProd ?? ""
+            ["nombProd"]   = nombProd ?? "",
+            ["pais"]       = pais     ?? "",
+            ["role"]       = role     ?? ""
         };
         var result = await _api.GetQueryAsync<List<OdyseusDto>>(
             "api/Reportes/Odyseus", query);
@@ -1098,12 +1105,14 @@ ORDER BY 1,2,3 ASC";
     }
 
     // ── Gaming / Endorphine (GCITReportes API — cliente independiente) ─────────
-    private async Task<object> CallGamingApiAsync(string endpoint, string fechaInicio, string fechaFin, string agente)
+    private async Task<object> CallGamingApiAsync(string endpoint, string fechaInicio, string fechaFin, string agente, string pais = "", string role = "")
     {
         var baseUrl = _config["GamingApi:BaseUrl"] ?? "https://localhost:44322";
         var qs = $"fechaInicio={Uri.EscapeDataString(fechaInicio)}" +
                  $"&fechaFin={Uri.EscapeDataString(fechaFin)}" +
-                 $"&agente={Uri.EscapeDataString(agente ?? "")}";
+                 $"&agente={Uri.EscapeDataString(agente ?? "")}" +
+                 $"&pais={Uri.EscapeDataString(pais ?? "")}" +
+                 $"&role={Uri.EscapeDataString(role ?? "")}";
         var url = $"{baseUrl.TrimEnd('/')}/{endpoint}?{qs}";
 
         var handler = new System.Net.Http.HttpClientHandler
@@ -1119,38 +1128,40 @@ ORDER BY 1,2,3 ASC";
                ?? new List<object>();
     }
 
-    public async Task<object> GetVigResumenAsync(string fechaDesde, string fechaHasta, string agente)
+    public async Task<object> GetVigResumenAsync(string fechaDesde, string fechaHasta, string agente, string pais = "", string role = "")
     {
         var query = new Dictionary<string, string>
         {
             ["fechaDesde"] = fechaDesde,
             ["fechaHasta"] = fechaHasta,
-            ["agente"]     = agente ?? ""
+            ["agente"]     = agente ?? "",
+            ["pais"]       = pais   ?? "",
+            ["role"]       = role   ?? ""
         };
         var result = await _api.GetQueryAsync<List<VigResumenDto>>("api/Casino/Vig/Resumen", query);
         return result ?? new List<VigResumenDto>();
     }
 
-    public Task<object> GetCasino7777Async(string fechaInicio, string fechaFin, string agente)
-        => CallGamingApiAsync("api/Casino/Gaming/Resumen", fechaInicio, fechaFin, agente);
+    public Task<object> GetCasino7777Async(string fechaInicio, string fechaFin, string agente, string pais = "", string role = "")
+        => CallGamingApiAsync("api/Casino/Gaming/Resumen", fechaInicio, fechaFin, agente, pais, role);
 
-    public Task<object> GetCasino7777ResumenGeneralAsync(string fechaInicio, string fechaFin, string agente)
-        => CallGamingApiAsync("api/Casino/Gaming/ResumenGeneral", fechaInicio, fechaFin, agente);
+    public Task<object> GetCasino7777ResumenGeneralAsync(string fechaInicio, string fechaFin, string agente, string pais = "", string role = "")
+        => CallGamingApiAsync("api/Casino/Gaming/ResumenGeneral", fechaInicio, fechaFin, agente, pais, role);
 
     public Task<List<string>> GetCasino7777AgentesAsync()
         => GetEndorphineAgentesAsync(); // misma fuente: /api/Reportes/ListaAgentes
 
-    public Task<object> GetEndorphineAsync(string fechaInicio, string fechaFin, string agente)
-        => CallGamingApiAsync("api/Casino/Endorphine/Resumen", fechaInicio, fechaFin, agente);
+    public Task<object> GetEndorphineAsync(string fechaInicio, string fechaFin, string agente, string pais = "", string role = "")
+        => CallGamingApiAsync("api/Casino/Endorphine/Resumen", fechaInicio, fechaFin, agente, pais, role);
 
-    public Task<object> GetEndorphineResumenGeneralAsync(string fechaInicio, string fechaFin, string agente)
-        => CallGamingApiAsync("api/Casino/Endorphine/ResumenGeneral", fechaInicio, fechaFin, agente);
+    public Task<object> GetEndorphineResumenGeneralAsync(string fechaInicio, string fechaFin, string agente, string pais = "", string role = "")
+        => CallGamingApiAsync("api/Casino/Endorphine/ResumenGeneral", fechaInicio, fechaFin, agente, pais, role);
 
-    public Task<object> GetInOutGamingAsync(string fechaInicio, string fechaFin, string agente)
-        => CallGamingApiAsync("api/Casino/InOutGaming/Resumen", fechaInicio, fechaFin, agente);
+    public Task<object> GetInOutGamingAsync(string fechaInicio, string fechaFin, string agente, string pais = "", string role = "")
+        => CallGamingApiAsync("api/Casino/InOutGaming/Resumen", fechaInicio, fechaFin, agente, pais, role);
 
-    public Task<object> GetInOutGamingResumenGeneralAsync(string fechaInicio, string fechaFin, string agente)
-        => CallGamingApiAsync("api/Casino/InOutGaming/ResumenGeneral", fechaInicio, fechaFin, agente);
+    public Task<object> GetInOutGamingResumenGeneralAsync(string fechaInicio, string fechaFin, string agente, string pais = "", string role = "")
+        => CallGamingApiAsync("api/Casino/InOutGaming/ResumenGeneral", fechaInicio, fechaFin, agente, pais, role);
 
     public Task<List<string>> GetInOutGamingAgentesAsync()
         => GetEndorphineAgentesAsync(); // misma fuente: /api/Reportes/ListaAgentes
@@ -1179,12 +1190,14 @@ ORDER BY 1,2,3 ASC";
        KING MIDAS
     ══════════════════════════════════════════════════════════ */
 
-    public async Task<object> GetKingMidasAsync(string startDate, string endDate, string agentName)
+    public async Task<object> GetKingMidasAsync(string startDate, string endDate, string agentName, string pais = "", string role = "")
     {
         var query = new Dictionary<string, string>
         {
             ["startDate"] = startDate,
-            ["endDate"]   = endDate
+            ["endDate"]   = endDate,
+            ["pais"]      = pais ?? "",
+            ["role"]      = role ?? ""
         };
         if (!string.IsNullOrWhiteSpace(agentName) && agentName.ToUpper() != "TODOS")
             query["agentName"] = agentName;
@@ -1240,5 +1253,118 @@ ORDER BY 1,2,3 ASC";
         var opts = new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true };
         var result = await response.Content.ReadFromJsonAsync<object>(opts);
         return result ?? new List<object>();
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       CASINO — Bingo Maya (api/Casino/ListBingMay)
+    ══════════════════════════════════════════════════════════ */
+
+    public async Task<object> GetBingMayAsync(string fechaDesde, string fechaHasta, string agente, string pais = "", string role = "")
+    {
+        var query = new Dictionary<string, string>
+        {
+            ["fechaDesde"] = fechaDesde,
+            ["fechaHasta"] = fechaHasta,
+            ["nombAg"]     = agente ?? "",   // vacío / TODOS → la API aplica el filtro por rol
+            ["pais"]       = pais   ?? "",
+            ["role"]       = role   ?? ""
+        };
+        var result = await _api.GetQueryAsync<List<BingMayDto>>("api/Casino/ListBingMay", query);
+        return result ?? new List<BingMayDto>();
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       HIPISMO — HipOdysseus (copia independiente de Odysseus)
+       Por ahora consume los mismos endpoints que Odysseus; al ser
+       métodos propios se pueden apuntar a otros endpoints sin
+       afectar la vista de Odysseus del menú Casino.
+    ══════════════════════════════════════════════════════════ */
+
+    public async Task<object> GetHipOdysseusAsync(string fechaDesde, string fechaHasta, string agente, string pais = "", string role = "")
+    {
+        var query = new Dictionary<string, string>
+        {
+            ["fechaDesde"] = fechaDesde,
+            ["fechaHasta"] = fechaHasta,
+            ["agentes"]    = agente   ?? "",
+            // nombProd ya no se envía: la API filtra fijo por el producto "IconBetHorse IconBet"
+            ["pais"]       = pais     ?? "",
+            ["role"]       = role     ?? ""
+        };
+        var result = await _api.GetQueryAsync<List<OdyseusDto>>(
+            "api/Reportes/ListVentHipOdysseus", query);
+        return result ?? new List<OdyseusDto>();
+    }
+
+    public async Task<object> GetDetTckUsuHipOdysseusAsync(
+        string userName, string fechaDesde, string fechaHasta)
+    {
+        var baseUrl = _config["OdysseusApi:BaseUrl"] ?? "https://allws.staging-gc.com/ApiReporte/";
+        var url = $"{baseUrl.TrimEnd('/')}/api/Odysseus/DetTckUsuOdysseus" +
+                  $"?userName={Uri.EscapeDataString(userName ?? "")}" +
+                  $"&fechaDesde={Uri.EscapeDataString(fechaDesde ?? "")}" +
+                  $"&fechaHasta={Uri.EscapeDataString(fechaHasta ?? "")}";
+
+        var handler = new System.Net.Http.HttpClientHandler
+        {
+            ServerCertificateCustomValidationCallback =
+                System.Net.Http.HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+        };
+        using var http = new System.Net.Http.HttpClient(handler) { Timeout = TimeSpan.FromSeconds(30) };
+        var response = await http.GetAsync(url);
+        response.EnsureSuccessStatusCode();
+        var opts = new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+        var result = await response.Content.ReadFromJsonAsync<object>(opts);
+        return result ?? new List<object>();
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       PAÍSES — ListPaisesXfilt (api/Agentes/ListPaisesXfilt)
+    ══════════════════════════════════════════════════════════ */
+
+    public async Task<List<string>> GetListPaisesXfiltAsync(string agente, string pais)
+    {
+        var baseUrl = _config["OdysseusApi:BaseUrl"] ?? "https://allws.staging-gc.com/ApiReporte/";
+        var url = $"{baseUrl.TrimEnd('/')}/api/Agentes/ListPaisesXfilt" +
+                  $"?agente={Uri.EscapeDataString(agente ?? "")}" +
+                  $"&pais={Uri.EscapeDataString(pais ?? "")}";
+
+        var handler = new System.Net.Http.HttpClientHandler
+        {
+            ServerCertificateCustomValidationCallback =
+                System.Net.Http.HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+        };
+        // SELECT DISTINCT sobre Apuestas puede tardar → timeout más amplio que el de agentes
+        using var http = new System.Net.Http.HttpClient(handler) { Timeout = TimeSpan.FromSeconds(120) };
+        var response = await http.GetAsync(url);
+        response.EnsureSuccessStatusCode();
+        var opts = new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+        var result = await response.Content.ReadFromJsonAsync<List<string>>(opts);
+        return result ?? new List<string>();
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       AGENTES — ListAgentFilt (api/Agentes/ListAgentFilt)
+    ══════════════════════════════════════════════════════════ */
+
+    public async Task<List<string>> GetListAgentFiltAsync(string agente, string pais, string role)
+    {
+        var baseUrl = _config["OdysseusApi:BaseUrl"] ?? "https://allws.staging-gc.com/ApiReporte/";
+        var url = $"{baseUrl.TrimEnd('/')}/api/Agentes/ListAgentFilt" +
+                  $"?agente={Uri.EscapeDataString(agente ?? "")}" +
+                  $"&pais={Uri.EscapeDataString(pais ?? "")}" +
+                  $"&role={Uri.EscapeDataString(role ?? "")}";
+
+        var handler = new System.Net.Http.HttpClientHandler
+        {
+            ServerCertificateCustomValidationCallback =
+                System.Net.Http.HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+        };
+        using var http = new System.Net.Http.HttpClient(handler) { Timeout = TimeSpan.FromSeconds(30) };
+        var response = await http.GetAsync(url);
+        response.EnsureSuccessStatusCode();
+        var opts = new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+        var result = await response.Content.ReadFromJsonAsync<List<string>>(opts);
+        return result ?? new List<string>();
     }
 }

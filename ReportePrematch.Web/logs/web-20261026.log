@@ -1,0 +1,60 @@
+2026-10-26 15:24:57.516 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-26 15:24:58.877 -04:00 [INF] HTTP GET / responded 200 in 202.9389 ms
+2026-10-26 15:24:59.918 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 1.9030 ms
+2026-10-26 15:25:13.860 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-10-26 15:25:13.867 -04:00 [INF] HTTP POST / responded 302 in 756.2487 ms
+2026-10-26 15:25:14.009 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 136.0559 ms
+2026-10-26 15:25:14.580 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-26 15:25:14.993 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 428.3555 ms
+2026-10-26 15:25:18.217 -04:00 [INF] HTTP GET /Reportes/IconSlot responded 200 in 19.7639 ms
+2026-10-26 15:25:18.321 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-26 15:25:18.789 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 468.5196 ms
+2026-10-26 15:25:21.224 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 567.0086 ms
+2026-10-26 16:10:30.963 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-26 16:10:32.346 -04:00 [INF] HTTP GET / responded 200 in 196.9784 ms
+2026-10-26 16:10:40.876 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-10-26 16:10:40.884 -04:00 [INF] HTTP POST / responded 302 in 680.9461 ms
+2026-10-26 16:10:40.994 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 103.7616 ms
+2026-10-26 16:10:41.205 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-26 16:10:41.805 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 607.5957 ms
+2026-10-26 16:10:43.439 -04:00 [INF] HTTP GET /Reportes/IconSlot responded 200 in 17.0765 ms
+2026-10-26 16:10:43.544 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-26 16:10:44.086 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 542.9623 ms
+2026-10-26 16:10:45.368 -04:00 [INF] HTTP POST /Reportes/GetIconSlot responded 200 in 338.6690 ms
+2026-10-26 16:13:17.318 -04:00 [INF] HTTP GET /Reportes/VentasPorPais responded 200 in 26.1461 ms
+2026-10-26 18:42:35.424 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-26 18:42:36.551 -04:00 [INF] HTTP GET / responded 200 in 314.3955 ms
+2026-10-26 18:42:46.843 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-10-26 18:42:46.853 -04:00 [INF] HTTP POST / responded 302 in 2562.8838 ms
+2026-10-26 18:42:46.978 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 116.6536 ms
+2026-10-26 18:42:47.200 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-26 18:42:48.981 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 1790.9248 ms
+2026-10-26 18:42:53.077 -04:00 [INF] HTTP GET /Reportes/VentasPorPais responded 200 in 18.1824 ms
+2026-10-26 18:42:56.364 -04:00 [INF] HTTP POST /Reportes/GetListPaisesXfilt responded 200 in 3182.2858 ms
+2026-10-26 18:43:02.561 -04:00 [INF] HTTP POST /Reportes/GetVentasPorPaisTaq responded 200 in 2420.0157 ms
+2026-10-26 18:43:07.920 -04:00 [INF] HTTP POST /Reportes/GetVentasPorPaisTaq responded 200 in 331.7655 ms
+2026-10-26 18:43:12.591 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/VentasPorPaisWeb. JSON: {"codigo":-2146232060,"mensaje":"Incorrect syntax near the keyword 'and'."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.VentasPorPaisDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-10-26 18:43:12.616 -04:00 [INF] HTTP POST /Reportes/GetVentasPorPaisWeb responded 200 in 621.0195 ms
+2026-10-26 18:43:19.809 -04:00 [INF] HTTP POST /Reportes/GetVentasPorPaisTaq responded 200 in 1359.6987 ms
+2026-10-26 18:43:33.352 -04:00 [WRN] Respuesta no deserializable de GET+QS api/Reportes/VentasPorPaisWeb. JSON: {"codigo":-2146232060,"mensaje":"Incorrect syntax near the keyword 'and'."}
+System.Text.Json.JsonException: The JSON value could not be converted to System.Collections.Generic.List`1[ReportePrematch.Web.Models.ApiReportes.VentasPorPaisDto]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_DeserializeUnableToConvertValue(Type propertyType)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, TCollection& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 54
+2026-10-26 18:43:33.355 -04:00 [INF] HTTP POST /Reportes/GetVentasPorPaisWeb responded 200 in 522.7430 ms

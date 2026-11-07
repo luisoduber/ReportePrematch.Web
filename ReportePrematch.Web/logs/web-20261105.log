@@ -1,0 +1,12 @@
+2026-11-05 17:56:12.533 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-11-05 17:56:14.987 -04:00 [INF] HTTP GET / responded 200 in 410.0125 ms
+2026-11-05 17:56:16.093 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 4.9841 ms
+2026-11-05 17:56:23.974 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-11-05 17:56:23.981 -04:00 [INF] HTTP POST / responded 302 in 1102.7400 ms
+2026-11-05 17:56:24.264 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 276.5830 ms
+2026-11-05 17:56:24.896 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-11-05 17:56:25.789 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 905.5818 ms
+2026-11-05 17:56:29.245 -04:00 [INF] HTTP GET /Reportes/VentasPorAgenteNikols responded 200 in 60.6475 ms
+2026-11-05 17:56:29.384 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-11-05 17:56:29.691 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 306.9931 ms
+2026-11-05 17:56:32.000 -04:00 [INF] HTTP POST /Reportes/GetVentasPorAgenteNikolsTaq responded 200 in 568.9955 ms

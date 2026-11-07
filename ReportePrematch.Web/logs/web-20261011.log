@@ -1,0 +1,16 @@
+2026-10-11 20:25:55.586 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-11 20:25:57.604 -04:00 [INF] HTTP GET / responded 200 in 291.3398 ms
+2026-10-11 20:25:59.822 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 2.3453 ms
+2026-10-11 20:26:15.535 -04:00 [WRN] ADWS Login: credenciales inválidas (Mensaje=-1) para vlapenta
+2026-10-11 20:26:15.541 -04:00 [WRN] Login fallido para usuario vlapenta
+2026-10-11 20:26:15.549 -04:00 [INF] HTTP POST / responded 200 in 6938.7120 ms
+2026-10-11 20:26:26.295 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-10-11 20:26:26.300 -04:00 [INF] HTTP POST / responded 302 in 290.7479 ms
+2026-10-11 20:26:26.462 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 156.4722 ms
+2026-10-11 20:26:27.280 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-11 20:26:31.374 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 4105.1064 ms
+2026-10-11 20:26:40.056 -04:00 [INF] HTTP GET /Reportes/Casino7777 responded 200 in 19.0263 ms
+2026-10-11 20:26:40.191 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-11 20:26:41.117 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 925.6077 ms
+2026-10-11 20:46:50.555 -04:00 [INF] HTTP GET /Reportes/Props responded 302 in 3.4770 ms
+2026-10-11 20:46:50.563 -04:00 [INF] HTTP GET / responded 200 in 3.1673 ms

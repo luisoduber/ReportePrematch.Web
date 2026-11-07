@@ -182,6 +182,27 @@ function renderBloqueAgente(agente, rows, idx) {
         totTrans   += parseInt(fTrans(r));
     });
 
+    // Totales en moneda original, agrupados por moneda (columna Moneda del agente).
+    // Normalmente un agente maneja una sola moneda; si tuviera varias, se muestra un juego de cards por cada una
+    // para no sumar montos de monedas distintas.
+    var porMoneda = {}, ordenMon = [];
+    rows.forEach(function(r) {
+        var mon = (fCur(r) || 'ORIG').toString().trim().toUpperCase() || 'ORIG';
+        if (!porMoneda[mon]) { porMoneda[mon] = { ries: 0, prem: 0, ggr: 0 }; ordenMon.push(mon); }
+        porMoneda[mon].ries += numericVal(fRiesOrig(r));
+        porMoneda[mon].prem += numericVal(fPremOrig(r));
+        porMoneda[mon].ggr  += numericVal(fGgrOrig(r));
+    });
+    var cardsOrig = '';
+    ordenMon.forEach(function(mon) {
+        var t = porMoneda[mon];
+        cardsOrig += card('Riesgo '  + mon, fmt(t.ries), 'metric-blue')
+                  +  card('Premios ' + mon, fmt(t.prem), 'metric-red')
+                  +  card('GGR '     + mon, fmt(t.ggr),  t.ggr >= 0 ? 'metric-green' : 'metric-red');
+    });
+    // Si el agente tiene una sola moneda, también se muestran los totales Orig en el pie de la tabla.
+    var unaMoneda = ordenMon.length === 1 ? porMoneda[ordenMon[0]] : null;
+
     var tableId = 'tblIcon_' + idx;
     var block = document.createElement('div');
     block.className = 'agent-block';
@@ -189,6 +210,7 @@ function renderBloqueAgente(agente, rows, idx) {
         '<div class="agent-block-header"><i class="ti ti-building-store"></i>' + agente + '</div>' +
         '<div class="quick-metrics-bar mb-2">' +
             card('RTP Agente',   fmtPct(rtpAg),   'metric-purple') +
+            cardsOrig +
             card('Riesgo USD',   fmt(totRiesUSD),  'metric-blue') +
             card('Premios USD',  fmt(totPremUSD),  'metric-red') +
             card('GGR USD',      fmt(totGgrUSD),   totGgrUSD >= 0 ? 'metric-green' : 'metric-red') +
@@ -214,9 +236,9 @@ function renderBloqueAgente(agente, rows, idx) {
         '</tr></thead><tbody></tbody>' +
         '<tfoot><tr>' +
             '<th colspan="5" style="text-align:center;">TOTAL</th>' +
-            '<th style="text-align:right;"></th>' +
-            '<th style="text-align:right;"></th>' +
-            '<th style="text-align:right;"></th>' +
+            '<th style="text-align:center;">' + (unaMoneda ? fmt(unaMoneda.ries) : '') + '</th>' +
+            '<th style="text-align:center;">' + (unaMoneda ? fmt(unaMoneda.prem) : '') + '</th>' +
+            '<th style="text-align:center;' + (unaMoneda ? 'color:' + (unaMoneda.ggr >= 0 ? 'var(--av-5,#7FCA8A)' : '#FC8181') + ';font-weight:600;' : '') + '">' + (unaMoneda ? fmt(unaMoneda.ggr) : '') + '</th>' +
             '<th style="text-align:right;">' + fmt(totRiesUSD) + '</th>' +
             '<th style="text-align:right;">' + fmt(totPremUSD) + '</th>' +
             '<th style="text-align:right;color:' + (totGgrUSD >= 0 ? 'var(--av-5,#7FCA8A)' : '#FC8181') + ';font-weight:600;">' + fmt(totGgrUSD) + '</th>' +
@@ -279,7 +301,7 @@ function renderBloqueAgente(agente, rows, idx) {
 /* ── agentes ──────────────────────────────────────────────────────────── */
 function cargarAgentes() {
     if (!esAdmin) return;
-    $.post('@Url.Action("GetListAgenciasApi","Reportes")')
+    $.post('@Url.Action("GetListAgentFilt","Reportes")')
         .done(function(lista) {
             const sel = document.getElementById('agente');
             if (!sel) return;
@@ -356,12 +378,13 @@ var EXPORT_CONFIG = {
         { head: 'RTP General%', get: function(r){ return parseFloat(fRtpG(r)); },      type: 'money' },
         { head: 'RTP Agente%',  get: function(r){ return parseFloat(fRtpAg(r)); },     type: 'money' },
         { head: 'RTP Usuario%', get: function(r){ return parseFloat(fRtpUs(r)); },     type: 'money' },
-        { head: 'Riesgo Orig',  get: function(r){ return parseFloat(fRiesOrig(r)); },  type: 'money' },
-        { head: 'Premios Orig', get: function(r){ return parseFloat(fPremOrig(r)); },  type: 'money' },
-        { head: 'GGR Orig',     get: function(r){ return parseFloat(fGgrOrig(r)); },   type: 'money' },
-        { head: 'Riesgo USD',   get: function(r){ return parseFloat(fRiesUSD(r)); },   type: 'money' },
-        { head: 'Premios USD',  get: function(r){ return parseFloat(fPremUSD(r)); },   type: 'money' },
-        { head: 'GGR USD',      get: function(r){ return parseFloat(fGgrUSD(r)); },    type: 'money' },
+        // numericVal convierte "1.234,56" (es-VE) correctamente; parseFloat lo cortaba en 1.234
+        { head: 'Riesgo Orig',  get: function(r){ return numericVal(fRiesOrig(r)); },  type: 'money' },
+        { head: 'Premios Orig', get: function(r){ return numericVal(fPremOrig(r)); },  type: 'money' },
+        { head: 'GGR Orig',     get: function(r){ return numericVal(fGgrOrig(r)); },   type: 'money' },
+        { head: 'Riesgo USD',   get: function(r){ return numericVal(fRiesUSD(r)); },   type: 'money' },
+        { head: 'Premios USD',  get: function(r){ return numericVal(fPremUSD(r)); },   type: 'money' },
+        { head: 'GGR USD',      get: function(r){ return numericVal(fGgrUSD(r)); },    type: 'money' },
         { head: 'Débitos',      get: function(r){ return parseInt(fDeb(r)); },         type: 'num'   },
         { head: 'Créditos',     get: function(r){ return parseInt(fCred(r)); },        type: 'num'   },
         { head: 'Trans.',       get: function(r){ return parseInt(fTrans(r)); },        type: 'num'   }

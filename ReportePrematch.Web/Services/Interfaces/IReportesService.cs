@@ -35,10 +35,10 @@ public interface IReportesService
     Task<object> GetBusquedaTicketsWebApiAsync(string fecha, string agente, long ticket, string operacion);
     Task<object> GetCierreTaquillaAsync(string agente, string agencia, string usuario, string fecha);
     Task<object> GetVentasDetalladasLiveAsync(string fechaD, string fechaH, string agente, string pais, string role);
-    Task<object> GetTicketsEnJuegoPorPagarTaqAsync(string fechaD, string fechaH, string agente);
-    Task<object> GetTicketsEnJuegoPorCobrarTaqAsync(string fechaD, string fechaH, string agente);
-    Task<object> GetTicketsEnJuegoPorPagarWebAsync(string fechaD, string fechaH, string agente);
-    Task<object> GetTicketsEnJuegoPorCobrarWebAsync(string fechaD, string fechaH, string agente);
+    Task<object> GetTicketsEnJuegoPorPagarTaqAsync(string fechaD, string fechaH, string agente, string pais = "", string role = "");
+    Task<object> GetTicketsEnJuegoPorCobrarTaqAsync(string fechaD, string fechaH, string agente, string pais = "", string role = "");
+    Task<object> GetTicketsEnJuegoPorPagarWebAsync(string fechaD, string fechaH, string agente, string pais = "", string role = "");
+    Task<object> GetTicketsEnJuegoPorCobrarWebAsync(string fechaD, string fechaH, string agente, string pais = "", string role = "");
     Task<object> GetVentasPorAgenteNikolsWebAsync(string fechaD, string fechaH, string agente, string pais, string role);
     Task<object> GetVentasPorAgenteNikolsTaqAsync(string fechaD, string fechaH, string agente, string local, string pais, string role);
     Task<object> GetEstadisticasWebAsync(string fechaD, string fechaH, string agente, string pais, string role);
@@ -54,10 +54,10 @@ public interface IReportesService
     // TODO: GetIconBetAsync — pendiente de conectar al nuevo API
     // Task<object> GetIconBetAsync(string fechaD, string fechaH, string agente, string pais, string role);
     Task<object> GetLoteriasAsync(string fechaD, string fechaH, string agente, string role = "", string pais = "");
-    Task<object> GetLoteriasTripleAsync(string fechaD, string fechaH, string agente, string role);
+    Task<object> GetLoteriasTripleAsync(string fechaD, string fechaH, string agente, string role, string pais = "");
     Task<object> GetAviatrixAsync(string fechaD, string fechaH, string agente, string role = "", string pais = "");
-    Task<object> GetOdyseusAsync(string fechaDesde, string fechaHasta, string agente, string nombProd = null);
-    Task<object> GetVigResumenAsync(string fechaDesde, string fechaHasta, string agente);
+    Task<object> GetOdyseusAsync(string fechaDesde, string fechaHasta, string agente, string nombProd = null, string pais = "", string role = "");
+    Task<object> GetVigResumenAsync(string fechaDesde, string fechaHasta, string agente, string pais = "", string role = "");
     Task<object> GetFantasyBsbAsync(string fechaD, string fechaH, string agente, string role = "", string pais = "");
     Task<object> GetDashboardClientesAsync(string fechaD, string fechaH, string agente);
     Task<object> GetDashboardExtendidoAsync(string fechaD, string fechaH, string agente, string pais);
@@ -66,16 +66,25 @@ public interface IReportesService
     Task<object> GetTablesExtendidoAsync(string fechaD, string fechaH, string agente, string pais);
 
     // ── Gaming / Endorphine / InOutGaming (GCITReportes API) ────────
-    Task<object> GetCasino7777Async(string fechaInicio, string fechaFin, string agente);
-    Task<object> GetCasino7777ResumenGeneralAsync(string fechaInicio, string fechaFin, string agente);
+    Task<object> GetCasino7777Async(string fechaInicio, string fechaFin, string agente, string pais = "", string role = "");
+    Task<object> GetCasino7777ResumenGeneralAsync(string fechaInicio, string fechaFin, string agente, string pais = "", string role = "");
     Task<List<string>> GetCasino7777AgentesAsync();
-    Task<object> GetEndorphineAsync(string fechaInicio, string fechaFin, string agente);
-    Task<object> GetEndorphineResumenGeneralAsync(string fechaInicio, string fechaFin, string agente);
+    Task<object> GetEndorphineAsync(string fechaInicio, string fechaFin, string agente, string pais = "", string role = "");
+    Task<object> GetEndorphineResumenGeneralAsync(string fechaInicio, string fechaFin, string agente, string pais = "", string role = "");
     Task<List<string>> GetEndorphineAgentesAsync();
-    Task<object> GetInOutGamingAsync(string fechaInicio, string fechaFin, string agente);
-    Task<object> GetInOutGamingResumenGeneralAsync(string fechaInicio, string fechaFin, string agente);
+    Task<object> GetInOutGamingAsync(string fechaInicio, string fechaFin, string agente, string pais = "", string role = "");
+    Task<object> GetInOutGamingResumenGeneralAsync(string fechaInicio, string fechaFin, string agente, string pais = "", string role = "");
     Task<List<string>> GetInOutGamingAgentesAsync();
-    Task<object> GetKingMidasAsync(string startDate, string endDate, string agentName);
+    Task<object> GetKingMidasAsync(string startDate, string endDate, string agentName, string pais = "", string role = "");
     Task<object> GetListProdOdysseusAsync();
     Task<object> GetDetTckUsuOdysseusAsync(string userName, string fechaDesde, string fechaHasta);
+
+    // ── Casino · Bingo Maya (api/Casino/ListBingMay) ──
+    Task<object> GetBingMayAsync(string fechaDesde, string fechaHasta, string agente, string pais = "", string role = "");
+
+    // ── Hipismo · HipOdysseus (copia independiente de Odysseus) ──
+    Task<object> GetHipOdysseusAsync(string fechaDesde, string fechaHasta, string agente, string pais = "", string role = "");
+    Task<object> GetDetTckUsuHipOdysseusAsync(string userName, string fechaDesde, string fechaHasta);
+    Task<List<string>> GetListAgentFiltAsync(string agente, string pais, string role);
+    Task<List<string>> GetListPaisesXfiltAsync(string agente, string pais);
 }

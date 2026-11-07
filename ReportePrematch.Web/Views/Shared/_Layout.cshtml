@@ -87,7 +87,10 @@
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="Estadisticas"><i class="ti ti-chart-pie"></i> Estadísticas</a>
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="DeportesMasVendidos"><i class="ti ti-trophy"></i> Deportes más Vendidos</a>
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VentasPorAgenteGameID"><i class="ti ti-hash"></i> Ticket por GameID</a>
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VentasPorPais"><i class="ti ti-globe"></i> Ventas por País</a>
+                    @if (EsSuAdminMenu())
+                    {
+                        <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VentasPorPais"><i class="ti ti-globe"></i> Ventas por País</a>
+                    }
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VentasDetalladasLive"><i class="ti ti-live-photo"></i> Live Detalladas</a>
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="Props"><i class="ti ti-cards"></i> Props</a>
                 </div>
@@ -95,7 +98,7 @@
 
             <!-- Menú Casino -->
             <div class="nav-dropdown">
-                <button class="nav-module @(IsActive("Casino", "IconBet", "IconSlot", "Poker", "Pragmatic", "Virtuales", "Aviatrix", "Casino7777", "Endorphine", "InOutGaming", "Odyseus", "VIG", "KingMidas"))">
+                <button class="nav-module @(IsActive("Casino", "IconBet", "IconSlot", "Poker", "Pragmatic", "Virtuales", "Aviatrix", "Endorphine", "InOutGaming", "Odyseus", "VIG", "KingMidas", "BingMay"))">
                     <i class="ti ti-poker-chip"></i><span>Casino</span>
                 </button>
                 <div class="nav-dropdown-menu">
@@ -109,25 +112,34 @@
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VirtualesBR"><i class="ti ti-device-tv"></i> Virtuales BR</a>
                     @*<a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VirtualesCaribe"><i class="ti ti-device-tv"></i> Virtuales Caribe</a>*@
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="Aviatrix"><i class="ti ti-plane"></i> Aviatrix</a>
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="Casino7777"><i class="ti ti-number-7"></i> Casino 7777</a>
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="Endorphine"><i class="ti ti-flower"></i> Endorphine</a>
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="InOutGaming"><i class="ti ti-arrows-exchange"></i> InOutGaming</a>
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="Odyseus"><i class="ti ti-ship"></i> Odysseus</a>
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="VIG"><i class="ti ti-chart-bar"></i> VIG</a>
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="KingMidas"><i class="ti ti-crown"></i> KingMidas</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="BingMay"><i class="ti ti-grid-dots"></i> Bingo Maya</a>
                 </div>
             </div>
 
-            <!-- Menú Otros -->
+            <!-- Menú Loterías -->
             <div class="nav-dropdown">
-                <button class="nav-module @(IsActive("Hipismo", "Loteria", "FantasyBsb"))">
-                    <i class="ti ti-horse"></i><span>Otros</span>
+                <button class="nav-module @(IsActive("Loteria"))">
+                    <i class="ti ti-numbers"></i><span>Loterías</span>
                 </button>
                 <div class="nav-dropdown-menu">
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="Hipismo"><i class="ti ti-horse"></i> Hipismo</a>
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="Loteria"><i class="ti ti-numbers"></i> Lotería</a>
                     <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="LoteriaTriple"><i class="ti ti-numbers"></i> Lotería Triple</a>
-                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="FantasyBsb"><i class="ti ti-ball-baseball"></i> Fantasy Baseball</a>
+                </div>
+            </div>
+
+            <!-- Menú Hipismo -->
+            <div class="nav-dropdown">
+                <button class="nav-module @(IsActive("Hipismo", "HipOdysseus"))">
+                    <i class="ti ti-horse"></i><span>Hipismo</span>
+                </button>
+                <div class="nav-dropdown-menu">
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="Hipismo"><i class="ti ti-horse"></i> Tricore</a>
+                    <a class="nav-dropdown-item" asp-controller="Reportes" asp-action="HipOdysseus"><i class="ti ti-ship"></i> Odysseus</a>
                 </div>
             </div>
 
@@ -189,7 +201,10 @@
         <a class="mob-nav-item" asp-controller="Reportes" asp-action="Estadisticas"><i class="ti ti-chart-pie"></i> Estadísticas</a>
         <a class="mob-nav-item" asp-controller="Reportes" asp-action="DeportesMasVendidos"><i class="ti ti-trophy"></i> Deportes más Vendidos</a>
         <a class="mob-nav-item" asp-controller="Reportes" asp-action="VentasPorAgenteGameID"><i class="ti ti-hash"></i> Ticket por GameID</a>
-        <a class="mob-nav-item" asp-controller="Reportes" asp-action="VentasPorPais"><i class="ti ti-globe"></i> Ventas por País</a>
+        @if (EsSuAdminMenu())
+        {
+            <a class="mob-nav-item" asp-controller="Reportes" asp-action="VentasPorPais"><i class="ti ti-globe"></i> Ventas por País</a>
+        }
         <a class="mob-nav-item" asp-controller="Reportes" asp-action="VentasDetalladasLive"><i class="ti ti-live-photo"></i> Live Detalladas</a>
         <a class="mob-nav-item" asp-controller="Reportes" asp-action="Props"><i class="ti ti-cards"></i> Props</a>
 
@@ -198,18 +213,20 @@
         <a class="mob-nav-item" asp-controller="Reportes" asp-action="Pragmatic"><i class="ti ti-sparkles"></i> Pragmatic Play</a>
         <a class="mob-nav-item" asp-controller="Reportes" asp-action="VirtualesBR"><i class="ti ti-device-tv"></i> Virtuales BR</a>
         <a class="mob-nav-item" asp-controller="Reportes" asp-action="Aviatrix"><i class="ti ti-plane"></i> Aviatrix</a>
-        <a class="mob-nav-item" asp-controller="Reportes" asp-action="Casino7777"><i class="ti ti-number-7"></i> Casino 7777</a>
         <a class="mob-nav-item" asp-controller="Reportes" asp-action="Endorphine"><i class="ti ti-flower"></i> Endorphine</a>
         <a class="mob-nav-item" asp-controller="Reportes" asp-action="InOutGaming"><i class="ti ti-arrows-exchange"></i> InOutGaming</a>
         <a class="mob-nav-item" asp-controller="Reportes" asp-action="Odyseus"><i class="ti ti-ship"></i> Odysseus</a>
         <a class="mob-nav-item" asp-controller="Reportes" asp-action="VIG"><i class="ti ti-chart-bar"></i> VIG</a>
         <a class="mob-nav-item" asp-controller="Reportes" asp-action="KingMidas"><i class="ti ti-crown"></i> KingMidas</a>
+        <a class="mob-nav-item" asp-controller="Reportes" asp-action="BingMay"><i class="ti ti-grid-dots"></i> Bingo Maya</a>
 
-        <div class="mob-nav-section-label">Otros</div>
-        <a class="mob-nav-item" asp-controller="Reportes" asp-action="Hipismo"><i class="ti ti-horse"></i> Hipismo</a>
+        <div class="mob-nav-section-label">Loterías</div>
         <a class="mob-nav-item" asp-controller="Reportes" asp-action="Loteria"><i class="ti ti-numbers"></i> Lotería</a>
         <a class="mob-nav-item" asp-controller="Reportes" asp-action="LoteriaTriple"><i class="ti ti-numbers"></i> Lotería Triple</a>
-        <a class="mob-nav-item" asp-controller="Reportes" asp-action="FantasyBsb"><i class="ti ti-ball-baseball"></i> Fantasy Baseball</a>
+
+        <div class="mob-nav-section-label">Hipismo</div>
+        <a class="mob-nav-item" asp-controller="Reportes" asp-action="Hipismo"><i class="ti ti-horse"></i> Tricore</a>
+        <a class="mob-nav-item" asp-controller="Reportes" asp-action="HipOdysseus"><i class="ti ti-ship"></i> Odysseus</a>
 
         <div class="mob-nav-section-label">Finanzas</div>
         <a class="mob-nav-item" asp-controller="Reportes" asp-action="SaldosDisponibles"><i class="ti ti-coin"></i> Saldos Disponibles</a>
@@ -293,6 +310,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
     <script src="~/js/export-helpers.js" asp-append-version="true"></script>
+    <script src="~/js/metric-fit.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 
@@ -408,5 +426,12 @@
     {
         var current = ViewContext.RouteData.Values["action"]?.ToString() ?? "";
         return actions.Any(a => current.Contains(a, StringComparison.OrdinalIgnoreCase));
+    }
+
+    // true solo para "Usuario suAdmin" (se lee de la sesión del login).
+    bool EsSuAdminMenu()
+    {
+        var tipo = Microsoft.AspNetCore.Http.SessionExtensions.GetString(Context.Session, "tipoUsuario") ?? "";
+        return tipo.Trim().Equals("Usuario suAdmin", StringComparison.OrdinalIgnoreCase);
     }
 }

@@ -7,6 +7,7 @@ public sealed class TicketsDetalladosDto
     public string Agencia   { get; init; } = string.Empty;
     public long   Ticket    { get; init; }
     public string Fecha     { get; init; } = string.Empty;
+    public string? FechaCierre { get; init; }   // null cuando el ticket está pendiente (sin cierre)
     public string TipoAp    { get; init; } = string.Empty;
     public string TipoSaldo { get; init; } = string.Empty;
     public string Operacion { get; init; } = string.Empty;

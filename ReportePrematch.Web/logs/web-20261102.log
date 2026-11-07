@@ -1,0 +1,23 @@
+2026-11-02 16:10:04.125 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-11-02 16:10:06.873 -04:00 [INF] HTTP GET / responded 200 in 248.0511 ms
+2026-11-02 16:10:07.818 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 3.0945 ms
+2026-11-02 16:10:47.347 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-11-02 16:10:47.353 -04:00 [INF] HTTP POST / responded 302 in 706.1693 ms
+2026-11-02 16:10:47.532 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 172.8672 ms
+2026-11-02 16:10:47.977 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-11-02 16:10:48.530 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 563.1486 ms
+2026-11-02 16:23:17.690 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-11-02 16:23:18.615 -04:00 [INF] HTTP GET / responded 200 in 191.3203 ms
+2026-11-02 16:25:45.665 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-11-02 16:25:45.673 -04:00 [INF] HTTP POST / responded 302 in 748.2819 ms
+2026-11-02 16:25:45.785 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 102.4847 ms
+2026-11-02 16:25:45.997 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-11-02 16:25:46.608 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 618.1128 ms
+2026-11-02 16:25:50.521 -04:00 [INF] HTTP GET /Reportes/BingMay responded 200 in 22.5172 ms
+2026-11-02 16:25:50.620 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-11-02 16:25:51.147 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 527.1114 ms
+2026-11-02 16:26:02.050 -04:00 [INF] HTTP POST /Reportes/GetBingMay responded 200 in 526.9058 ms
+2026-11-02 16:26:36.313 -04:00 [INF] HTTP POST /Reportes/GetBingMay responded 200 in 217.4013 ms
+2026-11-02 16:27:35.535 -04:00 [INF] Logout: vlapenta
+2026-11-02 16:27:35.538 -04:00 [INF] HTTP GET /Home/Logout responded 302 in 5.9043 ms
+2026-11-02 16:27:35.543 -04:00 [INF] HTTP GET / responded 200 in 1.6137 ms

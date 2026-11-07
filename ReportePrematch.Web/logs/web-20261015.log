@@ -1,0 +1,174 @@
+2026-10-15 11:07:17.837 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-15 11:07:19.279 -04:00 [INF] HTTP GET / responded 200 in 283.6392 ms
+2026-10-15 11:07:20.650 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 3.4191 ms
+2026-10-15 11:16:38.975 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-10-15 11:16:38.983 -04:00 [INF] HTTP POST / responded 302 in 1470.2817 ms
+2026-10-15 11:16:39.224 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 231.9112 ms
+2026-10-15 11:16:39.952 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-15 11:16:59.943 -04:00 [ERR] GetListAgentFilt → error consultando api/Agentes/ListAgentFilt: Response status code does not indicate success: 522 (<none>).
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 522 (<none>).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetListAgentFiltAsync(String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 1277
+   at ReportePrematch.Web.Controllers.ReportesController.GetListAgentFilt() in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 50
+2026-10-15 11:16:59.976 -04:00 [ERR] HTTP POST /Reportes/GetListAgentFilt responded 500 in 20032.0597 ms
+2026-10-15 11:34:49.362 -04:00 [ERR] Error GET+QS api/Reportes/VentasPorAgenteTaq
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 522 (<none>).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 47
+2026-10-15 11:34:49.468 -04:00 [ERR] HTTP POST /Reportes/GetVentasPorAgenteTaq responded 500 in 20118.8180 ms
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 522 (<none>).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 47
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetVentasPorAgenteTaqAsync(String fechaD, String fechaH, String agente, String local, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 932
+   at ReportePrematch.Web.Controllers.ReportesController.GetVentasPorAgenteTaq(String fechaD, String fechaH, String agente, String pais) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 116
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-10-15 11:34:49.484 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 522 (<none>).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ApiClient.GetQueryAsync[T](String endpoint, Dictionary`2 query, CancellationToken ct) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ApiClient.cs:line 47
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetVentasPorAgenteTaqAsync(String fechaD, String fechaH, String agente, String local, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 932
+   at ReportePrematch.Web.Controllers.ReportesController.GetVentasPorAgenteTaq(String fechaD, String fechaH, String agente, String pais) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 116
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-10-15 11:35:06.219 -04:00 [INF] HTTP GET /Reportes/Hipismo responded 200 in 18.2082 ms
+2026-10-15 11:35:06.383 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-15 11:35:26.060 -04:00 [ERR] GetListAgentFilt → error consultando api/Agentes/ListAgentFilt: Response status code does not indicate success: 522 (<none>).
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 522 (<none>).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetListAgentFiltAsync(String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 1277
+   at ReportePrematch.Web.Controllers.ReportesController.GetListAgentFilt() in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 50
+2026-10-15 11:35:26.063 -04:00 [ERR] HTTP POST /Reportes/GetListAgentFilt responded 500 in 19680.6480 ms
+2026-10-15 11:40:06.136 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-15 11:40:07.713 -04:00 [INF] HTTP GET / responded 200 in 203.3886 ms
+2026-10-15 11:40:22.019 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-10-15 11:40:22.027 -04:00 [INF] HTTP POST / responded 302 in 1138.1723 ms
+2026-10-15 11:40:22.141 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 106.8194 ms
+2026-10-15 11:40:22.357 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-15 11:40:42.440 -04:00 [ERR] GetListAgentFilt → error consultando api/Agentes/ListAgentFilt: Response status code does not indicate success: 522 (<none>).
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 522 (<none>).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetListAgentFiltAsync(String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 1339
+   at ReportePrematch.Web.Controllers.ReportesController.GetListAgentFilt() in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 50
+2026-10-15 11:40:42.461 -04:00 [ERR] HTTP POST /Reportes/GetListAgentFilt responded 500 in 20112.3468 ms
+2026-10-15 11:40:50.510 -04:00 [INF] HTTP GET /Reportes/Hipismo responded 200 in 27.2214 ms
+2026-10-15 11:40:50.605 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-15 11:41:10.581 -04:00 [ERR] GetListAgentFilt → error consultando api/Agentes/ListAgentFilt: Response status code does not indicate success: 522 (<none>).
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 522 (<none>).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetListAgentFiltAsync(String agente, String pais, String role) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 1339
+   at ReportePrematch.Web.Controllers.ReportesController.GetListAgentFilt() in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 50
+2026-10-15 11:41:10.585 -04:00 [ERR] HTTP POST /Reportes/GetListAgentFilt responded 500 in 19980.7352 ms
+2026-10-15 12:12:30.122 -04:00 [INF] HTTP GET /Reportes/Hipismo responded 200 in 28.2703 ms
+2026-10-15 12:12:30.247 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-15 12:12:31.582 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 1334.6648 ms
+2026-10-15 12:12:48.065 -04:00 [INF] HTTP GET /Reportes/Hipismo responded 200 in 1.4274 ms
+2026-10-15 12:12:48.232 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-15 12:12:48.938 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 706.4167 ms
+2026-10-15 12:13:06.225 -04:00 [INF] HTTP POST /Reportes/GetHipismo responded 200 in 4288.5216 ms
+2026-10-15 12:13:18.323 -04:00 [INF] HTTP POST /Reportes/GetHipismo responded 200 in 1920.8397 ms
+2026-10-15 12:13:34.548 -04:00 [INF] HTTP POST /Reportes/GetDetallesHipismo responded 200 in 1153.6973 ms
+2026-10-15 12:13:40.767 -04:00 [INF] HTTP POST /Reportes/GetDetallesHipismo responded 200 in 541.7745 ms
+2026-10-15 12:13:43.857 -04:00 [INF] HTTP POST /Reportes/GetDetallesHipismo responded 200 in 177.3479 ms
+2026-10-15 12:13:55.158 -04:00 [INF] HTTP GET /Reportes/HipOdysseus responded 200 in 27.7557 ms
+2026-10-15 12:13:55.322 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-15 12:13:55.877 -04:00 [INF] HTTP POST /Reportes/GetListProdHipOdysseus responded 200 in 554.3579 ms
+2026-10-15 12:13:56.146 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 823.5633 ms
+2026-10-15 12:14:03.639 -04:00 [INF] HTTP POST /Reportes/GetHipOdysseus responded 200 in 5433.0421 ms
+2026-10-15 12:14:07.760 -04:00 [INF] HTTP POST /Reportes/GetDetTckUsuHipOdysseus responded 200 in 433.1994 ms
+2026-10-15 12:32:54.847 -04:00 [INF] HTTP GET /Reportes/Odyseus responded 200 in 19.5797 ms
+2026-10-15 12:32:55.011 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-15 12:32:55.501 -04:00 [INF] HTTP POST /Reportes/GetListProdOdysseus responded 200 in 489.6319 ms
+2026-10-15 12:32:56.018 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 1007.3238 ms
+2026-10-15 12:50:13.212 -04:00 [INF] HTTP GET /Reportes/Odyseus responded 200 in 4.3076 ms
+2026-10-15 12:50:13.358 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-15 12:50:13.959 -04:00 [INF] HTTP POST /Reportes/GetListProdOdysseus responded 200 in 601.2061 ms
+2026-10-15 12:50:14.117 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 759.5492 ms
+2026-10-15 12:50:29.177 -04:00 [INF] HTTP POST /Reportes/GetOdyseus responded 200 in 638.0734 ms
+2026-10-15 13:02:46.297 -04:00 [ERR] Error en GetDetTckUsuOdysseus user=AnLe117
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 522 (<none>).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetDetTckUsuOdysseusAsync(String userName, String fechaDesde, String fechaHasta) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 1252
+   at ReportePrematch.Web.Controllers.ReportesController.GetDetTckUsuOdysseus(String userName, String fechaDesde, String fechaHasta) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 290
+2026-10-15 13:02:46.303 -04:00 [ERR] HTTP POST /Reportes/GetDetTckUsuOdysseus responded 500 in 20244.6261 ms
+2026-10-15 13:04:46.381 -04:00 [ERR] Error en GetDetTckUsuOdysseus user=JhNa23
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 522 (<none>).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at ReportePrematch.Web.Services.Clients.ReportesService.GetDetTckUsuOdysseusAsync(String userName, String fechaDesde, String fechaHasta) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Services\Clients\ReportesService.cs:line 1252
+   at ReportePrematch.Web.Controllers.ReportesController.GetDetTckUsuOdysseus(String userName, String fechaDesde, String fechaHasta) in D:\GITHUB\ReportePrematch.Web\ReportePrematch.Web\Controllers\ReportesController.cs:line 290
+2026-10-15 13:04:46.385 -04:00 [ERR] HTTP POST /Reportes/GetDetTckUsuOdysseus responded 500 in 19643.7392 ms
+2026-10-15 13:41:43.163 -04:00 [INF] HTTP GET /Reportes/Odyseus responded 200 in 2.2398 ms
+2026-10-15 13:41:43.336 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-15 13:42:27.610 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-15 13:42:28.553 -04:00 [INF] HTTP GET / responded 200 in 214.0614 ms
+2026-10-15 13:42:39.468 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-10-15 13:42:39.477 -04:00 [INF] HTTP POST / responded 302 in 892.7515 ms
+2026-10-15 13:42:39.631 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 145.2812 ms
+2026-10-15 13:42:39.847 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-15 13:42:40.560 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 723.8620 ms
+2026-10-15 13:42:44.313 -04:00 [INF] HTTP GET /Reportes/Odyseus responded 200 in 19.0747 ms
+2026-10-15 13:42:44.474 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-15 13:42:44.871 -04:00 [INF] HTTP POST /Reportes/GetListProdOdysseus responded 200 in 397.1211 ms
+2026-10-15 13:42:44.989 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 515.7544 ms
+2026-10-15 13:42:49.655 -04:00 [INF] HTTP POST /Reportes/GetOdyseus responded 200 in 1508.1046 ms
+2026-10-15 13:42:56.868 -04:00 [INF] HTTP POST /Reportes/GetOdyseus responded 200 in 383.9717 ms
+2026-10-15 13:43:04.480 -04:00 [INF] HTTP POST /Reportes/GetOdyseus responded 200 in 609.5033 ms
+2026-10-15 13:43:42.390 -04:00 [INF] HTTP POST /Reportes/GetOdyseus responded 200 in 778.1727 ms
+2026-10-15 13:43:59.108 -04:00 [INF] HTTP GET /Reportes/HipOdysseus responded 200 in 23.5064 ms
+2026-10-15 13:43:59.259 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-15 13:43:59.766 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 507.2369 ms
+2026-10-15 13:44:05.438 -04:00 [INF] HTTP POST /Reportes/GetHipOdysseus responded 200 in 291.1422 ms
+2026-10-15 13:44:11.591 -04:00 [INF] HTTP POST /Reportes/GetDetTckUsuHipOdysseus responded 200 in 415.9538 ms
+2026-10-15 13:44:15.833 -04:00 [INF] HTTP POST /Reportes/GetDetTckUsuHipOdysseus responded 200 in 409.9379 ms
+2026-10-15 13:44:19.851 -04:00 [INF] HTTP POST /Reportes/GetHipOdysseus responded 200 in 610.6525 ms
+2026-10-15 13:44:22.639 -04:00 [INF] HTTP POST /Reportes/GetDetTckUsuHipOdysseus responded 200 in 279.7320 ms
+2026-10-15 13:44:26.636 -04:00 [INF] HTTP POST /Reportes/GetDetTckUsuHipOdysseus responded 200 in 299.1683 ms
+2026-10-15 13:44:27.965 -04:00 [INF] HTTP POST /Reportes/GetDetTckUsuHipOdysseus responded 200 in 393.8837 ms
+2026-10-15 13:44:48.703 -04:00 [INF] Logout: vlapenta
+2026-10-15 13:44:48.704 -04:00 [INF] HTTP GET /Home/Logout responded 302 in 3.6636 ms
+2026-10-15 13:44:48.711 -04:00 [INF] HTTP GET / responded 200 in 2.7102 ms
+2026-10-15 15:31:38.167 -04:00 [INF] Iniciando ReportePrematch.Web...
+2026-10-15 15:31:39.097 -04:00 [INF] HTTP GET / responded 200 in 212.1191 ms
+2026-10-15 15:31:39.657 -04:00 [INF] HTTP GET /favicon.ico responded 404 in 3.7228 ms
+2026-10-15 15:32:00.487 -04:00 [INF] Login exitoso: vlapenta [Usuario suAdmin]
+2026-10-15 15:32:00.495 -04:00 [INF] HTTP POST / responded 302 in 1055.9425 ms
+2026-10-15 15:32:00.646 -04:00 [INF] HTTP GET /Reportes/VentasPorAgente responded 200 in 144.3459 ms
+2026-10-15 15:32:01.220 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-15 15:32:03.759 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 2546.4700 ms
+2026-10-15 15:32:06.682 -04:00 [INF] HTTP GET /Reportes/HipOdysseus responded 200 in 17.7108 ms
+2026-10-15 15:32:06.788 -04:00 [WRN] GetListAgentFilt → role=[Usuario suAdmin] agente=[] pais=[]
+2026-10-15 15:32:08.531 -04:00 [INF] HTTP POST /Reportes/GetListAgentFilt responded 200 in 1743.4959 ms
+2026-10-15 15:32:09.929 -04:00 [INF] HTTP POST /Reportes/GetHipOdysseus responded 200 in 837.5562 ms
+2026-10-15 15:32:16.765 -04:00 [INF] HTTP POST /Reportes/GetDetTckUsuHipOdysseus responded 200 in 576.2482 ms
+2026-10-15 15:32:27.878 -04:00 [INF] HTTP POST /Reportes/GetHipOdysseus responded 200 in 638.3608 ms
+2026-10-15 15:32:31.772 -04:00 [INF] HTTP POST /Reportes/GetDetTckUsuHipOdysseus responded 200 in 510.2991 ms

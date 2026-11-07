@@ -130,8 +130,19 @@ let ticketsCache = {};
 let ticketsCacheWeb = {};
 let lastData = [];          // datos cargados — usados por Excel y PDF
 
+// Convierte a número montos numéricos o que vienen como texto formateado es-VE ("1.234,56").
+// parseFloat("1.234,56") devuelve 1.234 (corta en la coma) → por eso los montos del detalle salían mal.
+function num(v) {
+    if (v === null || v === undefined || v === '') return 0;
+    if (typeof v === 'number') return v;
+    var s = String(v).trim();
+    if (s.indexOf(',') >= 0) s = s.replace(/\./g, '').replace(',', '.');
+    var n = parseFloat(s);
+    return isNaN(n) ? 0 : n;
+}
+
 function fmt(v) {
-    return parseFloat(v || 0).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    return num(v).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 function fmtFecha(val) {
@@ -168,7 +179,7 @@ function limpiarBloques() {
 
 function cargarAgentes() {
     if (!esAdmin) return;
-    $.post('@Url.Action("GetListAgenciasApi","Reportes")')
+    $.post('@Url.Action("GetListAgentFilt","Reportes")')
         .done(function (lista) {
             const sel = document.getElementById('agente');
             if (!sel) return;
@@ -191,16 +202,29 @@ function cargarAgentes() {
 function buildDetalleHTML(tickets) {
     if (!tickets || !tickets.length) return '<div class="p-2" style="color:#aac;">Sin tickets para este usuario.</div>';
     var rows = '';
+    var totRiesgo = 0, totPremio = 0;
     tickets.forEach(function(t) {
+        var riesgo = num(t.riesgo);
+        var premio = num(t.ganando);
+        totRiesgo += riesgo;
+        totPremio += premio;
         rows += '<tr>'
             + '<td style="text-align:center;"><span onclick="verDetalleTicket(' + (t.ticket||0) + ')" style="cursor:pointer;color:#48CAE4;text-decoration:underline;font-weight:700;">' + (t.ticket||'—') + '</span></td>'
             + '<td style="text-align:center;">' + (t.tipoAp||'—') + '</td>'
-            + '<td class="col-monto-pos" style="text-align:center;">' + fmt(t.riesgo) + '</td>'
-            + '<td class="col-monto-neg" style="text-align:center;">' + fmt(t.ganando) + '</td>'
+            + '<td class="col-monto-pos" style="text-align:center;">' + fmt(riesgo) + '</td>'
+            + '<td class="col-monto-neg" style="text-align:center;">' + fmt(premio) + '</td>'
             + '<td style="text-align:center;">' + (t.operacion||'—') + '</td>'
             + '<td style="text-align:center;">' + fmtFecha(t.fecha) + '</td>'
+            + '<td style="text-align:center;">' + fmtFecha(t.fechaCierre) + '</td>'
             + '</tr>';
     });
+    var totalRow = '<tr style="font-weight:700;border-top:2px solid rgba(255,255,255,.35);">'
+        + '<td style="text-align:center;">TOTAL</td>'
+        + '<td style="text-align:center;">' + tickets.length + ' tickets</td>'
+        + '<td class="col-monto-pos" style="text-align:center;">' + fmt(totRiesgo) + '</td>'
+        + '<td class="col-monto-neg" style="text-align:center;">' + fmt(totPremio) + '</td>'
+        + '<td colspan="3"></td>'
+        + '</tr>';
     return '<div class="p-2"><table class="glass-table w-100" style="font-size:.93em;text-align:center;">'
         + '<thead><tr>'
         + '<th style="text-align:center;">Ticket</th>'
@@ -208,8 +232,10 @@ function buildDetalleHTML(tickets) {
         + '<th style="text-align:center;">Riesgo</th>'
         + '<th style="text-align:center;">Premio</th>'
         + '<th style="text-align:center;">Operación</th>'
-        + '<th style="text-align:center;">Fecha</th>'
-        + '</tr></thead><tbody>' + rows + '</tbody></table></div>';
+        + '<th style="text-align:center;">Fecha Venta</th>'
+        + '<th style="text-align:center;">Fecha Cierre</th>'
+        + '</tr></thead><tbody>' + rows + '</tbody>'
+        + '<tfoot>' + totalRow + '</tfoot></table></div>';
 }
 
 function toggleDetalle(tr, row, agente, fechaD, fechaH) {
@@ -217,7 +243,12 @@ function toggleDetalle(tr, row, agente, fechaD, fechaH) {
     const usuario = row.data().usuario || '';
     const cacheKey = agente + '|' + fechaD + '|' + fechaH;
     function mostrar(tickets) {
-        var filtrados = (tickets||[]).filter(function(t){ return t.usuario === usuario; });
+        // Comparación sin distinguir mayúsculas/espacios: en Apuestas el mismo usuario puede venir
+        // como "NIKOLS3DL04" y "nikols3dl04" → con === se perdían tickets del detalle.
+        var usuNorm = (usuario || '').toString().trim().toUpperCase();
+        var filtrados = (tickets||[]).filter(function(t){
+            return (t.usuario || '').toString().trim().toUpperCase() === usuNorm;
+        });
         row.child(buildDetalleHTML(filtrados)).show();
         tr.querySelector('.btn-expand').textContent = '−';
         tr.classList.add('shown');

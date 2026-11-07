@@ -9,4 +9,5 @@ public sealed class NikolsTaqDto
     public string Pagos      { get; init; } = "0,00";
     public string Pendientes { get; init; } = "0,00";
     public string Balance    { get; init; } = "0,00";
+    public string PorPagar   { get; init; } = "0,00";   // ganadores aún sin cobrar
 }
